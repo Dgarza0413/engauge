@@ -1,68 +1,49 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React Router
 
-## Available Scripts
+In this activity we will add React Router to the Books application in order to render a book details page as well as a no match 404 page.
 
-In the project directory, you can run:
+## Instructions
 
-### `npm start`
+* Open the [Unsolved](Unsolved) folder and install dependencies by running `npm install` at the project root.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Start the app by running `npm start` from the project root.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+* Once the app starts open your browser to [localhost:3000](http://localhost:3000).
 
-### `npm test`
+* Open [App.js](Unsolved/client/src/App.js).
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Part 1
 
-### `npm run build`
+* Set up React Router inside of the `client/src/App.js` file.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  * The `/` and `/books` routes should both render the `Books` component page.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Part 2
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Notice that inside of the `pages` folder we have a `NoMatch` component. This is the component for our 404 page.
 
-### `npm run eject`
+* Add a route for the new `NoMatch` component. This should only render if no other routes are matched. e.g. `/sjdfhjsdhfjsa` or `/notarealroute/lalala` should both render the `NoMatch` component page. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  * You will need to use the `Switch` component from the React Router Dom library to accomplish this. An example can be found [here](https://reacttraining.com/react-router/web/example/no-match).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Part 3
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* Notice that in the `pages` folder we have a `Detail` component. This component displays additional information about a book.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* Add a route for the the new `Detail` component. This should render when the `/books/:id` path is matched. e.g. if a book's `_id` is `59a39cf2549cf482c814333f`, then `/books/59a39cf2549cf482c814333f` should render its book `Detail` page.
 
-## Learn More
+* Inside of the `Detail` component, add code so that when the component mounts, we retrieve the book for the rendered route and save it to `this.state.book`. e.g. when the route is `/books/59a39cf2549cf482c814333f`, an AJAX request should be made to get the book with an `_id` of `59a39cf2549cf482c814333f`. If completed successfully, you should see the book's synopsis on this page.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  * You may need to look into [URL params with React Router](https://reacttraining.com/react-router/web/example/url-params) to accomplish this.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  * To access props in a class component you must use `this.props` instead of `props`.
 
-### Code Splitting
+### Hints
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+* Parts 1 - 2 will only require you modify the `client/src/App.js` file.
 
-### Analyzing the Bundle Size
+* The React Router DOM library should already be installed.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+* The React Router documentation is your friend!
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+* Ask the instructor or a TA if you're having difficulty understanding any of the activity requirements.
