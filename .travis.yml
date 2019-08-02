@@ -8,5 +8,5 @@ branches:
 cache:
   directories:
     - node_modules
-before_install:
-  - mysql -e 'CREATE DATABASE testdb;'
+before_script:
+  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
