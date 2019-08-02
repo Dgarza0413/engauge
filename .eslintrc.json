@@ -1,5 +1,6 @@
 {
     "extends": [
+        "airbnb",
         "prettier",
         "prettier/react"
     ],
@@ -15,8 +16,10 @@
         }
     },
     "env": {
+        "commonjs": true,
         "es6": true,
         "browser": true,
+        "mocha": true,
         "node": true
     }
 }
