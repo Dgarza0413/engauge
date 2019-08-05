@@ -22,7 +22,7 @@ const wellSchema = new Schema({
   }],
   spudDate: { type: Date }, // form w2.12a
   fieldAndReservoir: [{ type: String }], // can have multiple inputs. form w2.13
-  testData: { testDate: Date, hoursTested: Number, prodMethod: String, choseSize: String }, // form w2.15-18
+  testData: { testDate: Date, hoursTested: Number, prodMethod: String, chokeSize: String }, // form w2.15-18
   totalDepth: { tvd: Number, md: Number,  }, // form w2.31
   plugBackDepth: { tvd: Number, md: Number,  }, // form w2.32
   casingRecord: [{ // form w2.36

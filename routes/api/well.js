@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const wellController = require("../../controllers/wellController");
 
-// Matches with "/api/books"
-router.route("/")
-  .get(wellController.findAll)
-  .post(wellController.create);
+// list all wells
+router.route("/wells")
+  .get(wellController.findAll);
+  // .post(wellController.create);
 
 // Matches with "/api/books/:id"
 router

@@ -2,7 +2,7 @@ const router = require("express").Router();
 const userController = require("../../controllers/wellController");
 
 // Matches with "/api/books"
-router.route("/")
+router.route("/addUser")
   .get(userController.findAll)
   .post(userController.create);
 
