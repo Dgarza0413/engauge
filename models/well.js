@@ -6,6 +6,7 @@ const wellSchema = new Schema({
   operatorName: { type: String }, // form w1.2
   leaseName: { type:String }, // form w1.4
   wellNum: { type: String }, // form w1.5
+  isOn: { type: Boolean },
   wellBoreProfile: { vertical: Boolean, horizontal: Boolean, directional: Boolean, sidetrack: Boolean }, // form w1.7
   trueVerticalDepth: { type: String }, // form w1.10
   districtNum: { type: String }, // form w1.12
