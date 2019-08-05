@@ -5,15 +5,12 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import { borderRight } from '@material-ui/system';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        // width: '100%',
         display: 'flex',
-        width: 'calc(100% - 240px)',
         float: borderRight,
         marginTop: theme.spacing(3),
         overflowX: 'auto',
@@ -23,16 +20,16 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
+function createData(Name, API, Flow, Disposal, Status) {
+    return { Name, API, Flow, Disposal, Status };
 }
 
 const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
+    createData('Name', 159, 6.0, 24, 4.0),
+    createData('API', 237, 9.0, 37, 4.3),
+    createData('Flow', 262, 16.0, 24, 6.0),
+    createData('Disposal', 305, 3.7, 67, 4.3),
+    createData('Status', 356, 16.0, 49, 3.9),
 ];
 
 function SimpleTable() {
@@ -43,23 +40,23 @@ function SimpleTable() {
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Dessert (100g serving)</TableCell>
-                        <TableCell align="right">Calories</TableCell>
-                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                        <TableCell>Name</TableCell>
+                        <TableCell align="right">API No.</TableCell>
+                        <TableCell align="right">Flow</TableCell>
+                        <TableCell align="right">Disposal</TableCell>
+                        <TableCell align="right">Status</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {rows.map(row => (
                         <TableRow key={row.name}>
                             <TableCell component="th" scope="row">
-                                {row.name}
+                                {row.Name}
                             </TableCell>
-                            <TableCell align="right">{row.calories}</TableCell>
-                            <TableCell align="right">{row.fat}</TableCell>
-                            <TableCell align="right">{row.carbs}</TableCell>
-                            <TableCell align="right">{row.protein}</TableCell>
+                            <TableCell align="right">{row.API}</TableCell>
+                            <TableCell align="right">{row.Flow}</TableCell>
+                            <TableCell align="right">{row.Disposal}</TableCell>
+                            <TableCell align="right">{row.Status}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

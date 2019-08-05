@@ -17,9 +17,6 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^4.1.0",
-<<<<<<< HEAD
-    "nodemon": "^1.18.7"
-=======
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "^6.0.0",
     "eslint-config-react": "^1.1.7",
@@ -30,20 +27,15 @@
     "eslint-plugin-react": "^7.14.3",
     "nodemon": "^1.18.7",
     "prettier": "^1.18.2"
->>>>>>> d074fa60c9125eaad3bdf29824d8ac02dbc79350
   },
   "dependencies": {
     "axios": "^0.18.0",
     "express": "^4.16.3",
     "google-map-react": "^1.1.4",
     "if-env": "^1.0.4",
-<<<<<<< HEAD
     "mongoose": "^5.3.16",
     "react-router-dom": "^5.0.1",
     "react-virtualized": "^9.21.1",
     "victory": "^32.3.3"
-=======
-    "mongoose": "^5.6.8"
->>>>>>> d074fa60c9125eaad3bdf29824d8ac02dbc79350
   }
 }
