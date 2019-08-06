@@ -4,9 +4,10 @@ import Table from "../components/Table";
 class WellTable extends React.Component {
     render() {
         return (
-
-<Table striped bordered hover>
-</Table>
+            <div>
+            {/* <Button></Button> */}
+            <Table striped bordered hover />
+            </div>
         )
     }
 }
