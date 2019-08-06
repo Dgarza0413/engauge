@@ -16,12 +16,12 @@ const links = [
         name: "Well Table",
         icon: "fas fa-fill",
     }, {
-        name: "New Well",
+        name: "NewWell",
         icon: "fas fa-fill",
     }, {
         name: "Map",
         icon: "fas fa-fill",
-    }, 
+    }
 ]
 
 function Drawer() {
