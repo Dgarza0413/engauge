@@ -21,10 +21,7 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^4.1.0",
-<<<<<<< HEAD
-=======
     "nodemon": "^1.18.7",
->>>>>>> master
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "^6.0.0",
     "eslint-config-react": "^1.1.7",
@@ -32,13 +29,7 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.0",
-<<<<<<< HEAD
-    "eslint-plugin-react": "^7.14.3",
-    "nodemon": "^1.18.7",
-    "prettier": "^1.18.2"
-=======
     "eslint-plugin-react": "^7.14.3"
->>>>>>> master
   },
   "dependencies": {
     "@restart/context": "2.1.2",
@@ -46,15 +37,6 @@
     "bootstrap": "^4.3.1",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
-<<<<<<< HEAD
-    "mdbreact": "^4.19.0",
-    "mongoose": "^5.3.16",
-    "react-bootstrap": "^1.0.0-beta.10",
-    "react-router-dom": "^5.0.1",
-    "react-virtualized": "^9.21.1",
-    "victory": "^32.3.3"
-=======
     "mongoose": "^5.3.16"
->>>>>>> master
   }
 }
