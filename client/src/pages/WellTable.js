@@ -1,24 +1,24 @@
 import React from "react";
 import Table from "../components/Table";
 import PageWrapper from "../components/PageWrapper";
+import Axios from "axios";
 
 class WellTable extends React.Component {
     state = {
-
+        wells: []
     };
 
+    componentDidMount() {
+        Axios.get("/api/wells").then((res)=>{
+            this.setState({wells:res.data})
+        })
+    }
 
     render() {
         return (
-<<<<<<< HEAD
-            <div>
-            <Table striped bordered hover wellArr={this.state.whatever} />
-            </div>
-=======
             <PageWrapper>
-                <Table />
+                <Table wells={this.state.wells} />
             </PageWrapper>
->>>>>>> master
         )
     }
 }
