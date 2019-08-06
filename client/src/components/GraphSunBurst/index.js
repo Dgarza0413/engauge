@@ -1,10 +1,6 @@
 import React from "react";
 import { ResponsiveSunburst } from '@nivo/sunburst';
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
+
 const MyResponsiveSunburst = ({ data = {
     "name": "nivo",
     "color": "hsl(246, 70%, 50%)",

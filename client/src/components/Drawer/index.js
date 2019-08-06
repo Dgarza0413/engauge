@@ -1,17 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Button from 'react-bootstrap/Button';
-=======
 import "./style.css";
->>>>>>> 95d9a8222f1a131483f0146f2b5c499efc8285bb
 
 const links = [
     {
@@ -64,30 +53,7 @@ export default Drawer;
 // import ListItemText from '@material-ui/core/ListItemText';
 // import FormInput from "../FormInput";
 
-<<<<<<< HEAD
-    return (
-        <div className={classes.root}>
-            <CssBaseline />
-            <Drawer
-                className={classes.drawer}
-                variant="permanent"
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-                anchor="left"
-            >
-                <div className={classes.toolbar} />
-                <Divider />
-                <Button>Submit me</Button>
-                <List>
-                    <Link to={"/"}>
-                        <ListItem>
-                            <ListItemText primary={"Engauge"} />
-                        </ListItem>
-                    </Link>
-=======
 // const drawerWidth = 240;
->>>>>>> 95d9a8222f1a131483f0146f2b5c499efc8285bb
 
 // const styles = {
 //     paper: {
