@@ -1,11 +1,14 @@
 import React from "react";
-import Map from "../components/Map"
+import Map from "../components/Map";
+import PageWrapper from "../components/PageWrapper";
 
 
 class MapBoard extends React.Component {
     render() {
         return (
-            <Map />
+            <PageWrapper>
+                <Map />
+            </PageWrapper>
         )
     }
 }
