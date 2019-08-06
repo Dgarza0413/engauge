@@ -18,7 +18,11 @@ export default {
     return axios.post("/api/books", bookData);
   },
   // insert well info
-  addWell: function(wellData) {
+  addWell: function (wellData) {
     return axios.post("/api/addWell", wellData);
+  },
+  // get well data
+  getWellId: function (wellId) {
+    return axios.get("/api/well/" + wellId)
   }
 };
