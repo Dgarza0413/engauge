@@ -7,11 +7,8 @@ import WellTable from "./pages/WellTable";
 import WellReport from "./pages/WellReport";
 import WellDetail from "./pages/WellDetail";
 import NewWellForm from "./pages/NewWellForm";
-<<<<<<< HEAD
 import W2 from "./pages/W2";
-=======
 import FormTest from "./pages/FormTest"
->>>>>>> af7b084dea363614c11860958688f76c4605b376
 import Map from "./pages/Map";
 import Drawer from "./components/Drawer";
 import Container from "@material-ui/core/Container";
