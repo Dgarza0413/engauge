@@ -12,6 +12,14 @@
     font-weight: 500;
 }
 
+.form-group label, .form-group input {
+    font-size: 15px;
+}
+
+/* .form-group {
+    margin: 0 10px 1rem;
+} */
+
 .number-input {
     width: 50%;
 }
