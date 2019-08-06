@@ -12,30 +12,27 @@ export function WellForm() {
                     <Container>
                         <Row>
                             <Col lg="4">
-                                <StringInput label="Well Name" placeholder="02" />
+                                <StringInput label="Well Name" placeholder="wellname" />
                             </Col>
                             <Col lg="4">
                                 <StringInput label="Well No." placeholder="02" />
                             </Col>
                             <Col lg="4">
                                 <Select label="Well Type">
-                                    <option>Drilled</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                    <option>Oil</option>
+                                    <option>Gas</option>
                                 </Select>
                             </Col>
                         </Row>
                         <Row>
                             <Col lg="3">
-                                <StringInput label="API No." placeholder="147-91-8-5-1H" />
+                                <StringInput label="API No." placeholder="42-xxx-xxxxx" />
                             </Col>
                             <Col lg="4">
-                                <StringInput label="Operator Name" placeholder="Sue-Ann Operating, L.C." />
+                                <StringInput label="Operator Name" placeholder="Operator" />
                             </Col>
                             <Col lg="3">
-                                <StringInput label="Lease Name" placeholder="Martha McMillan" />
+                                <StringInput label="Lease Name" placeholder="Legacy Lease" />
                             </Col>
                             <Col lg="2">
                                 <StringInput label="County" placeholder="Travis" />
@@ -46,7 +43,7 @@ export function WellForm() {
                                 <NumberInput label="RRC District No." placeholder="02" />
                             </Col>
                             <Col lg="3">
-                                <NumberInput label="Field No." placeholder="02" />
+                                <NumberInput label="Field No." placeholder="000001" />
                             </Col>
                             <Col lg="6">
                                 <StringInput label="Field Name" placeholder="Poesta Greek (Hartzendorf)" />
@@ -60,10 +57,10 @@ export function WellForm() {
                                 <NumberInput label="Longitude" placeholder="-90.000000" />
                             </Col>
                             <Col lg="3">
-                                <NumberInput label="Completion Depth" placeholder="1000" unit="ft." />
+                                <NumberInput label="Completion Depth" placeholder="5000" unit="ft." />
                             </Col>
                             <Col lg="3">
-                                <NumberInput label="True Vertical Depth" placeholder="1000" unit="ft." />
+                                <NumberInput label="True Vertical Depth" placeholder="5000" unit="ft." />
                             </Col>
                         </Row>
                         <Row>
@@ -117,11 +114,11 @@ export function W2Form() {
                             </Col>
                             <Col lg="3">
                                 <Select label="Production Method">
+                                    <option>Freeflow</option>
                                     <option>Gas Lift</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                    <option>ESP</option>
+                                    <option>Plunger</option>
+                                    <option>Pumpjack</option>
                                 </Select>
                             </Col>
                             <Col lg="2">
@@ -166,13 +163,7 @@ export function W2Form() {
                         <Form.Label>Casing Record</Form.Label>
                         <Row>
                             <Col lg="6">
-                                <Select label="Casing Type">
-                                    <option>Conventional Production</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </Select>
+                                <StringInput label="Casing Type" placeholder="class type" />
                             </Col>
                             <Col lg="3">
                                 <NumberInput label="Casing Size" placeholder="02" unit="in." />
