@@ -26,7 +26,7 @@ function App() {
         <Drawer />
         <Switch>
           <Container>
-            <Route exact path="/" component={Books} />
+            {/* <Route exact path="/" component={Books} /> */}
             <Route exact path="/dashboard" component={DashBoard} />
             <Route exact path="/map" component={Map} />
             <Route exact path="/reports" component={WellReport} />
