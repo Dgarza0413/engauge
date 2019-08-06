@@ -17,6 +17,11 @@ export default {
   saveBook: function (bookData) {
     return axios.post("/api/books", bookData);
   },
+  // get all well info
+  getAllWells: function() {
+    return axios.get("/api/wells");
+  },
+  // get specific well info
   getWell: function(id) {
     return axios.get("/api/well" + id);
   },
