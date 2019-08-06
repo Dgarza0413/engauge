@@ -31,7 +31,7 @@ function App() {
             <Route exact path="/reports" component={WellReport} />
             <Route exact path="/books/:id" component={Detail} />
             <Route exact path="/welltable" component={WellTable} />
-            <Route exact path="/welltable/:id" component={WellDetail} />
+            <Route exact path="/welltable/id" component={WellDetail} />
             <Route exact path="/newwell" component={NewWellForm} />
           </Container>
           <Route component={NoMatch} />
