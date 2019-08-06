@@ -11,7 +11,7 @@ class WellTable extends React.Component {
     render() {
         return (
             <PageWrapper>
-                <Table />
+                <Table striped bordered hover wellArr={this.state.whatever} />
             </PageWrapper>
         )
     }

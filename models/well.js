@@ -17,7 +17,9 @@ const wellSchema = new Schema({
   districtNum: { type: String }, // form w1.12
   county: { type: String }, // form w1.13
   surfaceLocation: { type: String }, // will get data from a set of radio buttons form w1.14
-  latLong: { latitude: Number, longitude: Number }, // form w1 (bottom)
+  latLong: { 
+    latitude: Number, 
+    longitude: Number }, // form w1 (bottom)
   fieldList: [{ // form w1.28-32
     distNumber: String,
     fieldNumber: String,

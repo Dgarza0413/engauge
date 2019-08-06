@@ -5,14 +5,24 @@ class TestForm extends Component {
   state = {
     apiNum: "",
     wellNum: "",
-    wellName: ""
+    wellName: "",
+    latLong: {
+      latitude: "",
+      longitude: ""
+    }
   };
 
   handleInputChange = event => {
     const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
+    if (name === "latitude" || name === "longitude") {
+      const latLong = { ...this.state.latLong }
+      latLong[name] = value;
+      this.setState({ latLong })
+    } else {
+      this.setState({
+        [name]: value
+      });
+    }
   };
 
 
@@ -21,7 +31,11 @@ class TestForm extends Component {
     const obj = {
       apiNum: this.state.apiNum,
       wellNum: this.state.wellNum,
-      wellName: this.state.wellName
+      wellName: this.state.wellName,
+      latLong: {
+        latitude: this.state.latLong.latitude,
+        longitude: this.state.latLong.longitude
+      }
     }
     API.addWell(obj)
       .then(res => {
