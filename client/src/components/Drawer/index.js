@@ -35,7 +35,7 @@ function Drawer() {
                             <h6 key={index}><i className={text.icon}></i>{text.name}</h6>
                          </Link>
                      ))}
-                     <h6 className="logout">Logout</h6>
+                     <h6 className="logout"><i className="fas fa-sign-out-alt"></i>Logout</h6>
                 </div>
             </div>
         </div>

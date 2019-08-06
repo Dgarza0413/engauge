@@ -37,13 +37,9 @@
     "express": "^4.16.3",
     "google-map-react": "^1.1.4",
     "if-env": "^1.0.4",
-<<<<<<< HEAD
-    "mongoose": "^5.6.8"
-=======
     "mongoose": "^5.3.16",
     "react-router-dom": "^5.0.1",
     "react-virtualized": "^9.21.1",
     "victory": "^32.3.3"
->>>>>>> 138fe5ad8c06cb50da36148cdf4659923db9cd55
   }
 }

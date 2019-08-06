@@ -15,6 +15,8 @@ a:hover, a:focus {
 
 .navbar {
     padding: 0;
+    height: 100vh;
+    display: block;
 }
 
 .drawer-container {
@@ -22,7 +24,6 @@ a:hover, a:focus {
     width: 250px;
     color: white;
     /* position: fixed; */
-    /* height: 100vh; */
 }
 
 .links {
@@ -44,8 +45,8 @@ a:hover, a:focus {
     margin-right: 10px;
 }
 
-/* .logout {
+.logout {
     width: 100%;
     position: absolute;
     bottom: 30px;
-} */
+}
