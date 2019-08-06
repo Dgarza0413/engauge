@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
+import "./style.css";
 
 const drawerWidth = 240;
 
@@ -45,11 +46,12 @@ export default function OutlinedTextFields() {
     return (
         <form className={classes.container} noValidate autoComplete="off">
             <Paper>
-                <TextField
-                    id="spud-date"
-                    label="Spud Date"
+                <TextField className="button"
+                    id="well-api-num"
+                    label="API Number"
                     // style={{ margin: 10 }}
-                    placeholder="dd/mm/yyyy"
+                    placeholder="xx-xxx-xxxxx"
+                    className={classes.textField}
                     // helperText="Full width!"
                     margin="normal"
                     variant="outlined"
@@ -58,54 +60,149 @@ export default function OutlinedTextFields() {
                     }}
                 />
                 <TextField
-                    id="field-reservoir"
-                    label="Field/Reservoir"
-                    placeholder="Enter Field/Reservoir"
+                    id="operator-name"
+                    label="Operator Name"
+                    // style={{ margin: 10 }}
                     className={classes.textField}
+                    placeholder="Oil and Gas Co."
+                    // helperText="Full width!"
                     margin="normal"
                     variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                 />
                 <TextField
-                    required
-                    id="data-of-test"
-                    label="Test Date"
-                    defaultValue="01/02/2019"
+                    id="lease-name"
+                    label="Lease Name"
+                    placeholder="Lease Name"
                     className={classes.textField}
                     margin="normal"
                     variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                 />
                 <TextField
-                    id="hours-tested"
-                    label="hours test"
-                    defaultValue=""
+                    id="county-name"
+                    label="County Name"
+                    placeholder="Travis"
                     className={classes.textField}
                     margin="normal"
                     variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                 />
                 <TextField
-                    id="production-method"
-                    label="production method"
-                    defaultValue=""
+                    id="rrc-district-no"
+                    label="RRC District"
+                    placeholder="02"
                     className={classes.textField}
                     margin="normal"
                     variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                 />
                 <TextField
-                    id="pump-size"
-                    label="pump size"
-                    defaultValue=""
+                    id="field-no"
+                    label="Field Number"
+                    placeholder="02"
                     className={classes.textField}
                     margin="normal"
                     variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                 />
                 <TextField
-                    id="choke-size"
-                    label="choke size"
-                    defaultValue=""
+                    id="field-name"
+                    label="Field Name"
+                    placeholder="Yougeen"
                     className={classes.textField}
                     margin="normal"
                     variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                 />
+                <TextField
+                    id="field-name"
+                    label="Field Name"
+                    placeholder="Yougeen"
+                    className={classes.textField}
+                    margin="normal"
+                    variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
+                <TextField
+                    id="latitude"
+                    label="Latitude"
+                    helperText="Use WGS-84"
+                    className={classes.textField}
+                    margin="normal"
+                    variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
+                <TextField
+                    id="longtitude"
+                    label="Longtitude"
+                    helperText="Use WGS-84"
+                    className={classes.textField}
+                    margin="normal"
+                    variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
+                <TextField
+                    id="well-name"
+                    label="Well Name"
+                    placeholder="Travis"
+                    className={classes.textField}
+                    margin="normal"
+                    variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
+                <TextField
+                    id="well-number"
+                    label="Well Number"
+                    placeholder="1D"
+                    helperText="This can be mixed"
+                    className={classes.textField}
+                    margin="normal"
+                    variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
+                <TextField
+                    id="Well Type"
+                    select
+                    label="Select"
+                    className={classes.textField}
+                    value={values.currency}
+                    onChange={handleChange('currency')}
+                    SelectProps={{
+                        MenuProps: {
+                            className: classes.menu,
+                        },
+                    }}
+                    helperText="Please select your currency"
+                    margin="normal"
+                    variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                ></TextField>
+
             </Paper>
             <Paper>
                 <TextField

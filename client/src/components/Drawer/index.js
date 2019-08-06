@@ -8,6 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import FormInput from "../FormInput";
+import Button from 'react-bootstrap/Button';
 
 const drawerWidth = 240;
 
@@ -47,6 +48,7 @@ export default function PermanentDrawerLeft() {
             >
                 <div className={classes.toolbar} />
                 <Divider />
+                <Button>Submit me</Button>
                 <List>
                     <Link to={"/"}>
                         <ListItem>
