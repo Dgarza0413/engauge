@@ -2,11 +2,15 @@ import React from "react";
 import Table from "../components/Table";
 
 class WellTable extends React.Component {
+    state = {
+
+    };
+
+
     render() {
         return (
             <div>
-            {/* <Button></Button> */}
-            <Table striped bordered hover />
+            <Table striped bordered hover wellArr={this.state.whatever} />
             </div>
         )
     }
