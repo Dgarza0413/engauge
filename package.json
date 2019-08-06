@@ -11,14 +11,31 @@
     "seed": "node scripts/seedDB.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "test": "exit 0",
+    "format": "prettier --write --single-quote --no-semi --print-width=120 --tab-width=2 \"src/**/*.{js,jsx} \"",
+    "lint": "eslint '**/*.{js,jsx}' --quiet",
+    "lint:fix": "eslint '**/*.{js,jsx}' --fix"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "bootstrap": "^4.3.1",
     "concurrently": "^4.1.0",
+<<<<<<< HEAD
     "nodemon": "^1.18.7"
+=======
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-loader": "^2.2.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "nodemon": "^1.18.7",
+    "prettier": "^1.18.2"
+>>>>>>> master
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -26,7 +43,10 @@
     "express": "^4.16.3",
     "google-map-react": "^1.1.4",
     "if-env": "^1.0.4",
+<<<<<<< HEAD
     "jsonwebtoken": "^8.5.1",
+=======
+>>>>>>> master
     "mongoose": "^5.3.16",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
