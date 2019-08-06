@@ -2,6 +2,7 @@ import React from 'react';
 import GraphLine from "../components/GraphLine";
 import GraphPie from "../components/GraphPie";
 import GraphSunBurst from "../components/GraphSunBurst";
+import PageWrapper from "../components/PageWrapper";
 
 const styles = {
     graph: {
@@ -12,11 +13,13 @@ const styles = {
 class DashBoard extends React.Component {
     render() {
         return (
-            <div style={styles.graph}>
-                <GraphLine />
-                <GraphPie />
-                <GraphSunBurst />
-            </div>
+            <PageWrapper>
+                <div style={styles.graph}>
+                    <GraphLine />
+                    <GraphPie />
+                    <GraphSunBurst />
+                </div>
+            </PageWrapper>
         )
     }
 }
