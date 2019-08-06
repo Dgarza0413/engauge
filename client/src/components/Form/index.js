@@ -41,7 +41,7 @@ export function Select(props) {
     );
 }
 
-export function Radio(props) {
+export function BoxInput(props) {
     return (
         <div>
             <Form.Label>{props.label}</Form.Label>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from "react-bootstrap";
-import { StringInput, NumberInput, Select, Radio } from "../Form";
+import { StringInput, NumberInput, Select, BoxInput } from "../Form";
 import "./style.css";
 
 function WellForm() {
@@ -27,14 +27,18 @@ function WellForm() {
                 <NumberInput label="Longitude" placeholder="-90.000000" />
                 <NumberInput label="Completion Depth" placeholder="1000" unit="ft." />
                 <NumberInput label="True Vertical Depth" placeholder="1000" unit="ft." />
-                {/* <StringInput label="Wellbore Profile" placeholder="02" />
-                <StringInput label="Surface Location" placeholder="02" /> */}
-                <Radio label="Surface Location">
-                    <Form.Check custom inline label="Land" type="radio" id="custom-inline-radio-1" />
-                    <Form.Check custom inline label="Bay/Estuary" type="radio" id="custom-inline-radio-2" />
-                    <Form.Check custom inline label="Inland Waterway" type="radio" id="custom-inline-radio-3" />
-                    <Form.Check custom inline label="Offshore" type="radio" id="custom-inline-radio-4" />
-                </Radio>
+                <BoxInput label="Wellbore Profile">
+                    <Form.Check custom inline name="wellbore-profile" label="Vertical" type="checkbox" id="custom-inline-checkbox-1" />
+                    <Form.Check custom inline name="wellbore-profile" label="Horizontal" type="checkbox" id="custom-inline-checkbox-2" />
+                    <Form.Check custom inline name="wellbore-profile" label="Directional" type="checkbox" id="custom-inline-checkbox-3" />
+                    <Form.Check custom inline name="wellbore-profile" label="Sidetrack" type="checkbox" id="custom-inline-checkbox-4" />
+                </BoxInput>
+                <BoxInput label="Surface Location">
+                    <Form.Check custom inline name="surface-location" label="Land" type="radio" id="custom-inline-radio-1" />
+                    <Form.Check custom inline name="surface-location" label="Bay/Estuary" type="radio" id="custom-inline-radio-2" />
+                    <Form.Check custom inline name="surface-location" label="Inland Waterway" type="radio" id="custom-inline-radio-3" />
+                    <Form.Check custom inline name="surface-location" label="Offshore" type="radio" id="custom-inline-radio-4" />
+                </BoxInput>
                 <input type="submit"></input>
             </form>
         </div>
