@@ -1,5 +1,6 @@
 import React from 'react';
 import { VictoryBar, VictoryChart, VictoryLine } from 'victory';
+import OutlinedTextFields from "../components/FormInput";
 
 class DashBoard extends React.Component {
     render() {
@@ -22,6 +23,7 @@ class DashBoard extends React.Component {
                         ]}
                     />
                 </VictoryChart>
+                <OutlinedTextFields />
             </div>
         )
     }
