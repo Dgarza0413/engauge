@@ -5,8 +5,8 @@ const wellSchema = new Schema({
   apiNum: { type: String, required: true }, // form w1 (top)
   operatorName: { type: String }, // form w1.2
   leaseName: { type:String }, // form w1.4
-  wellNum: { type: String, required: true }, // form w1.5
-  wellName: { type: String, required: true },
+  wellNum: { type: String }, // form w1.5
+  wellName: { type: String },
   isOn: { type: Boolean },
   wellBoreProfile: { 
     vertical: Boolean, 

@@ -1,0 +1,9 @@
+option {
+    border-color: #e6e7ec;
+}
+
+.button {
+    background-color: black;
+    color: blue;
+    font-size: 40px;
+}
