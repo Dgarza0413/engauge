@@ -1,5 +1,4 @@
 import React from 'react';
-import { VictoryBar, VictoryChart, VictoryLine } from 'victory';
 import GraphLine from "../components/GraphLine";
 import GraphPie from "../components/GraphPie";
 import GraphSunBurst from "../components/GraphSunBurst";
