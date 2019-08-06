@@ -17,7 +17,7 @@ router.route("/user/:id")
 // /api/wells
 router.route("/wells")
   .get(wellController.findAll);
-
+// /api/addWell
 router.route("/addWell")
   .post(wellController.create);
 // select specific well
