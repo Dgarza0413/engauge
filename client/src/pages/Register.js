@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Col, Row, Container } from "../components/Grid";
 import UserForm from "../components/UserForm";
 import axios from 'axios'
+import PageWrapper from "../components/PageWrapper";
+
 
 class Register extends Component {
   state = {
@@ -29,20 +31,15 @@ class Register extends Component {
 
   render() {
       return (
-          <Container fluid>
-           
-              <Row>
-                  <Col size="12">
-                    <div className="register-form">
-                        <UserForm 
-                        title="Sign up"
-                        handleFormSubmit={this.handleFormSubmit}
-                        handleChange={this.handleChange}
-                        />
-                    </div>
-                </Col>
-            </Row>
-          </Container>
+        <PageWrapper>
+          <div className="register-form">
+            <UserForm 
+                title="Sign up"
+                handleFormSubmit={this.handleFormSubmit}
+                handleChange={this.handleChange}
+            />
+        </div>
+        </PageWrapper>
       );
   }
 }
