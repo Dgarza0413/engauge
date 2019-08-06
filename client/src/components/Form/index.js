@@ -7,7 +7,7 @@ export function StringInput(props) {
     return (
         <Form.Group>
             <Form.Label>{props.label}</Form.Label>
-            <Form.Control type="text" placeholder={props.placeholder} />
+            <Form.Control type="text" name={props.name} value={props.value} onChange={props.onChange} placeholder={props.placeholder} />
         </Form.Group>
     )
 }
@@ -17,7 +17,7 @@ export function NumberInput(props) {
         <Form.Group>
             <Form.Label>{props.label}</Form.Label>
             <div className="number-group">
-                <Form.Control type="number" placeholder={props.placeholder} style={{width: props.width || "100%"}} />
+                <Form.Control type="number" name={props.name} value={props.value} onChange={props.onChange} placeholder={props.placeholder} style={{width: props.width || "100%"}} />
                 <p>{props.unit}</p>
             </div>
         </Form.Group>
