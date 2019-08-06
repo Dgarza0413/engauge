@@ -13,6 +13,7 @@ function WellTable(props) {
         <thead>
           <tr>
             <th>Well Name</th>
+            <th>Well Number</th>
             <th>API Number</th>
             <th>Flow</th>
             <th>Disposal</th>
@@ -23,7 +24,10 @@ function WellTable(props) {
           {props.wells.map(well=>(
             <tr>
             <td>{well.wellName}</td>
+            <td>{well.wellNum}</td>
             <td>{well.apiNum}</td>
+            <td>{well.wellNum}</td>
+            <td>{well.wellNum}</td>
             <td>{well.wellNum}</td>
             </tr>
 
