@@ -1,4 +1,3 @@
-// const bcrypt = require('bcryptjs');
 // const mongoose = require('mongoose');
 // const Schema = mongoose.Schema;
 
@@ -35,11 +34,12 @@
 // module.exports = User;
 
 const mongoose = require("mongoose");
+const bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
 const passportLocalMongoose = require("passport-local-mongoose");
 
-const userSchema = new Schema({
-  username: { type: String, unique: true, required: true },
+const UserSchema = new Schema({
+  email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
 
 });
@@ -48,8 +48,16 @@ UserSchema.methods.checkPassword = function(password){
     return bcrypt.compare(password, this.password)
 }
 
-userSchema.plugin(passportLocalMongoose);
+UserSchema.pre('save', function(next){
+    return bcrypt.genSalt(10).then(salt => {
+        return bcrypt.hash(this.password, salt)
+    }).then(hash => {
+        this.password = hash
+        return Promise.resolve()
+    })
+});
+UserSchema.plugin(passportLocalMongoose);
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", UserSchema);
 
 module.exports = User;

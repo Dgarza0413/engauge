@@ -1,11 +1,25 @@
 const router = require("express").Router();
 const userController = require("../../controllers/userController");
 const wellController = require("../../controllers/wellController");
+const passport = require('../../config/passport.js')
 
 // /api/addUser
 router.route("/addUser")
   .get(userController.findAll)
   .post(userController.create);
+
+// /api/login
+router.post("/login",passport.authenticate("local"),(req,res)=>{
+  res.json(req.user);
+})
+
+// /api/register
+
+// /logout
+router.get("/logout", function (req, res) {
+  req.logout();
+  res.redirect("/");
+});
 
 // /api/user/:id
 router.route("/user/:id")

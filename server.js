@@ -6,7 +6,7 @@ const path = require('path')
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001
-// const passport = require('./config/passport.js')
+const passport = require('./config/passport.js')
 // const { google } = require("googleapis")
 
 // const db = require("./models")

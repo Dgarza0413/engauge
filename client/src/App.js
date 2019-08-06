@@ -10,8 +10,6 @@ import NewWellForm from "./pages/NewWellForm";
 import W2 from "./pages/W2";
 import FormTest from "./pages/FormTest"
 import Map from "./pages/Map";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
 import Drawer from "./components/Drawer";
 import Container from "@material-ui/core/Container";
 
@@ -32,8 +30,6 @@ function App() {
           <Container>
             {/* <Route exact path="/" component={Books} /> */}
             <Route exact path="/dashboard" component={DashBoard} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
             <Route exact path="/map" component={Map} />
             <Route exact path="/reports" component={WellReport} />
             <Route exact path="/books/:id" component={Detail} />
