@@ -1,13 +1,14 @@
 import React from "react";
-import TestForm from "../components/TestForm"
+import TestForm from "../components/TestForm";
+import PageWrapper from "../components/PageWrapper";
 
 class FormTest extends React.Component {
     render() {
         return (
-            <div>
+            <PageWrapper>
                 <h1>Form test</h1>
                 <TestForm />
-            </div>
+            </PageWrapper>
         )
     }
 }
