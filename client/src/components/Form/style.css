@@ -4,11 +4,29 @@
 }
 
 .form-control, .form-control:hover, .form-control:focus{
-    border-color: #e6e7ec;
     background-color: #f8f8f8;
     outline: 0;
     box-shadow: none;
     border-color: #e6e7ec;
     color: #5e6162;
     font-weight: 500;
+}
+
+.number-input {
+    width: 50%;
+}
+
+.number-input .form-control {
+    /* display: flex; */
+    width: 90%;
+}
+
+.number-group {
+    display: flex;
+    align-items: center;
+}
+
+.number-group p {
+    margin-bottom: 0;
+    margin-left: 10px;
 }

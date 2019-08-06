@@ -13,14 +13,14 @@ const links = [
         name: "Reports",
         icon: "fas fa-file-signature",
     }, {
-        name: "Well Table",
+        name: "WellTable",
         icon: "fas fa-fill",
     }, {
         name: "NewWell",
         icon: "fas fa-fill",
     }, {
         name: "Map",
-        icon: "fas fa-fill",
+        icon: "fas fa-map-marked-alt",
     }
 ]
 

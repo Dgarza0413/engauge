@@ -1,5 +1,7 @@
 import React from 'react';
-import { StringInput } from "../Form";
+import { Form } from "react-bootstrap";
+import { StringInput, NumberInput, Select, BoxInput } from "../Form";
+import "./style.css";
 
 function WellForm() {
     return (
@@ -7,20 +9,36 @@ function WellForm() {
             <form>
                 <StringInput label="Well Name" placeholder="02" />
                 <StringInput label="Well No." placeholder="02" />
-                <StringInput label="Well Type" placeholder="Drilled" />
+                <Select label="Well Type">
+                    <option>Drilled</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </Select>
                 <StringInput label="API No." placeholder="147-91-8-5-1H" />
                 <StringInput label="Operator Name" placeholder="Sue-Ann Operating, L.C." />
                 <StringInput label="Lease Name" placeholder="Martha McMillan" />
                 <StringInput label="County" placeholder="Travis" />
-                <StringInput label="RRC District No." placeholder="02" />
-                <StringInput label="Field No." placeholder="02" />
+                <NumberInput label="RRC District No." placeholder="02" />
+                <NumberInput label="Field No." placeholder="02" />
                 <StringInput label="Field Name" placeholder="Poesta Greek (Hartzendorf)" />
-                <StringInput label="Latitude" placeholder="90.000000" />
-                <StringInput label="Longitude" placeholder="-90.000000" />
-                <StringInput label="Completion Depth" placeholder="1000 ft" />
-                <StringInput label="True Vertical Depth" placeholder="1000 ft" />
-                <StringInput label="Wellbore Profile" placeholder="02" />
-                <StringInput label="Surface Location" placeholder="02" />
+                <NumberInput label="Latitude" placeholder="90.000000" />
+                <NumberInput label="Longitude" placeholder="-90.000000" />
+                <NumberInput label="Completion Depth" placeholder="1000" unit="ft." />
+                <NumberInput label="True Vertical Depth" placeholder="1000" unit="ft." />
+                <BoxInput label="Wellbore Profile">
+                    <Form.Check custom inline name="wellbore-profile" label="Vertical" type="checkbox" id="custom-inline-checkbox-1" />
+                    <Form.Check custom inline name="wellbore-profile" label="Horizontal" type="checkbox" id="custom-inline-checkbox-2" />
+                    <Form.Check custom inline name="wellbore-profile" label="Directional" type="checkbox" id="custom-inline-checkbox-3" />
+                    <Form.Check custom inline name="wellbore-profile" label="Sidetrack" type="checkbox" id="custom-inline-checkbox-4" />
+                </BoxInput>
+                <BoxInput label="Surface Location">
+                    <Form.Check custom inline name="surface-location" label="Land" type="radio" id="custom-inline-radio-1" />
+                    <Form.Check custom inline name="surface-location" label="Bay/Estuary" type="radio" id="custom-inline-radio-2" />
+                    <Form.Check custom inline name="surface-location" label="Inland Waterway" type="radio" id="custom-inline-radio-3" />
+                    <Form.Check custom inline name="surface-location" label="Offshore" type="radio" id="custom-inline-radio-4" />
+                </BoxInput>
                 <input type="submit"></input>
             </form>
         </div>
