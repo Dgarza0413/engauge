@@ -3,25 +3,26 @@ import API from "../../utils/API";
 
 class TestForm extends Component {
   state = {
-    title: "",
-    toResults: false,
-    results: []
+    apiNum: "",
+    wellNum: "",
+    wellName: "",
+    wellData: {}
   };
 
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
+  handleChangeFor = (propertyName) => (event) => {
+    const {wellData} = this.state;
+    const newWellData = {
+      ...wellData,
+      [propertyName]: event.target.value
+    };
+    this.setState({ wellData: newWellData });
+  }
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (wellData, event) => {
     event.preventDefault();
-    if (this.state.title) {
+    if (this.state.wellData) {
 
-      const title = this.state.title.trim();
-
-      API.searchBook(title)
+      API.addWell(wellData)
         .then(res => {
 
           console.log(res.data.items);
@@ -38,23 +39,37 @@ class TestForm extends Component {
     return (
       <form>
         <div className="form-group">
-          <label htmlFor="search">Search:</label>
-          <input
-            value={this.state.title}
-            onChange={this.handleInputChange}
-            name="title"
-            type="text"
-            className="form-control"
-            placeholder="Search For a Book"
-            id="search"
-          />
+          <label htmlFor="apiNum">API No.:</label>
+          <imput 
+          type="text" 
+          onChange={this.handleChangeFor("apiNum")} 
+          value={this.state.wellData.apiNum} 
+          name="apiNum"
+          className="form-control" 
+          placeholder=""
+          id="apiNum"/>
+          <label htmlFor="wellNum">Well No.:</label>
+          <imput 
+          type="text" 
+          onChange={this.handleChangeFor("wellNum")} 
+          value={this.state.wellData.wellNum} 
+          name="wellNum"
+          className="form-control" 
+          placeholder=""
+          id="wellNum" />
+          <label htmlFor="wellName">Well Name:</label>
+          <imput 
+          type="text" 
+          onChange={this.handleChangeFor("wellName")} 
+          value={this.state.wellData.wellName} 
+          name="wellName"
+          className="form-control" 
+          placeholder=""
+          id="wellName" />          
           <br />
           <button onClick={this.handleFormSubmit} className="btn btn-primary">
-            Search
+            Submit
           </button>
-          <ResultsList 
-            items = {this.state.results}
-          />
         </div>
       </form>
     );
