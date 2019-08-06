@@ -16,10 +16,13 @@ const links = [
         name: "WellTable",
         icon: "fas fa-fill",
     }, {
-        name: "NewWell",
+        name: "New-Well",
         icon: "fas fa-fill",
     }, {
         name: "Map",
+        icon: "fas fa-map-marked-alt",
+    }, {
+        name: "W2",
         icon: "fas fa-map-marked-alt",
     }
 ]

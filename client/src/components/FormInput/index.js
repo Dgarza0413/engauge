@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import { StringInput, NumberInput, Select, BoxInput } from "../Form";
 import "./style.css";
 
-function WellForm() {
+export function WellForm() {
     return (
         <div>
             <form>
@@ -45,7 +45,89 @@ function WellForm() {
     );
 }
 
-export default WellForm;
+export function W2Form() {
+    return (
+        <div>
+            <form>
+                <StringInput label="Spud Date" placeholder="01-01-2019" />
+                <StringInput label="Field & Reservior" placeholder="Enter Field & Reservoir" />
+                <StringInput label="Date of Test" placeholder="01-01-2019" />
+                <NumberInput label="Hours Tested" placeholder="02" />
+                <Select label="Production Method">
+                    <option>Gas Lift</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </Select>
+                <NumberInput label="Pump Size" placeholder="90.000" />
+                <NumberInput label="Choke Size" placeholder="90.000" />
+                <Form.Label>Total Depth</Form.Label>
+                <NumberInput label="TVD" placeholder="1000" unit="ft." />
+                <NumberInput label="MD" placeholder="1000" unit="ft." />
+                <Form.Label>Plug Back Depth</Form.Label>
+                <NumberInput label="TVD" placeholder="1000" unit="ft." />
+                <NumberInput label="MD" placeholder="1000" unit="ft." />
+                <Form.Label>Casing Record</Form.Label>
+                <Select label="Casing Type">
+                    <option>Conventional Production</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </Select>
+                <NumberInput label="Casing Size" placeholder="02" unit="in." />
+                <NumberInput label="Hole Size" placeholder="07" unit="in." />
+                <Select label="Cement Type">
+                    <option>Class A</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </Select>
+                <NumberInput label="Cement Amount" placeholder="02" unit="sacks" />
+                <NumberInput label="Slurry Volume" placeholder="02" unit="cu. ft." />
+                <StringInput label="Top of Cement" placeholder="Surface" />
+                <Form.Label>Tubing Records</Form.Label>
+                <NumberInput label="Size" placeholder="02" unit="in." />
+                <NumberInput label="Depth Set" placeholder="07" unit="in." />
+                <Select label="Packer Type">
+                    <option>Hydralic Set</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </Select>
+                <NumberInput label="Packer Depth" placeholder="07" unit="ft." />
+                <Form.Label>Production / Injection / Disposal Interval</Form.Label>
+                <StringInput label="From" placeholder="Enter Where From" />
+                <StringInput label="To" placeholder="Enter Where To" />
+                <Form.Label>Formation Records</Form.Label>
+                <Select label="Pricipal Geological Markers and Formation Tops">
+                    <option>Hydralic Set</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </Select>
+                <NumberInput label="TVD" placeholder="02" unit="ft." />
+                <NumberInput label="MD" placeholder="07" unit="ft." />
+                <Select label="Formation Type">
+                    <option>Zone With Corrosive Formation Fluids</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </Select>
+                <Select label="Isolated">
+                    <option>Yes</option>
+                    <option>No</option>
+                </Select>
+                <input type="submit"></input>
+            </form>
+        </div>
+    );
+}
 
 // import clsx from 'clsx';
 // import { makeStyles } from '@material-ui/core/styles';
