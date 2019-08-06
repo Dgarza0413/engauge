@@ -2,63 +2,81 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 
 class TestForm extends Component {
-  state = {
-    title: "",
-    toResults: false,
-    results: []
-  };
-
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
-
-  handleFormSubmit = event => {
-    event.preventDefault();
-    if (this.state.title) {
-
-      const title = this.state.title.trim();
-
-      API.searchBook(title)
-        .then(res => {
-
-          console.log(res.data.items);
-
-          this.setState({
-            results: res.data.items
-          });
-        })
-        .catch(err => console.log(err));
+    state = {
+      apiNum: "",
+      wellNum: "",
+      wellName: ""
+    };
+  
+    handleInputChange = event => {
+      const { name, value } = event.target;
+      this.setState({
+        [name]: value
+      });
+    };
+    
+  
+    handleFormSubmit = event => {
+      event.preventDefault();
+        const obj = {
+            apiNum: this.state.apiNum,
+            wellNum: this.state.wellNum,
+            wellName: this.state.wellName
+        }
+        API.addWell(obj)
+          .then(res => {
+  
+            console.log(res.data.items);
+  
+            this.setState({
+              obj: res.data.items
+            });
+          })
+          .catch(err => console.log(err));
+    };
+  
+    render() {
+      return (
+        <form onSubmit={this.handleFormSubmit}>
+            <div className="form-group">
+            <label htmlFor="apiNum">apiNum:</label>
+            <input
+                value={this.state.apiNum}
+                onChange={this.handleInputChange}
+                name="apiNum"
+                type="text"
+                className="form-control"
+                placeholder="apiNum"
+                id="apiNum"
+        />
+            <label htmlFor="wellNum">wellNum:</label>
+            <input
+                value={this.state.wellNum}
+                onChange={this.handleInputChange}
+                name="wellNum"
+                type="text"
+                className="form-control"
+                placeholder="wellNum"
+                id="wellNum"
+        />
+            <label htmlFor="wellName">wellName:</label>
+            <input
+                value={this.state.wellName}
+                onChange={this.handleInputChange}
+                name="wellName"
+                type="text"
+                className="form-control"
+                placeholder="wellName"
+                id="wellName"
+        />
+            <br />
+            <button className="btn btn-primary">
+              Search
+            </button>
+          </div>
+        </form>
+      );
     }
-  };
-
-  render() {
-    return (
-      <form>
-        <div className="form-group">
-          <label htmlFor="search">Search:</label>
-          <input
-            value={this.state.title}
-            onChange={this.handleInputChange}
-            name="title"
-            type="text"
-            className="form-control"
-            placeholder="Search For a Book"
-            id="search"
-          />
-          <br />
-          <button onClick={this.handleFormSubmit} className="btn btn-primary">
-            Search
-          </button>
-          <ResultsList 
-            items = {this.state.results}
-          />
-        </div>
-      </form>
-    );
   }
-}
 
 export default TestForm;
