@@ -1,15 +1,15 @@
 import React from "react";
-import { WellForm } from "../components/FormInput";
+import { W2Form } from "../components/FormInput";
 import PageWrapper from "../components/PageWrapper";
 
-class NewWellForm extends React.Component {
+class W2 extends React.Component {
     render() {
         return (
             <PageWrapper>
-                <WellForm />
+                <W2Form />
             </PageWrapper>
         )
     }
 }
 
-export default NewWellForm;
+export default W2;
