@@ -1,11 +1,37 @@
 const router = require("express").Router();
-const userRoutes = require("./users");
-const wellRoutes = require("./well");
+const userController = require("../../controllers/userController");
+const wellController = require("../../controllers/wellController");
 
-// user routes
-router.use("/users", userRoutes);
+// /api/addUser
+router.route("/addUser")
+  .get(userController.findAll)
+  .post(userController.create);
 
-// well routes
-router.use("/well", wellRoutes);
+// /api/user/:id
+router.route("/user/:id")
+  .get(userController.findById)
+  .put(userController.update)
+  .delete(userController.remove);
+
+// list all wells       // remove for production
+// /api/wells
+router.route("/wells")
+  .get(wellController.findAll);
+
+router.route("/addWell")
+  .post(wellController.create);
+// select specific well
+// /api/well/:id
+router.route("/well/:id")
+  .get(wellController.findById)
+  .put(wellController.update)
+  .delete(wellController.remove);
+
+// /api/well/:tankid
+// change to tankController
+router.route("/well/:tankid")
+  .get(wellController.findById)
+  .put(wellController.update)
+  .delete(wellController.remove);
 
 module.exports = router;

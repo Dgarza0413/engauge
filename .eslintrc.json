@@ -1,0 +1,75 @@
+{
+    "extends": [
+        "airbnb",
+        "prettier",
+        "prettier/react"
+    ],
+    "parser": "babel-eslint",
+    "plugins": [
+        "prettier",
+        "react",
+        "jsx-ally",
+        "import"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2016,
+        "sourceType": "module",
+        "allowImportExportEverywhere": true,
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "env": {
+        "commonjs": true,
+        "es6": true,
+        "browser": true,
+        "mocha": true,
+        "node": true
+    },
+    "rules": {
+        "no-case-declarations": 1,
+        "react/jsx-no-bind": [
+            1,
+            {}
+        ],
+        "react/jsx-no-undef": 1,
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ],
+        "space-before-function-paren": 0,
+        "react/jsx-boolean-value": 0,
+        "import/first": 0,
+        "no-duplicate-case": "error",
+        "no-empty": "error",
+        "no-extra-semi": "error",
+        "no-func-assign": "error",
+        "no-irregular-whitespace": "error",
+        "no-unreachable": "error",
+        "curly": "error",
+        "dot-notation": "error",
+        "eqeqeq": "error",
+        "no-empty-function": "error",
+        "no-multi-spaces": "error",
+        "no-unused-vars": "error",
+        "camelcase": "error",
+        "no-var": "error",
+        "quotes": [
+            "error",
+            "double"
+        ],
+        "index": [
+            "error",
+            4
+        ],
+        "semi": [
+            "error",
+            "always"
+        ]
+    }
+}

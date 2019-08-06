@@ -1,9 +1,12 @@
 import React from "react";
+import PageWrapper from "../components/PageWrapper";
 
 class WellReport extends React.Component {
     render() {
         return (
-            <h1>This is the wellReport</h1>
+            <PageWrapper>
+                <h1>This is the wellReport</h1>
+            </PageWrapper>
         )
     }
 }

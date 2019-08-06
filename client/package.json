@@ -5,6 +5,10 @@
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "@material-ui/core": "^4.3.1",
+    "@nivo/bar": "^0.59.2",
+    "@nivo/line": "^0.59.3",
+    "@nivo/pie": "^0.59.1",
+    "@nivo/sunburst": "^0.59.1",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "clsx": "^1.0.4",
@@ -14,13 +18,11 @@
     "react-bootstrap": "^1.0.0-beta.10",
     "react-dom": "^16.6.3",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.1",
-    "victory": "^32.3.3"
+    "react-scripts": "^2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "browserslist": [
