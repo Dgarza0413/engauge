@@ -14,6 +14,48 @@ export function StringInput(props) {
     )
 }
 
+export function NumberInput(props) {
+    return (
+        <div className="number-input">
+            <Form.Group>
+                <Form.Label>{props.label}</Form.Label>
+                <div className="number-group">
+                    <Form.Control type="number" placeholder={props.placeholder} />
+                    <p>{props.unit}</p>
+                </div>
+            </Form.Group>
+        </div>
+    );
+}
+
+export function Select(props) {
+    return (
+        <div>
+            <Form.Group controlId="exampleForm.ControlSelect1">
+                <Form.Label>{props.label}</Form.Label>
+                <Form.Control as="select">
+                    {props.children}
+                </Form.Control>
+            </Form.Group>
+        </div>
+    );
+}
+
+export function BoxInput(props) {
+    return (
+        <div>
+            <Form.Label>{props.label}</Form.Label>
+            <div className="mb-3">
+                {props.children}
+            </div>
+        </div>
+    );
+}
+
+// export function Checkbox(props) {
+
+// }
+
 // export default Input;
 
 // export function Input(props) {

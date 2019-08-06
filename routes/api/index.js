@@ -18,6 +18,8 @@ router.route("/user/:id")
 router.route("/wells")
   .get(wellController.findAll);
 
+router.route("/addWell")
+  .post(wellController.create);
 // select specific well
 // /api/well/:id
 router.route("/well/:id")
