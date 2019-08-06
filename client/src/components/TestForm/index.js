@@ -2,27 +2,21 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 
 class TestForm extends Component {
-  state = {
-    apiNum: "",
-    wellNum: "",
-    wellName: "",
-    wellData: {}
-  };
+    state = {
+      apiNum: ""
+    }
 
-  handleChangeFor = (propertyName) => (event) => {
-    const {wellData} = this.state;
-    const newWellData = {
-      ...wellData,
-      [propertyName]: event.target.value
-    };
-    this.setState({ wellData: newWellData });
-  }
+  
 
-  handleFormSubmit = (wellData, event) => {
+  
+
+  handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.wellData) {
+    if (this.state.apiNum) {
 
-      API.addWell(wellData)
+      const apiNum = this.state.apiNum.trim();
+
+      API.addWell(apiNum)
         .then(res => {
 
           console.log(res.data.items);
@@ -35,41 +29,40 @@ class TestForm extends Component {
     }
   };
 
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleFormSubmit}>
         <div className="form-group">
-          <label htmlFor="apiNum">API No.:</label>
-          <imput 
-          type="text" 
-          onChange={this.handleChangeFor("apiNum")} 
-          value={this.state.wellData.apiNum} 
-          name="apiNum"
-          className="form-control" 
-          placeholder=""
-          id="apiNum"/>
-          <label htmlFor="wellNum">Well No.:</label>
-          <imput 
-          type="text" 
-          onChange={this.handleChangeFor("wellNum")} 
-          value={this.state.wellData.wellNum} 
-          name="wellNum"
-          className="form-control" 
-          placeholder=""
-          id="wellNum" />
-          <label htmlFor="wellName">Well Name:</label>
-          <imput 
-          type="text" 
-          onChange={this.handleChangeFor("wellName")} 
-          value={this.state.wellData.wellName} 
-          name="wellName"
-          className="form-control" 
-          placeholder=""
-          id="wellName" />          
-          <br />
-          <button onClick={this.handleFormSubmit} className="btn btn-primary">
-            Submit
-          </button>
+          <label>
+            API Number:
+            <input type="text" value={this.state.value} onChange={this.handleChange} />
+          </label>
+          <label htmlFor="wellNum">wellNum:</label>
+          <input
+            value={this.state.wellNum}
+            onChange={this.handleInputChange}
+            name="wellNum"
+            type="text"
+            className="form-control"
+            placeholder=""
+            id="wellNum"
+          />
+          <label htmlFor="wellName">wellName:</label>
+          <input
+            value={this.state.wellName}
+            onChange={this.handleInputChange}
+            name="wellName"
+            type="text"
+            className="form-control"
+            placeholder=""
+            id="wellName"
+          />
+          <input type="submit" value="Submit" />
         </div>
       </form>
     );
