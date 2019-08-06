@@ -20,6 +20,7 @@ const wellSeed = {
   operatorName: "123456",
   leaseName: "Some Lease",
   wellNum: "Well789",
+  wellName: "Wellington",
   isOn: true,
   wellBoreProfile: { 
     vertical: true, 
