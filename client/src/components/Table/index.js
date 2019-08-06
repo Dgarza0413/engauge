@@ -1,17 +1,20 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
+import { Link } from 'react-router-dom'
 
 
-function WellTable() {
+function WellTable(props) {
+  
   return (
     <div>
-      <Button type="submit">Add Well</Button>
+      {/* <Button type="submit">Add Well</Button> */}
 
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Well Name</th>
+          <th>Well Name</th>
+            <th>Well Number</th>
             <th>API Number</th>
             <th>Flow</th>
             <th>Disposal</th>
@@ -19,13 +22,17 @@ function WellTable() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Well 1</td>
-            <td>123-45-1235</td>
-            <td>Plunger Lift</td>
-            <td>Down the drain</td>
-            <td>On</td>
-          </tr>
+          {props.wells.map(well=>(
+            <tr>
+            <Link to={"/welltable/" + well._id}><td>{well.wellName}</td></Link>
+            <td>{well.wellNum}</td>
+            <td>{well.apiNum}</td>
+            <td>{well.wellNum}</td>
+            <td>{well.wellNum}</td>
+            <td>{well.isOn ? "On":"Off"}</td>
+            </tr>
+
+          ))}
         </tbody>
       </Table>
     </div>
