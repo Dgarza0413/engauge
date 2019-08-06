@@ -22,36 +22,22 @@
   "devDependencies": {
     "bootstrap": "^4.3.1",
     "concurrently": "^4.1.0",
-<<<<<<< HEAD
     "nodemon": "^1.18.7"
-=======
-    "eslint-config-airbnb": "^17.1.1",
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-config-react": "^1.1.7",
-    "eslint-loader": "^2.2.1",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.14.3",
-    "nodemon": "^1.18.7",
-    "prettier": "^1.18.2"
->>>>>>> master
   },
   "dependencies": {
     "axios": "^0.18.0",
     "bcrypt-nodejs": "0.0.3",
     "express": "^4.16.3",
+    "express-session": "^1.16.2",
     "google-map-react": "^1.1.4",
     "if-env": "^1.0.4",
-<<<<<<< HEAD
     "jsonwebtoken": "^8.5.1",
-=======
->>>>>>> master
     "mongoose": "^5.3.16",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-virtualized": "^9.21.1",
     "victory": "^32.3.3"

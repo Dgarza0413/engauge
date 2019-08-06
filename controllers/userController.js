@@ -17,7 +17,7 @@ module.exports = {
   },
   create: function(req, res) {
     db.Users
-      .create(req.body)
+      .create({username: req.body.username, password: req.body.password})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
