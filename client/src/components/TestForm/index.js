@@ -5,14 +5,24 @@ class TestForm extends Component {
     state = {
       apiNum: "",
       wellNum: "",
-      wellName: ""
+      wellName: "",
+      latLong: {
+        latitude: "",
+        longitude: ""
+        }
     };
   
     handleInputChange = event => {
-      const { name, value } = event.target;
-      this.setState({
-        [name]: value
-      });
+        const { name, value } = event.target;
+        if(name === "latitude" || name === "longitude"){
+            const latLong = {...this.state.latLong}
+            latLong[name] = value;
+            this.setState({latLong})
+        } else {
+            this.setState({
+                [name]: value
+            });
+        }
     };
     
   
@@ -21,7 +31,11 @@ class TestForm extends Component {
         const obj = {
             apiNum: this.state.apiNum,
             wellNum: this.state.wellNum,
-            wellName: this.state.wellName
+            wellName: this.state.wellName,
+            latLong: { 
+                latitude: this.state.latLong.latitude, 
+                longitude: this.state.latLong.longitude
+            }
         }
         API.addWell(obj)
           .then(res => {
@@ -48,7 +62,7 @@ class TestForm extends Component {
                 className="form-control"
                 placeholder="apiNum"
                 id="apiNum"
-        />
+            />
             <label htmlFor="wellNum">wellNum:</label>
             <input
                 value={this.state.wellNum}
@@ -58,7 +72,7 @@ class TestForm extends Component {
                 className="form-control"
                 placeholder="wellNum"
                 id="wellNum"
-        />
+            />
             <label htmlFor="wellName">wellName:</label>
             <input
                 value={this.state.wellName}
@@ -68,10 +82,30 @@ class TestForm extends Component {
                 className="form-control"
                 placeholder="wellName"
                 id="wellName"
-        />
+            />
+            <label htmlFor="wellName">Latitude:</label>
+            <input
+                value={this.state.latLong.latitude}
+                onChange={this.handleInputChange}
+                name="latitude"
+                type="text"
+                className="form-control"
+                placeholder="30.2672"
+                id="latitude"
+            />
+            <label htmlFor="wellName">Longitude:</label>
+            <input
+                value={this.state.latLong.longitude}
+                onChange={this.handleInputChange}
+                name="longitude"
+                type="text"
+                className="form-control"
+                placeholder="97.7431"
+                id="longitude"
+            />
             <br />
             <button className="btn btn-primary">
-              Search
+              Submit
             </button>
           </div>
         </form>
