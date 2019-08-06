@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import { StringInput, NumberInput, Select, BoxInput } from "../Form";
 import Card from "../Card";
+import API from "../../utils/API";
 import "./style.css";
 
 
@@ -9,30 +10,28 @@ import "./style.css";
 class WellForm extends Component {
 
     state = {
-        wellName: "",
-        wellNum: "",
-        wellType: "",
         apiNum: "",
-        operatorName: "",
+        wellNum: "",
+        wellName: "",
         latLong: {
           latitude: "",
           longitude: ""
-          }
-      };
+        }
+    };
     
-      handleInputChange = event => {
-          const { name, value } = event.target;
-          if(name === "latitude" || name === "longitude"){
-              const latLong = {...this.state.latLong}
-              latLong[name] = value;
-              this.setState({latLong})
-          } else {
-              this.setState({
-                  [name]: value
-              });
-          }
-      };
-      
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        if(name === "latitude" || name === "longitude"){
+            const latLong = {...this.state.latLong}
+            latLong[name] = value;
+            this.setState({ latLong })
+        } else {
+            this.setState({
+                [name]: value
+            });
+        }
+    };
+
     
       handleFormSubmit = event => {
         event.preventDefault();
@@ -45,6 +44,7 @@ class WellForm extends Component {
                   longitude: this.state.latLong.longitude
               }
           }
+          console.log(obj)
           API.addWell(obj)
             .then(res => {
     
@@ -60,15 +60,15 @@ class WellForm extends Component {
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.handleFormSubmit}>
                     <Card>
                         <Container>
                             <Row>
                                 <Col lg="4">
-                                    <StringInput label="Well Name" placeholder="02" />
+                                    <StringInput label="Well Name" name="wellName" value={this.state.wellName} onChange={this.handleInputChange} placeholder="02" />
                                 </Col>
                                 <Col lg="4">
-                                    <StringInput label="Well No." placeholder="02" />
+                                    <StringInput label="Well No." name="wellNum" value={this.state.wellNum} onChange={this.handleInputChange} placeholder="02" />
                                 </Col>
                                 <Col lg="4">
                                     <Select label="Well Type">
@@ -82,7 +82,7 @@ class WellForm extends Component {
                             </Row>
                             <Row>
                                 <Col lg="3">
-                                    <StringInput label="API No." placeholder="147-91-8-5-1H" />
+                                    <StringInput label="API No." name="apiNum" value={this.state.apiNum} onChange={this.handleInputChange} placeholder="147-91-8-5-1H" />
                                 </Col>
                                 <Col lg="4">
                                     <StringInput label="Operator Name" placeholder="Sue-Ann Operating, L.C." />
@@ -107,10 +107,10 @@ class WellForm extends Component {
                             </Row>
                             <Row>
                                 <Col lg="3">
-                                    <NumberInput label="Latitude" placeholder="90.000000" />
+                                    <NumberInput label="Latitude" name="latitude" value={this.state.latLong.latitude} onChange={this.handleInputChange} placeholder="90.000000" />
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="Longitude" placeholder="-90.000000" />
+                                    <NumberInput label="Longitude" name="longitude" value={this.state.latLong.longitude} onChange={this.handleInputChange} placeholder="-90.000000" />
                                 </Col>
                                 <Col lg="3">
                                     <NumberInput label="Completion Depth" placeholder="1000" unit="ft." />
