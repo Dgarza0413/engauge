@@ -10,15 +10,9 @@ class WellTable extends React.Component {
 
     render() {
         return (
-<<<<<<< HEAD
-            <div>
-            <Table striped bordered hover wellArr={this.state.whatever} />
-            </div>
-=======
             <PageWrapper>
                 <Table />
             </PageWrapper>
->>>>>>> master
         )
     }
 }
