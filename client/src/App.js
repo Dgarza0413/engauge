@@ -6,6 +6,7 @@ import DashBoard from "./pages/DashBoard";
 import WellTable from "./pages/WellTable";
 import WellReport from "./pages/WellReport";
 import WellDetail from "./pages/WellDetail";
+import WellProdForm from "./pages/WellProdForm";
 import NewWellForm from "./pages/NewWellForm";
 import W2 from "./pages/W2";
 import FormTest from "./pages/FormTest"
@@ -33,6 +34,7 @@ function App() {
             <Route exact path="/books/:id" component={Detail} />
             <Route exact path="/welltable" component={WellTable} />
             <Route exact path="/welltable/id" component={WellDetail} />
+            <Route exact path="/welltable/id/prod" component={WellProdForm} />
             <Route exact path="/new-well" component={NewWellForm} />
             <Route exact path="/w2" component={W2} />
             <Route exact path="/newwell" component={NewWellForm} />

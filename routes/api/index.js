@@ -20,6 +20,10 @@ router.route("/wells")
 
 router.route("/addWell")
   .post(wellController.create);
+
+
+router.route("/postWellProd")
+  .post(wellController.create);
 // select specific well
 // /api/well/:id
 router.route("/well/:id")

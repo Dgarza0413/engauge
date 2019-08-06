@@ -25,6 +25,7 @@ class WellDetail extends React.Component {
     componentDidMount() {
         API.getWellId(this.props.match.params.id)
             .then(res => { console.log(res) })
+            .catch(err => console.log(err))
     }
 
 

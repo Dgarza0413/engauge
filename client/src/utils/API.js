@@ -21,6 +21,9 @@ export default {
   addWell: function (wellData) {
     return axios.post("/api/addWell", wellData);
   },
+  postWellProd: function (wellData) {
+    return axios.post("/api/postWellProd", wellData)
+  },
   // get well data
   getWellId: function (wellId) {
     return axios.get("/api/well/" + wellId)
