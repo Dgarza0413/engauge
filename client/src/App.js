@@ -16,8 +16,7 @@ import Container from "@material-ui/core/Container";
 function App() {
   const styles = {
     layout: {
-      display: "flex",
-      backgroundColor: "#e8e9ee"
+      display: "flex"
     }
   }
 

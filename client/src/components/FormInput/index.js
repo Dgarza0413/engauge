@@ -8,89 +8,87 @@ export function WellForm() {
     return (
         <div>
             <form>
-                <Container>
-                    <Row>
-                        <Col lg="4">
-                            <StringInput label="Well Name" placeholder="02" />
-                        </Col>
-                        <Col lg="4">
-                            <StringInput label="Well No." placeholder="02" />
-                        </Col>
-                        <Col lg="4">
-                            <Select label="Well Type">
-                                <option>Drilled</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </Select>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col lg="3">
-                            <StringInput label="API No." placeholder="147-91-8-5-1H" />
-                        </Col>
-                        <Col lg="4">
-                            <StringInput label="Operator Name" placeholder="Sue-Ann Operating, L.C." />
-                        </Col>
-                        <Col lg="3">
-                            <StringInput label="Lease Name" placeholder="Martha McMillan" />
-                        </Col>
-                        <Col lg="2">
-                            <StringInput label="County" placeholder="Travis" />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col lg="3">
-                            <NumberInput label="RRC District No." placeholder="02" />
-                        </Col>
-                        <Col lg="3">
-                            <NumberInput label="Field No." placeholder="02" />
-                        </Col>
-                        <Col lg="6">
-                            <StringInput label="Field Name" placeholder="Poesta Greek (Hartzendorf)" />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col lg="3">
-                            <NumberInput label="Latitude" placeholder="90.000000" />
-                        </Col>
-                        <Col lg="3">
-                            <NumberInput label="Longitude" placeholder="-90.000000" />
-                        </Col>
-                        <Col lg="3">
-                            <NumberInput label="Completion Depth" placeholder="1000" unit="ft." />
-                        </Col>
-                        <Col lg="3">
-                            <NumberInput label="True Vertical Depth" placeholder="1000" unit="ft." />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <BoxInput label="Wellbore Profile">
-                                <Form.Check custom inline name="wellbore-profile" label="Vertical" type="checkbox" id="custom-inline-checkbox-1" />
-                                <Form.Check custom inline name="wellbore-profile" label="Horizontal" type="checkbox" id="custom-inline-checkbox-2" />
-                                <Form.Check custom inline name="wellbore-profile" label="Directional" type="checkbox" id="custom-inline-checkbox-3" />
-                                <Form.Check custom inline name="wellbore-profile" label="Sidetrack" type="checkbox" id="custom-inline-checkbox-4" />
-                            </BoxInput>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <BoxInput label="Surface Location">
-                                <Form.Check custom inline name="surface-location" label="Land" type="radio" id="custom-inline-radio-1" />
-                                <Form.Check custom inline name="surface-location" label="Bay/Estuary" type="radio" id="custom-inline-radio-2" />
-                                <Form.Check custom inline name="surface-location" label="Inland Waterway" type="radio" id="custom-inline-radio-3" />
-                                <Form.Check custom inline name="surface-location" label="Offshore" type="radio" id="custom-inline-radio-4" />
-                            </BoxInput>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <input type="submit"></input>
-                        </Col>
-                    </Row>
-                </Container>
+                <Card>
+                    <Container>
+                        <Row>
+                            <Col lg="4">
+                                <StringInput label="Well Name" placeholder="02" />
+                            </Col>
+                            <Col lg="4">
+                                <StringInput label="Well No." placeholder="02" />
+                            </Col>
+                            <Col lg="4">
+                                <Select label="Well Type">
+                                    <option>Drilled</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </Select>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col lg="3">
+                                <StringInput label="API No." placeholder="147-91-8-5-1H" />
+                            </Col>
+                            <Col lg="4">
+                                <StringInput label="Operator Name" placeholder="Sue-Ann Operating, L.C." />
+                            </Col>
+                            <Col lg="3">
+                                <StringInput label="Lease Name" placeholder="Martha McMillan" />
+                            </Col>
+                            <Col lg="2">
+                                <StringInput label="County" placeholder="Travis" />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col lg="3">
+                                <NumberInput label="RRC District No." placeholder="02" />
+                            </Col>
+                            <Col lg="3">
+                                <NumberInput label="Field No." placeholder="02" />
+                            </Col>
+                            <Col lg="6">
+                                <StringInput label="Field Name" placeholder="Poesta Greek (Hartzendorf)" />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col lg="3">
+                                <NumberInput label="Latitude" placeholder="90.000000" />
+                            </Col>
+                            <Col lg="3">
+                                <NumberInput label="Longitude" placeholder="-90.000000" />
+                            </Col>
+                            <Col lg="3">
+                                <NumberInput label="Completion Depth" placeholder="1000" unit="ft." />
+                            </Col>
+                            <Col lg="3">
+                                <NumberInput label="True Vertical Depth" placeholder="1000" unit="ft." />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <BoxInput label="Wellbore Profile">
+                                    <Form.Check custom inline name="wellbore-profile" label="Vertical" type="checkbox" id="custom-inline-checkbox-1" />
+                                    <Form.Check custom inline name="wellbore-profile" label="Horizontal" type="checkbox" id="custom-inline-checkbox-2" />
+                                    <Form.Check custom inline name="wellbore-profile" label="Directional" type="checkbox" id="custom-inline-checkbox-3" />
+                                    <Form.Check custom inline name="wellbore-profile" label="Sidetrack" type="checkbox" id="custom-inline-checkbox-4" />
+                                </BoxInput>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <BoxInput label="Surface Location">
+                                    <Form.Check custom inline name="surface-location" label="Land" type="radio" id="custom-inline-radio-1" />
+                                    <Form.Check custom inline name="surface-location" label="Bay/Estuary" type="radio" id="custom-inline-radio-2" />
+                                    <Form.Check custom inline name="surface-location" label="Inland Waterway" type="radio" id="custom-inline-radio-3" />
+                                    <Form.Check custom inline name="surface-location" label="Offshore" type="radio" id="custom-inline-radio-4" />
+                                </BoxInput>
+                            </Col>
+                        </Row>
+                    </Container>
+                </Card>
+                <input type="submit"></input>
             </form>
         </div>
     );
@@ -167,63 +165,121 @@ export function W2Form() {
                     <Container>
                         <Form.Label>Casing Record</Form.Label>
                         <Row>
-                            <Select label="Casing Type">
-                                <option>Conventional Production</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </Select>
-                            <NumberInput label="Casing Size" placeholder="02" unit="in." />
-                            <NumberInput label="Hole Size" placeholder="07" unit="in." />
-                            <Select label="Cement Type">
-                                <option>Class A</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </Select>
-                            <NumberInput label="Cement Amount" placeholder="02" unit="sacks" />
-                            <NumberInput label="Slurry Volume" placeholder="02" unit="cu. ft." />
-                            <StringInput label="Top of Cement" placeholder="Surface" />
+                            <Col lg="6">
+                                <Select label="Casing Type">
+                                    <option>Conventional Production</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </Select>
+                            </Col>
+                            <Col lg="3">
+                                <NumberInput label="Casing Size" placeholder="02" unit="in." />
+                            </Col>
+                            <Col lg="3">
+                                <NumberInput label="Hole Size" placeholder="07" unit="in." />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col lg="3">
+                                <Select label="Cement Type">
+                                    <option>Class A</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </Select>
+                            </Col>
+                            <Col lg="3">
+                                <NumberInput label="Cement Amount" placeholder="02" unit="sacks" />
+                            </Col>
+                            <Col lg="3">
+                                <NumberInput label="Slurry Volume" placeholder="02" unit="cu. ft." width="65%" />
+                            </Col>
+                            <Col lg="3">
+                                <StringInput label="Top of Cement" placeholder="Surface" />
+                            </Col>
                         </Row>
                     </Container>
                 </Card>
-                <Form.Label>Tubing Records</Form.Label>
-                <NumberInput label="Size" placeholder="02" unit="in." />
-                <NumberInput label="Depth Set" placeholder="07" unit="in." />
-                <Select label="Packer Type">
-                    <option>Hydralic Set</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </Select>
-                <NumberInput label="Packer Depth" placeholder="07" unit="ft." />
-                <Form.Label>Production / Injection / Disposal Interval</Form.Label>
-                <StringInput label="From" placeholder="Enter Where From" />
-                <StringInput label="To" placeholder="Enter Where To" />
-                <Form.Label>Formation Records</Form.Label>
-                <Select label="Pricipal Geological Markers and Formation Tops">
-                    <option>Hydralic Set</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </Select>
-                <NumberInput label="TVD" placeholder="02" unit="ft." />
-                <NumberInput label="MD" placeholder="07" unit="ft." />
-                <Select label="Formation Type">
-                    <option>Zone With Corrosive Formation Fluids</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </Select>
-                <Select label="Isolated">
-                    <option>Yes</option>
-                    <option>No</option>
-                </Select>
+                <Card>
+                    <Container>
+                        <Form.Label>Tubing Records</Form.Label>
+                        <Row>
+                            <Col lg="2">
+                                <NumberInput label="Size" placeholder="02" unit="in." />
+                            </Col>
+                            <Col lg="2">
+                                <NumberInput label="Depth Set" placeholder="07" unit="in." />
+                            </Col>
+                            <Col lg="4">
+                                <Select label="Packer Type">
+                                    <option>Hydralic Set</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </Select>
+                            </Col>
+                            <Col lg="3">
+                                <NumberInput label="Packer Depth" placeholder="07" unit="ft." />
+                            </Col>
+                        </Row>
+                    </Container>
+                </Card>
+                <Card>
+                    <Container>
+                        <Form.Label>Production / Injection / Disposal Interval</Form.Label>
+                        <Row>
+                            <Col md="6">
+                                <StringInput label="From" placeholder="Enter Where From" />
+                            </Col>
+                            <Col md="6">
+                                <StringInput label="To" placeholder="Enter Where To" />
+                            </Col>
+                        </Row>
+                    </Container>
+                </Card>
+                <Card>
+                    <Container>
+                        <Form.Label>Formation Records</Form.Label>
+                        <Row>
+                            <Col lg="8">
+                                <Select label="Principal Geological Markers and Formation Tops">
+                                    <option>Hydralic Set</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </Select>
+                            </Col>
+                            <Col lg="2">
+                                <NumberInput label="TVD" placeholder="02" unit="ft." />
+                            </Col>
+                            <Col lg="2">
+                                <NumberInput label="MD" placeholder="07" unit="ft." />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col md="8">
+                                <Select label="Formation Type">
+                                    <option>Zone With Corrosive Formation Fluids</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </Select>
+                            </Col>
+                            <Col md="4">
+                                <Select label="Isolated">
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                </Select>
+                            </Col>
+                        </Row>
+                    </Container>
+                </Card>
                 <input type="submit"></input>
             </form>
         </div>

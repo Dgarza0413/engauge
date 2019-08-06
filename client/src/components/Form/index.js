@@ -5,7 +5,7 @@ import "./style.css";
 // This file exports the Input, TextArea, and FormBtn components
 export function StringInput(props) {
     return (
-        <Form.Group style={{width: props.width}}>
+        <Form.Group>
             <Form.Label>{props.label}</Form.Label>
             <Form.Control type="text" placeholder={props.placeholder} />
         </Form.Group>
@@ -14,21 +14,19 @@ export function StringInput(props) {
 
 export function NumberInput(props) {
     return (
-        // <div className="number-input" style={{width: props.width}}>
-            <Form.Group style={{width: props.width}}>
-                <Form.Label>{props.label}</Form.Label>
-                <div className="number-group">
-                    <Form.Control type="number" placeholder={props.placeholder} />
-                    <p>{props.unit}</p>
-                </div>
-            </Form.Group>
-        // </div>
+        <Form.Group>
+            <Form.Label>{props.label}</Form.Label>
+            <div className="number-group">
+                <Form.Control type="number" placeholder={props.placeholder} style={{width: props.width || "100%"}} />
+                <p>{props.unit}</p>
+            </div>
+        </Form.Group>
     );
 }
 
 export function Select(props) {
     return (
-        <Form.Group controlId="exampleForm.ControlSelect1" style={{width: props.width}}>
+        <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>{props.label}</Form.Label>
             <Form.Control as="select">
                 {props.children}
@@ -39,7 +37,7 @@ export function Select(props) {
 
 export function BoxInput(props) {
     return (
-        <Form.Group style={{width: props.width}}>
+        <Form.Group>
             <Form.Label>{props.label}</Form.Label>
             <div className="mb-3">
                 {props.children}
