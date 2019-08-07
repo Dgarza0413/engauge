@@ -7,6 +7,7 @@ import WellTable from "./pages/WellTable";
 import WellReport from "./pages/WellReport";
 import WellDetail from "./pages/WellDetail";
 import NewWellForm from "./pages/NewWellForm";
+import ProductionForm from "./pages/ProductionForm";
 import W2 from "./pages/W2";
 import FormTest from "./pages/FormTest"
 import Map from "./pages/Map";
@@ -36,6 +37,7 @@ function App() {
             <Route exact path="/new-well" component={NewWellForm} />
             <Route exact path="/w2" component={W2} />
             <Route exact path="/newwell" component={NewWellForm} />
+            <Route exact path="/production-form" component={ProductionForm} />
             <Route exact path="/formtest" component={FormTest} />
           </Container>
           <Route component={NoMatch} />
