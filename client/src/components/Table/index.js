@@ -3,20 +3,21 @@ import { Link } from "react-router-dom";
 import { MDBCol, MDBIcon } from "mdbreact";
 import "./style.css";
 import React from "react";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
 
 class WellTable extends React.Component {
-
-  state={
+  state = {
     filter: "",
     dropDown: "wellName"
-  }
+  };
   handleChange = e => {
-    console.log(e.target.name)
-    this.setState({filter: e.target.value})
-  }
-   SearchPage(){
+    console.log(e.target.name);
+    this.setState({ filter: e.target.value });
+  };
+  SearchPage() {
     return (
-      <MDBCol md="6">
+      <MDBCol md="12">
         <div className="input-group md-form form-sm form-1 pl-0">
           <div className="input-group-prepend">
             <span
@@ -38,43 +39,53 @@ class WellTable extends React.Component {
         </div>
       </MDBCol>
     );
-  };
+  }
 
-render(){
-  return (
-    <div>
-      {this.SearchPage()}
+  render() {
+    return (
+      <div>
+        <DropdownButton id="dropdown-basic-button" title="Search By">
+          <Dropdown.Item href="#/action-1">Well Name</Dropdown.Item>
+          <Dropdown.Item href="#/action-2">API Number</Dropdown.Item>
+          <Dropdown.Item href="#/action-3">Status</Dropdown.Item>
+        </DropdownButton>
 
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Well Name</th>
-            <th>Well Number</th>
-            <th>API Number</th>
-            <th>Flow</th>
-            <th>Disposal</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.wells.filter(well => {
-            return well[this.state.dropDown].toLowerCase().startsWith(this.state.filter.toLowerCase())
-          }).map(well => (
+        {this.SearchPage()}
+
+        <Table striped bordered hover>
+          <thead>
             <tr>
-              <Link to={"/welltable/" + well._id}>
-                <td>{well.wellName}</td>
-              </Link>
-              <td>{well.wellNum}</td>
-              <td>{well.apiNum}</td>
-              <td>{well.wellNum}</td>
-              <td>{well.wellNum}</td>
-              <td>{well.isOn ? "On" : "Off"}</td>
+              <th>Well Name</th>
+              <th>Well Number</th>
+              <th>API Number</th>
+              <th>Flow</th>
+              <th>Disposal</th>
+              <th>Status</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
-    </div>
-  );
-}
+          </thead>
+          <tbody>
+            {this.props.wells
+              .filter(well => {
+                return well[this.state.dropDown]
+                  .toLowerCase()
+                  .startsWith(this.state.filter.toLowerCase());
+              })
+              .map(well => (
+                <tr>
+                  <Link to={"/welltable/" + well._id}>
+                    <td>{well.wellName}</td>
+                  </Link>
+                  <td>{well.wellNum}</td>
+                  <td>{well.apiNum}</td>
+                  <td>{well.wellNum}</td>
+                  <td>{well.wellNum}</td>
+                  <td>{well.isOn ? "On" : "Off"}</td>
+                </tr>
+              ))}
+          </tbody>
+        </Table>
+      </div>
+    );
+  }
 }
 export default WellTable;
