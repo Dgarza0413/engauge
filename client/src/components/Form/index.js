@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Col, FormGroup, Checkbox } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import "./style.css";
 
 // This file exports the Input, TextArea, and FormBtn components
@@ -28,7 +28,7 @@ export function Select(props) {
     return (
         <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>{props.label}</Form.Label>
-            <Form.Control as="select">
+            <Form.Control as="select" name={props.name} value={props.value} onChange={props.onChange} >
                 {props.children}
             </Form.Control>
         </Form.Group>

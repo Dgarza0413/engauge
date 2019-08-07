@@ -57,6 +57,7 @@ render(){
           </tr>
         </thead>
         <tbody>
+<<<<<<< HEAD
           {this.props.wells.filter(well => {
             return well[this.state.dropDown].toLowerCase().startsWith(this.state.filter.toLowerCase())
           }).map(well => (
@@ -69,6 +70,16 @@ render(){
               <td>{well.wellNum}</td>
               <td>{well.wellNum}</td>
               <td>{well.isOn ? "On" : "Off"}</td>
+=======
+          {props.wells.map(well=>(
+            <tr key={well._id}>
+            <td><Link to={"/welltable/" + well._id}>{well.wellName}</Link></td>
+            <td>{well.wellNum}</td>
+            <td>{well.apiNum}</td>
+            <td>{well.wellNum}</td>
+            <td>{well.wellNum}</td>
+            <td>{well.isOn ? "On":"Off"}</td>
+>>>>>>> master
             </tr>
           ))}
         </tbody>
