@@ -168,7 +168,7 @@ const MyResponsiveLine = ({ data = [
 ] }) => (
         <ResponsiveLine
             data={data}
-            margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+            margin={{ top: 60, right: 60, bottom: 50, left: 60 }}
             xScale={{ type: 'point' }}
             yScale={{ type: 'linear', stacked: true, min: 'auto', max: 'auto' }}
             axisTop={null}
@@ -209,11 +209,11 @@ const MyResponsiveLine = ({ data = [
             useMesh={true}
             legends={[
                 {
-                    anchor: 'bottom-right',
-                    direction: 'column',
+                    anchor: 'top-right',
+                    direction: 'row',
                     justify: false,
-                    translateX: 100,
-                    translateY: 0,
+                    translateX: 60,
+                    translateY: -40,
                     itemsSpacing: 0,
                     itemDirection: 'left-to-right',
                     itemWidth: 80,

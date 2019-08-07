@@ -374,7 +374,46 @@ class W2Form extends Component {
         );
     }
 }
-export { WellForm, W2Form };
+
+class Production extends Component {
+    render() {
+        return (
+            <div>
+                <form>
+                    <Card>
+                        <Container>
+                            <Row>
+                                <Col md="3">
+                                    <NumberInput label="Oil" placeholder="07" unit="BBLs" />
+                                </Col>
+                                <Col md="3">
+                                    <NumberInput label="Gas" placeholder="07" unit="MCF" />
+                                </Col>
+                                <Col md="3">
+                                    <NumberInput label="Water" placeholder="07" unit="BBLs" />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md="3">
+                                    <NumberInput label="Casing PSI" placeholder="07" unit="PSI" />
+                                </Col>
+                                <Col md="3">
+                                    <NumberInput label="Tubing PSI" placeholder="07" unit="PSI" />
+                                </Col>
+                                <Col md="3">
+                                    <NumberInput label="Choke Size" placeholder="07" unit="/64" />
+                                </Col>
+                            </Row>
+                        </Container>
+                    </Card>
+                    <input type="submit"></input>
+                </form>
+            </div>
+        );
+    }
+}
+
+export { WellForm, W2Form, Production };
 
 // import clsx from 'clsx';
 // import { makeStyles } from '@material-ui/core/styles';
