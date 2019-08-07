@@ -32,6 +32,7 @@
     "express": "^4.16.3",
     "express-session": "^1.16.2",
     "google-map-react": "^1.1.4",
+    "googleapis": "^42.0.0",
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.3.16",

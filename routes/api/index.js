@@ -13,7 +13,6 @@ router.post("/login",passport.authenticate("local"),(req,res)=>{
   res.json(req.user);
 })
 
-// /api/register
 
 // /logout
 router.get("/logout", function (req, res) {
