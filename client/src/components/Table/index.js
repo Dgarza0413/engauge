@@ -23,7 +23,7 @@ function WellTable(props) {
         </thead>
         <tbody>
           {props.wells.map(well => (
-            <tr key={well.id}>
+            <tr key={well._id}>
               <Link to={"/welltable/" + well._id}>
                 <td>{well.wellName}</td>
               </Link>
@@ -33,7 +33,6 @@ function WellTable(props) {
               <td>{well.wellNum}</td>
               <td>{well.isOn ? "On" : "Off"}</td>
             </tr>
-
           ))}
         </tbody>
       </Table>

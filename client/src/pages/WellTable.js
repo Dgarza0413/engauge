@@ -17,7 +17,8 @@ class WellTable extends React.Component {
     render() {
         return (
             <PageWrapper>
-                <Table wells={this.state.wells} />
+                <Table wells={this.state.wells}
+                    key={this.state.wells._id} />
             </PageWrapper>
         )
     }

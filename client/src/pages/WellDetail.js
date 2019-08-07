@@ -34,7 +34,7 @@ class WellDetail extends React.Component {
         return (
             <PageWrapper>
                 <div style={styles.graph}>
-                    <Link to={"/welltable/" + this.props.match.params.id + "/prod"}>
+                    <Link to={"/welltable/" + this.props.match.params.id + "/prod/new"}>
                         <Button>Add Prod</Button>
                     </Link>
                     <GraphLine />

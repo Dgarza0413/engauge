@@ -23,7 +23,11 @@ router.route("/addWell")
   .post(wellController.create);
 
 
-router.route("/well/prod")
+router.route("/welltable/:id/prod")
+  .get(prodController.create)
+
+
+router.route("/welltable/:id/prod/new")
   .post(prodController.create);
 // select specific well
 // /api/well/:id

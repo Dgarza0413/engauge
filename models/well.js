@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const wellSchema = new Schema({
-  apiNum: { type: String, required: true }, // form w1 (top)
+  apiNum: { type: String }, // form w1 (top)
   operatorName: { type: String }, // form w1.2
   leaseName: { type: String }, // form w1.4
   wellNum: { type: String }, // form w1.5
@@ -72,15 +72,15 @@ const wellSchema = new Schema({
     runTicket: String
   }],
   date: { type: Date, default: Date.now },
-  prodAll: [
+  production: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Production"
     }
   ],
   report: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Report"
     }
   ]

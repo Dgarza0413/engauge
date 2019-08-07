@@ -30,7 +30,10 @@ export default {
     return axios.post("/api/addWell", wellData);
   },
   postWellProd: function (wellData) {
-    return axios.post("/api/welltable/:id/prod", wellData)
+    return axios.post("/api/welltable/5d4af7c960e36b6cd604c72d/prod/new", wellData)
+  },
+  getWellProd: function (wellData) {
+    return axios.get("/api/welltable/5d4af7c960e36b6cd604c72d/prod", wellData)
   },
   // get well data
   getWellId: function (wellId) {

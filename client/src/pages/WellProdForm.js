@@ -10,8 +10,7 @@ class WellProdForm extends React.Component {
         water: "",
         casingPSI: "",
         tubingPSI: "",
-        choke: "",
-        date: ""
+        choke: ""
     };
 
     //we have to get the api that we wish to update
@@ -121,16 +120,6 @@ class WellProdForm extends React.Component {
                             className="form-control"
                             placeholder="choke"
                             id="choke"
-                        />
-                        <label htmlFor="Date">Date:</label>
-                        <input
-                            value={this.state.Date}
-                            onChange={this.handleInputChange}
-                            name="Date"
-                            type="text"
-                            className="form-control"
-                            placeholder="Date"
-                            id="Date"
                         />
                         <br />
                         <button className="btn btn-primary">
