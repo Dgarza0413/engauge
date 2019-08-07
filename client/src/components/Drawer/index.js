@@ -37,8 +37,8 @@ function Drawer() {
                 <h4>Engauge</h4>
                 <div className="links">
                     {links.map((text, index) => (
-                        <Link to={"/" + text.name.toLowerCase()}>
-                            <h6 key={index}><i className={text.icon}></i>{text.name}</h6>
+                        <Link to={"/" + text.name.toLowerCase()} key={index}>
+                            <h6><i className={text.icon}></i>{text.name}</h6>
                          </Link>
                      ))}
                      <h6 className="logout"><i className="fas fa-sign-out-alt"></i>Logout</h6>
