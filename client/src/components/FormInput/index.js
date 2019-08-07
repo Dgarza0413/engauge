@@ -10,13 +10,31 @@ import "./style.css";
 class WellForm extends Component {
 
     state = {
-        apiNum: "",
-        wellNum: "",
         wellName: "",
+        wellNum: "",
+        wellType: "",
+        apiNum: "",
+        operatorName: "",
+        leaseName: "",
+        county: "",
+        fieldList: {
+            distNumber: "",
+            fieldNumber: "",
+            fieldName: ""
+        },
         latLong: {
-          latitude: "",
-          longitude: ""
-        }
+            latitude: "",
+            longitude: ""
+        },
+        completionDepth: "",
+        trueVerticalDepth: "",
+        wellBoreProfile: { 
+            vertical: "", 
+            horizontal: "", 
+            directional: "", 
+            sidetrack: ""
+        },
+        surfaceLocation: "",
     };
     
     handleInputChange = event => {
@@ -25,6 +43,10 @@ class WellForm extends Component {
             const latLong = {...this.state.latLong}
             latLong[name] = value;
             this.setState({ latLong })
+        } else if (name === "distNumber" || name === "fieldNumber" || name === "fieldName"){
+            const fieldList = {...this.state.fieldList}
+            fieldList[name] = value;
+            this.setState({ fieldList })
         } else {
             this.setState({
                 [name]: value
@@ -36,9 +58,10 @@ class WellForm extends Component {
       handleFormSubmit = event => {
         event.preventDefault();
           const obj = {
-              apiNum: this.state.apiNum,
-              wellNum: this.state.wellNum,
               wellName: this.state.wellName,
+              wellNum: this.state.wellNum,
+              wellType: this.state.wellType,
+              apiNum: this.state.apiNum,
               latLong: { 
                   latitude: this.state.latLong.latitude, 
                   longitude: this.state.latLong.longitude
@@ -71,12 +94,12 @@ class WellForm extends Component {
                                     <StringInput label="Well No." name="wellNum" value={this.state.wellNum} onChange={this.handleInputChange} placeholder="02" />
                                 </Col>
                                 <Col lg="4">
-                                    <Select label="Well Type">
-                                        <option>Drilled</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                    <Select label="Well Type" name="wellType" value={this.state.wellType} onChange={this.handleInputChange} >
+                                        <option value="Drilled">Drilled</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
                                     </Select>
                                 </Col>
                             </Row>
@@ -85,24 +108,24 @@ class WellForm extends Component {
                                     <StringInput label="API No." name="apiNum" value={this.state.apiNum} onChange={this.handleInputChange} placeholder="147-91-8-5-1H" />
                                 </Col>
                                 <Col lg="4">
-                                    <StringInput label="Operator Name" placeholder="Sue-Ann Operating, L.C." />
+                                    <StringInput label="Operator Name" name="operatorName" value={this.state.operatorName} onChange={this.handleInputChange} placeholder="Sue-Ann Operating, L.C." />
                                 </Col>
                                 <Col lg="3">
-                                    <StringInput label="Lease Name" placeholder="Martha McMillan" />
+                                    <StringInput label="Lease Name" name="leaseName" value={this.state.leaseName} onChange={this.handleInputChange} placeholder="Martha McMillan" />
                                 </Col>
                                 <Col lg="2">
-                                    <StringInput label="County" placeholder="Travis" />
+                                    <StringInput label="County" name="county" value={this.state.county} onChange={this.handleInputChange} placeholder="Travis" />
                                 </Col>
                             </Row>
                             <Row>
                                 <Col lg="3">
-                                    <NumberInput label="RRC District No." placeholder="02" />
+                                    <NumberInput label="RRC District No." name="distNumber" value={this.state.fieldList.distNumber} onChange={this.handleInputChange} placeholder="02" />
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="Field No." placeholder="02" />
+                                    <NumberInput label="Field No." name="fieldNumber" value={this.state.fieldList.fieldNumber} onChange={this.handleInputChange} placeholder="02" />
                                 </Col>
                                 <Col lg="6">
-                                    <StringInput label="Field Name" placeholder="Poesta Greek (Hartzendorf)" />
+                                    <StringInput label="Field Name" name="fieldName" value={this.state.fieldList.fieldName} onChange={this.handleInputChange} placeholder="Poesta Greek (Hartzendorf)" />
                                 </Col>
                             </Row>
                             <Row>
@@ -113,10 +136,10 @@ class WellForm extends Component {
                                     <NumberInput label="Longitude" name="longitude" value={this.state.latLong.longitude} onChange={this.handleInputChange} placeholder="-90.000000" />
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="Completion Depth" placeholder="1000" unit="ft." />
+                                    <NumberInput label="Completion Depth" name="completionDepth" value={this.state.completionDepth} onChange={this.handleInputChange} placeholder="1000" unit="ft." />
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="True Vertical Depth" placeholder="1000" unit="ft." />
+                                    <NumberInput label="True Vertical Depth" name="trueVerticalDepth" value={this.state.trueVerticalDepth} onChange={this.handleInputChange} placeholder="1000" unit="ft." />
                                 </Col>
                             </Row>
                             <Row>
