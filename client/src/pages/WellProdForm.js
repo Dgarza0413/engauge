@@ -4,7 +4,7 @@ import API from "../utils/API";
 
 class WellProdForm extends React.Component {
     state = {
-        apiNum: "",
+        well: "",
         oil: "",
         gas: "",
         water: "",
@@ -15,16 +15,28 @@ class WellProdForm extends React.Component {
     };
 
     //we have to get the api that we wish to update
+    componentDidMount() {
+        API.getWellId(this.props.match.params.id)
+            .then(res => {
+                this.setState({ well: res.data._id })
+                console.log(res.data._id)
+            })
+            .catch(err => console.log(err))
+    }
 
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
             [name]: value
         });
+        console.log(event.target)
     };
 
     handleFormSubmit = event => {
         event.preventDefault();
+        const id = {
+            id: this.state.well
+        }
         const obj = {
             oil: this.state.oil,
             gas: this.state.gas,
@@ -36,15 +48,14 @@ class WellProdForm extends React.Component {
         }
         API.postWellProd(obj)
             .then(res => {
-                console.log(res.data.items);
+                console.log(res.data);
+                console.log(id)
                 this.setState({
-                    obj: res.data.items
+                    obj: res.data
                 });
             })
             .catch(err => console.log(err));
     };
-
-
 
     render() {
         return (

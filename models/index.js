@@ -1,4 +1,5 @@
 module.exports = {
   Users: require("./users"),
-  Well: require("./well")
+  Well: require("./well"),
+  Production: require("./Production")
 };

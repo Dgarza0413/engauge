@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const userController = require("../../controllers/userController");
 const wellController = require("../../controllers/wellController");
+const prodController = require("../../controllers/prodController");
 
 // /api/addUser
 router.route("/addUser")
@@ -22,8 +23,8 @@ router.route("/addWell")
   .post(wellController.create);
 
 
-router.route("/postWellProd")
-  .post(wellController.create);
+router.route("/well/prod")
+  .post(prodController.create);
 // select specific well
 // /api/well/:id
 router.route("/well/:id")
@@ -39,9 +40,9 @@ router.route("/well/:tankid")
   .delete(wellController.remove);
 
 
-router.route("/well/:id/prod")
-  .get(wellController.findById)
-  .put(wellController.update)
-  .delete(wellController.remove);
+// router.route("/well/prod")
+//   .get(wellController.findById)
+//   .put(wellController.update)
+//   .delete(wellController.remove);
 
 module.exports = router;

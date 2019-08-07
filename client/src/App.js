@@ -6,7 +6,6 @@ import DashBoard from "./pages/DashBoard";
 import WellTable from "./pages/WellTable";
 import WellReport from "./pages/WellReport";
 import WellDetail from "./pages/WellDetail";
-import WellProdForm from "./pages/WellProdForm";
 import NewWellForm from "./pages/NewWellForm";
 import ProductionForm from "./pages/ProductionForm";
 import W2 from "./pages/W2";
@@ -14,6 +13,7 @@ import FormTest from "./pages/FormTest"
 import Map from "./pages/Map";
 import Drawer from "./components/Drawer";
 import Container from "@material-ui/core/Container";
+import WellProdForm from "./pages/WellProdForm";
 
 function App() {
   const styles = {
@@ -28,7 +28,6 @@ function App() {
         <Drawer />
         <Switch>
           <Container>
-            {/* <Route exact path="/" component={Books} /> */}
             <Route exact path="/dashboard" component={DashBoard} />
             <Route exact path="/map" component={Map} />
             <Route exact path="/reports" component={WellReport} />
@@ -43,7 +42,6 @@ function App() {
             <Route exact path="/formtest" component={FormTest} />
           </Container>
           <Route component={NoMatch} />
-
         </Switch>
       </div>
     </Router >
