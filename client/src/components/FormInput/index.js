@@ -72,7 +72,7 @@ class WellForm extends Component {
                                 </Col>
                                 <Col lg="4">
                                     <Select label="Well Type">
-                                        <option>Drilled</option>
+                                        <option defaultValue="Drilled">Drilled</option>
                                         <option>2</option>
                                         <option>3</option>
                                         <option>4</option>
