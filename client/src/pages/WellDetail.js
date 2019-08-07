@@ -3,7 +3,11 @@ import Map from "../components/Map";
 import GraphLine from "../components/GraphLine";
 import GraphBar from "../components/GraphBar";
 import PageWrapper from "../components/PageWrapper";
+import { Link } from "react-router-dom"
+import { Button } from "react-bootstrap";
+import { Col, Row } from "../components/Grid";
 import API from "../utils/API";
+import WellTableProd from "../components/TableProd";
 
 
 const styles = {
@@ -12,19 +16,17 @@ const styles = {
     }
 }
 
-// function to get data based on unique well
-
-
-// 
-
 class WellDetail extends React.Component {
     state = {
-        well: {}
+        well: []
     };
 
     componentDidMount() {
         API.getWellId(this.props.match.params.id)
-            .then(res => { console.log(res) })
+            .then(res => {
+                this.setState({ well: res.data })
+                console.log(res.data)
+            })
             .catch(err => console.log(err))
     }
 
@@ -32,9 +34,13 @@ class WellDetail extends React.Component {
         return (
             <PageWrapper>
                 <div style={styles.graph}>
-                    <Map />
+                    <Link to={"/welltable/" + this.props.match.params.id + "/prod"}>
+                        <Button>Add Prod</Button>
+                    </Link>
                     <GraphLine />
                     <GraphBar />
+                    <Map well={this.state.well} />
+                    <WellTableProd welldata={this.state.well} />
                 </div>
             </PageWrapper>
         )

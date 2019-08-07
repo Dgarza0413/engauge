@@ -65,30 +65,27 @@ class WellForm extends Component {
                         <Container>
                             <Row>
                                 <Col lg="4">
-                                    <StringInput label="Well Name" name="wellName" value={this.state.wellName} onChange={this.handleInputChange} placeholder="02" />
+                                    <StringInput label="Well Name" name="wellName" value={this.state.wellName} onChange={this.handleInputChange} placeholder="wellname" />
                                 </Col>
                                 <Col lg="4">
                                     <StringInput label="Well No." name="wellNum" value={this.state.wellNum} onChange={this.handleInputChange} placeholder="02" />
                                 </Col>
                                 <Col lg="4">
                                     <Select label="Well Type">
-                                        <option>Drilled</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                        <option>oil</option>
+                                        <option>gas</option>
                                     </Select>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col lg="3">
-                                    <StringInput label="API No." name="apiNum" value={this.state.apiNum} onChange={this.handleInputChange} placeholder="147-91-8-5-1H" />
+                                    <StringInput label="API No." name="apiNum" value={this.state.apiNum} onChange={this.handleInputChange} placeholder="42-xxx-xxxxx" />
                                 </Col>
                                 <Col lg="4">
-                                    <StringInput label="Operator Name" placeholder="Sue-Ann Operating, L.C." />
+                                    <StringInput label="Operator Name" placeholder="original operator" />
                                 </Col>
                                 <Col lg="3">
-                                    <StringInput label="Lease Name" placeholder="Martha McMillan" />
+                                    <StringInput label="Lease Name" placeholder="Legacy" />
                                 </Col>
                                 <Col lg="2">
                                     <StringInput label="County" placeholder="Travis" />
@@ -99,10 +96,10 @@ class WellForm extends Component {
                                     <NumberInput label="RRC District No." placeholder="02" />
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="Field No." placeholder="02" />
+                                    <NumberInput label="Field No." placeholder="000001" />
                                 </Col>
                                 <Col lg="6">
-                                    <StringInput label="Field Name" placeholder="Poesta Greek (Hartzendorf)" />
+                                    <StringInput label="Field Name" placeholder="Oil Field (formation)" />
                                 </Col>
                             </Row>
                             <Row>
@@ -113,10 +110,10 @@ class WellForm extends Component {
                                     <NumberInput label="Longitude" name="longitude" value={this.state.latLong.longitude} onChange={this.handleInputChange} placeholder="-90.000000" />
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="Completion Depth" placeholder="1000" unit="ft." />
+                                    <NumberInput label="Completion Depth" placeholder="5000" unit="ft." />
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="True Vertical Depth" placeholder="1000" unit="ft." />
+                                    <NumberInput label="True Vertical Depth" placeholder="5000" unit="ft." />
                                 </Col>
                             </Row>
                             <Row>

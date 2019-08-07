@@ -15,13 +15,6 @@ class WellProdForm extends React.Component {
     };
 
     //we have to get the api that we wish to update
-    componentDidMount() {
-        API.getWellId(this.props.match.params.id)
-            .then(res => {
-                this.setState({ apiNum: res.data })
-            })
-            .catch(err => console.log(err))
-    }
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -50,6 +43,8 @@ class WellProdForm extends React.Component {
             })
             .catch(err => console.log(err));
     };
+
+
 
     render() {
         return (

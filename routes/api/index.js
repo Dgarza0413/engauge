@@ -38,4 +38,10 @@ router.route("/well/:tankid")
   .put(wellController.update)
   .delete(wellController.remove);
 
+
+router.route("/well/:id/prod")
+  .get(wellController.findById)
+  .put(wellController.update)
+  .delete(wellController.remove);
+
 module.exports = router;
