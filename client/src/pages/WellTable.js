@@ -13,6 +13,7 @@ class WellTable extends React.Component {
             this.setState({wells:res.data})
         })
     }
+    
 
     render() {
         return (
