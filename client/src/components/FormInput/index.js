@@ -12,7 +12,7 @@ class WellForm extends Component {
     state = {
         wellName: "",
         wellNum: "",
-        wellType: "",
+        wellType: "Oil",
         apiNum: "",
         operatorName: "",
         leaseName: "",
@@ -28,13 +28,8 @@ class WellForm extends Component {
         },
         completionDepth: "",
         trueVerticalDepth: "",
-        wellBoreProfile: { 
-            vertical: "", 
-            horizontal: "", 
-            directional: "", 
-            sidetrack: ""
-        },
-        surfaceLocation: "",
+        wellBoreProfile: "",
+        surfaceLocation: ""
     };
     
     handleInputChange = event => {
@@ -43,7 +38,7 @@ class WellForm extends Component {
             const latLong = {...this.state.latLong}
             latLong[name] = value;
             this.setState({ latLong })
-        } else if (name === "distNumber" || name === "fieldNumber" || name === "fieldName"){
+        } else if (name === "distNumber" || name === "fieldNumber" || name === "fieldName") {
             const fieldList = {...this.state.fieldList}
             fieldList[name] = value;
             this.setState({ fieldList })
@@ -62,10 +57,22 @@ class WellForm extends Component {
               wellNum: this.state.wellNum,
               wellType: this.state.wellType,
               apiNum: this.state.apiNum,
-              latLong: { 
-                  latitude: this.state.latLong.latitude, 
-                  longitude: this.state.latLong.longitude
-              }
+              operatorName: this.state.operatorName,
+            leaseName: this.state.leaseName,
+            county: this.state.county,
+            fieldList: {
+                distNumber: this.state.fieldList.distNumber,
+                fieldNumber: this.state.fieldList.fieldNumber,
+                fieldName: this.state.fieldList.fieldName
+            },
+            latLong: { 
+                latitude: this.state.latLong.latitude, 
+                longitude: this.state.latLong.longitude
+            },
+            completionDepth: this.state.completionDepth,
+            trueVerticalDepth: this.state.trueVerticalDepth,
+            wellBoreProfile: this.state.wellBoreProfile,
+            surfaceLocation: this.state.surfaceLocation
           }
           console.log(obj)
           API.addWell(obj)
@@ -79,6 +86,11 @@ class WellForm extends Component {
             })
             .catch(err => console.log(err));
       };
+
+      handleRadioClick = event => {
+          const { name, value } = event.target;
+          this.setState({ [name]: value });
+      }
 
     render() {
         return (
@@ -95,11 +107,9 @@ class WellForm extends Component {
                                 </Col>
                                 <Col lg="4">
                                     <Select label="Well Type" name="wellType" value={this.state.wellType} onChange={this.handleInputChange} >
-                                        <option value="Drilled">Drilled</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
+                                        <option>Oil</option>
+                                        <option>Gas</option>
+                                        <option>Saltwater Disposal</option>
                                     </Select>
                                 </Col>
                             </Row>
@@ -145,20 +155,20 @@ class WellForm extends Component {
                             <Row>
                                 <Col>
                                     <BoxInput label="Wellbore Profile">
-                                        <Form.Check custom inline name="wellbore-profile" label="Vertical" type="checkbox" id="custom-inline-checkbox-1" />
-                                        <Form.Check custom inline name="wellbore-profile" label="Horizontal" type="checkbox" id="custom-inline-checkbox-2" />
-                                        <Form.Check custom inline name="wellbore-profile" label="Directional" type="checkbox" id="custom-inline-checkbox-3" />
-                                        <Form.Check custom inline name="wellbore-profile" label="Sidetrack" type="checkbox" id="custom-inline-checkbox-4" />
+                                        <Form.Check custom inline name="wellBoreProfile" onClick={this.handleRadioClick} value="Vertical" label="Vertical" type="radio" id="custom-inline-checkbox-1" />
+                                        <Form.Check custom inline name="wellBoreProfile" onClick={this.handleRadioClick} value="Horizontal" label="Horizontal" type="radio" id="custom-inline-checkbox-2" />
+                                        <Form.Check custom inline name="wellBoreProfile" onClick={this.handleRadioClick} value="Directional" label="Directional" type="radio" id="custom-inline-checkbox-3" />
+                                        <Form.Check custom inline name="wellBoreProfile" onClick={this.handleRadioClick} value="Sidetrack" label="Sidetrack" type="radio" id="custom-inline-checkbox-4" />
                                     </BoxInput>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
                                     <BoxInput label="Surface Location">
-                                        <Form.Check custom inline name="surface-location" label="Land" type="radio" id="custom-inline-radio-1" />
-                                        <Form.Check custom inline name="surface-location" label="Bay/Estuary" type="radio" id="custom-inline-radio-2" />
-                                        <Form.Check custom inline name="surface-location" label="Inland Waterway" type="radio" id="custom-inline-radio-3" />
-                                        <Form.Check custom inline name="surface-location" label="Offshore" type="radio" id="custom-inline-radio-4" />
+                                        <Form.Check custom inline name="surfaceLocation" onClick={this.handleRadioClick} value="Land" label="Land" type="radio" id="custom-inline-radio-1" />
+                                        <Form.Check custom inline name="surfaceLocation" onClick={this.handleRadioClick} value="Bay/Estuary" label="Bay/Estuary" type="radio" id="custom-inline-radio-2" />
+                                        <Form.Check custom inline name="surfaceLocation" onClick={this.handleRadioClick} value="Inland Waterway" label="Inland Waterway" type="radio" id="custom-inline-radio-3" />
+                                        <Form.Check custom inline name="surfaceLocation" onClick={this.handleRadioClick} value="Offshore" label="Offshore" type="radio" id="custom-inline-radio-4" />
                                     </BoxInput>
                                 </Col>
                             </Row>

@@ -12,18 +12,13 @@ const wellSchema = new Schema({
   fieldList: { // form w1.28-32
     distNumber: String,
     fieldNumber: String,
-    fieldName: String
-  },
+    fieldName: String },
   latLong: { 
     latitude: Number, 
     longitude: Number }, // form w1 (bottom)
   completionDepth: { type: String }, // formerly part of fieldList
   trueVerticalDepth: { type: String }, // form w1.10
-  wellBoreProfile: { 
-    vertical: Boolean, 
-    horizontal: Boolean, 
-    directional: Boolean, 
-    sidetrack: Boolean }, // form w1.7
+  wellBoreProfile: { type: String }, // form w1.7
   surfaceLocation: { type: String }, // will get data from a set of radio buttons form w1.14
   isOn: { type: Boolean },
   spudDate: { type: Date }, // form w2.12a
