@@ -13,8 +13,7 @@ router.post("/login",passport.authenticate("local"),(req,res)=>{
   res.json(req.user);
 })
 
-
-// /logout
+// /api/logout
 router.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/");
