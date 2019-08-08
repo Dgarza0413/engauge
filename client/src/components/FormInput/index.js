@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
-import { StringInput, NumberInput, Select, BoxInput } from "../Form";
+import { StringInput, NumberInput, Select, BoxInput, TextBoxInput } from "../Form";
 import Card from "../Card";
+import Button from "../Button";
 import API from "../../utils/API";
 import "./style.css";
 
@@ -231,7 +232,9 @@ class WellForm extends Component {
                             </Row>
                         </Container>
                     </Card>
-                    <input type="submit"></input>
+                    <Button>
+                        <input type="submit"></input>
+                    </Button>
                 </form>
             </div>
         );
@@ -422,7 +425,9 @@ class W2Form extends Component {
                             </Row>
                         </Container>
                     </Card>
-                    <input type="submit"></input>
+                    <Button>
+                        <input type="submit"></input>
+                    </Button>
                 </form>
             </div>
         );
@@ -458,9 +463,16 @@ class Production extends Component {
                                     <NumberInput label="Choke Size" placeholder="07" unit="/64" />
                                 </Col>
                             </Row>
+                            <Row>
+                                <Col>
+                                    <TextBoxInput label="Comments" placeholder="Enter Comments Here..." />
+                                </Col>
+                            </Row>
                         </Container>
                     </Card>
-                    <input type="submit"></input>
+                    <Button>
+                        <input type="submit"></input>
+                    </Button>
                 </form>
             </div>
         );
