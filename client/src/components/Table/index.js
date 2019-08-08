@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { MDBCol, MDBIcon } from "mdbreact";
 import "./style.css";
 import React from "react";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Dropdown from "react-bootstrap/Dropdown";
+import Form from "react-bootstrap/Form";
+import FormControl from 'react-bootstrap/FormControl'
+import InputGroup from 'react-bootstrap/InputGroup'
 
 class WellTable extends React.Component {
   state = {
@@ -13,44 +14,58 @@ class WellTable extends React.Component {
   };
   handleChange = e => {
     console.log(e.target.name);
-    this.setState({ filter: e.target.value });
+    this.setState({
+      filter: e.target.value,
+      // dropDown: e.target.name
+    });
   };
-  SearchPage() {
-    return (
-      <MDBCol md="12">
-        <div className="input-group md-form form-sm form-1 pl-0">
-          <div className="input-group-prepend">
-            <span
-              className="input-group-text purple lighten-3"
-              id="basic-text1"
-            >
-              <MDBIcon className="text-white" icon="search" />
-            </span>
-          </div>
-          <input
-            className="form-control my-0 py-1"
-            type="text"
-            placeholder="Search"
-            aria-label="Search"
-            name="test"
-            onChange={this.handleChange}
-            value={this.state.filter}
-          />
-        </div>
-      </MDBCol>
-    );
-  }
+  // SearchPage() {
+  //   return (
+  //     <MDBCol md="9">
+  //       <div className="input-group md-form form-sm form-1 pl-0">
+  //         <div className="input-group-prepend">
+  //           <span
+  //             className="input-group-text purple lighten-3"
+  //             id="basic-text1"
+  //           >
+  //             <MDBIcon className="text-white" icon="search" />
+  //           </span>
+  //         </div>
+  //         <input
+  //           className="form-control my-0 py-1"
+  //           type="text"
+  //           placeholder="Search"
+  //           aria-label="Search"
+  //           name="searchBar"
+  //           onChange={this.handleChange}
+  //           value={this.state.filter}
+  //         />
+  //       </div>
+  //     </MDBCol>
+  //   );
+  // }
 
   render() {
     return (
       <div>
-        <DropdownButton id="dropdown-basic-button" title="Search By">
-          <Dropdown.Item href="#/action-1">Well Name</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">API Number</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Status</Dropdown.Item>
-        </DropdownButton>
-
-        {this.SearchPage()}
+        <InputGroup className="mb-3">
+          <Form.Group
+            as={InputGroup.Prepend}
+            variant="outline-secondary"
+            controlId="exampleForm.ControlSelect1"
+          >
+            <InputGroup.Text>Filter By</InputGroup.Text>
+            <FormControl as="select">
+              <option name="byName">Well Name</option>
+              <option name="byAPI">API Number</option>
+              <option name="byStatus">Well Status</option>
+            </FormControl>
+          </Form.Group>
+          <FormControl aria-describedby="basic-addon1" name="searchBar"
+            onChange={this.handleChange}
+            value={this.state.filter} 
+            placeholder="Search"/>
+        </InputGroup>
 
         <Table striped bordered hover>
           <thead>
