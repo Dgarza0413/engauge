@@ -13,37 +13,15 @@ class WellTable extends React.Component {
     dropDown: "wellName"
   };
   handleChange = e => {
+    console.log(e.target)
     console.log(e.target.name);
+    console.log(e.target.value);
+    const {name,value }= e.target
+    console.log(value);
     this.setState({
-      filter: e.target.value,
-      // dropDown: e.target.name
+      [name]: value,
     });
   };
-  // SearchPage() {
-  //   return (
-  //     <MDBCol md="9">
-  //       <div className="input-group md-form form-sm form-1 pl-0">
-  //         <div className="input-group-prepend">
-  //           <span
-  //             className="input-group-text purple lighten-3"
-  //             id="basic-text1"
-  //           >
-  //             <MDBIcon className="text-white" icon="search" />
-  //           </span>
-  //         </div>
-  //         <input
-  //           className="form-control my-0 py-1"
-  //           type="text"
-  //           placeholder="Search"
-  //           aria-label="Search"
-  //           name="searchBar"
-  //           onChange={this.handleChange}
-  //           value={this.state.filter}
-  //         />
-  //       </div>
-  //     </MDBCol>
-  //   );
-  // }
 
   render() {
     return (
@@ -55,13 +33,13 @@ class WellTable extends React.Component {
             controlId="exampleForm.ControlSelect1"
           >
             <InputGroup.Text>Filter By</InputGroup.Text>
-            <FormControl as="select">
-              <option name="byName">Well Name</option>
-              <option name="byAPI">API Number</option>
-              <option name="byStatus">Well Status</option>
+            <FormControl as="select"  name="dropDown" onChange={this.handleChange} value={this.state.dropDown}>
+              <option value="wellName">Well Name</option>
+              <option value="apiNum">API Number</option>
+              <option value="isOn">Well Status</option>
             </FormControl>
           </Form.Group>
-          <FormControl aria-describedby="basic-addon1" name="searchBar"
+          <FormControl aria-describedby="basic-addon1" name="filter"
             onChange={this.handleChange}
             value={this.state.filter} 
             placeholder="Search"/>
@@ -81,8 +59,10 @@ class WellTable extends React.Component {
           <tbody>
             {this.props.wells
               .filter(well => {
-                return well[this.state.dropDown]
-                  .toLowerCase()
+                console.log(well)
+                console.log(well[this.state.dropDown],this.state.dropDown)
+                return well[this.state.dropDown].toString()
+                  // .toLowerCase()
                   .startsWith(this.state.filter.toLowerCase());
               })
               .map(well => (
