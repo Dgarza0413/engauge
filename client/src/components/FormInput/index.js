@@ -200,7 +200,7 @@ class W2Form extends Component {
                                 <Col lg="3">
                                     <StringInput label="Date of Test" placeholder="01-01-2019" />
                                 </Col>
-                                <Col lg="2">
+                                <Col lg="3">
                                     <NumberInput label="Hours Tested" placeholder="02" />
                                 </Col>
                                 <Col lg="4">
@@ -212,7 +212,7 @@ class W2Form extends Component {
                                         <option>5</option>
                                     </Select>
                                 </Col>
-                                <Col lg="3">
+                                <Col lg="2">
                                     <NumberInput label="Choke Size" placeholder="90.000" />
                                 </Col>
                             </Row>
@@ -331,7 +331,7 @@ class W2Form extends Component {
                             <Form.Label>Formation Records</Form.Label>
                             <Row>
                                 <Col lg="6">
-                                    <Select label="Principal Geological Markers and Formation Tops">
+                                    <Select label="Principal Geological Markers & Formation Tops">
                                         <option>Hydralic Set</option>
                                         <option>2</option>
                                         <option>3</option>
