@@ -12,7 +12,7 @@ class WellProdForm extends React.Component {
         casingPSI: 0,
         tubingPSI: 0,
         choke: 0,
-        date: 0
+        date: ""
     };
 
     //we have to get the api that we wish to update
@@ -45,7 +45,7 @@ class WellProdForm extends React.Component {
             casingPSI: parseInt(this.state.casingPSI),
             tubingPSI: parseInt(this.state.tubingPSI),
             choke: parseInt(this.state.choke),
-            date: parseInt(this.state.date)
+            date: this.state.date
         }
         API.postWellProd(id, obj)
             .then(res => {
@@ -129,7 +129,7 @@ class WellProdForm extends React.Component {
                             value={this.state.date}
                             onChange={this.handleInputChange}
                             name="date"
-                            type="text"
+                            type="date"
                             className="form-control"
                             placeholder="date"
                             id="date"

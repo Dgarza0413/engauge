@@ -19,6 +19,7 @@ function WellTableProd(props) {
                 <tbody>
                     {props.well.map(w => (
                         <tr key={w.id}>
+                            <td>{w.date}</td>
                             <td>{w.oil}</td>
                             <td>{w.gas}</td>
                             <td>{w.water}</td>

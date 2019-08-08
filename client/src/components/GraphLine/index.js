@@ -201,7 +201,7 @@ const MyResponsiveLine = ({ data = [
                 legendPosition: 'middle'
             }}
             // colors={{ scheme: 'brown_blueGreen' }}
-            colors= {["#54c283", "#f75b5b", "#69a8be"]}
+            colors={["#54c283", "#f75b5b", "#69a8be"]}
             // colors= {["#6e6e6e", "#dcb567", "#69a8be"]}
             areaOpacity={0.1}
             // gridYValues={[200, 400, 600, 800, 1000]}
