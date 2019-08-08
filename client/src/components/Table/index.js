@@ -13,11 +13,8 @@ class WellTable extends React.Component {
     dropDown: "wellName"
   };
   handleChange = e => {
-    console.log(e.target)
-    console.log(e.target.name);
-    console.log(e.target.value);
     const {name,value }= e.target
-    console.log(value);
+    console.log(this.state.name, this.state.value);
     this.setState({
       [name]: value,
     });
@@ -36,7 +33,6 @@ class WellTable extends React.Component {
             <FormControl as="select"  name="dropDown" onChange={this.handleChange} value={this.state.dropDown}>
               <option value="wellName">Well Name</option>
               <option value="apiNum">API Number</option>
-              <option value="isOn">Well Status</option>
             </FormControl>
           </Form.Group>
           <FormControl aria-describedby="basic-addon1" name="filter"
@@ -62,7 +58,6 @@ class WellTable extends React.Component {
                 console.log(well)
                 console.log(well[this.state.dropDown],this.state.dropDown)
                 return well[this.state.dropDown].toString()
-                  // .toLowerCase()
                   .startsWith(this.state.filter.toLowerCase());
               })
               .map(well => (
