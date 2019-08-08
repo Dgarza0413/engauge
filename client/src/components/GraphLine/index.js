@@ -201,7 +201,7 @@ const MyResponsiveLine = ({ data = [
                 legendPosition: 'middle'
             }}
             // colors= {["#54c283", "#f75b5b", "#69a8be"]}
-            colors= {["#6e6e6e", "#dcb567", "#69a8be"]}
+            colors={["#6e6e6e", "#dcb567", "#69a8be"]}
             areaOpacity={0.1}
             enableGridX={false}
             // enablePoints={false}

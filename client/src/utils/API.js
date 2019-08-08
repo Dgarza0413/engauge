@@ -18,19 +18,31 @@ export default {
     return axios.post("/api/books", bookData);
   },
   // get all well info
-  getAllWells: function() {
+  getAllWells: function () {
     return axios.get("/api/wells");
   },
   // get specific well info
-  getWell: function(id) {
+  getWell: function (id) {
     return axios.get("/api/well" + id);
   },
   // insert well info
-  addWell: function(wellData) {
+  addWell: function (wellData) {
     return axios.post("/api/addWell", wellData);
   },
-  // add data to the well
-  addToWell: function(id) {
+  postWellProd: function (id, wellData) {
+    console.log(id.id)
+    return axios.post("/api/welltable/" + id.id + "/prod/new", wellData)
+  },
+  getWellProd: function (id, wellData) {
+    console.log(id.id)
+    return axios.get("/api/welltable/" + id.id + "/prod", wellData)
+  },
+  // get well data
+  getWellId: function (wellId) {
+    return axios.get("/api/well/" + wellId)
+    // add data to the well
+  },
+  addToWell: function (id) {
     return axios.post("/api/well/" + id)
   }
 };
