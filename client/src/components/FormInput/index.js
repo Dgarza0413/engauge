@@ -5,7 +5,7 @@ import Card from "../Card";
 import API from "../../utils/API";
 import "./style.css";
 
-
+//wgs84
 
 class WellForm extends Component {
 
@@ -140,10 +140,10 @@ class WellForm extends Component {
                             </Row>
                             <Row>
                                 <Col lg="3">
-                                    <NumberInput label="Latitude" name="latitude" value={this.state.latLong.latitude} onChange={this.handleInputChange} placeholder="90.000000" />
+                                    <NumberInput label="Latitude (WGS84)" name="latitude" value={this.state.latLong.latitude} onChange={this.handleInputChange} placeholder="90.000000" />
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="Longitude" name="longitude" value={this.state.latLong.longitude} onChange={this.handleInputChange} placeholder="-90.000000" />
+                                    <NumberInput label="Longitude (WGS84)" name="longitude" value={this.state.latLong.longitude} onChange={this.handleInputChange} placeholder="-90.000000" />
                                 </Col>
                                 <Col lg="3">
                                     <NumberInput label="Completion Depth" name="completionDepth" value={this.state.completionDepth} onChange={this.handleInputChange} placeholder="1000" unit="ft." />
