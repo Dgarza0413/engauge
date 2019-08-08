@@ -171,7 +171,7 @@ const MyResponsiveLine = ({ data = [
             margin={{ top: 50, right: 60, bottom: 50, left: 60 }}
             xScale={{ type: 'point' }}
             yScale={{ type: 'linear', stacked: true, min: '0', max: '1600' }}
-            curve="natural"
+            curve="linear"
             axisTop={null}
             axisRight={{
                 orient: 'left',
@@ -200,7 +200,10 @@ const MyResponsiveLine = ({ data = [
                 legendOffset: -40,
                 legendPosition: 'middle'
             }}
-            colors={{ scheme: 'spectral' }}
+            // colors={{ scheme: 'brown_blueGreen' }}
+            colors= {["#54c283", "#f75b5b", "#69a8be"]}
+            // colors= {["#6e6e6e", "#dcb567", "#69a8be"]}
+            areaOpacity={0.1}
             // gridYValues={[200, 400, 600, 800, 1000]}
             enableGridX={false}
             enablePoints={false}
@@ -210,7 +213,7 @@ const MyResponsiveLine = ({ data = [
             pointBorderColor={{ from: 'serieColor' }}
             pointLabel="y"
             pointLabelYOffset={-12}
-            areaBlendMode="multiply"
+            // areaBlendMode="multiply"
             enableSlices="x"
             enableArea={true}
             enableCrosshair={false}
