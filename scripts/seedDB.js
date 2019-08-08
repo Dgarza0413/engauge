@@ -1,19 +1,35 @@
 const mongoose = require("mongoose");
 const db = require("../models");
+const User = require("../models/user")
 
 // This file empties the Books collection and inserts the books below
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/engauge";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
-const userSeed = [
-  {
-    name: "david",
-    email: "david@david.david",
-    password: "david",
-    date: new Date(Date.now())
-  }
-];
+const testUser = {
+  email: "test@test.com",
+  password: "testtest"
+}
+// Remove all of our users and then try and make a new one
+User.remove({}).then(() => {
+  User.create(testUser).then(user => {
+      console.log(user)
+      return user.checkPassword(testUser.password)
+  }).then(result => {
+      console.log(result)
+      mongoose.connection.close()
+  })
+})
+
+// const userSeed = [
+//   {
+//     name: "david",
+//     email: "david@david.david",
+//     password: "david",
+//     date: new Date(Date.now())
+//   }
+// ];
 
 const wellSeed = {
   apiNum: "TX0123",
@@ -80,17 +96,17 @@ const wellSeed = {
   date: Date.now
 }
 
-db.Users
-  .deleteMany({})
-  .then(() => db.Users.collection.insertMany(userSeed))
-  .then(data => {
-    console.log(data.result.n + " records inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
+// db.Users
+//   .deleteMany({})
+//   .then(() => db.Users.collection.insertMany(userSeed))
+//   .then(data => {
+//     console.log(data.result.n + " records inserted!");
+//     process.exit(0);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//     process.exit(1);
+//   });
 
 db.Well
   .deleteMany({})

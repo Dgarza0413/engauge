@@ -32,6 +32,24 @@ class WellForm extends Component {
         surfaceLocation: ""
     };
     
+    handleValidation(){
+        let wellName = this.state.wellName;
+        let wellNum = this.state.wellNum;
+        let apiNum = this.state.apiName;
+
+        if(!wellName.length>0){
+           return false
+        }
+        if(!wellNum.length>0){
+            return false
+        }
+        if(!apiNum===10){
+            return false
+        }
+        return true
+        
+    }
+
     handleInputChange = event => {
         const { name, value } = event.target;
         if(name === "latitude" || name === "longitude"){
@@ -52,39 +70,78 @@ class WellForm extends Component {
     
       handleFormSubmit = event => {
         event.preventDefault();
-          const obj = {
-              wellName: this.state.wellName,
-              wellNum: this.state.wellNum,
-              wellType: this.state.wellType,
-              apiNum: this.state.apiNum,
-              operatorName: this.state.operatorName,
-            leaseName: this.state.leaseName,
-            county: this.state.county,
-            fieldList: {
-                distNumber: this.state.fieldList.distNumber,
-                fieldNumber: this.state.fieldList.fieldNumber,
-                fieldName: this.state.fieldList.fieldName
-            },
-            latLong: { 
-                latitude: this.state.latLong.latitude, 
-                longitude: this.state.latLong.longitude
-            },
-            completionDepth: this.state.completionDepth,
-            trueVerticalDepth: this.state.trueVerticalDepth,
-            wellBoreProfile: this.state.wellBoreProfile,
-            surfaceLocation: this.state.surfaceLocation
-          }
-          console.log(obj)
-          API.addWell(obj)
-            .then(res => {
+        const passed = this.handleValidation()
+        if(passed){
+            const obj = {
+                wellName: this.state.wellName,
+                wellNum: this.state.wellNum,
+                wellType: this.state.wellType,
+                apiNum: this.state.apiNum,
+                operatorName: this.state.operatorName,
+              leaseName: this.state.leaseName,
+              county: this.state.county,
+              fieldList: {
+                  distNumber: this.state.fieldList.distNumber,
+                  fieldNumber: this.state.fieldList.fieldNumber,
+                  fieldName: this.state.fieldList.fieldName
+              },
+              latLong: { 
+                  latitude: this.state.latLong.latitude, 
+                  longitude: this.state.latLong.longitude
+              },
+              completionDepth: this.state.completionDepth,
+              trueVerticalDepth: this.state.trueVerticalDepth,
+              wellBoreProfile: this.state.wellBoreProfile,
+              surfaceLocation: this.state.surfaceLocation
+            }
+            console.log(obj)
+            API.addWell(obj)
+              .then(res => {
+      
+                console.log(res.data.items);
+      
+                this.setState({
+                  obj: res.data.items
+                });
+              })
+              .catch(err => console.log(err));
+            console.log("we passed validation")
+        }else {
+            console.log("we failed validation");
+        }
+        //   const obj = {
+        //       wellName: this.state.wellName,
+        //       wellNum: this.state.wellNum,
+        //       wellType: this.state.wellType,
+        //       apiNum: this.state.apiNum,
+        //       operatorName: this.state.operatorName,
+        //     leaseName: this.state.leaseName,
+        //     county: this.state.county,
+        //     fieldList: {
+        //         distNumber: this.state.fieldList.distNumber,
+        //         fieldNumber: this.state.fieldList.fieldNumber,
+        //         fieldName: this.state.fieldList.fieldName
+        //     },
+        //     latLong: { 
+        //         latitude: this.state.latLong.latitude, 
+        //         longitude: this.state.latLong.longitude
+        //     },
+        //     completionDepth: this.state.completionDepth,
+        //     trueVerticalDepth: this.state.trueVerticalDepth,
+        //     wellBoreProfile: this.state.wellBoreProfile,
+        //     surfaceLocation: this.state.surfaceLocation
+        //   }
+        //   console.log(obj)
+        //   API.addWell(obj)
+        //     .then(res => {
     
-              console.log(res.data.items);
+        //       console.log(res.data.items);
     
-              this.setState({
-                obj: res.data.items
-              });
-            })
-            .catch(err => console.log(err));
+        //       this.setState({
+        //         obj: res.data.items
+        //       });
+        //     })
+        //     .catch(err => console.log(err));
       };
 
       handleRadioClick = event => {
