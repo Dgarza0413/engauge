@@ -32,10 +32,7 @@ function App() {
         <Drawer />
         <Switch>
           <Container>
-<<<<<<< HEAD
-=======
             <Route exact path="/" component={Login} />
->>>>>>> 4837ccfddeebf72a0fb2c224bcacc2a470962da8
             <Route exact path="/dashboard" component={DashBoard} />
             <Route exact path="/map" component={Map} />
             <Route exact path="/reports" component={WellReport} />
@@ -55,6 +52,6 @@ function App() {
     </Router >
   );
 }
-  
+
 
 export default App;
