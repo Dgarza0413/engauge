@@ -33,7 +33,7 @@ const MyResponsiveLine = ({ data = [
             },
             {
                 "x": "05/07",
-                "y": 291
+                "y": null
             },
             {
                 "x": "05/08",
@@ -200,22 +200,20 @@ const MyResponsiveLine = ({ data = [
                 legendOffset: -40,
                 legendPosition: 'middle'
             }}
-            // colors={{ scheme: 'brown_blueGreen' }}
-            colors= {["#54c283", "#f75b5b", "#69a8be"]}
-            // colors= {["#6e6e6e", "#dcb567", "#69a8be"]}
+            // colors= {["#54c283", "#f75b5b", "#69a8be"]}
+            colors={["#6e6e6e", "#dcb567", "#69a8be"]}
             areaOpacity={0.1}
-            // gridYValues={[200, 400, 600, 800, 1000]}
             enableGridX={false}
-            enablePoints={false}
+            // enablePoints={false}
             pointColor={{ from: 'color', modifiers: [] }}
-            pointSize={10}
             pointBorderWidth={2}
-            pointBorderColor={{ from: 'serieColor' }}
+            pointBorderColor="#ffffff"
+            pointSize={8}
             pointLabel="y"
             pointLabelYOffset={-12}
             // areaBlendMode="multiply"
             enableSlices="x"
-            enableArea={true}
+            // enableArea={true}
             enableCrosshair={false}
             useMesh={true}
             legends={[

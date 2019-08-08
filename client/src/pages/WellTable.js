@@ -9,15 +9,16 @@ class WellTable extends React.Component {
     };
 
     componentDidMount() {
-        Axios.get("/api/wells").then((res)=>{
-            this.setState({wells:res.data})
+        Axios.get("/api/wells").then((res) => {
+            this.setState({ wells: res.data })
         })
     }
 
     render() {
         return (
             <PageWrapper>
-                <Table wells={this.state.wells} />
+                <Table wells={this.state.wells}
+                    key={this.state.wells._id} />
             </PageWrapper>
         )
     }

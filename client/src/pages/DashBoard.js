@@ -4,6 +4,7 @@ import GraphPie from "../components/GraphPie";
 import GraphSunBurst from "../components/GraphSunBurst";
 import PageWrapper from "../components/PageWrapper";
 import Card from "../components/Card";
+import SectionTitle from "../components/SectionTitle";
 import { Container, Row, Col } from "react-bootstrap";
 
 const styles = {
@@ -20,6 +21,7 @@ class DashBoard extends React.Component {
                     <Row>
                         <Col lg="12">
                             <Card>
+                                <SectionTitle>Production</SectionTitle>
                                 <div style={styles.graph}>
                                     <GraphLine />
                                 </div>
@@ -27,6 +29,7 @@ class DashBoard extends React.Component {
                         </Col>
                         <Col lg="6">
                             <Card>
+                                <SectionTitle>Well Status</SectionTitle>
                                 <div style={styles.graph}>
                                     <GraphPie />
                                 </div>

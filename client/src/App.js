@@ -11,8 +11,13 @@ import ProductionForm from "./pages/ProductionForm";
 import W2 from "./pages/W2";
 import FormTest from "./pages/FormTest"
 import Map from "./pages/Map";
+import Login from "./pages/Login";
 import Drawer from "./components/Drawer";
 import Container from "@material-ui/core/Container";
+import WellProdForm from "./pages/WellProdForm";
+
+
+
 
 function App() {
   const styles = {
@@ -27,13 +32,14 @@ function App() {
         <Drawer />
         <Switch>
           <Container>
-            {/* <Route exact path="/" component={Books} /> */}
+            <Route exact path="/" component={Login} />
             <Route exact path="/dashboard" component={DashBoard} />
             <Route exact path="/map" component={Map} />
             <Route exact path="/reports" component={WellReport} />
             <Route exact path="/books/:id" component={Detail} />
             <Route exact path="/welltable" component={WellTable} />
             <Route exact path="/welltable/:id" component={WellDetail} />
+            <Route exact path="/welltable/:id/prod/new" component={WellProdForm} />
             <Route exact path="/new-well" component={NewWellForm} />
             <Route exact path="/w2" component={W2} />
             <Route exact path="/newwell" component={NewWellForm} />
@@ -41,11 +47,11 @@ function App() {
             <Route exact path="/formtest" component={FormTest} />
           </Container>
           <Route component={NoMatch} />
-
         </Switch>
       </div>
     </Router >
   );
 }
+
 
 export default App;

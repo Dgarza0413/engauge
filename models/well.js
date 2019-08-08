@@ -5,17 +5,19 @@ const wellSchema = new Schema({
   wellName: { type: String },
   wellNum: { type: String }, // form w1.5
   wellType: { type: String },
-  apiNum: { type: String, required: true }, // form w1 (top)
+  apiNum: { type: String }, // form w1 (top)
   operatorName: { type: String }, // form w1.2
-  leaseName: { type:String }, // form w1.4
+  leaseName: { type: String }, // form w1.4
   county: { type: String }, // form w1.13
   fieldList: { // form w1.28-32
     distNumber: String,
     fieldNumber: String,
-    fieldName: String },
-  latLong: { 
-    latitude: Number, 
-    longitude: Number }, // form w1 (bottom)
+    fieldName: String
+  },
+  latLong: {
+    latitude: Number,
+    longitude: Number
+  }, // form w1 (bottom)
   completionDepth: { type: String }, // formerly part of fieldList
   trueVerticalDepth: { type: String }, // form w1.10
   wellBoreProfile: { type: String }, // form w1.7
