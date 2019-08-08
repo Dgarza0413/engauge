@@ -25,15 +25,11 @@ class WellForm extends Component {
         latLong: {
             latitude: "",
             longitude: ""
-<<<<<<< HEAD
-        }
-=======
         },
         completionDepth: "",
         trueVerticalDepth: "",
         wellBoreProfile: "",
         surfaceLocation: ""
->>>>>>> 980fa0044fe0832891dad9133c949efa1f213a02
     };
 
     handleInputChange = event => {
@@ -43,7 +39,7 @@ class WellForm extends Component {
             latLong[name] = value;
             this.setState({ latLong })
         } else if (name === "distNumber" || name === "fieldNumber" || name === "fieldName") {
-            const fieldList = {...this.state.fieldList}
+            const fieldList = { ...this.state.fieldList }
             fieldList[name] = value;
             this.setState({ fieldList })
         } else {
@@ -56,25 +52,12 @@ class WellForm extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-<<<<<<< HEAD
         const obj = {
-            apiNum: this.state.apiNum,
-            wellNum: this.state.wellNum,
             wellName: this.state.wellName,
-            latLong: {
-                latitude: this.state.latLong.latitude,
-                longitude: this.state.latLong.longitude
-            }
-        }
-        console.log(obj)
-        API.addWell(obj)
-=======
-          const obj = {
-              wellName: this.state.wellName,
-              wellNum: this.state.wellNum,
-              wellType: this.state.wellType,
-              apiNum: this.state.apiNum,
-              operatorName: this.state.operatorName,
+            wellNum: this.state.wellNum,
+            wellType: this.state.wellType,
+            apiNum: this.state.apiNum,
+            operatorName: this.state.operatorName,
             leaseName: this.state.leaseName,
             county: this.state.county,
             fieldList: {
@@ -82,18 +65,17 @@ class WellForm extends Component {
                 fieldNumber: this.state.fieldList.fieldNumber,
                 fieldName: this.state.fieldList.fieldName
             },
-            latLong: { 
-                latitude: this.state.latLong.latitude, 
+            latLong: {
+                latitude: this.state.latLong.latitude,
                 longitude: this.state.latLong.longitude
             },
             completionDepth: this.state.completionDepth,
             trueVerticalDepth: this.state.trueVerticalDepth,
             wellBoreProfile: this.state.wellBoreProfile,
             surfaceLocation: this.state.surfaceLocation
-          }
-          console.log(obj)
-          API.addWell(obj)
->>>>>>> 980fa0044fe0832891dad9133c949efa1f213a02
+        }
+        console.log(obj)
+        API.addWell(obj)
             .then(res => {
 
                 console.log(res.data.items);
@@ -105,10 +87,10 @@ class WellForm extends Component {
             .catch(err => console.log(err));
     };
 
-      handleRadioClick = event => {
-          const { name, value } = event.target;
-          this.setState({ [name]: value });
-      }
+    handleRadioClick = event => {
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
+    }
 
     render() {
         return (
@@ -124,16 +106,10 @@ class WellForm extends Component {
                                     <StringInput label="Well No." name="wellNum" value={this.state.wellNum} onChange={this.handleInputChange} placeholder="02" />
                                 </Col>
                                 <Col lg="4">
-<<<<<<< HEAD
-                                    <Select label="Well Type">
-                                        <option>oil</option>
-                                        <option>gas</option>
-=======
                                     <Select label="Well Type" name="wellType" value={this.state.wellType} onChange={this.handleInputChange} >
                                         <option>Oil</option>
                                         <option>Gas</option>
                                         <option>Saltwater Disposal</option>
->>>>>>> 980fa0044fe0832891dad9133c949efa1f213a02
                                     </Select>
                                 </Col>
                             </Row>
@@ -142,17 +118,10 @@ class WellForm extends Component {
                                     <StringInput label="API No." name="apiNum" value={this.state.apiNum} onChange={this.handleInputChange} placeholder="42-xxx-xxxxx" />
                                 </Col>
                                 <Col lg="4">
-<<<<<<< HEAD
-                                    <StringInput label="Operator Name" placeholder="original operator" />
-                                </Col>
-                                <Col lg="3">
-                                    <StringInput label="Lease Name" placeholder="Legacy" />
-=======
                                     <StringInput label="Operator Name" name="operatorName" value={this.state.operatorName} onChange={this.handleInputChange} placeholder="Sue-Ann Operating, L.C." />
                                 </Col>
                                 <Col lg="3">
                                     <StringInput label="Lease Name" name="leaseName" value={this.state.leaseName} onChange={this.handleInputChange} placeholder="Martha McMillan" />
->>>>>>> 980fa0044fe0832891dad9133c949efa1f213a02
                                 </Col>
                                 <Col lg="2">
                                     <StringInput label="County" name="county" value={this.state.county} onChange={this.handleInputChange} placeholder="Travis" />
@@ -163,17 +132,10 @@ class WellForm extends Component {
                                     <NumberInput label="RRC District No." name="distNumber" value={this.state.fieldList.distNumber} onChange={this.handleInputChange} placeholder="02" />
                                 </Col>
                                 <Col lg="3">
-<<<<<<< HEAD
-                                    <NumberInput label="Field No." placeholder="000001" />
-                                </Col>
-                                <Col lg="6">
-                                    <StringInput label="Field Name" placeholder="Oil Field (formation)" />
-=======
                                     <NumberInput label="Field No." name="fieldNumber" value={this.state.fieldList.fieldNumber} onChange={this.handleInputChange} placeholder="02" />
                                 </Col>
                                 <Col lg="6">
                                     <StringInput label="Field Name" name="fieldName" value={this.state.fieldList.fieldName} onChange={this.handleInputChange} placeholder="Poesta Greek (Hartzendorf)" />
->>>>>>> 980fa0044fe0832891dad9133c949efa1f213a02
                                 </Col>
                             </Row>
                             <Row>
@@ -184,17 +146,10 @@ class WellForm extends Component {
                                     <NumberInput label="Longitude (WGS84)" name="longitude" value={this.state.latLong.longitude} onChange={this.handleInputChange} placeholder="-90.000000" />
                                 </Col>
                                 <Col lg="3">
-<<<<<<< HEAD
-                                    <NumberInput label="Completion Depth" placeholder="5000" unit="ft." />
-                                </Col>
-                                <Col lg="3">
-                                    <NumberInput label="True Vertical Depth" placeholder="5000" unit="ft." />
-=======
                                     <NumberInput label="Completion Depth" name="completionDepth" value={this.state.completionDepth} onChange={this.handleInputChange} placeholder="1000" unit="ft." />
                                 </Col>
                                 <Col lg="3">
                                     <NumberInput label="True Vertical Depth" name="trueVerticalDepth" value={this.state.trueVerticalDepth} onChange={this.handleInputChange} placeholder="1000" unit="ft." />
->>>>>>> 980fa0044fe0832891dad9133c949efa1f213a02
                                 </Col>
                             </Row>
                             <Row>
