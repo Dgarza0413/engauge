@@ -17,7 +17,7 @@ export function NumberInput(props) {
         <div>
             <Form.Label>{props.label}</Form.Label>
             <InputGroup className="mb-3">
-                <FormControl type="text" name={props.name} value={props.value} onChange={props.onChange} placeholder={props.placeholder} style={{ borderRight: props.unit ? 0 : "1px solid #ced4da" }} />
+                <FormControl type="text" name={props.name} value={props.value} onChange={props.onChange} placeholder={props.placeholder} style={{ borderRight: props.unit ? 0 : "1px solid #e6e7ec" }} />
                 { props.unit && 
                     <InputGroup.Append>
                         <InputGroup.Text id="basic-addon2">{props.unit}</InputGroup.Text>
