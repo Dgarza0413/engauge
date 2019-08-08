@@ -24,7 +24,6 @@ app.use(passport.session());
 // Add routes, both API and view
 app.use(routes);
 
-
 app.use(function(req, res) {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });

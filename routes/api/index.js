@@ -4,7 +4,7 @@ const wellController = require("../../controllers/wellController");
 const passport = require('../../config/passport.js')
 const { google } = require("googleapis")
 // const google = require("googleapis").google
-
+const db = require("../../models")
 const googleConfig = {
   clientId: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -124,13 +124,16 @@ router.get('/google/callback', function(req, res){
       userConnection.setCredentials(tokens)
       userConnection.getTokenInfo(tokens.access_token).then(data => {
           const {email, sub } = data;
+          console.log("DATA-WE-GET");
+          console.log(data)
           db.User.findOne({ email }).then(dbUser => {
               console.log(dbUser);
               if(!dbUser){
                   console.log("NEW USER");
                   // create a new user!
+                  console.log(email, sub)
                   db.User.create({
-                      email,
+                      email: email,
                       authType: "google",
                       googleId: sub
                   }).then(finalDbUser => {
