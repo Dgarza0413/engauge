@@ -1,4 +1,6 @@
 const db = require("../models");
+const mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 
 // Defining methods for the prodController
 module.exports = {
@@ -16,10 +18,34 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     create: function (req, res) {
-        db.Production
-            .create(req.body)
-            .then(dbModel => res.json(dbModel))
+        console.log(req.params.id)
+        console.log(req.body)
+        // const { oil, gas, water, casingPSI, tubingPSI, choke } = req.body
+        // const newProd = {
+        //     oil: parseInt(oil),
+        //     gas: parseInt(gas),
+        //     water: parseInt(water),
+        //     casingPSI: parseInt(casingPSI),
+        //     tubingPSI: parseInt(tubingPSI),
+        //     choke: parseInt(choke)
+        // }
+
+        db.Well.findById(req.params.id, function (err, well) {
+            if (err) {
+                console.log(err);
+            } else {
+                db.Production.create(req.body, function (err, prod) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        well.productionId.push(prod);
+                        well.save();
+                    }
+                });
+            }
+        }).then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+
     },
     update: function (req, res) {
         db.Production

@@ -5,12 +5,14 @@ import API from "../utils/API";
 class WellProdForm extends React.Component {
     state = {
         well: "",
-        oil: "",
-        gas: "",
-        water: "",
-        casingPSI: "",
-        tubingPSI: "",
-        choke: ""
+        apiNum: "",
+        oil: 0,
+        gas: 0,
+        water: 0,
+        casingPSI: 0,
+        tubingPSI: 0,
+        choke: 0,
+        date: 0
     };
 
     //we have to get the api that we wish to update
@@ -37,19 +39,20 @@ class WellProdForm extends React.Component {
             id: this.state.well
         }
         const obj = {
-            oil: this.state.oil,
-            gas: this.state.gas,
-            water: this.state.water,
-            casingPSI: this.state.casingPSI,
-            tubingPSI: this.state.tubingPSI,
-            choke: this.state.choke,
-            date: this.state.data
+            oil: parseInt(this.state.oil),
+            gas: parseInt(this.state.gas),
+            water: parseInt(this.state.water),
+            casingPSI: parseInt(this.state.casingPSI),
+            tubingPSI: parseInt(this.state.tubingPSI),
+            choke: parseInt(this.state.choke),
+            date: parseInt(this.state.date)
         }
-        API.postWellProd(obj)
+        API.postWellProd(id, obj)
             .then(res => {
                 console.log(res.data);
                 console.log(id)
                 this.setState({
+                    id: res.data._id,
                     obj: res.data
                 });
             })
@@ -120,6 +123,16 @@ class WellProdForm extends React.Component {
                             className="form-control"
                             placeholder="choke"
                             id="choke"
+                        />
+                        <label htmlFor="date">date:</label>
+                        <input
+                            value={this.state.date}
+                            onChange={this.handleInputChange}
+                            name="date"
+                            type="text"
+                            className="form-control"
+                            placeholder="date"
+                            id="date"
                         />
                         <br />
                         <button className="btn btn-primary">

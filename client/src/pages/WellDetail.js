@@ -25,7 +25,7 @@ class WellDetail extends React.Component {
         API.getWellId(this.props.match.params.id)
             .then(res => {
                 this.setState({ well: res.data })
-                console.log(res.data)
+                console.log(res.data.productionId)
             })
             .catch(err => console.log(err))
     }
@@ -40,7 +40,7 @@ class WellDetail extends React.Component {
                     <GraphLine />
                     <GraphBar />
                     <Map well={this.state.well} />
-                    <WellTableProd welldata={this.state.well} />
+                    <WellTableProd well={this.state.well} />
                 </div>
             </PageWrapper>
         )

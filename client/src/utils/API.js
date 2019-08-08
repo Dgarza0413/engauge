@@ -29,11 +29,13 @@ export default {
   addWell: function (wellData) {
     return axios.post("/api/addWell", wellData);
   },
-  postWellProd: function (wellData) {
-    return axios.post("/api/welltable/5d4af7c960e36b6cd604c72d/prod/new", wellData)
+  postWellProd: function (id, wellData) {
+    console.log(id.id)
+    return axios.post("/api/welltable/" + id.id + "/prod/new", wellData)
   },
-  getWellProd: function (wellData) {
-    return axios.get("/api/welltable/5d4af7c960e36b6cd604c72d/prod", wellData)
+  getWellProd: function (id, wellData) {
+    console.log(id.id)
+    return axios.get("/api/welltable/" + id.id + "/prod", wellData)
   },
   // get well data
   getWellId: function (wellId) {

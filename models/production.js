@@ -13,4 +13,4 @@ const productionSchema = new Schema({
 
 // Validation coming later
 
-module.exports =  mongoose.model("Production", productionSchema);
+module.exports = mongoose.model("Production", productionSchema);

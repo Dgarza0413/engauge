@@ -72,18 +72,19 @@ const wellSchema = new Schema({
     runTicket: String
   }],
   date: { type: Date, default: Date.now },
-  production: [
+  productionId: [
     {
       type: Schema.Types.ObjectId,
       ref: "Production"
     }
   ],
-  report: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Report"
-    }
-  ]
+  report:
+    [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Report"
+      }
+    ]
 
 
 });

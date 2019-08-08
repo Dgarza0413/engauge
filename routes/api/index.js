@@ -24,7 +24,7 @@ router.route("/addWell")
 
 
 router.route("/welltable/:id/prod")
-  .get(prodController.create)
+  .get(prodController.findById)
 
 
 router.route("/welltable/:id/prod/new")
