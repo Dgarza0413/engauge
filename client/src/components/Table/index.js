@@ -1,6 +1,5 @@
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
-import { MDBCol, MDBIcon } from "mdbreact";
 import "./style.css";
 import React from "react";
 import Form from "react-bootstrap/Form";
@@ -14,7 +13,6 @@ class WellTable extends React.Component {
   };
   handleChange = e => {
     const {name,value }= e.target
-    console.log(this.state.name, this.state.value);
     this.setState({
       [name]: value,
     });
@@ -55,8 +53,6 @@ class WellTable extends React.Component {
           <tbody>
             {this.props.wells
               .filter(well => {
-                console.log(well)
-                console.log(well[this.state.dropDown],this.state.dropDown)
                 return well[this.state.dropDown].toString()
                   .startsWith(this.state.filter.toLowerCase());
               })

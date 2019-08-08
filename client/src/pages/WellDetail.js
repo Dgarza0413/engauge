@@ -3,6 +3,7 @@ import Map from "../components/Map";
 import GraphLine from "../components/GraphLine";
 import GraphBar from "../components/GraphBar";
 import PageWrapper from "../components/PageWrapper";
+// import Axios from "axios";
 
 const styles = {
     graph: {
@@ -11,6 +12,9 @@ const styles = {
 }
 
 class WellDetail extends React.Component {
+    // state = {
+        
+    // }
     render() {
         return (
             <PageWrapper>
