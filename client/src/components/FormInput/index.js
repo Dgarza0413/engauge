@@ -244,12 +244,12 @@ class W2Form extends Component {
             chokeSize: ""
         },
         totalDepth: {
-            tvd: "",
-            md: ""
+            tvdTD: "",
+            mdTD: ""
         },
         plugBackDepth: {
-            tvd: "",
-            md: ""
+            tvdPBD: "",
+            mdPBD: ""
         },
         casingRecord: [{
             casingType: "",
@@ -263,7 +263,8 @@ class W2Form extends Component {
         tubingRecord: [{
             size: "",
             depthSet: "",
-            packerDepthType: ""
+            packerType: "",
+            packerDepth: ""
         }],
         prodInjDispInt: [{
             from: "",
@@ -273,7 +274,7 @@ class W2Form extends Component {
             markers: "",
             tvdDepth: "",
             mdDepth: "",
-            isPermitted: "",
+            formationType: "",
             isIsolated: ""
         }],
         tanks: [{
@@ -282,8 +283,7 @@ class W2Form extends Component {
             oilDepth: "",
             waterDepth: "",
             runTicket: ""
-        }],
-        date: ""
+        }]
     };
 
     handleInputChange = event => {
@@ -296,6 +296,30 @@ class W2Form extends Component {
             const fieldList = {...this.state.fieldList}
             fieldList[name] = value;
             this.setState({ fieldList })
+        } else if (name === "tvdTD" || name === "mdTD") {
+            const totalDepth = {...this.state.totalDepth}
+            totalDepth[name] = value;
+            this.setState({ totalDepth })
+        } else if (name === "tvdPBD" || name === "mdPBD") {
+            const plugBackDepth = {...this.state.plugBackDepth}
+            plugBackDepth[name] = value;
+            this.setState({ plugBackDepth })
+        } else if (name === "casingType" || name === "casingSize" || name === "holeSize" || name === "cementClass" || name === "cementAmt" || name === "slurryVol" || name === "topOfCement") {
+            const casingRecord = {...this.state.casingRecord}
+            casingRecord[name] = value;
+            this.setState({ casingRecord })
+        } else if (name === "size" || name === "depthSet" || name === "packerType" || name === "packerDepth") {
+            const tubingRecord = {...this.state.tubingRecord}
+            tubingRecord[name] = value;
+            this.setState({ tubingRecord })
+        } else if (name === "from" || name === "to") {
+            const prodInjDispInt = {...this.state.prodInjDispInt}
+            prodInjDispInt[name] = value;
+            this.setState({ prodInjDispInt })
+        } else if (name === "markers" || name === "depttvdDepthhSet" || name === "mdDepth" || name === "formationType" || name === "isIsolated") {
+            const formationRecord = {...this.state.formationRecord}
+            formationRecord[name] = value;
+            this.setState({ formationRecord })
         } else {
             this.setState({
                 [name]: value
@@ -316,12 +340,12 @@ class W2Form extends Component {
                 chokeSize: this.state.testData.chokeSize
             },
             totalDepth: {
-                tvd: this.state.totalDepth.tvd,
-                md: this.state.totalDepth.md
+                tvdTD: this.state.totalDepth.tvdTD,
+                mdTD: this.state.totalDepth.mdTD
             },
             plugBackDepth: {
-                tvd: this.state.plugBackDepth.tvd,
-                md: this.state.plugBackDepth.md
+                tvdPBD: this.state.plugBackDepth.tvdPBD,
+                mdPBD: this.state.plugBackDepth.mdPBD
             },
             casingRecord: [{
                 casingType: this.state.casingRecord.casingType,
@@ -335,7 +359,8 @@ class W2Form extends Component {
             tubingRecord: [{
                 size: this.state.tubingRecord.size,
                 depthSet: this.state.tubingRecord.depthSet,
-                packerDepthType: this.state.tubingRecord.packerDepthType
+                packerType: this.state.tubingRecord.packerType,
+                packerDepth: this.state.tubingRecord.packerDepth
             }],
             prodInjDispInt: [{
                 from: this.state.prodInjDispInt.from,
@@ -345,7 +370,7 @@ class W2Form extends Component {
                 markers: this.state.formationRecord.markers,
                 tvdDepth: this.state.formationRecord.tvdDepth,
                 mdDepth: this.state.formationRecord.mdDepth,
-                isPermitted: this.state.formationRecord.isPermitted,
+                formationType: this.state.formationRecord.formationType,
                 isIsolated: this.state.formationRecord.isIsolated
             }],
             tanks: [{
@@ -391,12 +416,12 @@ class W2Form extends Component {
                                     <NumberInput label="Hours Tested" name="hoursTested" value={this.state.testData.hoursTested} onChange={this.handleInputChange} placeholder="02" />
                                 </Col>
                                 <Col lg="4">
-                                    <Select label="Production Method" name="prodMethod" value={this.state.testData.prodMethod} onChange={this.handleInputChange}>
+                                    <Select label="Production Method" name="prodMethod" value={this.state.testData.prodMethod} onChange={this.handleInputChange} >
+                                        <option>Flowing</option>
                                         <option>Gas Lift</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                        <option>Pumpjack</option>
+                                        <option>Plunger</option>
+                                        <option>ESP</option>
                                     </Select>
                                 </Col>
                                 <Col lg="3">
@@ -412,10 +437,10 @@ class W2Form extends Component {
                                     <Form.Label>Total Depth</Form.Label>
                                     <Row>
                                         <Col lg="6">
-                                            <NumberInput label="TVD" placeholder="1000" unit="ft." />
+                                            <NumberInput label="TVD" name="tvdTD" value={this.state.totalDepth.tvdTD} onChange={this.handleInputChange} placeholder="1000" unit="ft." />
                                         </Col>
                                         <Col lg="6">
-                                            <NumberInput label="MD" placeholder="1000" unit="ft." />
+                                            <NumberInput label="MD" name="mdTD" value={this.state.totalDepth.mdTD} onChange={this.handleInputChange} placeholder="1000" unit="ft." />
                                         </Col>
                                     </Row>
                                 </Col>
@@ -423,10 +448,10 @@ class W2Form extends Component {
                                     <Form.Label>Plug Back Depth</Form.Label>
                                     <Row>
                                         <Col lg="6">
-                                            <NumberInput label="TVD" placeholder="1000" unit="ft." />
+                                            <NumberInput label="TVD" name="tvdPBD" value={this.state.plugBackDepth.tvdPBD} onChange={this.handleInputChange} placeholder="1000" unit="ft." />
                                         </Col>
                                         <Col lg="6">
-                                            <NumberInput label="MD" placeholder="1000" unit="ft." />
+                                            <NumberInput label="MD" name="mdPBD" value={this.state.plugBackDepth.mdPBD} onChange={this.handleInputChange} placeholder="1000" unit="ft." />
                                         </Col>
                                     </Row>
                                 </Col>
@@ -438,39 +463,31 @@ class W2Form extends Component {
                             <Form.Label>Casing Record</Form.Label>
                             <Row>
                                 <Col lg="6">
-                                    <Select label="Casing Type">
-                                        <option>Conventional Production</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                    <Select label="Casing Type" name="casingType" value={this.state.casingRecord.casingType} onChange={this.handleInputChange}>
+                                        <option>Surface</option>
+                                        <option>Intermediate</option>
+                                        <option>Production</option>
                                     </Select>
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="Casing Size" placeholder="02" unit="in." />
+                                    <NumberInput label="Casing Size" name="casingSize" value={this.state.casingRecord.casingSize} onChange={this.handleInputChange} placeholder="02" unit="in." />
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="Hole Size" placeholder="07" unit="in." />
+                                    <NumberInput label="Hole Size" name="holeSize" value={this.state.casingRecord.holeSize} onChange={this.handleInputChange} placeholder="07" unit="in." />
                                 </Col>
                             </Row>
                             <Row>
                                 <Col lg="3">
-                                    <Select label="Cement Type">
-                                        <option>Class A</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </Select>
+                                    <StringInput label="Cement Class" name="cementClass" value={this.state.casingRecord.cementClass} onChange={this.handleInputChange} placeholder="Class A" />
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="Cement Amount" placeholder="02" unit="sacks" />
+                                    <NumberInput label="Cement Amount" name="cementAmt" value={this.state.casingRecord.cementAmt} onChange={this.handleInputChange} placeholder="02" unit="sacks" />
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="Slurry Volume" placeholder="02" unit="cu. ft." width="65%" />
+                                    <NumberInput label="Slurry Volume" name="slurryVol" value={this.state.casingRecord.slurryVol} onChange={this.handleInputChange} placeholder="02" unit="cu. ft." width="65%" />
                                 </Col>
                                 <Col lg="3">
-                                    <StringInput label="Top of Cement" placeholder="Surface" />
+                                    <StringInput label="Top of Cement" name="topOfCement" value={this.state.casingRecord.topOfCement} onChange={this.handleInputChange} placeholder="Surface" />
                                 </Col>
                             </Row>
                         </Container>
@@ -480,14 +497,14 @@ class W2Form extends Component {
                             <Form.Label>Tubing Records</Form.Label>
                             <Row>
                                 <Col lg="3">
-                                    <NumberInput label="Size" placeholder="02" unit="in." />
+                                    <NumberInput label="Size" name="size" value={this.state.tubingRecord.size} onChange={this.handleInputChange} placeholder="02" unit="in." />
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="Depth Set" placeholder="07" unit="in." />
+                                    <NumberInput label="Depth Set" name="depthSet" value={this.state.tubingRecord.depthSet} onChange={this.handleInputChange} placeholder="07" unit="in." />
                                 </Col>
                                 <Col lg="3">
-                                    <Select label="Packer Type">
-                                        <option>Hydralic Set</option>
+                                    <Select label="Packer Type" name="packerType" value={this.state.tubingRecord.packerType} onChange={this.handleInputChange} >
+                                        <option>Hydraulic Set</option>
                                         <option>2</option>
                                         <option>3</option>
                                         <option>4</option>
@@ -495,7 +512,7 @@ class W2Form extends Component {
                                     </Select>
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="Packer Depth" placeholder="07" unit="ft." />
+                                    <NumberInput label="Packer Depth" name="packerDepth" value={this.state.tubingRecord.packerDepth} onChange={this.handleInputChange} placeholder="07" unit="ft." />
                                 </Col>
                             </Row>
                         </Container>
@@ -505,10 +522,10 @@ class W2Form extends Component {
                             <Form.Label>Production / Injection / Disposal Interval</Form.Label>
                             <Row>
                                 <Col md="6">
-                                    <StringInput label="From" placeholder="Enter Where From" />
+                                    <StringInput label="From" name="from" value={this.state.prodInjDispInt.from} onChange={this.handleInputChange} placeholder="Enter Where From" />
                                 </Col>
                                 <Col md="6">
-                                    <StringInput label="To" placeholder="Enter Where To" />
+                                    <StringInput label="To" name="to" value={this.state.prodInjDispInt.to} onChange={this.handleInputChange} placeholder="Enter Where To" />
                                 </Col>
                             </Row>
                         </Container>
@@ -518,8 +535,8 @@ class W2Form extends Component {
                             <Form.Label>Formation Records</Form.Label>
                             <Row>
                                 <Col lg="6">
-                                    <Select label="Principal Geological Markers and Formation Tops">
-                                        <option>Hydralic Set</option>
+                                    <Select label="Principal Geological Markers & Formation Tops" name="markers" value={this.state.formationRecord.markers} onChange={this.handleInputChange} >
+                                        <option>Hydraulic Set</option>
                                         <option>2</option>
                                         <option>3</option>
                                         <option>4</option>
@@ -527,15 +544,15 @@ class W2Form extends Component {
                                     </Select>
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="TVD" placeholder="02" unit="ft." />
+                                    <NumberInput label="TVD" name="tvdDepth" value={this.state.formationRecord.tvdDepth} onChange={this.handleInputChange} placeholder="02" unit="ft." />
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="MD" placeholder="07" unit="ft." />
+                                    <NumberInput label="MD" name="mdDepth" value={this.state.formationRecord.mdDepth} onChange={this.handleInputChange} placeholder="07" unit="ft." />
                                 </Col>
                             </Row>
                             <Row>
                                 <Col md="8">
-                                    <Select label="Formation Type">
+                                    <Select label="Formation Type" name="formationType" value={this.state.formationRecord.formationType} onChange={this.handleInputChange} >
                                         <option>Zone With Corrosive Formation Fluids</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -544,7 +561,7 @@ class W2Form extends Component {
                                     </Select>
                                 </Col>
                                 <Col md="4">
-                                    <Select label="Isolated">
+                                    <Select label="Isolated" name="isIsolated" value={this.state.formationRecord.isIsolated} onChange={this.handleInputChange} >
                                         <option>Yes</option>
                                         <option>No</option>
                                     </Select>

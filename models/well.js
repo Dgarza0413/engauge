@@ -22,52 +22,6 @@ const wellSchema = new Schema({
   surfaceLocation: { type: String }, // will get data from a set of radio buttons form w1.14
   // end form W-1
   isOn: { type: Boolean, default: false },
-  // begin form W-2
-  spudDate: { type: Date }, // form w2.12a
-  fieldAndReservoir: [{ type: String }], // can have multiple inputs. form w2.13
-  testData: { 
-    testDate: Date, 
-    hoursTested: Number, 
-    prodMethod: String, 
-    chokeSize: String }, // form w2.15-18
-  totalDepth: { 
-    tvd: Number, 
-    md: Number,  }, // form w2.31
-  plugBackDepth: { 
-    tvd: Number, 
-    md: Number,  }, // form w2.32
-  casingRecord: [{ // form w2.36
-    casingType: String,
-    casingSize: Number,
-    holeSize: Number,
-    cementClass: String,
-    cementAmt: Number,
-    slurryVol: Number,
-    topOfCement: String // I'm not sure about this value
-  }],
-  tubingRecord: [{ // form w2.38
-    size: Number,
-    depthSet: Number,
-    packerDepthType: String
-  }],
-  prodInjDispInt: [{ // production/injection/disposal interval
-    from: String,
-    to: String
-  }],
-  formationRecord: [{ // form w2.45
-    markers: String,
-    tvdDepth: Number,
-    mdDepth: Number,
-    isPermitted: String,
-    isIsolated: Boolean
-  }],
-  tanks: [{
-    size: Number, // barrels (bbls)
-    bblsPerInch: Number,
-    oilDepth: Number,
-    waterDepth: Number,
-    runTicket: String
-  }],
   date: { type: Date, default: Date.now }
 });
 
