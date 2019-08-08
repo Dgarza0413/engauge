@@ -18,7 +18,7 @@ const styles = {
 
 class WellDetail extends React.Component {
     state = {
-        well: []
+        well: {}
     };
 
     componentDidMount() {
@@ -40,7 +40,8 @@ class WellDetail extends React.Component {
                     <GraphLine />
                     <GraphBar />
                     <Map well={this.state.well} />
-                    <WellTableProd well={this.state.well} />
+                    <WellTableProd well={this.state.well.productionId || []}
+                        key={this.state.well._id} />
                 </div>
             </PageWrapper>
         )

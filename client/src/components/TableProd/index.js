@@ -4,29 +4,31 @@ import Table from "react-bootstrap/Table";
 
 function WellTableProd(props) {
     return (
-        <Table striped bordered hover>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Oil</th>
-                    <th>Gas</th>
-                    <th>Water</th>
-                    <th>CsgingPSI</th>
-                    <th>TubingPSI</th>
-                </tr>
-            </thead>
-            <tbody>
-                {/* {props.well.map(prod => (
-                    <tr key={prod.id}>
-                        <td>{prod.oil}</td>
-                        <td>{prod.gas}</td>
-                        <td>{prod.water}</td>
-                        <td>{prod.csgingPSI}</td>
-                        <td>{prod.tubingPSI}</td>
+        <div>
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Oil</th>
+                        <th>Gas</th>
+                        <th>Water</th>
+                        <th>CsgingPSI</th>
+                        <th>TubingPSI</th>
                     </tr>
-                ))} */}
-            </tbody>
-        </Table>
+                </thead>
+                <tbody>
+                    {props.well.map(w => (
+                        <tr key={w.id}>
+                            <td>{w.oil}</td>
+                            <td>{w.gas}</td>
+                            <td>{w.water}</td>
+                            <td>{w.csgingPSI}</td>
+                            <td>{w.tubingPSI}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </Table>
+        </div >
     );
 }
 

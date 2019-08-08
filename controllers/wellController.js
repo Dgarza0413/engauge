@@ -12,7 +12,7 @@ module.exports = {
   findById: function (req, res) {
     db.Well
       .findById(req.params.id)
-      .populate("Production")
+      .populate("productionId")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
