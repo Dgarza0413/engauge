@@ -47,7 +47,6 @@ class WellForm extends Component {
             return false
         }
         return true
-      
         
     }
 
@@ -107,7 +106,7 @@ class WellForm extends Component {
               })
               .catch(err => console.log(err));
             console.log("we passed validation")
-        }else{
+        }else {
             console.log("we failed validation");
         }
         //   const obj = {
