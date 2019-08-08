@@ -14,6 +14,7 @@ import Map from "./pages/Map";
 import Login from "./pages/Login";
 import Drawer from "./components/Drawer";
 import Container from "@material-ui/core/Container";
+import WellProdForm from "./pages/WellProdForm";
 
 
 
@@ -38,6 +39,7 @@ function App() {
             <Route exact path="/books/:id" component={Detail} />
             <Route exact path="/welltable" component={WellTable} />
             <Route exact path="/welltable/:id" component={WellDetail} />
+            <Route exact path="/welltable/:id/prod/new" component={WellProdForm} />
             <Route exact path="/new-well" component={NewWellForm} />
             <Route exact path="/w2" component={W2} />
             <Route exact path="/newwell" component={NewWellForm} />
@@ -50,6 +52,6 @@ function App() {
     </Router >
   );
 }
-  
+
 
 export default App;

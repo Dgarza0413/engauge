@@ -13,8 +13,6 @@
     ],
     "parserOptions": {
         "ecmaVersion": 2016,
-        "sourceType": "module",
-        "allowImportExportEverywhere": true,
         "ecmaFeatures": {
             "jsx": true
         }
@@ -27,24 +25,6 @@
         "node": true
     },
     "rules": {
-        "no-case-declarations": 1,
-        "react/jsx-no-bind": [
-            1,
-            {}
-        ],
-        "react/jsx-no-undef": 1,
-        "react/jsx-filename-extension": [
-            1,
-            {
-                "extensions": [
-                    ".js",
-                    ".jsx"
-                ]
-            }
-        ],
-        "space-before-function-paren": 0,
-        "react/jsx-boolean-value": 0,
-        "import/first": 0,
         "no-duplicate-case": "error",
         "no-empty": "error",
         "no-extra-semi": "error",
