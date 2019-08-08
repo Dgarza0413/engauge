@@ -5,7 +5,7 @@ const wellSchema = new Schema({
   wellName: { type: String },
   wellNum: { type: String }, // form w1.5
   wellType: { type: String },
-  apiNum: { type: String, required: true }, // form w1 (top)
+  apiNum: { type: String }, // form w1 (top)
   operatorName: { type: String }, // form w1.2
   leaseName: { type: String }, // form w1.4
   county: { type: String }, // form w1.13
