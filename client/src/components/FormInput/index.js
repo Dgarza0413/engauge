@@ -212,9 +212,6 @@ class W2Form extends Component {
                                         <option>5</option>
                                     </Select>
                                 </Col>
-                                {/* <Col lg="2">
-                                    <NumberInput label="Pump Size" placeholder="90.000" />
-                                </Col> */}
                                 <Col lg="3">
                                     <NumberInput label="Choke Size" placeholder="90.000" />
                                 </Col>
@@ -295,13 +292,13 @@ class W2Form extends Component {
                         <Container>
                             <Form.Label>Tubing Records</Form.Label>
                             <Row>
-                                <Col lg="2">
+                                <Col lg="3">
                                     <NumberInput label="Size" placeholder="02" unit="in." />
                                 </Col>
-                                <Col lg="2">
+                                <Col lg="3">
                                     <NumberInput label="Depth Set" placeholder="07" unit="in." />
                                 </Col>
-                                <Col lg="4">
+                                <Col lg="3">
                                     <Select label="Packer Type">
                                         <option>Hydralic Set</option>
                                         <option>2</option>
@@ -333,7 +330,7 @@ class W2Form extends Component {
                         <Container>
                             <Form.Label>Formation Records</Form.Label>
                             <Row>
-                                <Col lg="8">
+                                <Col lg="6">
                                     <Select label="Principal Geological Markers and Formation Tops">
                                         <option>Hydralic Set</option>
                                         <option>2</option>
@@ -342,10 +339,10 @@ class W2Form extends Component {
                                         <option>5</option>
                                     </Select>
                                 </Col>
-                                <Col lg="2">
+                                <Col lg="3">
                                     <NumberInput label="TVD" placeholder="02" unit="ft." />
                                 </Col>
-                                <Col lg="2">
+                                <Col lg="3">
                                     <NumberInput label="MD" placeholder="07" unit="ft." />
                                 </Col>
                             </Row>

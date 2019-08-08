@@ -38,3 +38,11 @@
     margin-bottom: 0;
     margin-left: 10px;
 }
+
+.input-group-text {
+    background-color: #f8f8f8;
+    border-left: 0;
+    border-color: #e6e7ec;
+    font-weight: 500;
+    color: #5e6162;
+}
