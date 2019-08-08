@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from "../GraphMarker";
+import API from "../../utils/API"
 import mapstyle from "./mapstyle.json";
 
 // const AnyReactComponent = ({ text }) => <div>{text}</div>;
@@ -33,7 +34,7 @@ class SimpleMap extends Component {
 
     handleMouseOver = (index) => {
         return () => {
-            this.setState({ showInfoWindow: true, index: index});
+            this.setState({ showInfoWindow: true, index: index });
         }
     }
 
@@ -50,9 +51,9 @@ class SimpleMap extends Component {
                     bootstrapURLKeys={{ key: 'AIzaSyBbJqzjcKJqXYW9FEPfr7TPy21FND0iwLc' }}
                     defaultCenter={this.props.center}
                     defaultZoom={this.props.zoom}
-                    options={{ styles: mapstyle}}
-                    // heatmapLibrary={true}
-                    // heatmap={heatMapData}
+                    options={{ styles: mapstyle }}
+                // heatmapLibrary={true}
+                // heatmap={heatMapData}
                 >
                     <Marker
                         lat={30.266926}
