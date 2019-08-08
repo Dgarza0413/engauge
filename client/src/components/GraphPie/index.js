@@ -3,9 +3,9 @@ import { ResponsivePie } from '@nivo/pie';
 
 const MyResponsivePie = ({ data = [
     {
-        "id": "wellOnline",
-        "label": "wells Online",
-        "value": 304,
+        "id": "Active",
+        "label": "Wells Online",
+        "value": 521,
         "color": "hsl(323, 70%, 50%)",
         "children": [
             {
@@ -14,21 +14,23 @@ const MyResponsivePie = ({ data = [
         ]
     },
     {
-        "id": "WellOffline",
-        "label": "wells Offline",
-        "value": 521,
+        "id": "Inactive",
+        "label": "Wells Offline",
+        "value": 304,
         "color": "hsl(6, 70%, 50%)"
     }
 ] }) => (
         <ResponsivePie
             data={data}
-            margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-            innerRadius={0.5}
+            margin={{ top: 0, right: 50, bottom: 80, left: 50 }}
+            innerRadius={0.8}
             padAngle={0.7}
-            cornerRadius={3}
-            colors={{ scheme: 'nivo' }}
-            borderWidth={1}
-            borderColor={{ from: 'color', modifiers: [['darker', 0.2]] }}
+            // colors={{ scheme: 'orange_red' }}
+            colors={["#84bfd3", "#acaeaf"]}
+            borderWidth={3}
+            borderColor="#ffffff"
+            enableRadialLabels={false}
+            enableSlicesLabels={false}
             radialLabelsSkipAngle={10}
             radialLabelsTextXOffset={6}
             radialLabelsTextColor="#333333"

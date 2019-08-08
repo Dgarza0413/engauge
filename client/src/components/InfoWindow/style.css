@@ -1,0 +1,11 @@
+.info-window {
+    position: absolute;
+    background-color: white;
+    padding: 20px;
+    top: -100px;
+    left: 50px;
+}
+
+.info-window p {
+    margin: 0;
+}
