@@ -203,7 +203,7 @@ class W2Form extends Component {
                                 <Col lg="2">
                                     <NumberInput label="Hours Tested" placeholder="02" />
                                 </Col>
-                                <Col lg="3">
+                                <Col lg="4">
                                     <Select label="Production Method">
                                         <option>Gas Lift</option>
                                         <option>2</option>
@@ -212,10 +212,10 @@ class W2Form extends Component {
                                         <option>5</option>
                                     </Select>
                                 </Col>
-                                <Col lg="2">
+                                {/* <Col lg="2">
                                     <NumberInput label="Pump Size" placeholder="90.000" />
-                                </Col>
-                                <Col lg="2">
+                                </Col> */}
+                                <Col lg="3">
                                     <NumberInput label="Choke Size" placeholder="90.000" />
                                 </Col>
                             </Row>

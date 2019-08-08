@@ -20,7 +20,9 @@ const wellSchema = new Schema({
   trueVerticalDepth: { type: String }, // form w1.10
   wellBoreProfile: { type: String }, // form w1.7
   surfaceLocation: { type: String }, // will get data from a set of radio buttons form w1.14
+  // end form W-1
   isOn: { type: Boolean },
+  // begin form W-2
   spudDate: { type: Date }, // form w2.12a
   fieldAndReservoir: [{ type: String }], // can have multiple inputs. form w2.13
   testData: { 
@@ -28,8 +30,12 @@ const wellSchema = new Schema({
     hoursTested: Number, 
     prodMethod: String, 
     chokeSize: String }, // form w2.15-18
-  totalDepth: { tvd: Number, md: Number,  }, // form w2.31
-  plugBackDepth: { tvd: Number, md: Number,  }, // form w2.32
+  totalDepth: { 
+    tvd: Number, 
+    md: Number,  }, // form w2.31
+  plugBackDepth: { 
+    tvd: Number, 
+    md: Number,  }, // form w2.32
   casingRecord: [{ // form w2.36
     casingType: String,
     casingSize: Number,
