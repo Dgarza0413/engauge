@@ -3,164 +3,164 @@ import { ResponsiveLine } from '@nivo/line'
 
 const MyResponsiveLine = ({ data = [
     {
-        "id": "totalOil",
+        "id": "Oil",
         "color": "hsl(292, 70%, 50%)",
         "data": [
             {
                 "id": "BO",
-                "x": "05/01/2019",
+                "x": "05/01",
                 "y": 118
             },
             {
-                "x": "05/02/2019",
+                "x": "05/02",
                 "y": 259
             },
             {
-                "x": "05/03/2019",
+                "x": "05/03",
                 "y": 199
             },
             {
-                "x": "05/04/2019",
+                "x": "05/04",
                 "y": 125
             },
             {
-                "x": "05/05/2019",
+                "x": "05/05",
                 "y": 238
             },
             {
-                "x": "05/06/2019",
+                "x": "05/06",
                 "y": 116
             },
             {
-                "x": "05/07/2019",
+                "x": "05/07",
                 "y": 291
             },
             {
-                "x": "05/08/2019",
+                "x": "05/08",
                 "y": 252
             },
             {
-                "x": "05/09/2019",
+                "x": "05/09",
                 "y": 283
             },
             {
-                "x": "05/10/2019",
+                "x": "05/10",
                 "y": 150
             },
             {
-                "x": "05/12/2019",
+                "x": "05/12",
                 "y": 142
             },
             {
-                "x": "05/13/2019",
+                "x": "05/13",
                 "y": 224
             }
         ]
     },
     {
-        "id": "totalGas",
+        "id": "Gas",
         "color": "hsl(152, 70%, 50%)",
         "data": [
             {
-                "x": "05/01/2019",
+                "x": "05/01",
                 "y": 218
             },
             {
-                "x": "05/02/2019",
+                "x": "05/02",
                 "y": 359
             },
             {
-                "x": "05/03/2019",
+                "x": "05/03",
                 "y": 400
             },
             {
-                "x": "05/04/2019",
+                "x": "05/04",
                 "y": 250
             },
             {
-                "x": "05/05/2019",
+                "x": "05/05",
                 "y": 1000
             },
             {
-                "x": "05/06/2019",
+                "x": "05/06",
                 "y": 1116
             },
             {
-                "x": "05/07/2019",
+                "x": "05/07",
                 "y": 231
             },
             {
-                "x": "05/08/2019",
+                "x": "05/08",
                 "y": 352
             },
             {
-                "x": "05/09/2019",
+                "x": "05/09",
                 "y": 683
             },
             {
-                "x": "05/10/2019",
+                "x": "05/10",
                 "y": 450
             },
             {
-                "x": "05/12/2019",
+                "x": "05/12",
                 "y": 442
             },
             {
-                "x": "05/13/2019",
+                "x": "05/13",
                 "y": 224
             }
         ]
     },
     {
-        "id": "totalWater",
+        "id": "Water",
         "color": "hsl(157, 70%, 50%)",
         "data": [
             {
-                "x": "05/01/2019",
+                "x": "05/01",
                 "y": 118
             },
             {
-                "x": "05/02/2019",
+                "x": "05/02",
                 "y": 259
             },
             {
-                "x": "05/03/2019",
+                "x": "05/03",
                 "y": 199
             },
             {
-                "x": "05/04/2019",
+                "x": "05/04",
                 "y": 125
             },
             {
-                "x": "05/05/2019",
+                "x": "05/05",
                 "y": 238
             },
             {
-                "x": "05/06/2019",
+                "x": "05/06",
                 "y": 116
             },
             {
-                "x": "05/07/2019",
+                "x": "05/07",
                 "y": 291
             },
             {
-                "x": "05/08/2019",
+                "x": "05/08",
                 "y": 252
             },
             {
-                "x": "05/09/2019",
+                "x": "05/09",
                 "y": 283
             },
             {
-                "x": "05/10/2019",
+                "x": "05/10",
                 "y": 150
             },
             {
-                "x": "05/12/2019",
+                "x": "05/12",
                 "y": 142
             },
             {
-                "x": "05/13/2019",
+                "x": "05/13",
                 "y": 224
             }
         ]
@@ -168,44 +168,55 @@ const MyResponsiveLine = ({ data = [
 ] }) => (
         <ResponsiveLine
             data={data}
-            margin={{ top: 60, right: 60, bottom: 50, left: 60 }}
+            margin={{ top: 50, right: 60, bottom: 50, left: 60 }}
             xScale={{ type: 'point' }}
-            yScale={{ type: 'linear', stacked: true, min: 'auto', max: 'auto' }}
+            yScale={{ type: 'linear', stacked: true, min: '0', max: '1600' }}
+            curve="linear"
             axisTop={null}
             axisRight={{
                 orient: 'left',
-                tickSize: 5,
+                tickSize: 0,
                 tickPadding: 5,
                 tickRotation: 0,
                 legend: 'MCF',
-                legendOffset: -40,
+                legendOffset: 40,
                 legendPosition: 'middle'
             }}
             axisBottom={{
                 orient: 'bottom',
-                tickSize: 5,
+                tickSize: 0,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: 'Timeline',
+                legend: 'May 2019 Timeline',
                 legendOffset: 36,
                 legendPosition: 'middle'
             }}
             axisLeft={{
                 orient: 'left',
-                tickSize: 5,
+                tickSize: 0,
                 tickPadding: 5,
                 tickRotation: 0,
                 legend: 'BBLS',
                 legendOffset: -40,
                 legendPosition: 'middle'
             }}
-            colors={{ scheme: 'nivo' }}
+            // colors={{ scheme: 'brown_blueGreen' }}
+            colors= {["#54c283", "#f75b5b", "#69a8be"]}
+            // colors= {["#6e6e6e", "#dcb567", "#69a8be"]}
+            areaOpacity={0.1}
+            // gridYValues={[200, 400, 600, 800, 1000]}
+            enableGridX={false}
+            enablePoints={false}
+            pointColor={{ from: 'color', modifiers: [] }}
             pointSize={10}
-            pointColor={{ theme: 'background' }}
             pointBorderWidth={2}
             pointBorderColor={{ from: 'serieColor' }}
             pointLabel="y"
             pointLabelYOffset={-12}
+            // areaBlendMode="multiply"
+            enableSlices="x"
+            enableArea={true}
+            enableCrosshair={false}
             useMesh={true}
             legends={[
                 {
