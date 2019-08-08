@@ -21,7 +21,7 @@ const wellSchema = new Schema({
   wellBoreProfile: { type: String }, // form w1.7
   surfaceLocation: { type: String }, // will get data from a set of radio buttons form w1.14
   // end form W-1
-  isOn: { type: Boolean },
+  isOn: { type: Boolean, default: false },
   // begin form W-2
   spudDate: { type: Date }, // form w2.12a
   fieldAndReservoir: [{ type: String }], // can have multiple inputs. form w2.13
