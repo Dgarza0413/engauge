@@ -8,7 +8,6 @@ import "./style.css";
 //wgs84
 
 class WellForm extends Component {
-
     state = {
         wellName: "",
         wellNum: "",
@@ -29,9 +28,9 @@ class WellForm extends Component {
         completionDepth: "",
         trueVerticalDepth: "",
         wellBoreProfile: "",
-        surfaceLocation: ""
+        surfaceLocation: "",
     };
-    
+
     handleInputChange = event => {
         const { name, value } = event.target;
         if(name === "latitude" || name === "longitude"){
@@ -47,7 +46,9 @@ class WellForm extends Component {
                 [name]: value
             });
         }
-    };
+    };   
+    
+    
 
     
       handleFormSubmit = event => {
@@ -72,7 +73,57 @@ class WellForm extends Component {
             completionDepth: this.state.completionDepth,
             trueVerticalDepth: this.state.trueVerticalDepth,
             wellBoreProfile: this.state.wellBoreProfile,
-            surfaceLocation: this.state.surfaceLocation
+            surfaceLocation: this.state.surfaceLocation,
+
+            // W-2
+            spudDate: this.state.spudDate,
+        fieldAndReservoir: this.state.fieldAndReservoir,
+        testData: {
+            testDate: this.state.testData.testDate,
+            hoursTested: this.state.testData.hoursTested,
+            prodMethod: this.state.testData.prodMethod,
+            chokeSize: this.state.testData.chokeSize
+        },
+        totalDepth: {
+            tvd: this.state.totalDepth.tvd,
+            md: this.state.totalDepth.md
+        },
+        plugBackDepth: {
+            tvd: this.state.plugBackDepth.tvd,
+            md: this.state.plugBackDepth.md
+        },
+        casingRecord: [{
+            casingType: this.state.casingRecord.casingType,
+            casingSize: this.state.casingRecord.casingSize,
+            holeSize: this.state.casingRecord.holeSize,
+            cementClass: this.state.casingRecord.cementClass,
+            cementAmt: this.state.casingRecord.cementAmt,
+            slurryVol: this.state.casingRecord.slurryVol,
+            topOfCement: this.state.casingRecord.topOfCement
+        }],
+        tubingRecord: [{
+            size: this.state.tubingRecord.size,
+            depthSet: this.state.tubingRecord.depthSet,
+            packerDepthType: this.state.tubingRecord.packerDepthType
+        }],
+        prodInjDispInt: [{
+            from: this.state.prodInjDispInt.from,
+            to: this.state.prodInjDispInt.to
+        }],
+        formationRecord: [{
+            markers: this.state.formationRecord.markers,
+            tvdDepth: this.state.formationRecord.tvdDepth,
+            mdDepth: this.state.formationRecord.mdDepth,
+            isPermitted: this.state.formationRecord.isPermitted,
+            isIsolated: this.state.formationRecord.isIsolated
+        }],
+        tanks: [{
+            size: this.state.tanks.size,
+            bblsPerInch: this.state.tanks.bblsPerInch,
+            oilDepth: this.state.tanks.oilDepth,
+            waterDepth: this.state.tanks.waterDepth,
+            runTicket: this.state.tanks.runTicket
+        }]
           }
           console.log(obj)
           API.addWell(obj)
@@ -182,6 +233,142 @@ class WellForm extends Component {
 }
 
 class W2Form extends Component {
+    // W-2
+    state = {
+        spudDate: "",
+        fieldAndReservoir: "",
+        testData: {
+            testDate: "",
+            hoursTested: "",
+            prodMethod: "",
+            chokeSize: ""
+        },
+        totalDepth: {
+            tvd: "",
+            md: ""
+        },
+        plugBackDepth: {
+            tvd: "",
+            md: ""
+        },
+        casingRecord: [{
+            casingType: "",
+            casingSize: "",
+            holeSize: "",
+            cementClass: "",
+            cementAmt: "",
+            slurryVol: "",
+            topOfCement: ""
+        }],
+        tubingRecord: [{
+            size: "",
+            depthSet: "",
+            packerDepthType: ""
+        }],
+        prodInjDispInt: [{
+            from: "",
+            to: ""
+        }],
+        formationRecord: [{
+            markers: "",
+            tvdDepth: "",
+            mdDepth: "",
+            isPermitted: "",
+            isIsolated: ""
+        }],
+        tanks: [{
+            size: "",
+            bblsPerInch: "",
+            oilDepth: "",
+            waterDepth: "",
+            runTicket: ""
+        }],
+        date: ""
+    };
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        if(name === "testDate" || name === "hoursTested" || name === "prodMethod" || name === "chokeSize"){
+            const testData = {...this.state.testData}
+            testData[name] = value;
+            this.setState({ testData })
+        } else if (name === "distNumber" || name === "fieldNumber" || name === "fieldName") {
+            const fieldList = {...this.state.fieldList}
+            fieldList[name] = value;
+            this.setState({ fieldList })
+        } else {
+            this.setState({
+                [name]: value
+            });
+        }
+    };
+
+    
+      handleFormSubmit = event => {
+        event.preventDefault();
+          const obj = {
+            spudDate: this.state.spudDate,
+            fieldAndReservoir: this.state.fieldAndReservoir,
+            testData: {
+                testDate: this.state.testData.testDate,
+                hoursTested: this.state.testData.hoursTested,
+                prodMethod: this.state.testData.prodMethod,
+                chokeSize: this.state.testData.chokeSize
+            },
+            totalDepth: {
+                tvd: this.state.totalDepth.tvd,
+                md: this.state.totalDepth.md
+            },
+            plugBackDepth: {
+                tvd: this.state.plugBackDepth.tvd,
+                md: this.state.plugBackDepth.md
+            },
+            casingRecord: [{
+                casingType: this.state.casingRecord.casingType,
+                casingSize: this.state.casingRecord.casingSize,
+                holeSize: this.state.casingRecord.holeSize,
+                cementClass: this.state.casingRecord.cementClass,
+                cementAmt: this.state.casingRecord.cementAmt,
+                slurryVol: this.state.casingRecord.slurryVol,
+                topOfCement: this.state.casingRecord.topOfCement
+            }],
+            tubingRecord: [{
+                size: this.state.tubingRecord.size,
+                depthSet: this.state.tubingRecord.depthSet,
+                packerDepthType: this.state.tubingRecord.packerDepthType
+            }],
+            prodInjDispInt: [{
+                from: this.state.prodInjDispInt.from,
+                to: this.state.prodInjDispInt.to
+            }],
+            formationRecord: [{
+                markers: this.state.formationRecord.markers,
+                tvdDepth: this.state.formationRecord.tvdDepth,
+                mdDepth: this.state.formationRecord.mdDepth,
+                isPermitted: this.state.formationRecord.isPermitted,
+                isIsolated: this.state.formationRecord.isIsolated
+            }],
+            tanks: [{
+                size: this.state.tanks.size,
+                bblsPerInch: this.state.tanks.bblsPerInch,
+                oilDepth: this.state.tanks.oilDepth,
+                waterDepth: this.state.tanks.waterDepth,
+                runTicket: this.state.tanks.runTicket
+            }]
+          }
+          console.log(obj)
+          API.addWell(obj)
+            .then(res => {
+    
+              console.log(res.data.items);
+    
+              this.setState({
+                obj: res.data.items
+              });
+            })
+            .catch(err => console.log(err));
+      };
+
     render() {
         return (
             <div>
@@ -190,21 +377,21 @@ class W2Form extends Component {
                         <Container>
                             <Row>
                                 <Col md="4">
-                                    <StringInput label="Spud Date" placeholder="01-01-2019" />
+                                    <StringInput label="Spud Date" name="spudDate" value={this.state.spudDate} onChange={this.handleInputChange} placeholder="01-01-2019" />
                                 </Col>
                                 <Col md="8">
-                                    <StringInput label="Field & Reservior" placeholder="Enter Field & Reservoir" />
+                                    <StringInput label="Field & Reservior" name="fieldAndReservoir" value={this.state.fieldAndReservoir} onChange={this.handleInputChange} placeholder="Enter Field & Reservoir" />
                                 </Col>
                             </Row>
                             <Row>
                                 <Col lg="3">
-                                    <StringInput label="Date of Test" placeholder="01-01-2019" />
+                                    <StringInput label="Date of Test" name="testDate" value={this.state.testData.testDate} onChange={this.handleInputChange} placeholder="01-01-2019" />
                                 </Col>
                                 <Col lg="2">
-                                    <NumberInput label="Hours Tested" placeholder="02" />
+                                    <NumberInput label="Hours Tested" name="hoursTested" value={this.state.testData.hoursTested} onChange={this.handleInputChange} placeholder="02" />
                                 </Col>
                                 <Col lg="4">
-                                    <Select label="Production Method">
+                                    <Select label="Production Method" name="prodMethod" value={this.state.testData.prodMethod} onChange={this.handleInputChange}>
                                         <option>Gas Lift</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -213,7 +400,7 @@ class W2Form extends Component {
                                     </Select>
                                 </Col>
                                 <Col lg="3">
-                                    <NumberInput label="Choke Size" placeholder="90.000" />
+                                    <NumberInput label="Choke Size" name="chokeSize" value={this.state.testData.chokeSize} onChange={this.handleInputChange} placeholder="9.0" />
                                 </Col>
                             </Row>
                         </Container>
