@@ -33,6 +33,9 @@ export default {
     console.log(id.id)
     return axios.post("/api/welltable/" + id.id + "/prod/new", wellData)
   },
+  getAllProd: function () {
+    return axios.get("/api/prodAll")
+  },
   getWellProd: function (id, wellData) {
     console.log(id.id)
     return axios.get("/api/welltable/" + id.id + "/prod", wellData)

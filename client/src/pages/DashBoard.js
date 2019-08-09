@@ -20,7 +20,7 @@ class DashBoard extends React.Component {
     };
 
     componentDidMount() {
-        API.getAllWells()
+        API.getAllProd()
             .then(res => {
                 this.setState({ well: res.data })
                 console.log(res.data)
@@ -38,7 +38,7 @@ class DashBoard extends React.Component {
                             <Card>
                                 <SectionTitle>Production</SectionTitle>
                                 <div style={styles.graph}>
-                                    {/* <GraphLine /> */}
+                                    <GraphLine well={this.state.well.productionId || []} />
                                 </div>
                             </Card>
                         </Col>

@@ -200,6 +200,8 @@ router.route("/addWell")
 router.route("/welltable/:id/prod")
   .get(prodController.findById)
 
+router.route("/prodAll")
+  .get(prodController.findAll);
 
 router.route("/welltable/:id/prod/new")
   .post(prodController.create);
