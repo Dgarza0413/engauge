@@ -94,57 +94,7 @@ class WellForm extends Component {
               completionDepth: this.state.completionDepth,
               trueVerticalDepth: this.state.trueVerticalDepth,
               wellBoreProfile: this.state.wellBoreProfile,
-              surfaceLocation: this.state.surfaceLocation,
-  
-              // W-2
-              spudDate: this.state.spudDate,
-          fieldAndReservoir: this.state.fieldAndReservoir,
-          testData: {
-              testDate: this.state.testData.testDate,
-              hoursTested: this.state.testData.hoursTested,
-              prodMethod: this.state.testData.prodMethod,
-              chokeSize: this.state.testData.chokeSize
-          },
-          totalDepth: {
-              tvd: this.state.totalDepth.tvd,
-              md: this.state.totalDepth.md
-          },
-          plugBackDepth: {
-              tvd: this.state.plugBackDepth.tvd,
-              md: this.state.plugBackDepth.md
-          },
-          casingRecord: [{
-              casingType: this.state.casingRecord.casingType,
-              casingSize: this.state.casingRecord.casingSize,
-              holeSize: this.state.casingRecord.holeSize,
-              cementClass: this.state.casingRecord.cementClass,
-              cementAmt: this.state.casingRecord.cementAmt,
-              slurryVol: this.state.casingRecord.slurryVol,
-              topOfCement: this.state.casingRecord.topOfCement
-          }],
-          tubingRecord: [{
-              size: this.state.tubingRecord.size,
-              depthSet: this.state.tubingRecord.depthSet,
-              packerDepthType: this.state.tubingRecord.packerDepthType
-          }],
-          prodInjDispInt: [{
-              from: this.state.prodInjDispInt.from,
-              to: this.state.prodInjDispInt.to
-          }],
-          formationRecord: [{
-              markers: this.state.formationRecord.markers,
-              tvdDepth: this.state.formationRecord.tvdDepth,
-              mdDepth: this.state.formationRecord.mdDepth,
-              isPermitted: this.state.formationRecord.isPermitted,
-              isIsolated: this.state.formationRecord.isIsolated
-          }],
-          tanks: [{
-              size: this.state.tanks.size,
-              bblsPerInch: this.state.tanks.bblsPerInch,
-              oilDepth: this.state.tanks.oilDepth,
-              waterDepth: this.state.tanks.waterDepth,
-              runTicket: this.state.tanks.runTicket
-          }]
+              surfaceLocation: this.state.surfaceLocation
       }
             console.log(obj)
             API.addWell(obj)
