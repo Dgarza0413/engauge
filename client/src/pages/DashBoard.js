@@ -23,7 +23,7 @@ class DashBoard extends React.Component {
                             <Card>
                                 <SectionTitle>Production</SectionTitle>
                                 <div style={styles.graph}>
-                                    <GraphLine />
+                                    {/* <GraphLine /> */}
                                 </div>
                             </Card>
                         </Col>
