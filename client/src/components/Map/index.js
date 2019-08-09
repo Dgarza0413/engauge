@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from "../GraphMarker";
-import API from "../../utils/API"
 import mapstyle from "./mapstyle.json";
 
 // const AnyReactComponent = ({ text }) => <div>{text}</div>;
