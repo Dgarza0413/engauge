@@ -24,7 +24,22 @@ const wellSchema = new Schema({
   surfaceLocation: { type: String }, // will get data from a set of radio buttons form w1.14
   // end form W-1
   isOn: { type: Boolean, default: false },
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  productionId: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Production"
+    }
+  ],
+  report:
+    [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Report"
+      }
+    ]
+
+
 });
 
 module.exports = mongoose.model("Well", wellSchema);
