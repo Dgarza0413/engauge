@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 
 function WellTable(props) {
-  
+
   return (
     <div>
       {/* <Button type="submit">Add Well</Button> */}
@@ -13,7 +13,7 @@ function WellTable(props) {
       <Table striped bordered hover>
         <thead>
           <tr>
-          <th>Well Name</th>
+            <th>Well Name</th>
             <th>Well Number</th>
             <th>API Number</th>
             <th>Flow</th>
@@ -22,16 +22,15 @@ function WellTable(props) {
           </tr>
         </thead>
         <tbody>
-          {props.wells.map(well=>(
+          {props.wells.map(well => (
             <tr key={well._id}>
-            <td><Link to={"/welltable/" + well._id}>{well.wellName}</Link></td>
-            <td>{well.wellNum}</td>
-            <td>{well.apiNum}</td>
-            <td>{well.wellNum}</td>
-            <td>{well.wellNum}</td>
-            <td>{well.isOn ? "On":"Off"}</td>
+              <td><Link to={"/welltable/" + well._id}>{well.wellName}</Link></td>
+              <td>{well.wellNum}</td>
+              <td>{well.apiNum}</td>
+              <td>{well.wellNum}</td>
+              <td>{well.wellNum}</td>
+              <td>{well.isOn ? "On" : "Off"}</td>
             </tr>
-
           ))}
         </tbody>
       </Table>

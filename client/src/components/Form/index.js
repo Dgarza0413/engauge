@@ -52,6 +52,15 @@ export function BoxInput(props) {
     );
 }
 
+export function TextBoxInput(props) {
+    return (
+        <Form.Group>
+            <Form.Label>{props.label}</Form.Label>
+            <Form.Control as="textarea" rows="5" placeholder={props.placeholder} />
+        </Form.Group>
+    );
+}
+
 // export function Checkbox(props) {
 
 // }
