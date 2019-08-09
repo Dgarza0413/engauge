@@ -37,6 +37,13 @@ const wellSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Report"
       }
+    ],
+  recompletion:
+    [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Recompletion"
+      }
     ]
 
 

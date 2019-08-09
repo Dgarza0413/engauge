@@ -44,6 +44,9 @@ class WellDetail extends React.Component {
                                 <Link to={"/welltable/" + this.props.match.params.id + "/prod/new"}>
                                     <Button>Add Prod</Button>
                                 </Link>
+                                <Link to={"/welltable/" + this.props.match.params.id + "/recomp/new"}>
+                                    <Button>Add Recompletion</Button>
+                                </Link>
                                 <SectionTitle>Well Summary</SectionTitle>
                                 <div style={styles.graph}>
                                     <GraphLine well={this.state.well.productionId || []} />

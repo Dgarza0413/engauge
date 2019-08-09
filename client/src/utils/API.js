@@ -30,8 +30,8 @@ export default {
     return axios.post("/api/addWell", wellData);
   },
   // recompletion form (w-2)
-  addRecompletion: function (wellData) {
-    return axios.post("/api/recompletion", wellData);
+  addRecompletion: function (id, wellData) {
+    return axios.post("/api/recompletion" + id.id, wellData);
   },
   // recompletion form (w-2)
   postRecompletion: function (id, wellData) {
