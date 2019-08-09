@@ -6,6 +6,7 @@ import PageWrapper from "../components/PageWrapper";
 import Card from "../components/Card";
 import SectionTitle from "../components/SectionTitle";
 import { Container, Row, Col } from "react-bootstrap";
+import API from "../utils/API"
 
 const styles = {
     graph: {
@@ -14,6 +15,20 @@ const styles = {
 }
 
 class DashBoard extends React.Component {
+    state = {
+        well: {}
+    };
+
+    componentDidMount() {
+        API.getAllWells()
+            .then(res => {
+                this.setState({ well: res.data })
+                console.log(res.data)
+            })
+            .catch(err => console.log(err))
+    }
+
+
     render() {
         return (
             <PageWrapper>
@@ -23,7 +38,7 @@ class DashBoard extends React.Component {
                             <Card>
                                 <SectionTitle>Production</SectionTitle>
                                 <div style={styles.graph}>
-                                    <GraphLine />
+                                    {/* <GraphLine /> */}
                                 </div>
                             </Card>
                         </Col>
