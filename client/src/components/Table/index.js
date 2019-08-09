@@ -58,7 +58,6 @@ class WellTable extends React.Component {
                   .startsWith(this.state.filter.toLowerCase());
               })
               .map(well => { 
-                console.log(well.isOn)
                 return (
                 <tr>
                   <Link to={"/welltable/" + well._id}>
@@ -68,7 +67,7 @@ class WellTable extends React.Component {
                   <td>{well.apiNum}</td>
                   <td>{well.wellNum}</td>
                   <td>{well.wellNum}</td>
-                  <td><ToggleButton isOn={well.isOn} name={well.wellName}/></td>
+                  <td><ToggleButton isOn={well.isOn} name={well.wellName} id={well._id}/></td>
                 </tr>
               ) })}
           </tbody>

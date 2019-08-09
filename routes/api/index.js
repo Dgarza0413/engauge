@@ -226,4 +226,7 @@ router.route("/recompletion/:tankid")
   .put(recompletionController.update)
   .delete(recompletionController.remove);
 
+router.route("/well/:id")
+  .put(wellController.update)
+
 module.exports = router;

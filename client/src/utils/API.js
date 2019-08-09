@@ -52,5 +52,8 @@ export default {
   },
   addToWell: function (id) {
     return axios.post("/api/well/" + id)
+  },
+  updateWellStatus: function(id, val){
+    return axios.put("/api/well/" + id, { isOn: val })
   }
 };
