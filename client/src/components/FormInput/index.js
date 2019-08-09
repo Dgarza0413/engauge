@@ -4,6 +4,7 @@ import { StringInput, NumberInput, Select, BoxInput, TextBoxInput } from "../For
 import Card from "../Card";
 import Button from "../Button";
 import API from "../../utils/API";
+import { Redirect } from 'react-router-dom';
 import "./style.css";
 
 //wgs84
@@ -30,6 +31,10 @@ class WellForm extends Component {
         trueVerticalDepth: "",
         wellBoreProfile: "",
         surfaceLocation: "",
+<<<<<<< HEAD
+        redirect: false
+=======
+>>>>>>> e3f7bfad4b9bf7ffb2e4814b7ab74135f36722ab
     };
 
     handleValidation() {
@@ -69,6 +74,12 @@ class WellForm extends Component {
     
     
 
+    handleRedirect = () => {
+        if (this.state.redirect === true) {
+            return <Redirect to="/welltable" />
+        }
+    }
+
 
     handleFormSubmit = event => {
         event.preventDefault();
@@ -103,11 +114,12 @@ class WellForm extends Component {
                     console.log(res.data.items);
 
                     this.setState({
-                        obj: res.data.items
+                        obj: res.data.items,
+                        redirect: true
                     });
                 })
                 .catch(err => console.log(err));
-            console.log("we passed validation")
+            console.log("we passed validation");
         } else {
             console.log("we failed validation");
         }
@@ -159,7 +171,7 @@ class WellForm extends Component {
                         <Container>
                             <Row>
                                 <Col lg="4">
-                                    <StringInput label="Well Name" name="wellName" value={this.state.wellName} onChange={this.handleInputChange} placeholder="wellname" />
+                                    <StringInput label="Well Name" name="wellName" value={this.state.wellName} onChange={this.handleInputChange} placeholder="Enter Well Name" />
                                 </Col>
                                 <Col lg="4">
                                     <StringInput label="Well No." name="wellNum" value={this.state.wellNum} onChange={this.handleInputChange} placeholder="02" />
@@ -174,13 +186,13 @@ class WellForm extends Component {
                             </Row>
                             <Row>
                                 <Col lg="3">
-                                    <StringInput label="API No." name="apiNum" value={this.state.apiNum} onChange={this.handleInputChange} placeholder="42-xxx-xxxxx" />
+                                    <StringInput label="API No." name="apiNum" value={this.state.apiNum} onChange={this.handleInputChange} placeholder="42-XXX-XXXX" />
                                 </Col>
                                 <Col lg="4">
-                                    <StringInput label="Operator Name" name="operatorName" value={this.state.operatorName} onChange={this.handleInputChange} placeholder="Sue-Ann Operating, L.C." />
+                                    <StringInput label="Operator Name" name="operatorName" value={this.state.operatorName} onChange={this.handleInputChange} placeholder="Enter Operator Name" />
                                 </Col>
                                 <Col lg="3">
-                                    <StringInput label="Lease Name" name="leaseName" value={this.state.leaseName} onChange={this.handleInputChange} placeholder="Martha McMillan" />
+                                    <StringInput label="Lease Name" name="leaseName" value={this.state.leaseName} onChange={this.handleInputChange} placeholder="Enter Lease Name" />
                                 </Col>
                                 <Col lg="2">
                                     <StringInput label="County" name="county" value={this.state.county} onChange={this.handleInputChange} placeholder="Travis" />
@@ -194,7 +206,7 @@ class WellForm extends Component {
                                     <NumberInput label="Field No." name="fieldNumber" value={this.state.fieldList.fieldNumber} onChange={this.handleInputChange} placeholder="02" />
                                 </Col>
                                 <Col lg="6">
-                                    <StringInput label="Field Name" name="fieldName" value={this.state.fieldList.fieldName} onChange={this.handleInputChange} placeholder="Poesta Greek (Hartzendorf)" />
+                                    <StringInput label="Field Name" name="fieldName" value={this.state.fieldList.fieldName} onChange={this.handleInputChange} placeholder="Enter Field Name" />
                                 </Col>
                             </Row>
                             <Row>
@@ -233,9 +245,8 @@ class WellForm extends Component {
                             </Row>
                         </Container>
                     </Card>
-                    <Button>
-                        <input type="submit"></input>
-                    </Button>
+                    {this.handleRedirect()}
+                    <Button type="submit"/>
                 </form>
             </div>
         );
@@ -579,9 +590,7 @@ class W2Form extends Component {
                             </Row>
                         </Container>
                     </Card>
-                    <Button>
-                        <input type="submit"></input>
-                    </Button>
+                    <Button type="submit"/>
                 </form>
             </div>
         );
@@ -596,24 +605,24 @@ class Production extends Component {
                     <Card>
                         <Container>
                             <Row>
-                                <Col md="3">
+                                <Col md="4">
                                     <NumberInput label="Oil" placeholder="07" unit="BBLs" />
                                 </Col>
-                                <Col md="3">
+                                <Col md="4">
                                     <NumberInput label="Gas" placeholder="07" unit="MCF" />
                                 </Col>
-                                <Col md="3">
+                                <Col md="4">
                                     <NumberInput label="Water" placeholder="07" unit="BBLs" />
                                 </Col>
                             </Row>
                             <Row>
-                                <Col md="3">
+                                <Col md="4">
                                     <NumberInput label="Casing PSI" placeholder="07" unit="PSI" />
                                 </Col>
-                                <Col md="3">
+                                <Col md="4">
                                     <NumberInput label="Tubing PSI" placeholder="07" unit="PSI" />
                                 </Col>
-                                <Col md="3">
+                                <Col md="4">
                                     <NumberInput label="Choke Size" placeholder="07" unit="/64" />
                                 </Col>
                             </Row>
@@ -624,9 +633,7 @@ class Production extends Component {
                             </Row>
                         </Container>
                     </Card>
-                    <Button>
-                        <input type="submit"></input>
-                    </Button>
+                    <Button type="submit"/>
                 </form>
             </div>
         );
