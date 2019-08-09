@@ -69,14 +69,11 @@ class WellForm extends Component {
         }
     };   
     
-    
-
     handleRedirect = () => {
         if (this.state.redirect === true) {
             return <Redirect to="/welltable" />
         }
     }
-
 
     handleFormSubmit = event => {
         event.preventDefault();
@@ -595,32 +592,100 @@ class W2Form extends Component {
 }
 
 class Production extends Component {
+    constructor(props) {
+        super(props)
+    }
+    state = {
+        well: "",
+        apiNum: "",
+        oil: "",
+        gas: "",
+        water: "",
+        casingPSI: "",
+        tubingPSI: "",
+        choke: "",
+        date: "",
+        redirect: false
+    };
+
+    // we have to get the api that we wish to update
+    componentDidMount() {
+        console.log(this.props.id);
+        API.getWellId(this.props.id)
+            .then(res => {
+                this.setState({ well: res.data._id })
+                console.log(res.data._id)
+            })
+            .catch(err => console.log(err))
+    }
+
+    handleRedirect = () => {
+        if (this.state.redirect === true) {
+            return <Redirect to={`/welltable/${this.props.id}`} />
+        }
+    }
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+        console.log(event.target)
+    };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        const id = {
+            id: this.state.well
+        }
+        const obj = {
+            oil: parseInt(this.state.oil),
+            gas: parseInt(this.state.gas),
+            water: parseInt(this.state.water),
+            casingPSI: parseInt(this.state.casingPSI),
+            tubingPSI: parseInt(this.state.tubingPSI),
+            choke: parseInt(this.state.choke),
+            date: this.state.date
+        }
+        API.postWellProd(id, obj)
+            .then(res => {
+                console.log(res.data);
+                console.log(id)
+                this.setState({
+                    id: res.data._id,
+                    obj: res.data,
+                    redirect: true
+                });
+            })
+            .catch(err => console.log(err));
+    };
+
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.handleFormSubmit}>
                     <Card>
                         <Container>
                             <Row>
                                 <Col md="4">
-                                    <NumberInput label="Oil" placeholder="07" unit="BBLs" />
+                                    <NumberInput label="Oil" value={this.state.oil} onChange={this.handleInputChange} name="oil" placeholder="07" unit="BBLs" />
                                 </Col>
                                 <Col md="4">
-                                    <NumberInput label="Gas" placeholder="07" unit="MCF" />
+                                    <NumberInput label="Gas" value={this.state.gas} onChange={this.handleInputChange} name="gas" placeholder="07" unit="MCF" />
                                 </Col>
                                 <Col md="4">
-                                    <NumberInput label="Water" placeholder="07" unit="BBLs" />
+                                    <NumberInput label="Water" value={this.state.water} onChange={this.handleInputChange} name="water" placeholder="07" unit="BBLs" />
                                 </Col>
                             </Row>
                             <Row>
                                 <Col md="4">
-                                    <NumberInput label="Casing PSI" placeholder="07" unit="PSI" />
+                                    <NumberInput label="Casing PSI" value={this.state.casingPSI} onChange={this.handleInputChange} name="casingPSI" placeholder="07" unit="PSI" />
                                 </Col>
                                 <Col md="4">
-                                    <NumberInput label="Tubing PSI" placeholder="07" unit="PSI" />
+                                    <NumberInput label="Tubing PSI" value={this.state.tubingPSI} onChange={this.handleInputChange} name="tubingPSI" placeholder="07" unit="PSI" />
                                 </Col>
                                 <Col md="4">
-                                    <NumberInput label="Choke Size" placeholder="07" unit="/64" />
+                                    <NumberInput label="Choke Size" value={this.state.choke} onChange={this.handleInputChange} name="choke" placeholder="07" unit="/64" />
                                 </Col>
                             </Row>
                             <Row>
@@ -630,6 +695,7 @@ class Production extends Component {
                             </Row>
                         </Container>
                     </Card>
+                    {this.handleRedirect()}
                     <Button type="submit"/>
                 </form>
             </div>
