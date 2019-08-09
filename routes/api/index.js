@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const prodController = require("../../controllers/prodController");
 const userController = require("../../controllers/userController");
 const wellController = require("../../controllers/wellController");
 const prodController = require("../../controllers/prodController");
