@@ -29,6 +29,14 @@ export default {
   addWell: function (wellData) {
     return axios.post("/api/addWell", wellData);
   },
+  // recompletion form (w-2)
+  addRecompletion: function (wellData) {
+    return axios.post("/api/recompletion", wellData);
+  },
+  // recompletion form (w-2)
+  postRecompletion: function (id, wellData) {
+    return axios.get("/api/recompletion/" + id.id, wellData)
+  },
   postWellProd: function (id, wellData) {
     console.log(id.id)
     return axios.post("/api/welltable/" + id.id + "/prod/new", wellData)
