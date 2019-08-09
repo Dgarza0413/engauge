@@ -8,23 +8,24 @@ import { ResponsiveBar } from '@nivo/bar';
 const MyResponsiveBar = ({ data = [
     {
         "tankNum": "12345",
-        "Oil Depth": 120,
-        'Water Depth': 120
+        "oilDepthBBLs": 120,
+        'waterDepthBBLS': 120
     },
     {
         "tankNum": "14321",
-        "Oil Depth": 300,
-        'Water Depth': 50
+        "oilDepthBBLs": 300,
+        'waterDepthBBLS': 50
     },
     {
         "tankNum": "543",
-        "Oil Depth": 200,
-        'Water Depth': 100
+        "oilDepthBBLs": 200,
+        'waterDepthBBLS': 100
     }
 ] }) => (
         <ResponsiveBar
             data={data}
-            keys={["Water Depth", "Oil Depth"]}
+            keys={["waterDepthBBLS", "oilDepthBBLs"]}
+            colors={["#69a8be", "#d5b577"]}
             indexBy="tankNum"
             margin={{ top: 50, right: 30, bottom: 100, left: 60 }}
             padding={0.3}

@@ -1,6 +1,7 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
 import Card from "../Card";
+import Moment from "react-moment";
 
 function WellTableProd(props) {
     return (
@@ -21,7 +22,7 @@ function WellTableProd(props) {
                     <tbody>
                         {props.well.map(w => (
                             <tr key={w.id}>
-                                <td>{w.date}</td>
+                                <td><Moment format="DD/MM/YYYY">{w.date}</Moment></td>
                                 <td>{w.oil}</td>
                                 <td>{w.gas}</td>
                                 <td>{w.water}</td>

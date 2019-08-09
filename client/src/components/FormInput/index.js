@@ -7,8 +7,6 @@ import API from "../../utils/API";
 import { Redirect } from 'react-router-dom';
 import "./style.css";
 
-//wgs84
-
 class WellForm extends Component {
     state = {
         wellName: "",
@@ -604,7 +602,7 @@ class Production extends Component {
         casingPSI: "",
         tubingPSI: "",
         choke: "",
-        date: "",
+        date: Date.now(),
         redirect: false
     };
 
