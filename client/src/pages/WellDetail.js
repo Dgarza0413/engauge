@@ -3,11 +3,6 @@ import Map from "../components/Map";
 import GraphLine from "../components/GraphLine";
 import GraphBar from "../components/GraphBar";
 import PageWrapper from "../components/PageWrapper";
-<<<<<<< HEAD
-import {Link} from "react-router-dom";
-import {Button} from "react-bootstrap";
-import WellTableProd from "../components/TableProd"
-=======
 import { Link } from "react-router-dom"
 import { Button } from "react-bootstrap";
 import API from "../utils/API";
@@ -18,7 +13,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import SectionTitle from "../components/SectionTitle";
 
 
->>>>>>> master
 
 const styles = {
     graph: {

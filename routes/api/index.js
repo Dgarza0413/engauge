@@ -2,10 +2,7 @@ const router = require("express").Router();
 const prodController = require("../../controllers/prodController");
 const userController = require("../../controllers/userController");
 const wellController = require("../../controllers/wellController");
-<<<<<<< HEAD
-=======
 const recompletionController = require("../../controllers/recompletionController");
->>>>>>> 8d9ef0f257279d907baed258b05664c141df65da
 const passport = require('../../config/passport.js')
 const { google } = require("googleapis")
 // const google = require("googleapis").google

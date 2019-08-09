@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import React from "react";
 import Form from "react-bootstrap/Form";
-import FormControl from 'react-bootstrap/FormControl'
-import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl';
+import InputGroup from 'react-bootstrap/InputGroup';
+import ToggleButton from "./toggleButton";
 
 class WellTable extends React.Component {
   state = {
@@ -38,7 +39,7 @@ class WellTable extends React.Component {
             value={this.state.filter} 
             placeholder="Search"/>
         </InputGroup>
-
+        
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -65,7 +66,7 @@ class WellTable extends React.Component {
                   <td>{well.apiNum}</td>
                   <td>{well.wellNum}</td>
                   <td>{well.wellNum}</td>
-                  <td>{well.isOn ? "On" : "Off"}</td>
+              <td>{well.isOn ? "On" : <ToggleButton/>}</td>
                 </tr>
               ))}
           </tbody>
