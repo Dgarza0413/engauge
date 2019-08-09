@@ -3,7 +3,7 @@ import "./style.css";
 
 function SectionTitle(props) {
     return (
-        <div>
+        <div className="title-container">
             <h4 className="section-title">{props.children}</h4>
         </div>
     );

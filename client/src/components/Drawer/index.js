@@ -16,9 +16,9 @@ const links = [
         name: "WellTable",
         icon: "fas fa-fill",
     }, {
-        name: "New-Well",
-        icon: "fas fa-fill",
-    }, {
+    //     name: "New-Well",
+    //     icon: "fas fa-fill",
+    // }, {
         name: "Map",
         icon: "fas fa-map-marked-alt",
     }, {
