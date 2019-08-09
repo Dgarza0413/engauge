@@ -2,7 +2,7 @@
   "name": "engauge",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/",
+  "proxy": "http://127.0.0.1:3001/",
   "dependencies": {
     "@material-ui/core": "^4.3.1",
     "@nivo/bar": "^0.59.2",
@@ -18,7 +18,8 @@
     "react-bootstrap": "^1.0.0-beta.10",
     "react-dom": "^16.6.3",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.1"
+    "react-scripts": "^2.1.1",
+    "unset-value": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
