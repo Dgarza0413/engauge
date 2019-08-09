@@ -1,34 +1,37 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
-
+import Card from "../Card";
 
 function WellTableProd(props) {
     return (
         <div>
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Oil</th>
-                        <th>Gas</th>
-                        <th>Water</th>
-                        <th>CsgingPSI</th>
-                        <th>TubingPSI</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {props.well.map(w => (
-                        <tr key={w.id}>
-                            <td>{w.date}</td>
-                            <td>{w.oil}</td>
-                            <td>{w.gas}</td>
-                            <td>{w.water}</td>
-                            <td>{w.casingPSI}</td>
-                            <td>{w.tubingPSI}</td>
+            {/* <Table striped bordered hover> */}
+            <Card padding="0">
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Oil</th>
+                            <th>Gas</th>
+                            <th>Water</th>
+                            <th>Casing PSI</th>
+                            <th>Tubing PSI</th>
                         </tr>
-                    ))}
-                </tbody>
-            </Table>
+                    </thead>
+                    <tbody>
+                        {props.well.map(w => (
+                            <tr key={w.id}>
+                                <td>{w.date}</td>
+                                <td>{w.oil}</td>
+                                <td>{w.gas}</td>
+                                <td>{w.water}</td>
+                                <td>{w.casingPSI}</td>
+                                <td>{w.tubingPSI}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </Card>
         </div >
     );
 }

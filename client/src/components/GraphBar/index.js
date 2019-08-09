@@ -26,7 +26,7 @@ const MyResponsiveBar = ({ data = [
             data={data}
             keys={["waterDepthBBLS", "oilDepthBBLs"]}
             indexBy="tankNum"
-            margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+            margin={{ top: 50, right: 60, bottom: 50, left: 60 }}
             padding={0.3}
             colors={{ scheme: 'nivo' }}
             defs={[
@@ -88,10 +88,10 @@ const MyResponsiveBar = ({ data = [
             legends={[
                 {
                     dataFrom: 'keys',
-                    anchor: 'bottom-right',
-                    direction: 'column',
+                    anchor: 'bottom',
+                    direction: 'row',
                     justify: false,
-                    translateX: 120,
+                    translateX: 0,
                     translateY: 0,
                     itemsSpacing: 2,
                     itemWidth: 100,

@@ -3,8 +3,9 @@ import Map from "../components/Map";
 import GraphLine from "../components/GraphLine";
 import GraphBar from "../components/GraphBar";
 import PageWrapper from "../components/PageWrapper";
-import { Link } from "react-router-dom"
-import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import Button from "../components/Button";
+import FlexContainer from "../components/FlexContainer";
 import API from "../utils/API";
 import WellTableProd from "../components/TableProd";
 import Card from "../components/Card";
@@ -26,6 +27,7 @@ class WellDetail extends React.Component {
     };
 
     componentDidMount() {
+        console.log(this.props.match.params.id);
         API.getWellId(this.props.match.params.id)
             .then(res => {
                 this.setState({ well: res.data })
@@ -40,11 +42,13 @@ class WellDetail extends React.Component {
                 <Container>
                     <Row>
                         <Col lg="12">
-                            <Card>
-                                <Link to={"/welltable/" + this.props.match.params.id + "/prod/new"}>
-                                    <Button>Add Prod</Button>
-                                </Link>
+                            <FlexContainer>
                                 <SectionTitle>Well Summary</SectionTitle>
+                                <Link to={"/welltable/" + this.props.match.params.id + "/prod/new"}>
+                                    <Button mb="15px">Add Prod</Button>
+                                </Link>
+                            </FlexContainer>
+                            <Card>
                                 <div style={styles.graph}>
                                     <GraphLine well={this.state.well.productionId || []} />
                                 </div>
@@ -67,10 +71,8 @@ class WellDetail extends React.Component {
                             </Card>
                         </Col>
                     </Row>
-                    <Card>
-                        <WellTableProd well={this.state.well.productionId || []}
-                            key={this.state.well._id} />
-                    </Card>
+                    <WellTableProd well={this.state.well.productionId || []}
+                        key={this.state.well._id} />
                 </Container>
             </PageWrapper >
         )
