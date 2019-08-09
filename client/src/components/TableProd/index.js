@@ -23,7 +23,7 @@ function WellTableProd(props) {
                             <td>{w.oil}</td>
                             <td>{w.gas}</td>
                             <td>{w.water}</td>
-                            <td>{w.csgingPSI}</td>
+                            <td>{w.casingPSI}</td>
                             <td>{w.tubingPSI}</td>
                         </tr>
                     ))}
