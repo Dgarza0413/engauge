@@ -13,10 +13,12 @@ passport.use(
                 email
             }).then(dbUser => {
                 if(!dbUser){
+                    console.log("1")
                     return done(null, false, { message: "Incorrect Email or Password"}) // we don't specify for security sake
                 }
                 // This is asynchronous to prevent timing based attacks
                 return dbUser.checkPassword(password).then(isCorrect => {
+                    console.log(password)
                     if(!isCorrect){
                         return done(null, false, { message: "Incorrect Email or Password"}) // we don't specify for security sake
                     } else {
