@@ -3,16 +3,9 @@ import Map from "../components/Map";
 import GraphLine from "../components/GraphLine";
 import GraphBar from "../components/GraphBar";
 import PageWrapper from "../components/PageWrapper";
-<<<<<<< HEAD
-// import Axios from "axios";
-=======
-import { Link } from "react-router-dom"
-import { Button } from "react-bootstrap";
-import { Col, Row } from "../components/Grid";
-import API from "../utils/API";
-import WellTableProd from "../components/TableProd";
-
->>>>>>> master
+import {Link} from "react-router-dom";
+import {Button} from "react-bootstrap";
+import WellTableProd from "../components/TableProd"
 
 const styles = {
     graph: {
@@ -21,25 +14,6 @@ const styles = {
 }
 
 class WellDetail extends React.Component {
-<<<<<<< HEAD
-    // state = {
-        
-    // }
-=======
-    state = {
-        well: {}
-    };
-
-    componentDidMount() {
-        API.getWellId(this.props.match.params.id)
-            .then(res => {
-                this.setState({ well: res.data })
-                console.log(res.data.productionId)
-            })
-            .catch(err => console.log(err))
-    }
-
->>>>>>> master
     render() {
         return (
             <PageWrapper>
