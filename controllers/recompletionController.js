@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the wellController
+// Defining methods for the recompletionController
 module.exports = {
   findAll: function(req, res) {
     db.Recompletion

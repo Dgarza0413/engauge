@@ -442,7 +442,7 @@ class W2Form extends Component {
             }]
           }
           console.log(obj)
-          API.addWell(obj)
+          API.addRecompletion(obj)
             .then(res => {
     
               console.log(res.data.items);
@@ -457,7 +457,7 @@ class W2Form extends Component {
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.handleFormSubmit}>
                     <Card>
                         <Container>
                             <Row>
