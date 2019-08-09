@@ -31,10 +31,7 @@ class WellForm extends Component {
         trueVerticalDepth: "",
         wellBoreProfile: "",
         surfaceLocation: "",
-<<<<<<< HEAD
         redirect: false
-=======
->>>>>>> e3f7bfad4b9bf7ffb2e4814b7ab74135f36722ab
     };
 
     handleValidation() {
@@ -433,7 +430,7 @@ class W2Form extends Component {
                                 <Col lg="3">
                                     <StringInput label="Date of Test" name="testDate" value={this.state.testData.testDate} onChange={this.handleInputChange} placeholder="01-01-2019" />
                                 </Col>
-                                <Col lg="2">
+                                <Col lg="3">
                                     <NumberInput label="Hours Tested" name="hoursTested" value={this.state.testData.hoursTested} onChange={this.handleInputChange} placeholder="02" />
                                 </Col>
                                 <Col lg="4">
@@ -445,7 +442,7 @@ class W2Form extends Component {
                                         <option>ESP</option>
                                     </Select>
                                 </Col>
-                                <Col lg="3">
+                                <Col lg="2">
                                     <NumberInput label="Choke Size" name="chokeSize" value={this.state.testData.chokeSize} onChange={this.handleInputChange} placeholder="9.0" />
                                 </Col>
                             </Row>
