@@ -31,26 +31,26 @@ const userSeed = [
   {
     name: "mark",
     email: "mark@mark.mark",
-    password: "james",
-    username: "zxcv"
+    password: "mark",
+    username: "mark"
   },
   {
-    name: "james",
-    email: "asdf@james.james",
-    password: "james",
-    username: "zxcv"
+    name: "christina",
+    email: "christina@christina.christina",
+    password: "christina",
+    username: "christina"
   },
   {
-    name: "james",
-    email: "asdf@james.james",
-    password: "james",
-    username: "zxcv"
+    name: "elain",
+    email: "elain@elain.elain",
+    password: "elain",
+    username: "elain"
   },
   {
-    name: "james",
-    email: "asdf@james.james",
-    password: "james",
-    username: "zxcv"
+    name: "brittany",
+    email: "brittany@brittany.brittany",
+    password: "brittany",
+    username: "brittany"
   }
 ];
 
