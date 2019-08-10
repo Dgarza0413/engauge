@@ -13,6 +13,7 @@ module.exports = {
     db.Well
       .findById(req.params.id)
       .populate("productionId")
+      .populate("recompletion")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

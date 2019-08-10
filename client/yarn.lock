@@ -1185,10 +1185,10 @@
   resolved "https://registry.yarnpkg.com/@restart/context/-/context-2.1.4.tgz#a99d87c299a34c28bd85bb489cb07bfd23149c02"
   integrity sha512-INJYZQJP7g+IoDUh/475NlGiTeMfwTXUEr3tmRneckHIxNolGOW9CTq83S8cxq0CgJwwcMzMJFchxvlwe7Rk8Q==
 
-"@restart/hooks@^0.3.0":
-  version "0.3.10"
-  resolved "https://registry.yarnpkg.com/@restart/hooks/-/hooks-0.3.10.tgz#064f896df66ed4322b58307faed78bec07e22bda"
-  integrity sha512-GtNYQS8ZUuSc3M3yCTe8+mH4YjyELy3VI6t1/9n5c6pnfBdtcXzLaKdzdpivhC1ClO0HCuTn6b8yDnSFQTgI/g==
+"@restart/hooks@^0.3.11":
+  version "0.3.11"
+  resolved "https://registry.yarnpkg.com/@restart/hooks/-/hooks-0.3.11.tgz#79ef8b872710838fac8c540f499915ed97935a7a"
+  integrity sha512-EcKbmMEMJBGNXl2u5WLpwmQnH47+USJW4wIQlwkStmsdt/igq+EUJX7tp0fha0GGIliJoxg69FSe06i5/B6HpA==
 
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"
@@ -8735,14 +8735,14 @@ react-app-polyfill@^0.2.2:
     whatwg-fetch "3.0.0"
 
 react-bootstrap@^1.0.0-beta.10:
-  version "1.0.0-beta.10"
-  resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-1.0.0-beta.10.tgz#369785084a8f5524b9a37c8d9c7c84a94e387a76"
-  integrity sha512-hSvUrVbm+2uEpsGLVbAKJe/HOBT8ou+AX8Oo3VHlXSbG/9dHonwNP/wXu1NcsJ+TemMk7UnzdX2J8BN5MDnIxA==
+  version "1.0.0-beta.11"
+  resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-1.0.0-beta.11.tgz#4570f5a1379fb05307924f7e8857fccd66c31100"
+  integrity sha512-D8rAORkNRMf0ECvB8LHCTibeo1JeWptKs4CA5/tn1x5fTu5W4DUD7fQxLm9QdbzOM0qg2FjcfTKeM9gCqhTcoA==
   dependencies:
     "@babel/runtime" "^7.4.2"
     "@react-bootstrap/react-popper" "1.2.1"
     "@restart/context" "^2.1.4"
-    "@restart/hooks" "^0.3.0"
+    "@restart/hooks" "^0.3.11"
     classnames "^2.2.6"
     dom-helpers "^3.4.0"
     invariant "^2.2.4"

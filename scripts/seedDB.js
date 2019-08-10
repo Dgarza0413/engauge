@@ -1,35 +1,61 @@
 const mongoose = require("mongoose");
 const db = require("../models");
-const User = require("../models/user")
 
 // This file empties the Books collection and inserts the books below
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/engauge";
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI);
 
 const testUser = {
   email: "test@test.com",
   password: "testtest"
 }
 // Remove all of our users and then try and make a new one
-User.remove({}).then(() => {
-  User.create(testUser).then(user => {
-      console.log(user)
-      return user.checkPassword(testUser.password)
-  }).then(result => {
-      console.log(result)
-      mongoose.connection.close()
-  })
-})
+// User.remove({}).then(() => {
+//   User.create(testUser).then(user => {
+//       console.log(user)
+//       return user.checkPassword(testUser.password)
+//   }).then(result => {
+//       console.log(result)
+//       mongoose.connection.close()
+//   })
+// })
 
-// const userSeed = [
-//   {
-//     name: "david",
-//     email: "david@david.david",
-//     password: "david",
-//     date: new Date(Date.now())
-//   }
-// ];
+const userSeed = [
+  {
+    name: "david",
+    email: "david@david.david",
+    password: "david",
+    username: "david"
+  },
+  {
+    name: "mark",
+    email: "mark@mark.mark",
+    password: "mark",
+    username: "mark"
+  },
+  {
+    name: "christina",
+    email: "christina@christina.christina",
+    password: "christina",
+    username: "christina"
+  },
+  {
+    name: "elain",
+    email: "elain@elain.elain",
+    password: "elain",
+    username: "elain"
+  },
+  {
+    name: "brittany",
+    email: "brittany@brittany.brittany",
+    password: "brittany",
+    username: "brittany"
+  }
+];
+
+
+
 
 const wellSeed = {
   apiNum: "TX0123",
@@ -96,26 +122,45 @@ const wellSeed = {
   date: Date.now
 }
 
-// db.Users
-//   .deleteMany({})
-//   .then(() => db.Users.collection.insertMany(userSeed))
-//   .then(data => {
-//     console.log(data.result.n + " records inserted!");
-//     process.exit(0);
-//   })
-//   .catch(err => {
-//     console.error(err);
-//     process.exit(1);
-//   });
 
 db.Well
   .deleteMany({})
   .then(() => db.Well.collection.insertOne(wellSeed))
   .then(data => {
-    console.log(data.result.n + " records inserted!");
-    process.exit(0);
+    console.log(data.result.n + " records inserted in Well!");
+
+    db.User
+      .deleteMany({})
+      .then(() => {
+        createUser(0, () => {
+          console.log(userSeed.length + " records inserted in User!");
+          process.exit(0);
+        });
+      })
+      .catch(err => {
+        console.error("ERROR: ", err);
+        process.exit(1);
+      });
   })
   .catch(err => {
     console.error(err);
     process.exit(1);
   });
+
+  function createUser(i, cb) {
+    console.log("adding " + userSeed[i].name)
+    db.User.create(userSeed[i])
+      .then(() => {
+        i++;
+        if(i < userSeed.length){
+          createUser(i, cb)
+        }
+        else {
+          cb();
+        }
+      })
+      .catch(err => {
+        console.error("ERROR: ", err);
+        process.exit(1);
+      });
+  }

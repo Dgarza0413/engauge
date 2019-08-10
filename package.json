@@ -42,6 +42,7 @@
     "passport-local-mongoose": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-virtualized": "^9.21.1",
+    "unset-value": "^1.0.0",
     "victory": "^32.3.3"
   }
 }
