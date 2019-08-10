@@ -1,13 +1,15 @@
 import React from 'react';
 import axios from 'axios'
 import PageWrapper from "../components/PageWrapper";
+import { Redirect } from "react-router-dom";
 
 class Login extends React.Component {
   state = {
     email:'test@test.com',
     password:'testtest',
     welcomeEmail: "",
-    googleSigninUrl: ""
+    googleSigninUrl: "",
+    redirectTo: null
   }
 
   handleInput = event => {
@@ -25,7 +27,7 @@ class Login extends React.Component {
     axios.post("/api/login", {email, password})
       .then(result => {
         console.log(result.data)
-        this.loadProfileInfo()
+        this.setState({ redirectTo: "/dashboard" })
       })
   }
   handleFormLogout = event => {
@@ -62,6 +64,10 @@ class Login extends React.Component {
   }
 
   render(){
+    if(this.state.redirectTo) {
+        return <Redirect to={this.state.redirectTo} />
+    }
+
     return (
         <PageWrapper>
       <div>
@@ -75,7 +81,7 @@ class Login extends React.Component {
           }
         <form>
           <input onChange={this.handleInput} name="email" value={this.state.email} type="text"/>
-          <input onChange={this.handleInput} name="password" value={this.state.email} type="password"/>
+          <input onChange={this.handleInput} name="password" value={this.state.password} type="password"/>
           <button onClick={this.handleFormSubmit}>Login</button>
           <button onClick={this.handleFormLogout}>Logout</button>
         </form>
