@@ -14,7 +14,7 @@ export function StringInput(props) {
 
 export function NumberInput(props) {
     return (
-        <div>
+        <div className="form-font">
             <Form.Label>{props.label}</Form.Label>
             <InputGroup className="mb-3">
                 <FormControl type="text" name={props.name} value={props.value} onChange={props.onChange} placeholder={props.placeholder} style={{ borderRight: props.unit ? 0 : "1px solid #e6e7ec" }} />

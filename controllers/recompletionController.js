@@ -16,9 +16,25 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    db.Recompletion
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
+    console.log("recompletion req.body", req.body)
+    // db.Recompletion
+    //   .create(req.body)
+    //   .then(dbModel => res.json(dbModel))
+    //   .catch(err => res.status(422).json(err));
+    db.Well.findById(req.params.id, function (err, well) {
+      if (err) {
+          console.log(err);
+      } else {
+          db.Recompletion.create(req.body, function (err, recomp) {
+              if (err) {
+                  console.log(err);
+              } else {
+                  well.recompletion.push(recomp);
+                  well.save();
+              }
+          });
+      }
+    }).then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {

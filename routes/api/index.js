@@ -218,12 +218,10 @@ router.route("/well/:tankid")
   .put(wellController.update)
   .delete(wellController.remove);
 
-router.route("/recompletion/")
-    .post(recompletionController.create);
+router.route("/welltable/:id/recomp/new")
+  .post(recompletionController.create);
 
-router.route("/recompletion/:tankid")
+router.route("/welltable/:id/recomp")
   .get(recompletionController.findById)
-  .put(recompletionController.update)
-  .delete(recompletionController.remove);
 
 module.exports = router;
