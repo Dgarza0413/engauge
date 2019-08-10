@@ -3,11 +3,11 @@ import { Production } from "../components/FormInput";
 import PageWrapper from "../components/PageWrapper";
 import SectionTitle from "../components/SectionTitle";
 
-function ProductionForm() {
+function ProductionForm(props) {
     return (
         <PageWrapper>
             <SectionTitle>Production Form</SectionTitle>
-            <Production />
+            <Production id={props.match.params.id}/>
         </PageWrapper>
     );
 }

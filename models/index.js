@@ -1,6 +1,5 @@
 module.exports = {
-  Users: require("./user"),
+  User: require("./user"),
   Well: require("./well"),
-  Production: require("./production"),
-  Recompletion: require("./recompletion")
+  Production: require("./production")
 };

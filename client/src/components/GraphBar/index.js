@@ -25,14 +25,16 @@ const MyResponsiveBar = ({ data = [
         <ResponsiveBar
             data={data}
             keys={["waterDepthBBLS", "oilDepthBBLs"]}
+            colors={["#69a8be", "#d5b577"]}
             indexBy="tankNum"
-            margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+            margin={{ top: 50, right: 30, bottom: 100, left: 60 }}
             padding={0.3}
-            colors={{ scheme: 'nivo' }}
+            // colors={{ scheme: 'nivo' }}
+            colors={["#69a8be", "#d5b577"]}
             defs={[
                 {
-                    id: 'dots',
-                    type: 'patternDots',
+                    id: 'lines',
+                    type: 'patternLines',
                     background: 'inherit',
                     color: '#38bcb2',
                     size: 4,
@@ -67,7 +69,7 @@ const MyResponsiveBar = ({ data = [
             axisTop={null}
             axisRight={null}
             axisBottom={{
-                tickSize: 5,
+                tickSize: 0,
                 tickPadding: 5,
                 tickRotation: 0,
                 legend: 'tankNum',
@@ -75,7 +77,7 @@ const MyResponsiveBar = ({ data = [
                 legendOffset: 32
             }}
             axisLeft={{
-                tickSize: 5,
+                tickSize: 0,
                 tickPadding: 5,
                 tickRotation: 0,
                 legend: 'BBLS',
@@ -88,11 +90,11 @@ const MyResponsiveBar = ({ data = [
             legends={[
                 {
                     dataFrom: 'keys',
-                    anchor: 'bottom-right',
-                    direction: 'column',
+                    anchor: 'bottom',
+                    direction: 'row',
                     justify: false,
-                    translateX: 120,
-                    translateY: 0,
+                    translateX: 0,
+                    translateY: 70,
                     itemsSpacing: 2,
                     itemWidth: 100,
                     itemHeight: 20,

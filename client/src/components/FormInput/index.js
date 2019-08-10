@@ -4,9 +4,8 @@ import { StringInput, NumberInput, Select, BoxInput, TextBoxInput } from "../For
 import Card from "../Card";
 import Button from "../Button";
 import API from "../../utils/API";
+import { Redirect } from 'react-router-dom';
 import "./style.css";
-
-//wgs84
 
 class WellForm extends Component {
     state = {
@@ -30,6 +29,7 @@ class WellForm extends Component {
         trueVerticalDepth: "",
         wellBoreProfile: "",
         surfaceLocation: "",
+        redirect: false
     };
 
     handleValidation() {
@@ -67,8 +67,11 @@ class WellForm extends Component {
         }
     };   
     
-    
-
+    handleRedirect = () => {
+        if (this.state.redirect === true) {
+            return <Redirect to="/welltable" />
+        }
+    }
 
     handleFormSubmit = event => {
         event.preventDefault();
@@ -103,11 +106,12 @@ class WellForm extends Component {
                     console.log(res.data.items);
 
                     this.setState({
-                        obj: res.data.items
+                        obj: res.data.items,
+                        redirect: true
                     });
                 })
                 .catch(err => console.log(err));
-            console.log("we passed validation")
+            console.log("we passed validation");
         } else {
             console.log("we failed validation");
         }
@@ -126,7 +130,7 @@ class WellForm extends Component {
                         <Container>
                             <Row>
                                 <Col lg="4">
-                                    <StringInput label="Well Name" name="wellName" value={this.state.wellName} onChange={this.handleInputChange} placeholder="wellname" />
+                                    <StringInput label="Well Name" name="wellName" value={this.state.wellName} onChange={this.handleInputChange} placeholder="Enter Well Name" />
                                 </Col>
                                 <Col lg="4">
                                     <StringInput label="Well No." name="wellNum" value={this.state.wellNum} onChange={this.handleInputChange} placeholder="02" />
@@ -141,13 +145,13 @@ class WellForm extends Component {
                             </Row>
                             <Row>
                                 <Col lg="3">
-                                    <StringInput label="API No." name="apiNum" value={this.state.apiNum} onChange={this.handleInputChange} placeholder="42-xxx-xxxxx" />
+                                    <StringInput label="API No." name="apiNum" value={this.state.apiNum} onChange={this.handleInputChange} placeholder="42-XXX-XXXX" />
                                 </Col>
                                 <Col lg="4">
-                                    <StringInput label="Operator Name" name="operatorName" value={this.state.operatorName} onChange={this.handleInputChange} placeholder="Sue-Ann Operating, L.C." />
+                                    <StringInput label="Operator Name" name="operatorName" value={this.state.operatorName} onChange={this.handleInputChange} placeholder="Enter Operator Name" />
                                 </Col>
                                 <Col lg="3">
-                                    <StringInput label="Lease Name" name="leaseName" value={this.state.leaseName} onChange={this.handleInputChange} placeholder="Martha McMillan" />
+                                    <StringInput label="Lease Name" name="leaseName" value={this.state.leaseName} onChange={this.handleInputChange} placeholder="Enter Lease Name" />
                                 </Col>
                                 <Col lg="2">
                                     <StringInput label="County" name="county" value={this.state.county} onChange={this.handleInputChange} placeholder="Travis" />
@@ -161,7 +165,7 @@ class WellForm extends Component {
                                     <NumberInput label="Field No." name="fieldNumber" value={this.state.fieldList.fieldNumber} onChange={this.handleInputChange} placeholder="02" />
                                 </Col>
                                 <Col lg="6">
-                                    <StringInput label="Field Name" name="fieldName" value={this.state.fieldList.fieldName} onChange={this.handleInputChange} placeholder="Poesta Greek (Hartzendorf)" />
+                                    <StringInput label="Field Name" name="fieldName" value={this.state.fieldList.fieldName} onChange={this.handleInputChange} placeholder="Enter Field Name" />
                                 </Col>
                             </Row>
                             <Row>
@@ -200,9 +204,8 @@ class WellForm extends Component {
                             </Row>
                         </Container>
                     </Card>
-                    <Button>
-                        <input type="submit"></input>
-                    </Button>
+                    {this.handleRedirect()}
+                    <Button type="submit"/>
                 </form>
             </div>
         );
@@ -389,7 +392,7 @@ class W2Form extends Component {
                                 <Col lg="3">
                                     <StringInput label="Date of Test" name="testDate" value={this.state.testData.testDate} onChange={this.handleInputChange} placeholder="01-01-2019" />
                                 </Col>
-                                <Col lg="2">
+                                <Col lg="3">
                                     <NumberInput label="Hours Tested" name="hoursTested" value={this.state.testData.hoursTested} onChange={this.handleInputChange} placeholder="02" />
                                 </Col>
                                 <Col lg="4">
@@ -401,7 +404,7 @@ class W2Form extends Component {
                                         <option>ESP</option>
                                     </Select>
                                 </Col>
-                                <Col lg="3">
+                                <Col lg="2">
                                     <NumberInput label="Choke Size" name="chokeSize" value={this.state.testData.chokeSize} onChange={this.handleInputChange} placeholder="9.0" />
                                 </Col>
                             </Row>
@@ -546,9 +549,7 @@ class W2Form extends Component {
                             </Row>
                         </Container>
                     </Card>
-                    <Button>
-                        <input type="submit"></input>
-                    </Button>
+                    <Button type="submit"/>
                 </form>
             </div>
         );
@@ -556,32 +557,100 @@ class W2Form extends Component {
 }
 
 class Production extends Component {
+    constructor(props) {
+        super(props)
+    }
+    state = {
+        well: "",
+        apiNum: "",
+        oil: "",
+        gas: "",
+        water: "",
+        casingPSI: "",
+        tubingPSI: "",
+        choke: "",
+        date: Date.now(),
+        redirect: false
+    };
+
+    // we have to get the api that we wish to update
+    componentDidMount() {
+        console.log(this.props.id);
+        API.getWellId(this.props.id)
+            .then(res => {
+                this.setState({ well: res.data._id })
+                console.log(res.data._id)
+            })
+            .catch(err => console.log(err))
+    }
+
+    handleRedirect = () => {
+        if (this.state.redirect === true) {
+            return <Redirect to={`/welltable/${this.props.id}`} />
+        }
+    }
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+        console.log(event.target)
+    };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        const id = {
+            id: this.state.well
+        }
+        const obj = {
+            oil: parseInt(this.state.oil),
+            gas: parseInt(this.state.gas),
+            water: parseInt(this.state.water),
+            casingPSI: parseInt(this.state.casingPSI),
+            tubingPSI: parseInt(this.state.tubingPSI),
+            choke: parseInt(this.state.choke),
+            date: this.state.date
+        }
+        API.postWellProd(id, obj)
+            .then(res => {
+                console.log(res.data);
+                console.log(id)
+                this.setState({
+                    id: res.data._id,
+                    obj: res.data,
+                    redirect: true
+                });
+            })
+            .catch(err => console.log(err));
+    };
+
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.handleFormSubmit}>
                     <Card>
                         <Container>
                             <Row>
-                                <Col md="3">
-                                    <NumberInput label="Oil" placeholder="07" unit="BBLs" />
+                                <Col md="4">
+                                    <NumberInput label="Oil" value={this.state.oil} onChange={this.handleInputChange} name="oil" placeholder="07" unit="BBLs" />
                                 </Col>
-                                <Col md="3">
-                                    <NumberInput label="Gas" placeholder="07" unit="MCF" />
+                                <Col md="4">
+                                    <NumberInput label="Gas" value={this.state.gas} onChange={this.handleInputChange} name="gas" placeholder="07" unit="MCF" />
                                 </Col>
-                                <Col md="3">
-                                    <NumberInput label="Water" placeholder="07" unit="BBLs" />
+                                <Col md="4">
+                                    <NumberInput label="Water" value={this.state.water} onChange={this.handleInputChange} name="water" placeholder="07" unit="BBLs" />
                                 </Col>
                             </Row>
                             <Row>
-                                <Col md="3">
-                                    <NumberInput label="Casing PSI" placeholder="07" unit="PSI" />
+                                <Col md="4">
+                                    <NumberInput label="Casing PSI" value={this.state.casingPSI} onChange={this.handleInputChange} name="casingPSI" placeholder="07" unit="PSI" />
                                 </Col>
-                                <Col md="3">
-                                    <NumberInput label="Tubing PSI" placeholder="07" unit="PSI" />
+                                <Col md="4">
+                                    <NumberInput label="Tubing PSI" value={this.state.tubingPSI} onChange={this.handleInputChange} name="tubingPSI" placeholder="07" unit="PSI" />
                                 </Col>
-                                <Col md="3">
-                                    <NumberInput label="Choke Size" placeholder="07" unit="/64" />
+                                <Col md="4">
+                                    <NumberInput label="Choke Size" value={this.state.choke} onChange={this.handleInputChange} name="choke" placeholder="07" unit="/64" />
                                 </Col>
                             </Row>
                             <Row>
@@ -591,9 +660,8 @@ class Production extends Component {
                             </Row>
                         </Container>
                     </Card>
-                    <Button>
-                        <input type="submit"></input>
-                    </Button>
+                    {this.handleRedirect()}
+                    <Button type="submit"/>
                 </form>
             </div>
         );

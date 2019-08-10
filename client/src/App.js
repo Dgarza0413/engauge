@@ -42,10 +42,11 @@ function App() {
             <Route exact path="/welltable/:id" component={WellDetail} />
             <Route exact path="/welltable/:id/prod/new" component={WellProdForm} />
             <Route exact path="/welltable/:id/recomp/new" component={WellRecompForm} />
+            {/* <Route exact path="/welltable/:id/prod/new" component={ProductionForm} /> */}
             <Route exact path="/new-well" component={NewWellForm} />
             <Route exact path="/w2" component={W2} />
             <Route exact path="/newwell" component={NewWellForm} />
-            <Route exact path="/production-form" component={ProductionForm} />
+            {/* <Route exact path="/production-form" component={ProductionForm} /> */}
             <Route exact path="/formtest" component={FormTest} />
           </Container>
           <Route component={NoMatch} />
