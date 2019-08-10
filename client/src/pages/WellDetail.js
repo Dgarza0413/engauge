@@ -43,13 +43,14 @@ class WellDetail extends React.Component {
                     <Row>
                         <Col lg="12">
                             <FlexContainer>
+                                <SectionTitle>Well Summary</SectionTitle>
                                 <Link to={"/welltable/" + this.props.match.params.id + "/prod/new"}>
                                     <Button mb="15px">Add Prod</Button>
                                 </Link>
-                                <Link to={"/welltable/" + this.props.match.params.id + "/recomp/new"}>
-                                    <Button>Add Recompletion</Button>
+                                <Link to={"/welltable/" + this.props.match.params.id + "/recomp/new"} style={{marginLeft: "1em"}}>
+                                    <Button mb="15px">Add Recompletion</Button>
                                 </Link>
-                                <SectionTitle>Well Summary</SectionTitle>
+                                
                             </FlexContainer>
                             <Card>
                                 <div style={styles.graph}>
