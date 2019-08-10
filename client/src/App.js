@@ -17,23 +17,18 @@ import Container from "@material-ui/core/Container";
 import WellProdForm from "./pages/WellProdForm";
 import WellRecompForm from "./pages/WellRecompForm";
 
-
-
-
-function App() {
-  const styles = {
-    layout: {
-      display: "flex"
-    }
-  }
-
-  return (
-    <Router>
-      <div style={styles.layout}>
-        <Drawer />
-        <Switch>
-          <Container>
+const login = () => {
+    return (
+        <div>
             <Route exact path="/" component={Login} />
+        </div>
+    );
+}
+
+const defaultRoutes = () => {
+    return (
+        <div>
+            <Drawer />
             <Route exact path="/dashboard" component={DashBoard} />
             <Route exact path="/map" component={Map} />
             <Route exact path="/reports" component={WellReport} />
@@ -48,13 +43,28 @@ function App() {
             <Route exact path="/newwell" component={NewWellForm} />
             {/* <Route exact path="/production-form" component={ProductionForm} /> */}
             <Route exact path="/formtest" component={FormTest} />
-          </Container>
-          <Route component={NoMatch} />
-        </Switch>
-      </div>
-    </Router >
-  );
+            {/* <Route component={NoMatch} /> */}
+        </div>
+    );
 }
 
+function App() {
+    const styles = {
+        layout: {
+            display: "flex"
+        }
+    }
+
+    return (
+        <Router>
+            <div>
+                <Switch>
+                    <Route exact path="/" component={login} />
+                    <Route component={defaultRoutes} />
+                </Switch>
+            </div>
+        </Router >
+    );
+}
 
 export default App;
