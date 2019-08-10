@@ -61,6 +61,24 @@ export function TextBoxInput(props) {
     );
 }
 
+export function EmailInput(props) {
+    return (
+        <Form.Group>
+            <Form.Label>{props.label}</Form.Label>
+            <Form.Control type="email" name={props.name} value={props.value} onChange={props.onChange} placeholder={props.placeholder} />
+        </Form.Group>
+    )
+}
+
+export function PasswordInput(props) {
+    return (
+        <Form.Group>
+            <Form.Label>{props.label}</Form.Label>
+            <Form.Control type="password" name={props.name} value={props.value} onChange={props.onChange} placeholder={props.placeholder} />
+        </Form.Group>
+    )
+}
+
 // export function Checkbox(props) {
 
 // }
