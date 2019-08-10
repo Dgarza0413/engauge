@@ -2,6 +2,7 @@ const router = require("express").Router();
 const prodController = require("../../controllers/prodController");
 const userController = require("../../controllers/userController");
 const wellController = require("../../controllers/wellController");
+const recompletionController = require("../../controllers/recompletionController");
 const passport = require('../../config/passport.js')
 const { google } = require("googleapis")
 // const google = require("googleapis").google
@@ -216,5 +217,11 @@ router.route("/well/:tankid")
   .get(wellController.findById)
   .put(wellController.update)
   .delete(wellController.remove);
+
+router.route("/welltable/:id/recomp/new")
+  .post(recompletionController.create);
+
+router.route("/welltable/:id/recomp")
+  .get(recompletionController.findById)
 
 module.exports = router;
