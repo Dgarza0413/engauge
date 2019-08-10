@@ -3,6 +3,29 @@ import Table from "react-bootstrap/Table";
 import Card from "../Card";
 import Moment from "react-moment";
 
+const calculateData = data => {
+    // console.log("this is the well data: " + JSON.stringify(data));
+    const totalData = data.reduce((acc, currentValue) => {
+        // return acc + currentValue.gas;
+        // console.log("this is current value" + JSON.stringify(acc));
+        let oil = acc + currentValue.oil;
+        let gas = acc + currentValue.gas;
+        let water = acc + currentValue.water;
+        let casingPSI = acc + currentValue.casingPSI;
+        let tubingPSI = acc + currentValue.tubingPSI;
+        return oil;
+        // return [{
+        //     oil: oil, 
+        //     gas: gas,
+        //     water: water,
+        //     casingPSI: casingPSI,
+        //     tubingPSI: tubingPSI
+        // }];
+    }, []);
+    // return totalData;
+    console.log("testing" + JSON.stringify(totalData));
+}
+
 function WellTableProd(props) {
     return (
         <div>
@@ -22,7 +45,7 @@ function WellTableProd(props) {
                     <tbody>
                         {props.well.map(w => (
                             <tr key={w.id}>
-                                <td><Moment format="DD/MM/YYYY">{w.date}</Moment></td>
+                                <td><Moment format="MM/DD/YYYY">{w.date}</Moment></td>
                                 <td>{w.oil}</td>
                                 <td>{w.gas}</td>
                                 <td>{w.water}</td>
@@ -30,6 +53,20 @@ function WellTableProd(props) {
                                 <td>{w.tubingPSI}</td>
                             </tr>
                         ))}
+                        <tr>
+                        {calculateData(props.well)}
+                            {/* <td>Total</td> */}
+                            {/* {calculateData(props.well).map((data) => {
+                                <tr>
+                                    <td>Total</td>
+                                    <td>{data.oil}</td>
+                                    <td>{data.gas}</td>
+                                    <td>{data.water}</td>
+                                    <td>{data.casingPSI}</td>
+                                    <td>{data.tubingPSI}</td>
+                                </tr>
+                            })} */}
+                        </tr>
                     </tbody>
                 </Table>
             </Card>
