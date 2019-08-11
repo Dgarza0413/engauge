@@ -1,10 +1,40 @@
 import React from 'react';
 import axios from 'axios'
-import PageWrapper from "../components/PageWrapper";
 import { Redirect } from "react-router-dom";
 import { StringInput, EmailInput, PasswordInput } from "../components/Form";   
 import Button from "../components/Button";
+import Background from "../images/login-background.jpg";
+import GoogleButton from 'react-google-button'
 
+const leftPanel = {
+  background: "url(" + Background + ")",
+  backgroundPosition: "center",
+  backgroundSize: "cover",
+  width: "45%",
+
+}
+const rightPanel = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "55%",
+
+}
+const contentStyle = {
+  margin: "auto",
+  padding: "0 60px",
+  width: "450px",
+  boxSizing: "content-box"
+}
+
+const containerStyle = {
+  position: "relative",
+  display: "flex",
+  flexWrap: "wrap",
+  flex: "1",
+  height: "100vh",
+  padding: "0"
+}
 
 class Login extends React.Component {
   state = {
@@ -72,24 +102,51 @@ class Login extends React.Component {
     }
 
     return (
-        <PageWrapper>
-      <div>
-        <h1>{this.state.welcomeEmail.length > 0 
+    <div className="container-fluid" style={containerStyle}>
+      <div className="left-panel image-panel" style={leftPanel}>
+        </div>
+      <div style={rightPanel}>
+        <div style={contentStyle}>
+    
+        {/* <h1>{this.state.welcomeEmail.length > 0 
           ? "Welcome " + this.state.welcomeEmail
-          : "Login"}</h1>
-          {
+          : "Login"}</h1> */}
+       
+          <h1 style={{ textAlign: "center"}}>Welcome to Engauge</h1>
+          <p style={{ textAlign: "center", fontSize: 20}}>Sign in to monitor your well and production status.</p>
+          {/* {
             this.state.googleSigninUrl.length > 0 && this.state.welcomeEmail.length === 0
             ? (<h3>Sign in with <a href={this.state.googleSigninUrl} >google </a></h3>)
             : ""
-          }
+          } */}
+      
         <form>
+            {/* <StringInput 
+              label="Full Name" placeholder="Enter Your Name" />  */}
+            <EmailInput 
+             label="Email" placeholder="Enter Your Email" />
+            <PasswordInput 
+              type="password" label="Password" placeholder="Enter Your Password" />
+            <Button 
+              type="submit" value="Sign In" />
+        </form>
+
+        {/* <form>
           <input onChange={this.handleInput} name="email" value={this.state.email} type="text"/>
           <input onChange={this.handleInput} name="password" value={this.state.password} type="password"/>
-          <button onClick={this.handleFormSubmit}>Login</button>
+          <button onClick={this.handleFormSubmit}>Login</button> */}
           {/* <button onClick={this.handleFormLogout}>Logout</button> */}
-        </form>
+        {/* </form> */}
+        <h3>Sign in with <a href={this.state.googleSigninUrl} >google </a></h3>
+        <GoogleButton
+  type="light" // can also be written as disabled={true} for clarity
+  onClick={() => { console.log('Google button clicked') }}
+/>
       </div>
-      </PageWrapper>
+    </div>
+  </div>
+    
+      
     );
   }
 }
