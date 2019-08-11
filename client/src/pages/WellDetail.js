@@ -45,15 +45,15 @@ class WellDetail extends React.Component {
                             <FlexContainer>
                                 <SectionTitle>Well Summary</SectionTitle>
                                 <Link to={"/welltable/" + this.props.match.params.id + "/prod/new"}>
-                                    <Button mb="15px">Add Prod</Button>
+                                    <Button mb="15px">+ Production</Button>
                                 </Link>
                                 <Link to={"/welltable/" + this.props.match.params.id + "/recomp/new"} style={{marginLeft: "1em"}}>
-                                    <Button mb="15px">Add Recompletion</Button>
+                                    <Button mb="15px">+ Recompletion</Button>
                                 </Link>
                                 
                             </FlexContainer>
                             <Card>
-                                <div style={styles.graph}>
+                                <div style={{height: "40vw"}}>
                                     <GraphLine well={this.state.well.productionId || []} />
                                 </div>
                             </Card>
@@ -62,14 +62,12 @@ class WellDetail extends React.Component {
                     <Row>
                         <Col lg="6">
                             <Card>
-                                <div style={styles.graph}>
-                                    <Map well={this.state.well} />
-                                </div>
+                                <Map height="35vw" well={this.state.well} />
                             </Card>
                         </Col>
                         <Col lg="6">
                             <Card>
-                                <div style={styles.graph}>
+                                <div style={{height: "35vw"}}>
                                     <GraphBar />
                                 </div>
                             </Card>

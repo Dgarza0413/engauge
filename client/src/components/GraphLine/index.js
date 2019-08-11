@@ -280,7 +280,7 @@ function MyResponsiveLine(props) {
                         anchor: 'top-right',
                         direction: 'row',
                         justify: false,
-                        translateX: 60,
+                        translateX: 75,
                         translateY: -40,
                         itemsSpacing: 0,
                         itemDirection: 'left-to-right',

@@ -18,6 +18,9 @@ import mapstyle from "./mapstyle.json";
 //     }
 // }
 class SimpleMap extends Component {
+    constructor(props) {
+        super(props)
+    }
     state = {
         showInfoWindow: false,
         index: ""
@@ -45,7 +48,7 @@ class SimpleMap extends Component {
     render() {
         return (
             // Important! Always set the container height explicitly
-            <div style={{ height: '100vh', width: '100%' }}>
+            <div style={{ height: this.props.height || "50vw", width: '100%' }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: 'AIzaSyBbJqzjcKJqXYW9FEPfr7TPy21FND0iwLc' }}
                     defaultCenter={this.props.center}
