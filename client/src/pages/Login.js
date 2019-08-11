@@ -2,11 +2,14 @@ import React from 'react';
 import axios from 'axios'
 import PageWrapper from "../components/PageWrapper";
 import { Redirect } from "react-router-dom";
+import { StringInput, EmailInput, PasswordInput } from "../components/Form";   
+import Button from "../components/Button";
+
 
 class Login extends React.Component {
   state = {
-    email:'test@test.com',
-    password:'testtest',
+    email:"",
+    password:"",
     welcomeEmail: "",
     googleSigninUrl: "",
     redirectTo: null
@@ -83,7 +86,7 @@ class Login extends React.Component {
           <input onChange={this.handleInput} name="email" value={this.state.email} type="text"/>
           <input onChange={this.handleInput} name="password" value={this.state.password} type="password"/>
           <button onClick={this.handleFormSubmit}>Login</button>
-          <button onClick={this.handleFormLogout}>Logout</button>
+          {/* <button onClick={this.handleFormLogout}>Logout</button> */}
         </form>
       </div>
       </PageWrapper>
