@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+    app.use(express.static("client/build"));
 }
 // Passport configuration
 app.use(session({secret: process.env.SESSION_SECRET || "the cat ate my keyboard", resave: true, saveUninitialized: true}))
@@ -25,7 +25,7 @@ app.use(passport.session());
 app.use(routes);
 
 app.use(function(req, res) {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+    res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
 // Connect to the Mongo DB
@@ -34,12 +34,12 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Start the API server
 app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+    console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
 process.on('SIGINT', () => {
-  mongoose.connection.close().then( () => {
-      console.log("Mongoose disconnected");
-      process.exit(0);
-  })
+    mongoose.connection.close().then( () => {
+        console.log("Mongoose disconnected");
+        process.exit(0);
+    })
 })
