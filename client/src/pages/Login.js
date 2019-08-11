@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom";
 import { StringInput, EmailInput, PasswordInput } from "../components/Form";   
 import Button from "../components/Button";
 import Background from "../images/login-background.jpg";
-import GoogleButton from 'react-google-button'
 
 const leftPanel = {
   background: "url(" + Background + ")",
@@ -138,9 +137,8 @@ class Login extends React.Component {
           {/* <button onClick={this.handleFormLogout}>Logout</button> */}
         {/* </form> */}
         <h3>Sign in with <a href={this.state.googleSigninUrl} >google </a></h3>
-        <GoogleButton
-  type="light" // can also be written as disabled={true} for clarity
-  onClick={() => { console.log('Google button clicked') }}
+
+
 />
       </div>
     </div>
