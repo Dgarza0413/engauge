@@ -1,11 +1,15 @@
 .info-window {
     position: absolute;
-    background-color: white;
     padding: 20px;
     top: -100px;
     left: 50px;
+    width: 275px;
+    background-color: white;
+    border-radius: 5px;
 }
 
 .info-window p {
     margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
 }
