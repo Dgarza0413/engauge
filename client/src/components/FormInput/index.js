@@ -561,7 +561,7 @@ class Production extends Component {
         super(props)
     }
     state = {
-        well: "",
+        well: this.props.id,
         apiNum: "",
         oil: "",
         gas: "",
@@ -574,17 +574,19 @@ class Production extends Component {
     };
 
     // we have to get the api that we wish to update
-    componentDidMount() {
-        console.log(this.props.id);
-        API.getWellId(this.props.id)
-            .then(res => {
-                this.setState({ well: res.data._id })
-                console.log(res.data._id)
-            })
-            .catch(err => console.log(err))
-    }
+    // componentDidMount() {
+    //     // console.log(this.props.id);
+    //     API.getWellId(this.props.id)
+    //         .then(res => {
+    //             // console.log("this is the data " + res.data);
+    //             this.setState({ well: res.data._id })
+    //             console.log(res.data._id)
+    //         })
+    //         .catch(err => console.log(err))
+    // }
 
     handleRedirect = () => {
+        console.log(this.props.id);
         if (this.state.redirect === true) {
             return <Redirect to={`/welltable/${this.props.id}`} />
         }
@@ -661,7 +663,7 @@ class Production extends Component {
                         </Container>
                     </Card>
                     {this.handleRedirect()}
-                    <Button type="submit"/>
+                    <Button type="submit" />
                 </form>
             </div>
         );

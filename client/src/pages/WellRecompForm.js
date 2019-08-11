@@ -357,9 +357,7 @@ class WellRecompForm extends React.Component {
                             </Row>
                         </Container>
                     </Card>
-                    <Button>
-                        <input type="submit"></input>
-                    </Button>
+                    <Button type="submit" />
                 </form>
             </PageWrapper>
         )
