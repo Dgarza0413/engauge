@@ -4,12 +4,16 @@ import { StringInput, NumberInput, Select } from "../components/Form";
 import PageWrapper from "../components/PageWrapper";
 import Card from "../components/Card";
 import Button from "../components/Button";
+import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
 
 class WellRecompForm extends React.Component {
+    constructor(props) {
+        super(props)
+    }
      // W-2
      state = {
-        well: "",
+        well: this.props.match.params.id,
         spudDate: "",
         fieldAndReservoir: "",
         testData: {
@@ -58,17 +62,25 @@ class WellRecompForm extends React.Component {
             oilDepth: "",
             waterDepth: "",
             runTicket: ""
-        }]
+        }],
+        redirect: false
     };
 
-    componentDidMount() {
-        API.getWellId(this.props.match.params.id)
-            .then(res => {
-                // store well ID in this.state.well
-                this.setState({ well: res.data._id })
-                console.log(res.data._id)
-            })
-            .catch(err => console.log(err))
+    // componentDidMount() {
+    //     API.getWellId(this.props.match.params.id)
+    //         .then(res => {
+    //             // store well ID in this.state.well
+    //             this.setState({ well: res.data._id })
+    //             console.log(res.data._id)
+    //         })
+    //         .catch(err => console.log(err))
+    // }
+
+    handleRedirect = () => {
+        console.log(this.props.match.params.id);
+        if (this.state.redirect === true) {
+            return <Redirect to={`/welltable/${this.props.match.params.id}`} />
+        }
     }
 
     handleInputChange = event => {
@@ -171,16 +183,15 @@ class WellRecompForm extends React.Component {
         }
         console.log(obj)
         API.postWellRecomp(id, obj)
-        .then(res => {
-
-            console.log(res.data.items);
-            this.setState({
-            id: res.data._id,
-            obj: res.data.items
-            });
-        })
-        .catch(err => console.log(err));
-      };
+            .then(res => {
+                console.log(res.data.items);
+                this.setState({
+                    id: res.data._id,
+                    obj: res.data.items,
+                    redirect: true
+                });
+            }).catch(err => console.log(err));
+        };
 
     render() {
         return (
@@ -357,6 +368,7 @@ class WellRecompForm extends React.Component {
                             </Row>
                         </Container>
                     </Card>
+                    {this.handleRedirect()}
                     <Button type="submit" />
                 </form>
             </PageWrapper>

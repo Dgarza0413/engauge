@@ -18,6 +18,9 @@ import mapstyle from "./mapstyle.json";
 //     }
 // }
 class SimpleMap extends Component {
+    constructor(props) {
+        super(props)
+    }
     state = {
         showInfoWindow: false,
         index: ""
@@ -45,7 +48,7 @@ class SimpleMap extends Component {
     render() {
         return (
             // Important! Always set the container height explicitly
-            <div style={{ height: '100vh', width: '100%' }}>
+            <div style={{ height: this.props.height || "50vw", width: '100%' }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: 'AIzaSyBbJqzjcKJqXYW9FEPfr7TPy21FND0iwLc' }}
                     defaultCenter={this.props.center}
@@ -63,11 +66,11 @@ class SimpleMap extends Component {
                     >
                         {(this.state.showInfoWindow && this.state.index === 0) ? (
                             <div>
-                                <p>Well Name:</p>
-                                <p>Well No.:</p>
-                                <p>API No.:</p>
-                                <p>Today's Production:</p>
-                                <p>Total Production:</p>
+                                <p><strong>Well Name</strong>: Grassy Field</p>
+                                <p><strong>Well Number</strong>: 01</p>
+                                <p><strong>API Number</strong>: 42-111-1111</p>
+                                <p><strong>Today's Production</strong>: 50 BBLs</p>
+                                <p><strong>Total Production</strong>: 50 BBLs</p>
                             </div>
                         ) : console.log(this.state.showWindowInfo + ", " + this.state.index)}
                     </Marker>
