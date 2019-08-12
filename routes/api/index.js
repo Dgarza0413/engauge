@@ -217,4 +217,7 @@ router.route("/welltable/:id/recomp/new")
 router.route("/welltable/:id/recomp")
     .get(recompletionController.findById)
 
+router.route("/well/:id")
+  .put(wellController.update)
+
 module.exports = router;
