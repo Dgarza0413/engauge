@@ -14,7 +14,8 @@ import Login from "./pages/Login";
 import Drawer from "./components/Drawer";
 import WellProdForm from "./pages/WellProdForm";
 import WellRecompForm from "./pages/WellRecompForm";
-
+import NoMatch from "./pages/NoMatch"
+import axios from "axios"
 const login = () => {
     return (
         <div>
@@ -45,23 +46,34 @@ const defaultRoutes = () => {
     );
 }
 
-function App() {
-    const styles = {
+class App extends React.Component {
+    state = {
+        loggedIn: false
+    }
+    styles = {
         layout: {
             display: "flex"
         }
     }
-
+    componentDidMount(){
+        axios.get("api/user/me").then((res)=>{
+            this.auth();
+        })
+    }
+    auth(){
+        this.setState({loggedIn:true})
+    }
+    render(){
     return (
         <Router>
             <div>
                 <Switch>
                     <Route exact path="/" component={login} />
-                    <Route component={defaultRoutes} />
+                    {this.state.loggedIn ?  <Route component={defaultRoutes} /> : <Route component={NoMatch}/> }
                 </Switch>
             </div>
         </Router >
     );
 }
-
+}
 export default App;

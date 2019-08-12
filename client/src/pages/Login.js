@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import { Redirect } from "react-router-dom";
-import { StringInput, EmailInput, PasswordInput } from "../components/Form";   
+import { EmailInput, PasswordInput } from "../components/Form";   
 import Button from "../components/Button";
 import Background from "../images/login-background.jpg";
 
@@ -52,7 +52,7 @@ class Login extends React.Component {
         });
     }
 
-    // let's try and login
+  
     handleFormSubmit = event => {
         event.preventDefault();
         const {email, password} = this.state;
@@ -60,7 +60,8 @@ class Login extends React.Component {
         axios.post("/api/login", {email, password})
             .then(result => {
                 console.log(result.data)
-                this.setState({ redirectTo: "/dashboard" })
+                // this.setState({ redirectTo: "/dashboard" })
+                window.location.pathname = "/dashboard"
             });
     }
 
@@ -108,29 +109,13 @@ class Login extends React.Component {
                 <div className="left-panel image-panel" style={leftPanel}></div>
                 <div style={rightPanel}>
                     <div style={contentStyle}>
-                        {/* <h1>{this.state.welcomeEmail.length > 0 
-                        ? "Welcome " + this.state.welcomeEmail
-                        : "Login"}</h1> */}
                             <h1 style={{ textAlign: "center"}}>Welcome to Engauge</h1>
                             <p style={{ textAlign: "center", fontSize: 20}}>Sign in to monitor your well and production status.</p>
-                        {/* {
-                        this.state.googleSigninUrl.length > 0 && this.state.welcomeEmail.length === 0
-                        ? (<h3>Sign in with <a href={this.state.googleSigninUrl} >google </a></h3>)
-                        : ""
-                        } */}
                         <form onSubmit={this.handleFormSubmit}>
-                            {/* <StringInput 
-                            label="Full Name" placeholder="Enter Your Name" />  */}
                             <EmailInput name="email" label="Email" placeholder="Enter Your Email" onChange={this.handleInput} value={this.state.email} />
                             <PasswordInput name="password" label="Password" placeholder="Enter Your Password" onChange={this.handleInput} value={this.state.password} />
                             <Button type="submit" value="Sign In" width="100%" />
                         </form>
-                        {/* <form>
-                        <input onChange={this.handleInput} name="email" value={this.state.email} type="text"/>
-                        <input onChange={this.handleInput} name="password" value={this.state.password} type="password"/>
-                        <button onClick={this.handleFormSubmit}>Login</button> */}
-                        {/* <button onClick={this.handleFormLogout}>Logout</button> */}
-                        {/* </form> */}
                         {this.handleRedirect()}
                         <h3>Sign in with <a href={this.state.googleSigninUrl} >google </a></h3>
                     </div>
