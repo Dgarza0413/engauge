@@ -1,6 +1,5 @@
 import React from "react";
 import Background from "../images/404-image.jpg";
-import Login from "../pages/Login"
 import { Link } from 'react-router-dom';
 
 const button = {
