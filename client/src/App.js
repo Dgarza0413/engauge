@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import NoMatch from "./pages/NoMatch";
+// import NoMatch from "./pages/NoMatch";
 import DashBoard from "./pages/DashBoard";
 import WellTable from "./pages/WellTable";
 import WellReport from "./pages/WellReport";
