@@ -30,7 +30,7 @@ function WellTableProd(props) {
     return (
         <div>
             {/* <Table striped bordered hover> */}
-            <Card padding="0">
+            <Card padding="0" overflow="auto">
                 <Table>
                     <thead>
                         <tr>

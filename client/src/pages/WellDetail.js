@@ -50,7 +50,6 @@ class WellDetail extends React.Component {
                                 <Link to={"/welltable/" + this.props.match.params.id + "/recomp/new"} style={{marginLeft: "1em"}}>
                                     <Button mb="15px">+ Recompletion</Button>
                                 </Link>
-                                
                             </FlexContainer>
                             <Card>
                                 <div style={{height: "40vw"}}>

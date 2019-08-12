@@ -72,7 +72,7 @@ class SimpleMap extends Component {
                                 <p><strong>Today's Production</strong>: 50 BBLs</p>
                                 <p><strong>Total Production</strong>: 50 BBLs</p>
                             </div>
-                        ) : console.log(this.state.showWindowInfo + ", " + this.state.index)}
+                        ) : false}
                     </Marker>
                     <Marker
                         lat={30.306926}
@@ -89,7 +89,7 @@ class SimpleMap extends Component {
                                 <p>Today's Production:</p>
                                 <p>Total Production:</p>
                             </div>
-                        ) : console.log("false")}
+                        ) : false}
                     </Marker>
                     <Marker
                         lat={30.2506926}
@@ -106,7 +106,7 @@ class SimpleMap extends Component {
                                 <p>Today's Production:</p>
                                 <p>Total Production:</p>
                             </div>
-                        ) : console.log("false")}
+                        ) : false}
                     </Marker>
                 </GoogleMapReact>
             </div>
