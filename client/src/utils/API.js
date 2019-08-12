@@ -38,3 +38,16 @@ export default {
         return axios.post("/api/well/" + id)
     }
 };
+
+
+// QUANDL API
+// Parameters (docs: https://docs.quandl.com/docs/parameters-2)
+// [limit=] (limit results)
+// [start_date=yyyy-mm-dd]
+// [send_date=yyyy-mm-dd]
+// [collapse=daily, weekly, monthly, quarterly, annual]
+// Crude Oil [limit=1 (limit to one result)] [collaps=daily (collapse data to daily average)]
+// http://www.quandl.com/api/v3/datasets/CHRIS/CME_CL1.json?api_key=ekLznknawZDukejxmwxf&collapse=daily&limit=1
+//
+// Natural Gas
+// http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=ekLznknawZDukejxmwxf&collapse=daily&limit=1
