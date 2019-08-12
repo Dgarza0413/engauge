@@ -18,7 +18,7 @@ class ToggleButton extends React.Component {
     render() {
         return (
             <div>
-                <div class="col-sm-5">
+                <div className="col-sm-5">
                     <button
                         type="button"
                         className={"btn btn-sm btn-toggle " + (this.state.isOn ? "active" : "")}
@@ -27,7 +27,7 @@ class ToggleButton extends React.Component {
                         autocomplete="off"
                         onClick={this.changeStatus}
                     >
-                        <div class="handle" />
+                        <div className="handle" />
                     </button>
                 </div>
             </div>
