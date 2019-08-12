@@ -33,20 +33,10 @@ export default {
     getWellId: function (wellId) {
         return axios.get("/api/well/" + wellId)
     // add data to the well
-<<<<<<< HEAD
-  },
-  addToWell: function (id) {
-    return axios.post("/api/well/" + id)
-  },
-  updateWellStatus: function(id, val){
-    return axios.put("/api/well/" + id, { isOn: val })
-  }
-=======
     },
     addToWell: function (id) {
         return axios.post("/api/well/" + id)
     }
->>>>>>> master
 };
 
 
