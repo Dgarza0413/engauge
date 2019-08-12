@@ -69,52 +69,52 @@ class DashBoard extends React.Component {
                                     {/* <GraphLine well={this.state.prodData || []} /> */}
                                 </div>
                             </Card>
-                        </Col> */}
-                        <Col md="4">
-                            <Card>
-                                <FlexContainer>
-                                    <SectionTitle mb="5px">$1,034.00</SectionTitle>
-                                    <p style={{marginBottom: "5px"}}><strong>+0.20%</strong></p>
-                                </FlexContainer>
-                                <h6 className="mb-0">Monthly Revenue</h6>
-                            </Card>
-                        </Col>
-                        <Col md="4">
-                            <Card>
-                                <FlexContainer>
-                                    <SectionTitle mb="5px">$1,034.00</SectionTitle>
-                                    <p style={{marginBottom: "5px"}}><strong>+0.20%</strong></p>
-                                </FlexContainer>
-                                <h6 className="mb-0">Oil Production</h6>
-                            </Card>
-                        </Col>
-                        <Col md="4">
-                            <Card>
-                                <FlexContainer>
-                                    <SectionTitle mb="5px">$1,034.00</SectionTitle>
-                                    <p style={{marginBottom: "5px"}}><strong>+0.20%</strong></p>
-                                </FlexContainer>
-                                <h6 className="mb-0">Gas Production</h6>
-                            </Card>
-                        </Col>
-                        <Col lg="6">
-                            <Card>
-                                <SectionTitle>Well Status</SectionTitle>
-                                <div style={styles.graph}>
-                                    <GraphPie />
-                                </div>
-                            </Card>
-                        </Col>
-                        <Col lg="6">
-                            <Card>
-                                <div style={styles.graph}>
-                                    <GraphBar />
-                                </div>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Container>
-            </PageWrapper>
+                        </Col> * /}
+            < Col md = "4" >
+                <Card>
+                    <FlexContainer>
+                        <SectionTitle mb="5px">$1,034.00</SectionTitle>
+                        <p style={{ marginBottom: "5px" }}><strong>+0.20%</strong></p>
+                    </FlexContainer>
+                    <h6 className="mb-0">Monthly Revenue</h6>
+                </Card>
+                        </Col >
+            <Col md="4">
+                <Card>
+                    <FlexContainer>
+                        <SectionTitle mb="5px">$1,034.00</SectionTitle>
+                        <p style={{ marginBottom: "5px" }}><strong>+0.20%</strong></p>
+                    </FlexContainer>
+                    <h6 className="mb-0">Oil Production</h6>
+                </Card>
+            </Col>
+            <Col md="4">
+                <Card>
+                    <FlexContainer>
+                        <SectionTitle mb="5px">$1,034.00</SectionTitle>
+                        <p style={{ marginBottom: "5px" }}><strong>+0.20%</strong></p>
+                    </FlexContainer>
+                    <h6 className="mb-0">Gas Production</h6>
+                </Card>
+            </Col>
+            <Col lg="6">
+                <Card>
+                    <SectionTitle>Well Status</SectionTitle>
+                    <div style={styles.graph}>
+                        <GraphPie />
+                    </div>
+                </Card>
+            </Col>
+            <Col lg="6">
+                <Card>
+                    <div style={styles.graph}>
+                        <GraphBar />
+                    </div>
+                </Card>
+            </Col>
+                    </Row >
+                </Container >
+            </PageWrapper >
         )
     }
 }
