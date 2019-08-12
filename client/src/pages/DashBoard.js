@@ -8,6 +8,7 @@ import Card from "../components/Card";
 import SectionTitle from "../components/SectionTitle";
 import FlexContainer from "../components/FlexContainer";
 import { Container, Row, Col } from "react-bootstrap";
+import moment from "moment";
 import API from "../utils/API"
 
 const styles = {
@@ -15,9 +16,6 @@ const styles = {
         "height": "400px"
     }
 }
-
-// const reduceMap = this.state.well.map(element => element.oil).reduce(accumulator, currentValue => accumulator + currentValue)
-
 
 class DashBoard extends React.Component {
     state = {
@@ -32,43 +30,32 @@ class DashBoard extends React.Component {
     componentDidMount() {
         API.getAllProd()
             .then(res => {
+                const distinct = (value, index, self) => {
+                    return self.indexOf(value) === index
+                }
                 console.log(res.data)
-                // console.log(res.data.map(prodData => prodData))
+                console.log(res.data.map(prodData => moment(prodData.date).format("MM/DD/YYYY"))
+                    .filter(prodData => prodData.date !== prodData.date ? prodData.date : []))
+                console.log("QXC");
+                console.log(res.data.map(prodData => moment(prodData.date).format("MM/DD/YYYY")).filter(distinct))
+
                 // console.log(res.data.map(prodData => prodData.oil).reduce(function (accumulator, prod) { return accumulator + prod }))
                 // console.log(res.data.map(prodData => prodData.oil))
                 // console.log(res.data.reduce(prodData => prodData === prodData))
-                // console.log(res.data.map(wellStatus => wellStatus.isOn).reduce(function (accumulator, status) { return accumulator + status }))
-                // console.log(res.data.map(wellStatus => wellStatus.isOn).reduce((sum, wellStatus) => sum && wellStatus.isOn, true));
-                // console.log(res.data.map(wellStatus => wellStatus.isOn).reduce((sum, wellStatus) => sum && wellStatus.isOn, true));
                 this.setState({
                     prodDate: res.data.map(prodData => prodData),
                     wellData: res.data.map(prodData => (prodData.oil))
                 })
                 console.log(this.state.wellData)
             })
-            // .then(res => {
-            //     this.setState({ well: res.data })
-            //     console.log(res.data)
-            //     const dates = [];
-            //     const dataByDate = dates.map(c => {
-            //         res.data.filter(d => d.date === c)
-            //     })
-            // window.mydata = res.data;
-            // const result = res.data.map(a => a.casingPSI).reduce((acc, cur) => acc + cur, 0)
-            // this.setState({ well: result })
-            // console.log(result)
-            // })
             .catch(err => console.log(err))
 
         API.getAllWells()
             .then(res => {
-                console.log(res.data)
-                console.log(res.data.map(status => status.isOn).filter(v => v === false).length)
                 this.setState({
                     isOffTotal: res.data.map(status => status.isOn).filter(v => v === false).length,
                     isOnTotal: res.data.map(status => status.isOn).filter(v => v === true).length
                 })
-                // console.log(res.data.map(status => status.isOn).reduce(function (accumulator, prod) { return accumulator + prod })
             })
             .catch(err => console.log(err))
 
