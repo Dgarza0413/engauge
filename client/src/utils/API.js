@@ -37,11 +37,11 @@ export default {
     addToWell: function (id) {
         return axios.post("/api/well/" + id)
     },
-    getOilPrices: function (stockAPIKey) {
-        return axios.get("/api/getoilprices")
+    getOilPrices: function (month) {
+        return axios.get("/api/getoilprices", month)
     },
-    getGasPrices: function (stockAPIKey) {
-        return axios.get("/api/getgasprices")
+    getGasPrices: function (month) {
+        return axios.get("/api/getgasprices", month)
     }
 };
 

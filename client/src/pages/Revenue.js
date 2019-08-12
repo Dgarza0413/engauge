@@ -2,32 +2,64 @@ import React from "react";
 import PageWrapper from "../components/PageWrapper";
 import SectionTitle from "../components/SectionTitle";
 import API from "../utils/API";
+import moment from 'moment';
+import { getOrdinalColorScale } from "@nivo/colors";
 
-function getOil() {
-    API.getOilPrices()
-        .then(res => {
-            console.log("Oil prices for the month");
-            console.log(res.data.dataset.data);
-        })
-}
-getOil()
+class Revenue extends React.Component {
+    constructor() {
+        super();
+        var date = new Date();
 
-function getGas() {
-    API.getGasPrices()
+        this.state = {
+            date: moment(date).format("YYYY-MM"),
+            oilPrices: {},
+            gasPrices: {}
+        }
+    }
+
+    getOil = () => {
+        const obj = {date: this.state.date};
+        console.log("fetching data...");
+        API.getOilPrices(obj)
+            .then(res => {
+                console.log("Oil prices for the month");
+                console.log(res.data.dataset.data);
+                this.setState({
+                    oilPrices: res.data.dataset.data
+                })
+                console.log("oil state: ", this.state.oilPrices)
+            }).catch(err => {
+                console.log(err)
+            })
+    }
+
+    getGas = () => {
+    const obj = {date: this.state.date};
+    console.log("fetching data...");
+    API.getGasPrices(obj)
         .then(res => {
             console.log("Gas prices for the month");
             console.log(res.data.dataset.data);
+            this.setState({
+                gasPrices: res.data.dataset.data
+            })
+            console.log("gas state: ", this.state.gasPrices)
         })
-}
-getGas()
+        .catch(err => {
+            console.log(err)
+        })
+    }
 
-function Revenue(props) {
-    return (
-        <PageWrapper>
-            <SectionTitle>Revenue Page</SectionTitle>
-            
-        </PageWrapper>
-    );
+    
+    render() {
+        return (
+            <PageWrapper>
+                <SectionTitle>Revenue Page</SectionTitle>
+                <button onClick={this.getOil}>Get Oil</button>
+                <button onClick={this.getGas}>Get Gas</button>
+            </PageWrapper>
+        );
+    }
 }
 
 export default Revenue;
