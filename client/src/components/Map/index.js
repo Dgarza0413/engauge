@@ -31,6 +31,10 @@ class SimpleMap extends Component {
             lat: 30.266926,
             lng: -97.750519
         },
+        // center: {
+        //     lat: this.props.well,
+        //     long: this.props.well
+        // },
         zoom: 11
     };
 
