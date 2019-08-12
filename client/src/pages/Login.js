@@ -117,7 +117,7 @@ class Login extends React.Component {
                             <Button type="submit" value="Sign In" width="100%" />
                         </form>
                         {this.handleRedirect()}
-                        <h3>Sign in with <a href={this.state.googleSigninUrl} >google </a></h3>
+                        {/* <h3>Sign in with <a href={this.state.googleSigninUrl} >google </a></h3> */}
                     </div>
                 </div>
             </div>
