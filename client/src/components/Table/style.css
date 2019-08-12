@@ -1,3 +1,15 @@
-#red{
+/* #red{
     background-color: red;
+} */
+
+.table thead th, .table td, .table th {
+    border: 0;
+}
+
+.table thead th, .table td {
+    padding: 20px 25px;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #fafbfd;
 }

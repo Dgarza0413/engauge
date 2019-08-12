@@ -14,6 +14,9 @@ const styles = {
     }
 }
 
+// const reduceMap = this.state.well.map(element => element.oil).reduce(accumulator, currentValue => accumulator + currentValue)
+
+
 class DashBoard extends React.Component {
     state = {
         well: {}
@@ -22,12 +25,23 @@ class DashBoard extends React.Component {
     componentDidMount() {
         API.getAllProd()
             .then(res => {
-                this.setState({ well: res.data })
-                console.log(res.data)
+                // this.setState({ well: res.data })
+                // const dates = [];
+                // const dataByDate = dates.map(c => {
+                //     res.data.filter(d => d.date === c)
+                // })
+                window.mydata = res.data;
+                const result = res.data.map(a => a.casingPSI).reduce((acc, cur) => acc + cur, 0)
+                this.setState({ well: result })
+                console.log(result)
             })
             .catch(err => console.log(err))
-    }
 
+    };
+    map = () => {
+        // this.state.well.map(data => data.oil).reduce(data.oil, data.oil => data.oil + )
+        console.log(this.state.well)
+    }
 
     render() {
         return (
@@ -38,7 +52,7 @@ class DashBoard extends React.Component {
                             <Card>
                                 <SectionTitle>Production</SectionTitle>
                                 <div style={styles.graph}>
-                                    <GraphLine well={this.state.well.productionId || []} />
+                                    {/* <GraphLine well={this.state.well || []} /> */}
                                 </div>
                             </Card>
                         </Col>

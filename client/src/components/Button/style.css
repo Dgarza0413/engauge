@@ -1,0 +1,14 @@
+.button {
+    border: 0;
+    background-color: #d5b577;
+    color: white;
+    font-weight: 600;
+    padding: 5px 25px;
+    border-radius: 3px;
+    float: right;
+    outline: none;
+}
+
+.button[type="submit"] {
+    -webkit-appearance: none;
+}

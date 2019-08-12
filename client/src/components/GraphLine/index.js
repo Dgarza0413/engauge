@@ -47,6 +47,7 @@ function MyResponsiveLine(props) {
             margin={{ top: 50, right: 60, bottom: 50, left: 60 }}
             xScale={{ type: 'point' }}
             yScale={{ type: 'linear', stacked: true, min: '0', max: '1600' }}
+            // yScale={{ type: 'log', base: 10, max: "auto" }}
             curve="linear"
             axisTop={null}
             axisRight={{
@@ -98,7 +99,7 @@ function MyResponsiveLine(props) {
                         anchor: 'top-right',
                         direction: 'row',
                         justify: false,
-                        translateX: 60,
+                        translateX: 75,
                         translateY: -40,
                         itemsSpacing: 0,
                         itemDirection: 'left-to-right',

@@ -14,7 +14,7 @@ export function StringInput(props) {
 
 export function NumberInput(props) {
     return (
-        <div>
+        <div className="form-font">
             <Form.Label>{props.label}</Form.Label>
             <InputGroup className="mb-3">
                 <FormControl type="text" name={props.name} value={props.value} onChange={props.onChange} placeholder={props.placeholder} style={{ borderRight: props.unit ? 0 : "1px solid #e6e7ec" }} />
@@ -52,32 +52,29 @@ export function BoxInput(props) {
     );
 }
 
-// export function Checkbox(props) {
+export function TextBoxInput(props) {
+    return (
+        <Form.Group>
+            <Form.Label>{props.label}</Form.Label>
+            <Form.Control as="textarea" rows="5" placeholder={props.placeholder} />
+        </Form.Group>
+    );
+}
 
-// }
+export function EmailInput(props) {
+    return (
+        <Form.Group>
+            <Form.Label>{props.label}</Form.Label>
+            <Form.Control type="email" name={props.name} value={props.value} onChange={props.onChange} placeholder={props.placeholder} />
+        </Form.Group>
+    )
+}
 
-// export default Input;
-
-// export function Input(props) {
-//   return (
-//     <div className="form-group">
-//       <input className="form-control" {...props} />
-//     </div>
-//   );
-// }
-
-// export function TextArea(props) {
-//   return (
-//     <div className="form-group">
-//       <textarea className="form-control" rows="20" {...props} />
-//     </div>
-//   );
-// }
-
-// export function FormBtn(props) {
-//   return (
-//     <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">
-//       {props.children}
-//     </button>
-//   );
-// }
+export function PasswordInput(props) {
+    return (
+        <Form.Group>
+            <Form.Label>{props.label}</Form.Label>
+            <Form.Control type="password" name={props.name} value={props.value} onChange={props.onChange} placeholder={props.placeholder} />
+        </Form.Group>
+    )
+}
