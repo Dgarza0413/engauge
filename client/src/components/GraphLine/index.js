@@ -1,22 +1,23 @@
 import React from "react";
+import moment from "moment";
 import { ResponsiveLine } from '@nivo/line'
 
 function MyResponsiveLine(props) {
     const oildata = props.well.map(d => (
         {
-            "x": d.date,
+            "x": moment(d.date).format("MM-DD"),
             "y": parseInt(d.oil)
         }
     ))
     const gasdata = props.well.map(d => (
         {
-            "x": d.date,
+            "x": moment(d.date).format("MM-DD"),
             "y": parseInt(d.gas)
         }
     ))
     const waterdata = props.well.map(d => (
         {
-            "x": d.date,
+            "x": moment(d.date).format("MM-DD"),
             "y": parseInt(d.water)
         }
     ))

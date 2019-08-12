@@ -13,7 +13,8 @@ module.exports = {
         db.Well
             .findById(req.params.id)
             .populate("productionId")
-            .populate("recompletion")
+            //temp comment out bc breaking well details section
+            // .populate("recompletion")
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
