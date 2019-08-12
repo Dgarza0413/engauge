@@ -10,5 +10,3 @@ function InfoWindow(props) {
 }
 
 export default InfoWindow;
-
-//onMouseOver={props.mouseOver} onMouseOut={props.mouseOut}
