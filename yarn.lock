@@ -2510,6 +2510,13 @@ react-fast-compare@^2.0.0:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
+react-google-button@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/react-google-button/-/react-google-button-0.5.3.tgz#d8c76328e51b55f2835a4ebe23817906dac6a4f8"
+  integrity sha512-2xiECMLZ2qUbMtYq7fjwi/8WEVpLI5UuZLPGJzVkpcGOq/hdY5tqx8AXWUqI7QOgb9mG48/UG67kOzTgab+NUw==
+  dependencies:
+    prop-types "^15.5.8"
+
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.9.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.9.0.tgz#21ca9561399aad0ff1a7701c01683e8ca981edcb"
@@ -2519,6 +2526,11 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-moment@^0.9.2:
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/react-moment/-/react-moment-0.9.2.tgz#1cdc6ed02f1735282282129edf0f607f420df039"
+  integrity sha512-jpKIEvcEOTSa4RXWTjDlvja7sN+ee5Gyk5ZKa704FZxE01OxmKIpq9GUliqTrAgdDYJJUQsnqQamczn0TN+DTg==
 
 react-router-dom@^5.0.1:
   version "5.0.1"

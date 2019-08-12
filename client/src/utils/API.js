@@ -36,6 +36,12 @@ export default {
     },
     addToWell: function (id) {
         return axios.post("/api/well/" + id)
+    },
+    getOilPrices: function (stockAPIKey) {
+        return axios.get("/api/getoilprices")
+    },
+    getGasPrices: function (stockAPIKey) {
+        return axios.get("/api/getgasprices")
     }
 };
 
@@ -47,7 +53,8 @@ export default {
 // [send_date=yyyy-mm-dd]
 // [collapse=daily, weekly, monthly, quarterly, annual]
 // Crude Oil [limit=1 (limit to one result)] [collaps=daily (collapse data to daily average)]
-// http://www.quandl.com/api/v3/datasets/CHRIS/CME_CL1.json?api_key=ekLznknawZDukejxmwxf&collapse=daily&limit=1
 //
 // Natural Gas
-// http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=ekLznknawZDukejxmwxf&collapse=daily&limit=1
+
+// date
+// open

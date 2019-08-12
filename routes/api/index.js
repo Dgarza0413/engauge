@@ -1,9 +1,11 @@
+require("dotenv");
 const router = require("express").Router();
 const userController = require("../../controllers/userController");
 const wellController = require("../../controllers/wellController");
 const prodController = require("../../controllers/prodController");
 const recompletionController = require("../../controllers/recompletionController");
 const passport = require('../../config/passport.js')
+const axios = require("axios");
 const { google } = require("googleapis")
 // const google = require("googleapis").google
 const db = require("../../models")
@@ -213,5 +215,20 @@ router.route("/welltable/:id/recomp/new")
 
 router.route("/welltable/:id/recomp")
     .get(recompletionController.findById)
+
+// stock api calls
+router.get("/getoilprices",(req, res) => {
+    apikey = process.env.STOCKAPIKEY;
+    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_CL1.json?api_key=" + apikey + "&column_index=1&order=asc&start_date=2019-08-01").then((response)=>{
+        res.json(response.data)
+    })
+})
+
+router.get("/getgasprices",(req, res) => {
+    apikey = process.env.STOCKAPIKEY;
+    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=" + apikey + "&column_index=1&order=asc&start_date=2019-08-01").then((response)=>{
+        res.json(response.data)
+    })
+})
 
 module.exports = router;
