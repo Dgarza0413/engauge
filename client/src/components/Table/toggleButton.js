@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonStyle from "./buttonStyle.css";
+import "./buttonStyle.css";
 import API from "../../utils/API.js";
 
 class ToggleButton extends React.Component {
@@ -18,18 +18,16 @@ class ToggleButton extends React.Component {
     render() {
         return (
             <div>
-                <div className="col-sm-5">
-                    <button
-                        type="button"
-                        className={"btn btn-sm btn-toggle " + (this.state.isOn ? "active" : "")}
-                        data-toggle="button"
-                        aria-pressed={this.state.isOn}
-                        autocomplete="off"
-                        onClick={this.changeStatus}
-                    >
-                        <div className="handle" />
-                    </button>
-                </div>
+                <button
+                    type="button"
+                    className={"btn btn-sm btn-toggle " + (this.state.isOn ? "active" : "")}
+                    data-toggle="button"
+                    aria-pressed={this.state.isOn}
+                    autocomplete="off"
+                    onClick={this.changeStatus}
+                >
+                    <div className="handle" />
+                </button>
             </div>
         );
     }
