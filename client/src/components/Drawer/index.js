@@ -18,9 +18,6 @@ const links = [
     }, {
         name: "Map",
         icon: "fas fa-map-marked-alt",
-    }, {
-        name: "W2",
-        icon: "fas fa-map-marked-alt",
     }
 ]
 
