@@ -19,14 +19,14 @@ class DashBoard extends React.Component {
             <PageWrapper>
                 <Container>
                     <Row>
-                        <Col lg="12">
+                        {/* <Col lg="12">
                             <Card>
                                 <SectionTitle>Production</SectionTitle>
                                 <div style={styles.graph}>
                                     <GraphLine />
                                 </div>
                             </Card>
-                        </Col>
+                        </Col> */}
                         <Col lg="6">
                             <Card>
                                 <SectionTitle>Well Status</SectionTitle>
