@@ -5,7 +5,7 @@ import moment from 'moment';
 function MyResponsiveLine(props) {
     const oildata = props.well.map(d => (
         {
-            "x": props.date.map(moment(d.date).format("MM/DD/YYYY")),
+            "x": moment(d.date).format("MM/DD/YYYY"),
             "y": parseInt(d.oil)
         }
     ))

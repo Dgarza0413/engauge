@@ -24,17 +24,22 @@ class DashBoard extends React.Component {
         wellData: {},
         prodData: {},
         prodOil: {},
-        prodGas: {}
+        prodGas: {},
+        isOnTotal: {},
+        isOffTotal: {}
     };
 
     componentDidMount() {
         API.getAllProd()
             .then(res => {
-                // console.log(res.data)
-                console.log(res.data.map(prodData => prodData))
+                console.log(res.data)
+                // console.log(res.data.map(prodData => prodData))
                 // console.log(res.data.map(prodData => prodData.oil).reduce(function (accumulator, prod) { return accumulator + prod }))
                 // console.log(res.data.map(prodData => prodData.oil))
                 // console.log(res.data.reduce(prodData => prodData === prodData))
+                // console.log(res.data.map(wellStatus => wellStatus.isOn).reduce(function (accumulator, status) { return accumulator + status }))
+                // console.log(res.data.map(wellStatus => wellStatus.isOn).reduce((sum, wellStatus) => sum && wellStatus.isOn, true));
+                // console.log(res.data.map(wellStatus => wellStatus.isOn).reduce((sum, wellStatus) => sum && wellStatus.isOn, true));
                 this.setState({
                     prodDate: res.data.map(prodData => prodData),
                     wellData: res.data.map(prodData => (prodData.oil))
@@ -53,6 +58,18 @@ class DashBoard extends React.Component {
             // this.setState({ well: result })
             // console.log(result)
             // })
+            .catch(err => console.log(err))
+
+        API.getAllWells()
+            .then(res => {
+                console.log(res.data)
+                console.log(res.data.map(status => status.isOn).filter(v => v === false).length)
+                this.setState({
+                    isOffTotal: res.data.map(status => status.isOn).filter(v => v === false).length,
+                    isOnTotal: res.data.map(status => status.isOn).filter(v => v === true).length
+                })
+                // console.log(res.data.map(status => status.isOn).reduce(function (accumulator, prod) { return accumulator + prod })
+            })
             .catch(err => console.log(err))
 
     };
@@ -102,7 +119,8 @@ class DashBoard extends React.Component {
                             <Card>
                                 <SectionTitle>Well Status</SectionTitle>
                                 <div style={styles.graph}>
-                                    <GraphPie />
+                                    <GraphPie wellIsOn={this.state.isOnTotal}
+                                        wellIsOff={this.state.isOffTotal} />
                                 </div>
                             </Card>
                         </Col>
