@@ -130,6 +130,10 @@ router.get('/google/callback', function (req, res) {
                     console.log("NEW USER");
                     // create a new user!
                     console.log(email, sub)
+                    // CHeck my list of names that are okay
+                    // if they are on the list, proceed as normal
+                    // otherwise 
+
                     db.User.create({
                         email: email,
                         authType: "google",
