@@ -10,7 +10,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 const styles = {
     graph: {
-        "height": "400px"
+        "height": "25vw"
     }
 }
 
