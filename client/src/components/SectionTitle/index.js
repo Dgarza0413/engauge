@@ -3,8 +3,8 @@ import "./style.css";
 
 function SectionTitle(props) {
     return (
-        <div>
-            <h4 className="section-title">{props.children}</h4>
+        <div className="title-container">
+            <h4 className="section-title" style={{marginBottom: props.mb || "15px"}}>{props.children}</h4>
         </div>
     );
 }
