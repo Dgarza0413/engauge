@@ -13,7 +13,7 @@ import API from "../utils/API"
 
 const styles = {
     graph: {
-        "height": "400px"
+        "height": "25vw"
     }
 }
 

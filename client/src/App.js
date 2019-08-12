@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import Drawer from "./components/Drawer";
 import WellProdForm from "./pages/WellProdForm";
 import WellRecompForm from "./pages/WellRecompForm";
+import Revenue from "./pages/Revenue";
 
 const login = () => {
     return (
@@ -35,11 +36,13 @@ const defaultRoutes = () => {
             <Route exact path="/welltable/:id/recomp/new" component={WellRecompForm} />
             <Route exact path="/welltable/:id/prod/new" component={ProductionForm} />
             <Route exact path="/new-well" component={NewWellForm} />
+            <Route exact path="/logout" component={Login} />
             {/* <Route exact path="/welltable/:id/prod/new" component={WellProdForm} /> */}
             {/* <Route exact path="/w2" component={W2} /> */}
             {/* <Route exact path="/production-form" component={ProductionForm} /> */}
             {/* <Route exact path="/formtest" component={FormTest} /> */}
             {/* <Route component={NoMatch} /> */}
+            <Route exact path="/revenue" component={Revenue} />
         </div>
     );
 }
