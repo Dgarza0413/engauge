@@ -42,6 +42,9 @@ export default {
     },
     getGasPrices: function (month) {
         return axios.get("/api/getgasprices", month)
+    },
+    updateWellStatus: function(id, val) {
+        return axios.put("/api/well/" + id, { isOn: val })
     }
 };
 

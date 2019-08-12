@@ -216,6 +216,9 @@ router.route("/welltable/:id/recomp/new")
 router.route("/welltable/:id/recomp")
     .get(recompletionController.findById)
 
+router.route("/well/:id")
+    .put(wellController.update)
+    
 // stock api calls
 router.get("/getoilprices",(req, res, date) => {
     apikey = process.env.STOCKAPIKEY;
@@ -231,5 +234,6 @@ router.get("/getgasprices",(req, res, date) => {
         res.json(response.data)
     })
 })
+
 
 module.exports = router;

@@ -4,6 +4,7 @@ import { StringInput, NumberInput, Select } from "../components/Form";
 import PageWrapper from "../components/PageWrapper";
 import Card from "../components/Card";
 import Button from "../components/Button";
+import SectionTitle from "../components/SectionTitle";
 import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
 
@@ -196,6 +197,7 @@ class WellRecompForm extends React.Component {
     render() {
         return (
             <PageWrapper>
+                <SectionTitle>Recompletion Form</SectionTitle>
                 <form onSubmit={this.handleFormSubmit}>
                     <Card>
                         <Container>
