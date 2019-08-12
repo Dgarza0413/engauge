@@ -22,6 +22,8 @@ const styles = {
 }
 
 class WellDetail extends React.Component {
+<<<<<<< HEAD
+=======
     state = {
         well: {}
     };
@@ -36,6 +38,7 @@ class WellDetail extends React.Component {
             .catch(err => console.log(err))
     }
 
+>>>>>>> master
     render() {
         return (
             <PageWrapper>

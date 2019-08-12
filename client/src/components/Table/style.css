@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+.col-md-6{
+    margin-bottom: 20px;
+    padding-left: 0px;
+}
+
+=======
 /* #red{
     background-color: red;
 } */
@@ -13,3 +20,4 @@
 tbody tr:nth-child(odd) {
     background-color: #fafbfd;
 }
+>>>>>>> master
