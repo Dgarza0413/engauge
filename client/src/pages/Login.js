@@ -65,14 +65,14 @@ class Login extends React.Component {
             });
     }
 
-    handleFormLogout = event => {
-        event.preventDefault();
-        axios.get("/api/logout")
-            .then(result => {
-                console.log(result.data)
-                this.setState({ welcomeEmail: ""});
-        });
-    }
+    // handleFormLogout = event => {
+    //     event.preventDefault();
+    //     axios.get("/api/logout")
+    //         .then(result => {
+    //             console.log(result.data)
+    //             this.setState({ welcomeEmail: ""});
+    //     });
+    // }
 
     loadProfileInfo = () => {
         axios.get('/api/user/me')
