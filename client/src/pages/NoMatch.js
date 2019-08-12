@@ -1,6 +1,7 @@
 import React from "react";
-// import Background from "../images/404-image.jpg";
+import Background from "../images/404-image.jpg";
 import Login from "../pages/Login"
+import { Link } from 'react-router-dom';
 
 const button = {
         border: "0",
@@ -15,7 +16,7 @@ const button = {
 }
 
 const leftPanel = {
-    // background: "url(" + Background + ")",
+    background: "url(" + Background + ")",
     backgroundPosition: "center",
     backgroundSize: "cover",
     width: "45%"
@@ -52,7 +53,9 @@ function NoMatch() {
                 <div style={contentStyle}>
                         <h1 style={{ textAlign: "center"}}>Page Not Found</h1>
                         <p style={{ textAlign: "center", fontSize: 20}}>Sorry, we're unable to find the page you're looking for.</p>
-                   <button style={button} onClick={Login}>Back To Home</button>
+                  <Link to="/">
+                   <button style={button}>Back To Home</button>
+                   </Link>
                 </div>
             </div>
         </div>
