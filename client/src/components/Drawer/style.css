@@ -15,7 +15,7 @@ a:hover, a:focus {
 
 .navbar {
     padding: 0;
-    height: 100vh;
+    /* height: 100vh; */
     display: block;
     z-index: 10000000;
     width: 100%;
@@ -87,7 +87,7 @@ a:hover, a:focus {
     display: none;
 }
 
-@media screen and (max-width: 800px) {
+/* @media screen and (max-width: 800px) {
     .drawer-container {
         width: 100%;
 		height: auto;
@@ -105,7 +105,7 @@ a:hover, a:focus {
     /* .links {
         display: none;
     } */
-    .toggle {
+    /* .toggle {
         display: block;
         font-size: 23px;
         left: 48px;
@@ -131,7 +131,7 @@ a:hover, a:focus {
     }
     .links {
         margin-top: 40px;
-    }
+    } */
     /* .menu {
         width: 100%;
         height: auto;
@@ -142,4 +142,16 @@ a:hover, a:focus {
         justify-content: center;
         z-index: 100;
     } */
+/* } */
+.loggingout {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    text-align: inherit;
 }

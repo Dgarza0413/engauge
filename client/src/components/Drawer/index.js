@@ -23,61 +23,113 @@ const links = [
 ]
 
 class Drawer extends React.Component {
-    state = {
-        toggle: false,
-        display: {
-            left: "drawer-container slide-left",
-            active: "menu nav-active",
-            hide: "links hide"
-        }
-    }
+    // state = {
+    //     toggle: false,
+    //     width: window.innerWidth,
+    //     display: {
+    //         left: "drawer-container slide-left",
+    //         active: "menu nav-active",
+    //         hide: "links"
+    //     }
+    // }
 
-    componentDidMount() {
-        this.setState({ toggle: false });
-        this.handleToggle();
-    }
+    // componentDidMount() {
+    //     this.setState({ toggle: true });
+    //     this.checkSize();
+    //     // this.handleToggle();
+    //     // console.log($(window).width());
+    // }
 
-    handleToggle = () => {
-        if (this.state.toggle === false) {
-            this.setState({
-                toggle: true,
-                display: {
-                    left: "drawer-container slide-left",
-                    active: "menu nav-active",
-                    hide: "links"
-                }
-            });
-        } else {
-            this.setState({
-                toggle: false,
-                display: {
-                    left: "drawer-container",
-                    active: "menu",
-                    hide: "links hide"
-                }
-            });
-        }
-    }
+    // handleToggle = () => {
+    //     if (this.state.toggle === false) {
+    //         this.setState({
+    //             toggle: true,
+    //             display: {
+    //                 left: "drawer-container slide-left",
+    //                 active: "menu nav-active",
+    //                 hide: "links"
+    //             }
+    //         });
+    //     } else {
+    //         this.setState({
+    //             toggle: false,
+    //             display: {
+    //                 left: "drawer-container",
+    //                 active: "menu",
+    //                 hide: "links hide"
+    //             }
+    //         });
+    //     }
+    // }
 
-    render() {
+    // checkWidth = () => {
+    //     this.setState({ width: window.innerWidth });
+    // }
+
+    // checkSize = () => {
+    //     if (this.state.width < 800) {
+    //         this.handleToggle();
+    //     } else {
+    //         this.setState({
+    //             toggle: true,
+    //             display: {
+    //                 left: "drawer-container slide-left",
+    //                 active: "menu nav-active",
+    //                 hide: "links"
+    //             }
+    //         });
+    //     }
+    // }
+
+    displayOpen = () => {
         return (
-            <div style={{overflow: "hidden"}}>
-                <div className={this.state.display.left}>
+            <div>
+                <div className="drawer-container slide-left">
+                    <i class="fas fa-bars toggle" onClick={() => this.handleToggle()}></i>
                     <div className="navbar">
-                        <i class="fas fa-bars toggle" onClick={() => this.handleToggle()}></i>
                         <h4>Engauge</h4>
                     </div>
                 </div>
-                <div className={this.state.display.active}>
-                    <div className={this.state.display.hide}>
+                <div className="menu nav-active">
+                    <div className="links">
                         {links.map((text, index) => (
                             <Link to={"/" + text.name.toLowerCase()} key={index}>
                                 <h6><i className={text.icon}></i>{text.name}</h6>
                             </Link>
                         ))}
-                        <Link to="/logout">
-                            <h6 className="logout"><i className="fas fa-sign-out-alt"></i>Logout</h6>
+                        <Link to="/">
+                            <h6 className="logout" onClick={this.handleLogout}><i className="fas fa-sign-out-alt"></i>Logout</h6>
                         </Link>
+                    </div>  
+                </div>
+            </div>
+        );
+    }
+    logoutButton = () => {
+        console.log("in logout button")
+        axios.get("/api/logout").then(()=>{
+            window.location.pathname = "/"
+        })
+    }
+    render() {
+        return (
+            <div>
+                <div className="drawer-container">
+                    <div className="navbar">
+                        <i className="fas fa-bars toggle" onClick={() => this.handleToggle()}></i>
+                        <h4>Engauge</h4>
+                    </div>
+                </div>
+                <div className="menu">
+                    <div className="links">
+                        {links.map((text, index) => (
+                            <Link to={"/" + text.name.toLowerCase()} key={index}>
+                                <h6><i className={text.icon}></i>{text.name}</h6>
+                            </Link>
+                        ))}
+                        <div>
+                            <h6 className="logout"><i className="fas fa-sign-out-alt"></i><button className="loggingout"onClick={this.logoutButton}>Logout</button></h6>
+                        </div>
                     </div>  
                 </div>
             </div>
