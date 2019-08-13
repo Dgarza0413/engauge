@@ -3,6 +3,7 @@ import moment from "moment";
 import { ResponsiveLine } from '@nivo/line'
 
 function MyResponsiveLine(props) {
+    console.log(props)
     const oildata = props.well.map(d => (
         {
             "x": moment(d.date).format("MM-DD"),
@@ -46,8 +47,7 @@ function MyResponsiveLine(props) {
             data={dataProd}
             margin={{ top: 50, right: 60, bottom: 50, left: 60 }}
             xScale={{ type: 'point' }}
-            yScale={{ type: 'linear', stacked: true, min: '0', max: '1600' }}
-            // yScale={{ type: 'log', base: 10, max: "auto" }}
+            yScale={{ type: 'linear', stacked: true, min: '0', max: 'auto' }}
             curve="linear"
             axisTop={null}
             axisRight={{
@@ -64,7 +64,7 @@ function MyResponsiveLine(props) {
                 tickSize: 0,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: 'May 2019 Timeline',
+                legend: moment(Date.now()).format("MMMM YYYY") + ' Timeline',
                 legendOffset: 36,
                 legendPosition: 'middle'
             }}
