@@ -41,7 +41,7 @@ class WellTable extends React.Component {
                     value={this.state.filter} 
                     placeholder="Search"/>
                 </InputGroup>
-                <Card padding="0">
+                <Card padding="0" overflow="auto">
                     <Table>
                         <thead>
                             <tr>

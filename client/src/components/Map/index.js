@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from "../GraphMarker";
 import mapstyle from "./mapstyle.json";
-import API from "../../utils/API"
+import API from "../../utils/API";
 
 class SimpleMap extends Component {
+
+    componentDidMount() {
+        console.log(this.props);
+    }
 
     state = {
         showInfoWindow: false,
@@ -52,7 +56,7 @@ class SimpleMap extends Component {
                             <p><strong>Today's Production</strong>: 50 BBLs</p>
                             <p><strong>Total Production</strong>: 50 BBLs</p>
                         </div>
-                    ) : console.log(this.state.showWindowInfo + ", " + this.state.index)}
+                    ) : false}
                 </Marker>
             );
         } else {
