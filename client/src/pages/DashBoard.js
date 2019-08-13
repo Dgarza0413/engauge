@@ -66,16 +66,7 @@ class DashBoard extends React.Component {
             <PageWrapper>
                 <Container>
                     <Row>
-                        <Col lg="12">
-                            <Card>
-                                <SectionTitle>Production</SectionTitle>
-                                <div style={styles.graph}>
-                                    {/* <GraphLine well={this.state.wellData || []} /> */}
-                                    {/* <GraphLine /> */}
-                                </div>
-                            </Card>
-                        </Col>
-                        < Col md="4" >
+                    < Col md="4" >
                             <Card>
                                 <FlexContainer>
                                     <SectionTitle mb="5px">$1,034.00</SectionTitle>
@@ -100,6 +91,15 @@ class DashBoard extends React.Component {
                                     <p style={{ marginBottom: "5px" }}><strong>+0.20%</strong></p>
                                 </FlexContainer>
                                 <h6 className="mb-0">Gas Production</h6>
+                            </Card>
+                        </Col>
+                        <Col lg="12">
+                            <Card>
+                                <SectionTitle>Production</SectionTitle>
+                                <div style={styles.graph}>
+                                    {/* <GraphLine well={this.state.wellData || []} /> */}
+                                    {/* <GraphLine /> */}
+                                </div>
                             </Card>
                         </Col>
                         <Col lg="6">

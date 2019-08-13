@@ -23,17 +23,35 @@ const links = [
 ]
 
 class Drawer extends React.Component {
-    handleLogout = () => {
-        axios.get("/api/logout")
-            .then(result => {
-                this.setState({ welcomeEmail: ""});
-        });
+    state = {
+        toggle: false
     }
-    render() {
+
+    componentDidMount() {
+        this.setState({ toggle: false });
+        console.log(this.state.toggle);
+        this.handleToggle();
+    }
+
+    handleToggle = () => {
+        if (this.state.toggle === false) {
+            this.setState({ toggle: true });
+        } else {
+            console.log("closed");
+            this.setState({ toggle: false });
+        }
+    }
+
+    displayOpen = () => {
         return (
-            <div className="drawer-container">
-                <div className="navbar">
-                    <h4>Engauge</h4>
+            <div>
+                <div className="drawer-container slide-left">
+                    <i class="fas fa-bars toggle" onClick={() => this.handleToggle()}></i>
+                    <div className="navbar">
+                        <h4>Engauge</h4>
+                    </div>
+                </div>
+                <div className="menu nav-active">
                     <div className="links">
                         {links.map((text, index) => (
                             <Link to={"/" + text.name.toLowerCase()} key={index}>
@@ -43,9 +61,36 @@ class Drawer extends React.Component {
                         <Link to="/">
                             <h6 className="logout" onClick={this.handleLogout}><i className="fas fa-sign-out-alt"></i>Logout</h6>
                         </Link>
-                    </div>
+                    </div>  
                 </div>
             </div>
+        );
+    }
+
+    render() {
+        return (
+                // (this.state.toggle === false) ? this.displayOpen() : this.displayClosed()  
+            <div>
+                <div className="drawer-container">
+                    <i class="fas fa-bars toggle" onClick={() => this.handleToggle()}></i>
+                    <div className="navbar">
+                        <h4>Engauge</h4>
+                    </div>
+                </div>
+                <div className="menu">
+                    <div className="links">
+                        {links.map((text, index) => (
+                            <Link to={"/" + text.name.toLowerCase()} key={index}>
+                                <h6><i className={text.icon}></i>{text.name}</h6>
+                            </Link>
+                        ))}
+                        <Link to="/logout">
+                            <h6 className="logout"><i className="fas fa-sign-out-alt"></i>Logout</h6>
+                        </Link>
+                    </div>  
+                </div>
+            </div>
+
         );
     }
 }
