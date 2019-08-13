@@ -136,20 +136,29 @@ class DashBoard extends React.Component {
                                 <h6 className="mb-0">Gas Production</h6>
                             </Card>
                         </Col>
+                        <Col lg="12">
+                            <Card>
+                                <SectionTitle>Production</SectionTitle>
+                                <div style={styles.graph}>
+                                    {/* <GraphLine well={this.state.wellData || []} /> */}
+                                    {/* <GraphLine /> */}
+                                </div>
+                            </Card>
+                        </Col>
                         <Col lg="6">
                             <Card>
                                 <SectionTitle>Well Status</SectionTitle>
-                                <div style={styles.graph}>
-                                    <GraphPie wellIsOn={this.state.isOnTotal}
-                                        wellIsOff={this.state.isOffTotal} />
-                                </div>
+                                {/* <div style={styles.graph}> */}
+                                <GraphPie wellIsOn={this.state.isOnTotal}
+                                    wellIsOff={this.state.isOffTotal} class="half-pie" />
+                                {/* </div> */}
                             </Card>
                         </Col>
                         <Col lg="6">
                             <Card>
                                 <div style={styles.graph}>
                                     <SectionTitle>Prod Summary</SectionTitle>
-                                    <GraphBar
+                                    <GraphBar classNale="half-pie"
                                         oil={this.state.totalOil}
                                         gas={this.state.totalGas}
                                         water={this.state.totalWater}

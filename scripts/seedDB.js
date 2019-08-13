@@ -6,10 +6,10 @@ const db = require("../models");
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/engauge";
 mongoose.connect(MONGODB_URI);
 
-const testUser = {
-    email: "test@test.com",
-    password: "testtest"
-}
+// const testUser = {
+//     email: "test@test.com",
+//     password: "testtest"
+// }
 // Remove all of our users and then try and make a new one
 // User.remove({}).then(() => {
 //   User.create(testUser).then(user => {
@@ -30,25 +30,25 @@ const userSeed = [
     },
     {
         name: "mark",
-        email: "mark@mark.mark",
+        email: "mark@david.david",
         password: "mark",
         username: "mark"
     },
     {
         name: "christina",
-        email: "christina@christina.christina",
+        email: "christina@david.david",
         password: "christina",
         username: "christina"
     },
     {
         name: "elain",
-        email: "elain@elain.elain",
+        email: "elain@david.david",
         password: "elain",
         username: "elain"
     },
     {
         name: "brittany",
-        email: "brittany@brittany.brittany",
+        email: "brittany@david.david",
         password: "brittany",
         username: "brittany"
     }

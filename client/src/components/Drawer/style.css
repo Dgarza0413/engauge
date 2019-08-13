@@ -15,33 +15,66 @@ a:hover, a:focus {
 
 .navbar {
     padding: 0;
-    height: 100vh;
+    /* height: 100vh; */
     display: block;
+    /* z-index: 10000000; */
+    width: 100%;
+    /* position: relative; */
 }
 
 .drawer-container {
     background-color: #242527;
-    width: 250px;
+    width: 225px;
     color: white;
     position: fixed;
+    z-index: 1000000000;
 }
+
+.menu {
+    position: fixed;
+    height: 100vh;
+    z-index: 1000;
+    width: 225px;
+    background-color: #242527;
+}
+
+.links {
+    display: block;
+    margin-top: 65px;
+    height: 90vh;
+    z-index: 100;
+    width: 0;
+    position: static;
+}
+
+/* .menu {
+    position: fixed;
+    width: 200px;
+    background-color: #242527;
+    height: 100vh;
+    color: white;
+} */
 
 .links {
     width: 100%;
 }
 
-.navbar h6 {
+.links h6 {
     color: #c7c7c7;
     padding: 10px 0 10px 30px;
     margin: 0;
 }
 
-.navbar h6:hover {
+.toggle {
+    display: none;
+}
+
+.links h6:hover {
     background-color: #1e1f21;
     color: white;
 }
 
-.navbar i {
+.links i {
     margin-right: 10px;
 }
 
@@ -49,4 +82,77 @@ a:hover, a:focus {
     width: 100%;
     position: absolute;
     bottom: 30px;
+}
+
+.hide {
+    display: none;
+}
+
+/* @media screen and (max-width: 800px) {
+    .drawer-container {
+        width: 100%;
+		height: auto;
+		position: relative;
+        padding: 0px 0;
+        margin-bottom: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 100;
+    }
+    .navbar {
+        height: auto;
+    }
+    /* .links {
+        display: none;
+    } */
+    /* .toggle {
+        display: block;
+        font-size: 23px;
+        left: 48px;
+        top: 0px;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        position: absolute;
+    }
+    .toggle:hover {
+        cursor: pointer;
+    }
+    .slide-left {
+		margin-left: 225px;
+    }
+    .menu {
+        width: 0;
+    }
+    .nav-active {
+        width: 225px;
+        position: absolute;
+        top: 0;
+    }
+    .links {
+        margin-top: 40px;
+    } */
+    /* .menu {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 26px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+    } */
+/* } */
+.loggingout {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    text-align: inherit;
 }

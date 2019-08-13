@@ -6,37 +6,36 @@ import { ResponsiveBar } from '@nivo/bar';
 // website examples showcase many properties,
 // you'll often use just a few of them.
 function MyResponsiveBar(props) {
-    console.log(props)
     const data = [
         {
-            "fluid": "Oil",
-            "Oil": props.oil,
+            "tankNum": "12345",
+            "oilDepthBBLs": 120,
             'waterDepthBBLS': 120
         },
         {
-            "fluid": "Gas",
-            "Gas": props.gas,
+            "tankNum": "14321",
+            "oilDepthBBLs": 300,
             'waterDepthBBLS': 50
         },
         {
-            "fluid": "Water",
+            "tankNum": "543",
             "oilDepthBBLs": 200,
-            'Water': props.water
+            'waterDepthBBLS': 100
         }
     ]
+
     return (
-        < ResponsiveBar
-            data={data}
-            keys={["Oil", "Gas", "Water"]}
-            colors={["#69a8be", "#d5b577"]}
-            indexBy="fluid"
-            margin={{ top: 50, right: 30, bottom: 100, left: 60 }
-            }
-            padding={0.3}
-            // colors={{ scheme: 'nivo' }}
-            colors={["#69a8be", "#d5b577"]}
-            defs={
-                [
+        <div className={props.class}>
+            <ResponsiveBar
+                data={data}
+                keys={["waterDepthBBLS", "oilDepthBBLs"]}
+                colors={["#69a8be", "#d5b577"]}
+                indexBy="tankNum"
+                margin={{ top: 50, right: 30, bottom: 100, left: 60 }}
+                padding={0.3}
+                // colors={{ scheme: 'nivo' }}
+                colors={["#69a8be", "#d5b577"]}
+                defs={[
                     {
                         id: 'lines',
                         type: 'patternLines',
@@ -56,8 +55,7 @@ function MyResponsiveBar(props) {
                         spacing: 10
                     }
                 ]}
-            fill={
-                [
+                fill={[
                     {
                         match: {
                             id: 'oilDepthBBLs'
@@ -71,30 +69,29 @@ function MyResponsiveBar(props) {
                         id: 'lines'
                     }
                 ]}
-            borderColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
-            axisTop={null}
-            axisRight={null}
-            axisBottom={{
-                tickSize: 0,
-                tickPadding: 5,
-                tickRotation: 0,
-                legend: 'tankNum',
-                legendPosition: 'middle',
-                legendOffset: 32
-            }}
-            axisLeft={{
-                tickSize: 0,
-                tickPadding: 5,
-                tickRotation: 0,
-                legend: 'BBLS',
-                legendPosition: 'middle',
-                legendOffset: -40
-            }}
-            labelSkipWidth={12}
-            labelSkipHeight={12}
-            labelTextColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
-            legends={
-                [
+                borderColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
+                axisTop={null}
+                axisRight={null}
+                axisBottom={{
+                    tickSize: 0,
+                    tickPadding: 5,
+                    tickRotation: 0,
+                    legend: 'tankNum',
+                    legendPosition: 'middle',
+                    legendOffset: 32
+                }}
+                axisLeft={{
+                    tickSize: 0,
+                    tickPadding: 5,
+                    tickRotation: 0,
+                    legend: 'BBLS',
+                    legendPosition: 'middle',
+                    legendOffset: -40
+                }}
+                labelSkipWidth={12}
+                labelSkipHeight={12}
+                labelTextColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
+                legends={[
                     {
                         dataFrom: 'keys',
                         anchor: 'bottom',
@@ -118,10 +115,12 @@ function MyResponsiveBar(props) {
                         ]
                     }
                 ]}
-            animate={true}
-            motionStiffness={90}
-            motionDamping={15}
-        />
+                animate={true}
+                motionStiffness={90}
+                motionDamping={15}
+            />
+        </div>
     )
 }
+
 export default MyResponsiveBar;
