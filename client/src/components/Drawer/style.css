@@ -156,3 +156,7 @@ a:hover, a:focus {
     line-height: normal;
     text-align: inherit;
 }
+
+button:focus{
+    outline:none
+}
