@@ -40,7 +40,6 @@ class Login extends React.Component {
         email: "",
         password: "",
         welcomeEmail: "",
-        googleSigninUrl: "",
         redirectTo: null
     }
 
@@ -85,17 +84,17 @@ class Login extends React.Component {
             });
     }
 
-    componentDidMount() {
-        // Mostly just for developing locally
-        if (window.location.pathname === "/api/google/callback") {
-            const searchParams = new URLSearchParams(window.location.search);
-            axios.post("/api/google/code", {code: searchParams.get('code')}).then(() => {
-                window.location.href = "/"
-            });
-        } else {
-            this.loadProfileInfo();
-        }
-    }
+    // componentDidMount() {
+    //     // Mostly just for developing locally
+    //     if (window.location.pathname === "/api/google/callback") {
+    //         const searchParams = new URLSearchParams(window.location.search);
+    //         axios.post("/api/google/code", {code: searchParams.get('code')}).then(() => {
+    //             window.location.href = "/"
+    //         });
+    //     } else {
+    //         this.loadProfileInfo();
+    //     }
+    // }
 
     handleRedirect = () => {
         if (this.state.redirectTo) {
