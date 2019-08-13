@@ -100,15 +100,6 @@ class DashBoard extends React.Component {
             <PageWrapper>
                 <Container>
                     <Row>
-                        <Col lg="12">
-                            <Card>
-                                <SectionTitle>Production</SectionTitle>
-                                <div style={styles.graph}>
-                                    <GraphLine well={this.state.wellData || []} />
-                                    {/* <GraphLine /> */}
-                                </div>
-                            </Card>
-                        </Col>
                         < Col md="4" >
                             <Card>
                                 <FlexContainer>
@@ -140,7 +131,7 @@ class DashBoard extends React.Component {
                             <Card>
                                 <SectionTitle>Production</SectionTitle>
                                 <div style={styles.graph}>
-                                    {/* <GraphLine well={this.state.wellData || []} /> */}
+                                    <GraphLine well={this.state.wellData || []} />
                                     {/* <GraphLine /> */}
                                 </div>
                             </Card>
