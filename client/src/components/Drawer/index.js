@@ -94,7 +94,28 @@ class Drawer extends React.Component {
 
     render() {
         return (
-                (this.state.toggle === false) ? this.displayOpen() : this.displayClosed()  
+                // (this.state.toggle === false) ? this.displayOpen() : this.displayClosed()  
+            <div>
+                <div className="drawer-container">
+                    <i class="fas fa-bars toggle" onClick={() => this.handleToggle()}></i>
+                    <div className="navbar">
+                        <h4>Engauge</h4>
+                    </div>
+                </div>
+                <div className="menu">
+                    <div className="links">
+                        {links.map((text, index) => (
+                            <Link to={"/" + text.name.toLowerCase()} key={index}>
+                                <h6><i className={text.icon}></i>{text.name}</h6>
+                            </Link>
+                        ))}
+                        <Link to="/logout">
+                            <h6 className="logout"><i className="fas fa-sign-out-alt"></i>Logout</h6>
+                        </Link>
+                    </div>  
+                </div>
+            </div>
+
         );
     }
 }
