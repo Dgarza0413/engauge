@@ -59,20 +59,31 @@ class App extends React.Component {
     }
     componentDidMount(){
         axios.get("api/user/me").then((res)=>{
-            this.auth();
+            console.log(res);
+            this.setState({loggedIn:true})
+        }).catch(()=>{
+            this.setState({loggedIn:false})
         })
     }
-    auth(){
-        this.setState({loggedIn:true})
+    auth = () =>{
+        this.setState({loggedIn:false})
     }
     render(){
     return (
         <Router>
             <div>
-            {this.state.loggedIn ? <Drawer /> : "" }   
+                { 
+                    this.state.loggedIn 
+                        ? <Drawer auth={this.auth}/> 
+                        : "" 
+                }   
                 <Switch>
-                    {this.state.loggedIn ?  <Route exact path="/" component={DashBoard} /> : <Route exact path="/" component={login} />}
-                    {this.state.loggedIn ?  <Route component={defaultRoutes} /> : <Route component={NoMatch}/> }
+                    <Route exact path="/" component={login} />
+                    {
+                        this.state.loggedIn 
+                            ? <Route component={defaultRoutes} /> 
+                            : <Route component={NoMatch}/> 
+                    }
                 </Switch>
             </div>
         </Router >

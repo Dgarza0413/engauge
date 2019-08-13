@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import axios from 'axios';
 import "./style.css";
 
@@ -107,8 +107,12 @@ class Drawer extends React.Component {
     }
     logoutButton = () => {
         console.log("in logout button")
-        axios.get("/api/logout").then(()=>{
-            window.location.pathname = "/"
+        axios.get("/api/logout").then((response)=>{
+            console.log(response);
+            this.props.auth()
+            this.props.history.push("/");
+            
+            // window.location.pathname = "/"
         })
     }
     render() {
@@ -138,4 +142,4 @@ class Drawer extends React.Component {
     }
 }
 
-export default Drawer;
+export default withRouter(Drawer);
