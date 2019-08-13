@@ -65,8 +65,8 @@ class WellForm extends Component {
                 [name]: value
             });
         }
-    };   
-    
+    };
+
     handleRedirect = () => {
         if (this.state.redirect === true) {
             return <Redirect to="/welltable" />
@@ -83,22 +83,22 @@ class WellForm extends Component {
                 wellType: this.state.wellType,
                 apiNum: this.state.apiNum,
                 operatorName: this.state.operatorName,
-              leaseName: this.state.leaseName,
-              county: this.state.county,
-              fieldList: {
-                  distNumber: this.state.fieldList.distNumber,
-                  fieldNumber: this.state.fieldList.fieldNumber,
-                  fieldName: this.state.fieldList.fieldName
-              },
-              latLong: { 
-                  latitude: this.state.latLong.latitude, 
-                  longitude: this.state.latLong.longitude
-              },
-              completionDepth: this.state.completionDepth,
-              trueVerticalDepth: this.state.trueVerticalDepth,
-              wellBoreProfile: this.state.wellBoreProfile,
-              surfaceLocation: this.state.surfaceLocation
-      }
+                leaseName: this.state.leaseName,
+                county: this.state.county,
+                fieldList: {
+                    distNumber: this.state.fieldList.distNumber,
+                    fieldNumber: this.state.fieldList.fieldNumber,
+                    fieldName: this.state.fieldList.fieldName
+                },
+                latLong: {
+                    latitude: this.state.latLong.latitude,
+                    longitude: this.state.latLong.longitude
+                },
+                completionDepth: this.state.completionDepth,
+                trueVerticalDepth: this.state.trueVerticalDepth,
+                wellBoreProfile: this.state.wellBoreProfile,
+                surfaceLocation: this.state.surfaceLocation
+            }
             console.log(obj)
             API.addWell(obj)
                 .then(res => {
@@ -205,7 +205,7 @@ class WellForm extends Component {
                         </Container>
                     </Card>
                     {this.handleRedirect()}
-                    <Button type="submit"/>
+                    <Button type="submit" />
                 </form>
             </div>
         );
@@ -268,36 +268,36 @@ class W2Form extends Component {
 
     handleInputChange = event => {
         const { name, value } = event.target;
-        if(name === "testDate" || name === "hoursTested" || name === "prodMethod" || name === "chokeSize"){
-            const testData = {...this.state.testData}
+        if (name === "testDate" || name === "hoursTested" || name === "prodMethod" || name === "chokeSize") {
+            const testData = { ...this.state.testData }
             testData[name] = value;
             this.setState({ testData })
         } else if (name === "distNumber" || name === "fieldNumber" || name === "fieldName") {
-            const fieldList = {...this.state.fieldList}
+            const fieldList = { ...this.state.fieldList }
             fieldList[name] = value;
             this.setState({ fieldList })
         } else if (name === "tvdTD" || name === "mdTD") {
-            const totalDepth = {...this.state.totalDepth}
+            const totalDepth = { ...this.state.totalDepth }
             totalDepth[name] = value;
             this.setState({ totalDepth })
         } else if (name === "tvdPBD" || name === "mdPBD") {
-            const plugBackDepth = {...this.state.plugBackDepth}
+            const plugBackDepth = { ...this.state.plugBackDepth }
             plugBackDepth[name] = value;
             this.setState({ plugBackDepth })
         } else if (name === "casingType" || name === "casingSize" || name === "holeSize" || name === "cementClass" || name === "cementAmt" || name === "slurryVol" || name === "topOfCement") {
-            const casingRecord = {...this.state.casingRecord}
+            const casingRecord = { ...this.state.casingRecord }
             casingRecord[name] = value;
             this.setState({ casingRecord })
         } else if (name === "size" || name === "depthSet" || name === "packerType" || name === "packerDepth") {
-            const tubingRecord = {...this.state.tubingRecord}
+            const tubingRecord = { ...this.state.tubingRecord }
             tubingRecord[name] = value;
             this.setState({ tubingRecord })
         } else if (name === "from" || name === "to") {
-            const prodInjDispInt = {...this.state.prodInjDispInt}
+            const prodInjDispInt = { ...this.state.prodInjDispInt }
             prodInjDispInt[name] = value;
             this.setState({ prodInjDispInt })
         } else if (name === "markers" || name === "depttvdDepthhSet" || name === "mdDepth" || name === "formationType" || name === "isIsolated") {
-            const formationRecord = {...this.state.formationRecord}
+            const formationRecord = { ...this.state.formationRecord }
             formationRecord[name] = value;
             this.setState({ formationRecord })
         } else {
@@ -307,10 +307,10 @@ class W2Form extends Component {
         }
     };
 
-    
-      handleFormSubmit = event => {
+
+    handleFormSubmit = event => {
         event.preventDefault();
-          const obj = {
+        const obj = {
             spudDate: this.state.spudDate,
             fieldAndReservoir: this.state.fieldAndReservoir,
             testData: {
@@ -360,19 +360,19 @@ class W2Form extends Component {
                 waterDepth: this.state.tanks.waterDepth,
                 runTicket: this.state.tanks.runTicket
             }]
-          }
-          console.log(obj)
-          API.addRecompletion(obj)
+        }
+        console.log(obj)
+        API.addRecompletion(obj)
             .then(res => {
-    
-              console.log(res.data.items);
-    
-              this.setState({
-                obj: res.data.items
-              });
+
+                console.log(res.data.items);
+
+                this.setState({
+                    obj: res.data.items
+                });
             })
             .catch(err => console.log(err));
-      };
+    };
 
     render() {
         return (
@@ -549,7 +549,7 @@ class W2Form extends Component {
                             </Row>
                         </Container>
                     </Card>
-                    <Button type="submit"/>
+                    <Button type="submit" />
                 </form>
             </div>
         );
@@ -562,6 +562,7 @@ class Production extends Component {
     }
     state = {
         well: this.props.id,
+        // well: "",
         apiNum: "",
         oil: "",
         gas: "",
@@ -574,16 +575,16 @@ class Production extends Component {
     };
 
     // we have to get the api that we wish to update
-    // componentDidMount() {
-    //     // console.log(this.props.id);
-    //     API.getWellId(this.props.id)
-    //         .then(res => {
-    //             // console.log("this is the data " + res.data);
-    //             this.setState({ well: res.data._id })
-    //             console.log(res.data._id)
-    //         })
-    //         .catch(err => console.log(err))
-    // }
+    componentDidMount() {
+        // console.log(this.props.id);
+        API.getWellId(this.props.id)
+            .then(res => {
+                // console.log("this is the data " + res.data);
+                this.setState({ well: res.data._id })
+                console.log(res.data._id)
+            })
+            .catch(err => console.log(err))
+    }
 
     handleRedirect = () => {
         console.log(this.props.id);

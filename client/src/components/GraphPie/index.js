@@ -1,25 +1,27 @@
 import React from "react";
 import { ResponsivePie } from '@nivo/pie';
 
-const MyResponsivePie = ({ data = [
-    {
-        "id": "Active",
-        "label": "Wells Online",
-        "value": 521,
-        "color": "hsl(323, 70%, 50%)",
-        "children": [
-            {
-                "name": "test"
-            }
-        ]
-    },
-    {
-        "id": "Inactive",
-        "label": "Wells Offline",
-        "value": 304,
-        "color": "hsl(6, 70%, 50%)"
-    }
-] }) => (
+function MyResponsivePie(props) {
+    const data = [
+        {
+            "id": "Active",
+            "label": "Wells Online",
+            "value": props.wellIsOn,
+            "color": "hsl(323, 70%, 50%)",
+            "children": [
+                {
+                    "name": "test"
+                }
+            ]
+        },
+        {
+            "id": "Inactive",
+            "label": "Wells Offline",
+            "value": props.wellIsOff,
+            "color": "hsl(6, 70%, 50%)"
+        }
+    ]
+    return (
         <ResponsivePie
             data={data}
             margin={{ top: 0, right: 50, bottom: 80, left: 50 }}
@@ -64,7 +66,10 @@ const MyResponsivePie = ({ data = [
                     ]
                 }
             ]}
+
         />
     )
+
+}
 
 export default MyResponsivePie;

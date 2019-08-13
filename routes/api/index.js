@@ -144,22 +144,22 @@ router.get('/google/callback', function (req, res) {
                         googleId: sub
                     }).then(finalDbUser => {
                         req.login(finalDbUser, () => {
-                        res.redirect(process.env.NODE_ENV === "production" ? "/" : "http://localhost:3000/");
-                    })
-                }).catch(err => {
-                    console.log(err)
-                    res.sendStatus(500)
-                })
-            } else {
-                if (dbUser.authType === "google" && dbUser.googleId === sub + "") {
-                    req.login(dbUser, () => {
-                        res.redirect(process.env.NODE_ENV === "production" ? "/" : "http://localhost:3000/");
+                            res.redirect(process.env.NODE_ENV === "production" ? "/" : "http://localhost:3000/");
+                        })
+                    }).catch(err => {
+                        console.log(err)
+                        res.sendStatus(500)
                     })
                 } else {
-                    res.sendStatus(500)
+                    if (dbUser.authType === "google" && dbUser.googleId === sub + "") {
+                        req.login(dbUser, () => {
+                            res.redirect(process.env.NODE_ENV === "production" ? "/" : "http://localhost:3000/");
+                        })
+                    } else {
+                        res.sendStatus(500)
+                    }
                 }
-            }
-        }).catch(err => console.log(err))
+            }).catch(err => console.log(err))
         }).catch(err => {
             console.log(err)
             res.sendStatus(500)
@@ -199,6 +199,9 @@ router.route("/addWell")
 
 router.route("/welltable/:id/prod")
     .get(prodController.findById)
+
+router.route("/prodAll")
+    .get(prodController.findAll);
 
 router.route("/welltable/:id/prod/new")
     .post(prodController.create);
