@@ -8,7 +8,6 @@ import WellDetail from "./pages/WellDetail";
 import NewWellForm from "./pages/NewWellForm";
 import ProductionForm from "./pages/ProductionForm";
 import W2 from "./pages/W2";
-import FormTest from "./pages/FormTest";
 import Map from "./pages/Map";
 import Login from "./pages/Login";
 import Drawer from "./components/Drawer";
@@ -75,7 +74,8 @@ class App extends React.Component {
                         </div>
                         : <div>
                             <Route exact path="/" component={Login} />
-                            <Route component={NoMatch}/>
+                            <Route component={NoMatch} />
+                            {/* <Route component={Login} /> */}
                         </div> }
                     </Switch>
                 </div>
