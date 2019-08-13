@@ -8,7 +8,9 @@ module.exports = {
         db.Production
             .find(req.query)
             .sort({ date: -1 })
-            .then(dbModel => res.json(dbModel))
+            .then(dbModel => {
+                res.json(dbModel)
+            })
             .catch(err => res.status(422).json(err));
     },
     findById: function (req, res) {
@@ -18,18 +20,6 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     create: function (req, res) {
-        console.log(req.params.id)
-        console.log(req.body)
-        // const { oil, gas, water, casingPSI, tubingPSI, choke } = req.body
-        // const newProd = {
-        //     oil: parseInt(oil),
-        //     gas: parseInt(gas),
-        //     water: parseInt(water),
-        //     casingPSI: parseInt(casingPSI),
-        //     tubingPSI: parseInt(tubingPSI),
-        //     choke: parseInt(choke)
-        // }
-
         db.Well.findById(req.params.id, function (err, well) {
             if (err) {
                 console.log(err);

@@ -1,220 +1,20 @@
-import React, { Component } from "react";
+import React from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
-import { StringInput, NumberInput, Select, BoxInput, TextBoxInput } from "../Form";
-import Card from "../Card";
-import Button from "../Button";
-import API from "../../utils/API";
+import { StringInput, NumberInput, Select } from "../components/Form";
+import PageWrapper from "../components/PageWrapper";
+import Card from "../components/Card";
+import Button from "../components/Button";
+import SectionTitle from "../components/SectionTitle";
 import { Redirect } from 'react-router-dom';
-import "./style.css";
+import API from "../utils/API";
 
-class WellForm extends Component {
-    state = {
-        wellName: "",
-        wellNum: "",
-        wellType: "Oil",
-        apiNum: "",
-        operatorName: "",
-        leaseName: "",
-        county: "",
-        fieldList: {
-            distNumber: "",
-            fieldNumber: "",
-            fieldName: ""
-        },
-        latLong: {
-            latitude: "",
-            longitude: ""
-        },
-        completionDepth: "",
-        trueVerticalDepth: "",
-        wellBoreProfile: "",
-        surfaceLocation: "",
-        redirect: false
-    };
-
-    handleValidation() {
-        let wellName = this.state.wellName;
-        let wellNum = this.state.wellNum;
-        let apiNum = this.state.apiName;
-
-        if (!wellName.length > 0) {
-            return false
-        }
-        if (!wellNum.length > 0) {
-            return false
-        }
-        if (!apiNum === 10) {
-            return false
-        }
-        return true
-
+class WellRecompForm extends React.Component {
+    constructor(props) {
+        super(props)
     }
-
-    handleInputChange = event => {
-        const { name, value } = event.target;
-        if (name === "latitude" || name === "longitude") {
-            const latLong = { ...this.state.latLong }
-            latLong[name] = value;
-            this.setState({ latLong })
-        } else if (name === "distNumber" || name === "fieldNumber" || name === "fieldName") {
-            const fieldList = { ...this.state.fieldList }
-            fieldList[name] = value;
-            this.setState({ fieldList })
-        } else {
-            this.setState({
-                [name]: value
-            });
-        }
-    };
-
-    handleRedirect = () => {
-        if (this.state.redirect === true) {
-            return <Redirect to="/welltable" />
-        }
-    }
-
-    handleFormSubmit = event => {
-        event.preventDefault();
-        const passed = this.handleValidation()
-        if (passed) {
-            const obj = {
-                wellName: this.state.wellName,
-                wellNum: this.state.wellNum,
-                wellType: this.state.wellType,
-                apiNum: this.state.apiNum,
-                operatorName: this.state.operatorName,
-                leaseName: this.state.leaseName,
-                county: this.state.county,
-                fieldList: {
-                    distNumber: this.state.fieldList.distNumber,
-                    fieldNumber: this.state.fieldList.fieldNumber,
-                    fieldName: this.state.fieldList.fieldName
-                },
-                latLong: {
-                    latitude: this.state.latLong.latitude,
-                    longitude: this.state.latLong.longitude
-                },
-                completionDepth: this.state.completionDepth,
-                trueVerticalDepth: this.state.trueVerticalDepth,
-                wellBoreProfile: this.state.wellBoreProfile,
-                surfaceLocation: this.state.surfaceLocation
-            }
-            console.log(obj)
-            API.addWell(obj)
-                .then(res => {
-
-                    console.log(res.data.items);
-
-                    this.setState({
-                        obj: res.data.items,
-                        redirect: true
-                    });
-                })
-                .catch(err => console.log(err));
-            console.log("we passed validation");
-        } else {
-            console.log("we failed validation");
-        }
-    };
-
-    handleRadioClick = event => {
-        const { name, value } = event.target;
-        this.setState({ [name]: value });
-    }
-
-    render() {
-        return (
-            <div>
-                <form onSubmit={this.handleFormSubmit}>
-                    <Card>
-                        <Container>
-                            <Row>
-                                <Col lg="4">
-                                    <StringInput label="Well Name" name="wellName" value={this.state.wellName} onChange={this.handleInputChange} placeholder="Enter Well Name" />
-                                </Col>
-                                <Col lg="4">
-                                    <StringInput label="Well No." name="wellNum" value={this.state.wellNum} onChange={this.handleInputChange} placeholder="02" />
-                                </Col>
-                                <Col lg="4">
-                                    <Select label="Well Type" name="wellType" value={this.state.wellType} onChange={this.handleInputChange} >
-                                        <option>Oil</option>
-                                        <option>Gas</option>
-                                        <option>Saltwater Disposal</option>
-                                    </Select>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col lg="3">
-                                    <StringInput label="API No." name="apiNum" value={this.state.apiNum} onChange={this.handleInputChange} placeholder="42-XXX-XXXX" />
-                                </Col>
-                                <Col lg="4">
-                                    <StringInput label="Operator Name" name="operatorName" value={this.state.operatorName} onChange={this.handleInputChange} placeholder="Enter Operator Name" />
-                                </Col>
-                                <Col lg="3">
-                                    <StringInput label="Lease Name" name="leaseName" value={this.state.leaseName} onChange={this.handleInputChange} placeholder="Enter Lease Name" />
-                                </Col>
-                                <Col lg="2">
-                                    <StringInput label="County" name="county" value={this.state.county} onChange={this.handleInputChange} placeholder="Travis" />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col lg="3">
-                                    <NumberInput label="RRC District No." name="distNumber" value={this.state.fieldList.distNumber} onChange={this.handleInputChange} placeholder="02" />
-                                </Col>
-                                <Col lg="3">
-                                    <NumberInput label="Field No." name="fieldNumber" value={this.state.fieldList.fieldNumber} onChange={this.handleInputChange} placeholder="02" />
-                                </Col>
-                                <Col lg="6">
-                                    <StringInput label="Field Name" name="fieldName" value={this.state.fieldList.fieldName} onChange={this.handleInputChange} placeholder="Enter Field Name" />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col lg="3">
-                                    <NumberInput label="Latitude (WGS84)" name="latitude" value={this.state.latLong.latitude} onChange={this.handleInputChange} placeholder="90.000000" />
-                                </Col>
-                                <Col lg="3">
-                                    <NumberInput label="Longitude (WGS84)" name="longitude" value={this.state.latLong.longitude} onChange={this.handleInputChange} placeholder="-90.000000" />
-                                </Col>
-                                <Col lg="3">
-                                    <NumberInput label="Completion Depth" name="completionDepth" value={this.state.completionDepth} onChange={this.handleInputChange} placeholder="1000" unit="ft." />
-                                </Col>
-                                <Col lg="3">
-                                    <NumberInput label="True Vertical Depth" name="trueVerticalDepth" value={this.state.trueVerticalDepth} onChange={this.handleInputChange} placeholder="1000" unit="ft." />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <BoxInput label="Wellbore Profile">
-                                        <Form.Check custom inline name="wellBoreProfile" onClick={this.handleRadioClick} value="Vertical" label="Vertical" type="radio" id="custom-inline-checkbox-1" />
-                                        <Form.Check custom inline name="wellBoreProfile" onClick={this.handleRadioClick} value="Horizontal" label="Horizontal" type="radio" id="custom-inline-checkbox-2" />
-                                        <Form.Check custom inline name="wellBoreProfile" onClick={this.handleRadioClick} value="Directional" label="Directional" type="radio" id="custom-inline-checkbox-3" />
-                                        <Form.Check custom inline name="wellBoreProfile" onClick={this.handleRadioClick} value="Sidetrack" label="Sidetrack" type="radio" id="custom-inline-checkbox-4" />
-                                    </BoxInput>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <BoxInput label="Surface Location">
-                                        <Form.Check custom inline name="surfaceLocation" onClick={this.handleRadioClick} value="Land" label="Land" type="radio" id="custom-inline-radio-1" />
-                                        <Form.Check custom inline name="surfaceLocation" onClick={this.handleRadioClick} value="Bay/Estuary" label="Bay/Estuary" type="radio" id="custom-inline-radio-2" />
-                                        <Form.Check custom inline name="surfaceLocation" onClick={this.handleRadioClick} value="Inland Waterway" label="Inland Waterway" type="radio" id="custom-inline-radio-3" />
-                                        <Form.Check custom inline name="surfaceLocation" onClick={this.handleRadioClick} value="Offshore" label="Offshore" type="radio" id="custom-inline-radio-4" />
-                                    </BoxInput>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </Card>
-                    {this.handleRedirect()}
-                    <Button type="submit" />
-                </form>
-            </div>
-        );
-    }
-}
-
-class W2Form extends Component {
-    // W-2
-    state = {
+     // W-2
+     state = {
+        well: this.props.match.params.id,
         spudDate: "",
         fieldAndReservoir: "",
         testData: {
@@ -263,41 +63,49 @@ class W2Form extends Component {
             oilDepth: "",
             waterDepth: "",
             runTicket: ""
-        }]
+        }],
+        redirect: false
     };
+
+    handleRedirect = () => {
+        // console.log(this.props.match.params.id);
+        if (this.state.redirect === true) {
+            return <Redirect to={`/welltable/${this.props.match.params.id}`} />
+        }
+    }
 
     handleInputChange = event => {
         const { name, value } = event.target;
-        if (name === "testDate" || name === "hoursTested" || name === "prodMethod" || name === "chokeSize") {
-            const testData = { ...this.state.testData }
+        if(name === "testDate" || name === "hoursTested" || name === "prodMethod" || name === "chokeSize"){
+            const testData = {...this.state.testData}
             testData[name] = value;
             this.setState({ testData })
         } else if (name === "distNumber" || name === "fieldNumber" || name === "fieldName") {
-            const fieldList = { ...this.state.fieldList }
+            const fieldList = {...this.state.fieldList}
             fieldList[name] = value;
             this.setState({ fieldList })
         } else if (name === "tvdTD" || name === "mdTD") {
-            const totalDepth = { ...this.state.totalDepth }
+            const totalDepth = {...this.state.totalDepth}
             totalDepth[name] = value;
             this.setState({ totalDepth })
         } else if (name === "tvdPBD" || name === "mdPBD") {
-            const plugBackDepth = { ...this.state.plugBackDepth }
+            const plugBackDepth = {...this.state.plugBackDepth}
             plugBackDepth[name] = value;
             this.setState({ plugBackDepth })
         } else if (name === "casingType" || name === "casingSize" || name === "holeSize" || name === "cementClass" || name === "cementAmt" || name === "slurryVol" || name === "topOfCement") {
-            const casingRecord = { ...this.state.casingRecord }
+            const casingRecord = {...this.state.casingRecord}
             casingRecord[name] = value;
             this.setState({ casingRecord })
         } else if (name === "size" || name === "depthSet" || name === "packerType" || name === "packerDepth") {
-            const tubingRecord = { ...this.state.tubingRecord }
+            const tubingRecord = {...this.state.tubingRecord}
             tubingRecord[name] = value;
             this.setState({ tubingRecord })
         } else if (name === "from" || name === "to") {
-            const prodInjDispInt = { ...this.state.prodInjDispInt }
+            const prodInjDispInt = {...this.state.prodInjDispInt}
             prodInjDispInt[name] = value;
             this.setState({ prodInjDispInt })
         } else if (name === "markers" || name === "depttvdDepthhSet" || name === "mdDepth" || name === "formationType" || name === "isIsolated") {
-            const formationRecord = { ...this.state.formationRecord }
+            const formationRecord = {...this.state.formationRecord}
             formationRecord[name] = value;
             this.setState({ formationRecord })
         } else {
@@ -307,9 +115,12 @@ class W2Form extends Component {
         }
     };
 
-
+    
     handleFormSubmit = event => {
         event.preventDefault();
+        const id = {
+            id: this.state.well
+        }
         const obj = {
             spudDate: this.state.spudDate,
             fieldAndReservoir: this.state.fieldAndReservoir,
@@ -361,22 +172,22 @@ class W2Form extends Component {
                 runTicket: this.state.tanks.runTicket
             }]
         }
-        console.log(obj)
-        API.addRecompletion(obj)
+        // console.log(obj)
+        API.postWellRecomp(id, obj)
             .then(res => {
-
-                console.log(res.data.items);
-
+                // console.log(res.data.items);
                 this.setState({
-                    obj: res.data.items
+                    id: res.data._id,
+                    obj: res.data.items,
+                    redirect: true
                 });
-            })
-            .catch(err => console.log(err));
-    };
+            }).catch(err => console.log(err));
+        };
 
     render() {
         return (
-            <div>
+            <PageWrapper>
+                <SectionTitle>Recompletion Form</SectionTitle>
                 <form onSubmit={this.handleFormSubmit}>
                     <Card>
                         <Container>
@@ -392,7 +203,7 @@ class W2Form extends Component {
                                 <Col lg="3">
                                     <StringInput label="Date of Test" name="testDate" value={this.state.testData.testDate} onChange={this.handleInputChange} placeholder="01-01-2019" />
                                 </Col>
-                                <Col lg="3">
+                                <Col lg="2">
                                     <NumberInput label="Hours Tested" name="hoursTested" value={this.state.testData.hoursTested} onChange={this.handleInputChange} placeholder="02" />
                                 </Col>
                                 <Col lg="4">
@@ -404,7 +215,7 @@ class W2Form extends Component {
                                         <option>ESP</option>
                                     </Select>
                                 </Col>
-                                <Col lg="2">
+                                <Col lg="3">
                                     <NumberInput label="Choke Size" name="chokeSize" value={this.state.testData.chokeSize} onChange={this.handleInputChange} placeholder="9.0" />
                                 </Col>
                             </Row>
@@ -549,114 +360,12 @@ class W2Form extends Component {
                             </Row>
                         </Container>
                     </Card>
-                    <Button type="submit" />
-                </form>
-            </div>
-        );
-    }
-}
-
-class Production extends Component {
-    constructor(props) {
-        super(props)
-    }
-    state = {
-        well: this.props.id,
-        // well: "",
-        apiNum: "",
-        oil: "",
-        gas: "",
-        water: "",
-        casingPSI: "",
-        tubingPSI: "",
-        choke: "",
-        date: Date.now(),
-        redirect: false
-    };
-
-    handleRedirect = () => {
-        console.log(this.props.id);
-        if (this.state.redirect === true) {
-            return <Redirect to={`/welltable/${this.props.id}`} />
-        }
-    }
-
-    handleInputChange = event => {
-        const { name, value } = event.target;
-        this.setState({
-            [name]: value
-        });
-        console.log(event.target)
-    };
-
-    handleFormSubmit = event => {
-        event.preventDefault();
-        const id = {
-            id: this.state.well
-        }
-        const obj = {
-            oil: parseInt(this.state.oil),
-            gas: parseInt(this.state.gas),
-            water: parseInt(this.state.water),
-            casingPSI: parseInt(this.state.casingPSI),
-            tubingPSI: parseInt(this.state.tubingPSI),
-            choke: parseInt(this.state.choke),
-            date: this.state.date
-        }
-        API.postWellProd(id, obj)
-            .then(res => {
-                console.log(res.data);
-                console.log(id)
-                this.setState({
-                    id: res.data._id,
-                    obj: res.data,
-                    redirect: true
-                });
-            })
-            .catch(err => console.log(err));
-    };
-
-    render() {
-        return (
-            <div>
-                <form onSubmit={this.handleFormSubmit}>
-                    <Card>
-                        <Container>
-                            <Row>
-                                <Col md="4">
-                                    <NumberInput label="Oil" value={this.state.oil} onChange={this.handleInputChange} name="oil" placeholder="07" unit="BBLs" />
-                                </Col>
-                                <Col md="4">
-                                    <NumberInput label="Gas" value={this.state.gas} onChange={this.handleInputChange} name="gas" placeholder="07" unit="MCF" />
-                                </Col>
-                                <Col md="4">
-                                    <NumberInput label="Water" value={this.state.water} onChange={this.handleInputChange} name="water" placeholder="07" unit="BBLs" />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col md="4">
-                                    <NumberInput label="Casing PSI" value={this.state.casingPSI} onChange={this.handleInputChange} name="casingPSI" placeholder="07" unit="PSI" />
-                                </Col>
-                                <Col md="4">
-                                    <NumberInput label="Tubing PSI" value={this.state.tubingPSI} onChange={this.handleInputChange} name="tubingPSI" placeholder="07" unit="PSI" />
-                                </Col>
-                                <Col md="4">
-                                    <NumberInput label="Choke Size" value={this.state.choke} onChange={this.handleInputChange} name="choke" placeholder="07" unit="/64" />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <TextBoxInput label="Comments" placeholder="Enter Comments Here..." />
-                                </Col>
-                            </Row>
-                        </Container>
-                    </Card>
                     {this.handleRedirect()}
                     <Button type="submit" />
                 </form>
-            </div>
-        );
+            </PageWrapper>
+        )
     }
 }
 
-export { WellForm, W2Form, Production };
+export default WellRecompForm;

@@ -3,7 +3,7 @@ import "./style.css";
 
 function Card(props) {
     return (
-        <div className="card-wrapper">
+        <div className="card-wrapper" style={{padding: props.padding || "", overflow: props.overflow || ""}}>
             {props.children}
         </div>
     );

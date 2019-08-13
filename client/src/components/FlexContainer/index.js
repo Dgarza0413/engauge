@@ -1,12 +1,12 @@
 import React from "react";
 import "./style.css";
 
-function InfoWindow(props) {
+function FlexContainer(props) {
     return (
-        <div className="info-window">
+        <div className="flex">
             {props.children}
         </div>
     );
 }
 
-export default InfoWindow;
+export default FlexContainer;

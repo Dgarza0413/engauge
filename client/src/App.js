@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Detail from "./pages/Detail";
-import NoMatch from "./pages/NoMatch";
+// import NoMatch from "./pages/NoMatch";
 import DashBoard from "./pages/DashBoard";
 import WellTable from "./pages/WellTable";
 import WellReport from "./pages/WellReport";
@@ -9,49 +8,81 @@ import WellDetail from "./pages/WellDetail";
 import NewWellForm from "./pages/NewWellForm";
 import ProductionForm from "./pages/ProductionForm";
 import W2 from "./pages/W2";
-import FormTest from "./pages/FormTest"
 import Map from "./pages/Map";
 import Login from "./pages/Login";
 import Drawer from "./components/Drawer";
-import Container from "@material-ui/core/Container";
 import WellProdForm from "./pages/WellProdForm";
+import WellRecompForm from "./pages/WellRecompForm";
+import Revenue from "./pages/Revenue";
+import NoMatch from "./pages/NoMatch";
+import axios from "axios";
 
-
-
-
-function App() {
-  const styles = {
-    layout: {
-      display: "flex"
+class App extends React.Component {
+    state = {
+        loggedIn: false
     }
-  }
+    styles = {
+        layout: {
+            display: "flex"
+        }
+    }
 
-  return (
-    <Router>
-      <div style={styles.layout}>
-        <Drawer />
-        <Switch>
-          <Container>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/dashboard" component={DashBoard} />
-            <Route exact path="/map" component={Map} />
-            <Route exact path="/reports" component={WellReport} />
-            <Route exact path="/books/:id" component={Detail} />
-            <Route exact path="/welltable" component={WellTable} />
-            <Route exact path="/welltable/:id" component={WellDetail} />
-            <Route exact path="/welltable/:id/prod/new" component={WellProdForm} />
-            <Route exact path="/new-well" component={NewWellForm} />
-            <Route exact path="/w2" component={W2} />
-            <Route exact path="/newwell" component={NewWellForm} />
-            <Route exact path="/production-form" component={ProductionForm} />
-            <Route exact path="/formtest" component={FormTest} />
-          </Container>
-          <Route component={NoMatch} />
-        </Switch>
-      </div>
-    </Router >
-  );
+    componentDidMount() {
+        axios.get("api/user/me").then((res)=>{
+            console.log(res);
+            this.setState({loggedIn:true})
+        }).catch(()=>{
+            this.setState({loggedIn:false})
+        })
+    }
+
+    auth = () =>{
+        this.setState({loggedIn:false})
+    }
+    
+    defaultRoutes = () => {
+        return (
+            <div>
+                <Route exact path="/dashboard" component={DashBoard} />
+                <Route exact path="/map" component={Map} />
+                <Route exact path="/reports" component={WellReport} />
+                <Route exact path="/welltable" component={WellTable} />
+                <Route exact path="/welltable/:id" component={WellDetail} />
+                <Route exact path="/welltable/:id/recomp/new" component={WellRecompForm} />
+                <Route exact path="/welltable/:id/prod/new" component={ProductionForm} />
+                <Route exact path="/new-well" component={NewWellForm} />
+                <Route exact path="/logout" component={Login} />
+                {/* <Route exact path="/welltable/:id/prod/new" component={WellProdForm} /> */}
+                {/* <Route exact path="/w2" component={W2} /> */}
+                {/* <Route exact path="/production-form" component={ProductionForm} /> */}
+                {/* <Route exact path="/formtest" component={FormTest} /> */}
+                {/* <Route component={NoMatch} /> */}
+                <Route exact path="/revenue" component={Revenue} />
+            </div>
+        );
+    }    
+    render() {
+        return (
+            <Router>
+                <div>
+                    { this.state.loggedIn ? <Drawer auth={this.auth}/> : false }   
+                    <Switch>
+                        { this.state.loggedIn ?
+                        <div>
+                            <Route exact path="/" component={DashBoard} />
+                            <Route component={this.defaultRoutes} />
+                        </div>
+                        : <div>
+                            <Route exact path="/" component={Login} />
+                            <Route component={NoMatch} />
+                            {/* <Route component={Login} /> */}
+                        </div> }
+                    </Switch>
+                </div>
+            </Router >
+        );
+    }
 }
-
-
 export default App;
+
+

@@ -1,3 +1,24 @@
-#red{
-    background-color: red;
+.col-md-6{
+    margin-bottom: 20px;
+    padding-left: 0px;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th, .table td, .table th {
+    border: 0;
+}
+
+.table thead th, .table td {
+    padding: 20px 25px;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #fafbfd;
+}
+
+tbody tr:last-child {
+    border-radius: 0px 0px 5px 5px;
 }

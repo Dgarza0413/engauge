@@ -7,7 +7,7 @@ class NewWellForm extends React.Component {
     render() {
         return (
             <PageWrapper>
-                <SectionTitle>Form W-1</SectionTitle>
+                <SectionTitle>New Well Form</SectionTitle>
                 <WellForm />
             </PageWrapper>
         )
