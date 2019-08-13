@@ -9,9 +9,6 @@ import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
 
 class WellRecompForm extends React.Component {
-    constructor(props) {
-        super(props)
-    }
      // W-2
      state = {
         well: this.props.match.params.id,
