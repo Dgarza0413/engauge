@@ -2,7 +2,6 @@ import React from 'react';
 import GraphLine from "../components/GraphLine";
 import GraphPie from "../components/GraphPie";
 import GraphBar from "../components/GraphBar";
-import GraphSunBurst from "../components/GraphSunBurst";
 import PageWrapper from "../components/PageWrapper";
 import Card from "../components/Card";
 import SectionTitle from "../components/SectionTitle";
@@ -19,32 +18,67 @@ const styles = {
 
 class DashBoard extends React.Component {
     state = {
-        wellData: {},
+        well: [],
+        wellData: [],
         prodData: {},
         prodOil: {},
         prodGas: {},
         isOnTotal: {},
-        isOffTotal: {}
+        isOffTotal: {},
+        totalOil: {},
+        totalGas: {},
+        totalWater: {}
     };
-
+    wellDataAdder = (wells) => {
+        this.setState({ well: wells })
+    }
     componentDidMount() {
         API.getAllProd()
             .then(res => {
-                const distinct = (value, index, self) => {
-                    return self.indexOf(value) === index
+                const obj = res.data;
+                const newObj = [];
+                for (let i = 0; i < obj.length; i++) {
+                    const date = moment(obj[i].date).format("MM/DD/YYYY");
+                    if (!newObj[date]) {
+                        newObj[date] =
+                            {
+                                date: date,
+                                water: [],
+                                oil: [],
+                                gas: []
+                            }
+                        newObj[date].oil.push(obj[i].oil)
+                        newObj[date].gas.push(obj[i].gas)
+                        newObj[date].water.push(obj[i].water)
+                    } else {
+                        newObj[date].oil.push(obj[i].oil)
+                        newObj[date].gas.push(obj[i].gas)
+                        newObj[date].water.push(obj[i].water)
+                    }
                 }
-                console.log(res.data)
-                console.log(res.data.map(prodData => moment(prodData.date).format("MM/DD/YYYY"))
-                    .filter(prodData => prodData.date !== prodData.date ? prodData.date : []))
-                console.log("QXC");
-                console.log(res.data.map(prodData => moment(prodData.date).format("MM/DD/YYYY")).filter(distinct))
+                for (let key in newObj) {
+                    let gas = newObj[key].gas
+                    let oil = newObj[key].oil
+                    let water = newObj[key].water
+                    let totalGas = gas.reduce((acc, cur) => acc + cur)
+                    let totalOil = oil.reduce((acc, cur) => acc + cur)
+                    let totalWater = water.reduce((acc, cur) => acc + cur)
+                    newObj[key].gas = totalGas
+                    newObj[key].oil = totalOil
+                    newObj[key].water = totalWater
+                }
+                console.log(Object.values(newObj))
 
-                // console.log(res.data.map(prodData => prodData.oil).reduce(function (accumulator, prod) { return accumulator + prod }))
-                // console.log(res.data.map(prodData => prodData.oil))
-                // console.log(res.data.reduce(prodData => prodData === prodData))
+                const totalGas = res.data.map(prodData => prodData.gas).reduce(function (accumulator, prod) { return accumulator + prod })
+                const totalOil = res.data.map(prodData => prodData.oil).reduce(function (accumulator, prod) { return accumulator + prod })
+                const totalWater = res.data.map(prodData => prodData.water).reduce(function (accumulator, prod) { return accumulator + prod })
+
+                const objValue = Object.values(newObj)
                 this.setState({
-                    prodDate: res.data.map(prodData => prodData),
-                    wellData: res.data.map(prodData => (prodData.oil))
+                    wellData: objValue,
+                    totalGas: totalGas,
+                    totalOil: totalOil,
+                    totalWater: totalWater
                 })
                 console.log(this.state.wellData)
             })
@@ -70,7 +104,7 @@ class DashBoard extends React.Component {
                             <Card>
                                 <SectionTitle>Production</SectionTitle>
                                 <div style={styles.graph}>
-                                    {/* <GraphLine well={this.state.wellData || []} /> */}
+                                    <GraphLine well={this.state.wellData || []} />
                                     {/* <GraphLine /> */}
                                 </div>
                             </Card>
@@ -114,7 +148,12 @@ class DashBoard extends React.Component {
                         <Col lg="6">
                             <Card>
                                 <div style={styles.graph}>
-                                    <GraphBar />
+                                    <SectionTitle>Prod Summary</SectionTitle>
+                                    <GraphBar
+                                        oil={this.state.totalOil}
+                                        gas={this.state.totalGas}
+                                        water={this.state.totalWater}
+                                        key={this.state.wellData.id} />
                                 </div>
                             </Card>
                         </Col>

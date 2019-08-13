@@ -36,6 +36,7 @@ class WellDetail extends React.Component {
                     tempLat: res.data.latLong.latitude,
                     tempLng: res.data.latLong.longitude
                 })
+                console.log(res.data)
             })
             .catch(err => console.log(err))
     }
@@ -57,7 +58,8 @@ class WellDetail extends React.Component {
                             </FlexContainer>
                             <Card>
                                 <div style={{ height: "40vw" }}>
-                                    {/* <GraphLine well={this.state.well.productionId || []} /> */}
+                                    <GraphLine well={this.state.well.productionId || []}
+                                        key={this.state.well.id} />
                                 </div>
                             </Card>
                         </Col>
@@ -71,13 +73,13 @@ class WellDetail extends React.Component {
                         <Col lg="6">
                             <Card>
                                 <div style={{ height: "35vw" }}>
-                                    {/* <GraphBar /> */}
+                                    <GraphBar />
                                 </div>
                             </Card>
                         </Col>
                     </Row>
-                    {/* <WellTableProd well={this.state.well.productionId || []}
-                        key={this.state.well._id} /> */}
+                    <WellTableProd well={this.state.well.productionId || []}
+                        key={this.state.well._id} />
                 </Container>
             </PageWrapper >
         )
