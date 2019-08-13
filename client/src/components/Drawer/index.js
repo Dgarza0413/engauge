@@ -140,9 +140,6 @@ class Drawer extends React.Component {
                     <div className="navbar">
                         <i className="fas fa-bars toggle" onClick={() => this.handleToggle()}></i>
                         <h4>Engauge</h4>
-                        {/* <p>{this.state.welcomeEmail.length > 0
-                    ? this.state.welcomeEmail
-                    : ""} </p> */}
                     </div>
                 </div>
                 <div className="menu">
