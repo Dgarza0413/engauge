@@ -11,9 +11,9 @@ const links = [
         name: "Revenue",
         icon: "fas fa-credit-card",
     }, {
-        name: "Reports",
-        icon: "fas fa-file-signature",
-    }, {
+    //     name: "Reports",
+    //     icon: "fas fa-file-signature",
+    // }, {
         name: "WellTable",
         icon: "fas fa-fill",
     }, {

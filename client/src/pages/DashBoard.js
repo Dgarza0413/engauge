@@ -2,7 +2,6 @@ import React from 'react';
 import GraphLine from "../components/GraphLine";
 import GraphPie from "../components/GraphPie";
 import GraphBar from "../components/GraphBar";
-import GraphSunBurst from "../components/GraphSunBurst";
 import PageWrapper from "../components/PageWrapper";
 import Card from "../components/Card";
 import SectionTitle from "../components/SectionTitle";
@@ -105,17 +104,18 @@ class DashBoard extends React.Component {
                         <Col lg="6">
                             <Card>
                                 <SectionTitle>Well Status</SectionTitle>
-                                <div style={styles.graph}>
+                                {/* <div style={styles.graph}> */}
                                     <GraphPie wellIsOn={this.state.isOnTotal}
-                                        wellIsOff={this.state.isOffTotal} />
-                                </div>
+                                        wellIsOff={this.state.isOffTotal} class="half-pie"/>
+                                {/* </div> */}
                             </Card>
                         </Col>
                         <Col lg="6">
                             <Card>
-                                <div style={styles.graph}>
-                                    <GraphBar />
-                                </div>
+                                {/* <div style={styles.graph}> */}
+                                <SectionTitle>Total Production</SectionTitle>
+                                <GraphBar class="half-pie" />
+                                {/* </div> */}
                             </Card>
                         </Col>
                     </Row >

@@ -17,16 +17,17 @@ a:hover, a:focus {
     padding: 0;
     /* height: 100vh; */
     display: block;
-    z-index: 10000000;
+    /* z-index: 10000000; */
     width: 100%;
-    position: relative;
+    /* position: relative; */
 }
 
 .drawer-container {
     background-color: #242527;
     width: 225px;
     color: white;
-    position: absolute;
+    position: fixed;
+    z-index: 1000000000;
 }
 
 .menu {
