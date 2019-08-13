@@ -16,7 +16,7 @@ class SimpleMap extends Component {
         // lat: this.props.wellLocation.latitude,
         // lng: this.props.wellLocation.longitude
         lat: this.props.center.lat,
-        long: this.props.center.lng
+        lng: this.props.center.lng
     }
 
     static defaultProps = {
