@@ -18,6 +18,8 @@ a:hover, a:focus {
     height: 100vh;
     display: block;
     z-index: 10000000;
+    width: 100%;
+    position: relative;
 }
 
 .drawer-container {
@@ -124,6 +126,11 @@ a:hover, a:focus {
     }
     .nav-active {
         width: 225px;
+        position: absolute;
+        top: 0;
+    }
+    .links {
+        margin-top: 40px;
     }
     /* .menu {
         width: 100%;
