@@ -1,9 +1,11 @@
+require("dotenv");
 const router = require("express").Router();
 const userController = require("../../controllers/userController");
 const wellController = require("../../controllers/wellController");
 const prodController = require("../../controllers/prodController");
 const recompletionController = require("../../controllers/recompletionController");
 const passport = require('../../config/passport.js')
+const axios = require("axios");
 const { google } = require("googleapis")
 // const google = require("googleapis").google
 const db = require("../../models")
@@ -42,6 +44,7 @@ router.post('/login', passport.authenticate("local"), (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
+    console.log("logging out");
     req.logout();
     res.sendStatus(200);
 });
@@ -136,22 +139,22 @@ router.get('/google/callback', function (req, res) {
                         googleId: sub
                     }).then(finalDbUser => {
                         req.login(finalDbUser, () => {
-                        res.redirect(process.env.NODE_ENV === "production" ? "/" : "http://localhost:3000/");
-                    })
-                }).catch(err => {
-                    console.log(err)
-                    res.sendStatus(500)
-                })
-            } else {
-                if (dbUser.authType === "google" && dbUser.googleId === sub + "") {
-                    req.login(dbUser, () => {
-                        res.redirect(process.env.NODE_ENV === "production" ? "/" : "http://localhost:3000/");
+                            res.redirect(process.env.NODE_ENV === "production" ? "/" : "http://localhost:3000/");
+                        })
+                    }).catch(err => {
+                        console.log(err)
+                        res.sendStatus(500)
                     })
                 } else {
-                    res.sendStatus(500)
+                    if (dbUser.authType === "google" && dbUser.googleId === sub + "") {
+                        req.login(dbUser, () => {
+                            res.redirect(process.env.NODE_ENV === "production" ? "/" : "http://localhost:3000/");
+                        })
+                    } else {
+                        res.sendStatus(500)
+                    }
                 }
-            }
-        }).catch(err => console.log(err))
+            }).catch(err => console.log(err))
         }).catch(err => {
             console.log(err)
             res.sendStatus(500)
@@ -192,6 +195,9 @@ router.route("/addWell")
 router.route("/welltable/:id/prod")
     .get(prodController.findById)
 
+router.route("/prodAll")
+    .get(prodController.findAll);
+
 router.route("/welltable/:id/prod/new")
     .post(prodController.create);
 // select specific well
@@ -215,6 +221,23 @@ router.route("/welltable/:id/recomp")
     .get(recompletionController.findById)
 
 router.route("/well/:id")
-  .put(wellController.update)
+    .put(wellController.update)
+    
+// stock api calls
+router.get("/getoilprices",(req, res, date) => {
+    apikey = process.env.STOCKAPIKEY;
+    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_CL1.json?api_key=" + apikey + "&column_index=1&order=asc&start_date=" + date.date + "-01").then((response)=>{
+        res.json(response.data)
+    })
+})
+
+router.get("/getgasprices",(req, res, date) => {
+    apikey = process.env.STOCKAPIKEY;
+    console.log("month: ", date.date);
+    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=" + apikey + "&column_index=1&order=asc&start_date=" + date.date + "-01").then((response)=>{
+        res.json(response.data)
+    })
+})
+
 
 module.exports = router;

@@ -1,4 +1,10 @@
 .page-wrapper {
-    margin-left: 250px;
+    margin-left: 225px;
     padding: 4%;
+}
+
+@media screen and (max-width: 800px) {
+    .page-wrapper {
+        margin: auto;
+    }
 }
