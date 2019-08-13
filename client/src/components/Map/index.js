@@ -2,28 +2,15 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from "../GraphMarker";
 import mapstyle from "./mapstyle.json";
+import API from "../../utils/API"
 
-// const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
-// const heatMapData = {
-//     //positions are going to be our well locations
-//     positions: [
-//         { lat: 30.266926, lng: -97.750519 },
-//         { lat: 30.306926, lng: -96.3539 },
-//     ],
-//     //options seem to be the weight of each wells production
-//     options: {
-//         radius: 70,
-//         opacity: 0.6,
-//     }
-// }
 class SimpleMap extends Component {
-    constructor(props) {
-        super(props)
-    }
+
     state = {
         showInfoWindow: false,
-        index: ""
+        index: "",
+        lat: this.props.wellLocation.latitude,
+        lng: this.props.wellLocation.longitude
     }
 
     static defaultProps = {
@@ -45,6 +32,34 @@ class SimpleMap extends Component {
         this.setState({ showInfoWindow: false });
     }
 
+    renderMarkers = () => {
+        console.log("RENDER MARKERS");
+        console.log(this.props.well)
+        if (this.props.wellLocation && this.props.wellLocation.latitude && this.props.wellLocation.longitude) {
+            return (
+                <Marker
+                    lat={this.props.wellLocation.latitude}
+                    lng={this.props.wellLocation.longitude}
+                    mouseOver={this.handleMouseOver(0)}
+                    mouseOut={this.handleMouseExit}
+                    index="0"
+                >
+                    {(this.state.showInfoWindow && this.state.index === 0) ? (
+                        <div>
+                            <p><strong>Well Name</strong>: Grassy Field</p>
+                            <p><strong>Well Number</strong>: 01</p>
+                            <p><strong>API Number</strong>: 42-111-1111</p>
+                            <p><strong>Today's Production</strong>: 50 BBLs</p>
+                            <p><strong>Total Production</strong>: 50 BBLs</p>
+                        </div>
+                    ) : console.log(this.state.showWindowInfo + ", " + this.state.index)}
+                </Marker>
+            );
+        } else {
+            return ""
+        }
+    }
+
     render() {
         return (
             // Important! Always set the container height explicitly
@@ -54,9 +69,8 @@ class SimpleMap extends Component {
                     defaultCenter={this.props.center}
                     defaultZoom={this.props.zoom}
                     options={{ styles: mapstyle }}
-                // heatmapLibrary={true}
-                // heatmap={heatMapData}
                 >
+<<<<<<< HEAD
                     <Marker
                         lat={30.266926}
                         lng={-97.750519}
@@ -108,6 +122,9 @@ class SimpleMap extends Component {
                             </div>
                         ) : false}
                     </Marker>
+=======
+                    {this.renderMarkers()}
+>>>>>>> bc8b95105a18c1dc34ba14fea56f6153c004931f
                 </GoogleMapReact>
             </div>
         );
@@ -115,9 +132,3 @@ class SimpleMap extends Component {
 }
 
 export default SimpleMap;
-
-//wellname
-//well no
-//api
-//today's production
-//total production
