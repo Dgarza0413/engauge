@@ -25,6 +25,7 @@ const links = [
 class Drawer extends React.Component {
     state = {
         toggle: false,
+        welcomeEmail: "",
         display: {
             left: "drawer-container slide-left",
             active: "menu nav-active",
@@ -32,7 +33,17 @@ class Drawer extends React.Component {
         }
     }
 
+    loadProfileInfo = () => {
+        axios.get('/api/user/me')
+          .then(response => {
+              console.log(response.data.username);
+            this.setState({welcomeEmail: response.data.username})
+          })
+          .catch(err => console.log(err))
+        }    
+
     componentDidMount() {
+        this.loadProfileInfo()
         this.setState({ toggle: false });
         this.handleToggle();
     }
@@ -66,6 +77,9 @@ class Drawer extends React.Component {
                     <i class="fas fa-bars toggle" onClick={() => this.handleToggle()}></i>
                     <div className="navbar">
                         <h4>Engauge</h4>
+                        <h1>{this.state.welcomeEmail.length > 0
+                    ? this.state.welcomeEmail
+                    : ""} </h1>
                     </div>
                 </div>
                 <div className="menu nav-active">

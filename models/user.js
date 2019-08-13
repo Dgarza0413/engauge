@@ -48,7 +48,8 @@ const UserSchema = new Schema({
       type: String
     },
   authType: String,
-  googleId: String
+  username: String
+//   googleId: String
 
 
 });

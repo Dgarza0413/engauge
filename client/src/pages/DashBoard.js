@@ -10,6 +10,7 @@ import FlexContainer from "../components/FlexContainer";
 import { Container, Row, Col } from "react-bootstrap";
 import moment from "moment";
 import API from "../utils/API"
+import axios from "axios"
 
 const styles = {
     graph: {
@@ -24,7 +25,7 @@ class DashBoard extends React.Component {
         prodOil: {},
         prodGas: {},
         isOnTotal: {},
-        isOffTotal: {}
+        isOffTotal: {},
     };
 
     componentDidMount() {
