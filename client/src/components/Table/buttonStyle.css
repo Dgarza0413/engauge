@@ -42,7 +42,8 @@
 }
 
 .btn-toggle.active {
-    background-color: #29b5a8;
+    background-color: #39c360;
+    box-shadow: 0 0 4px #32cd32;
 }
 
 .btn-toggle.btn-sm {
