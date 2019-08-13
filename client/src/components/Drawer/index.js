@@ -40,7 +40,7 @@ class Drawer extends React.Component {
                                 <h6><i className={text.icon}></i>{text.name}</h6>
                             </Link>
                         ))}
-                        <Link to="/logout">
+                        <Link to="/">
                             <h6 className="logout" onClick={this.handleLogout}><i className="fas fa-sign-out-alt"></i>Logout</h6>
                         </Link>
                     </div>
