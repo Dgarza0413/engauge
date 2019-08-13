@@ -14,12 +14,13 @@ import Login from "./pages/Login";
 import Drawer from "./components/Drawer";
 import WellProdForm from "./pages/WellProdForm";
 import WellRecompForm from "./pages/WellRecompForm";
-import Revenue from "./pages/Revenue";
-
+import NoMatch from "./pages/NoMatch"
+import axios from "axios"
 const login = () => {
     return (
         <div>
             <Route exact path="/" component={Login} />
+    
         </div>
     );
 }
@@ -27,7 +28,6 @@ const login = () => {
 const defaultRoutes = () => {
     return (
         <div>
-            <Drawer />
             <Route exact path="/dashboard" component={DashBoard} />
             <Route exact path="/map" component={Map} />
             <Route exact path="/reports" component={WellReport} />
@@ -42,22 +42,42 @@ const defaultRoutes = () => {
             {/* <Route exact path="/production-form" component={ProductionForm} /> */}
             {/* <Route exact path="/formtest" component={FormTest} /> */}
             {/* <Route component={NoMatch} /> */}
-            <Route exact path="/revenue" component={Revenue} />
+            {/* <Route exact path="/revenue" component={Revenue} /> */}
         </div>
     );
 }
 
-function App() {
+class App extends React.Component {
+    state = {
+        loggedIn: false
+    }
+    styles = {
+        layout: {
+            display: "flex"
+        }
+    }
+    componentDidMount(){
+        axios.get("api/user/me").then((res)=>{
+            this.auth();
+        })
+    }
+    auth(){
+        this.setState({loggedIn:true})
+    }
+    render(){
     return (
         <Router>
             <div>
+            {this.state.loggedIn ? <Drawer /> : "" }   
                 <Switch>
-                    <Route exact path="/" component={login} />
-                    <Route component={defaultRoutes} />
+                    {this.state.loggedIn ?  <Route exact path="/" component={DashBoard} /> : <Route exact path="/" component={login} />}
+                    {this.state.loggedIn ?  <Route component={defaultRoutes} /> : <Route component={NoMatch}/> }
                 </Switch>
             </div>
         </Router >
     );
 }
-
+}
 export default App;
+
+

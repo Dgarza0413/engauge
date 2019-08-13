@@ -59,6 +59,36 @@ class Drawer extends React.Component {
         }
     }
 
+    displayOpen = () => {
+        return (
+            <div>
+                <div className="drawer-container slide-left">
+                    <i class="fas fa-bars toggle" onClick={() => this.handleToggle()}></i>
+                    <div className="navbar">
+                        <h4>Engauge</h4>
+                    </div>
+                </div>
+                <div className="menu nav-active">
+                    <div className="links">
+                        {links.map((text, index) => (
+                            <Link to={"/" + text.name.toLowerCase()} key={index}>
+                                <h6><i className={text.icon}></i>{text.name}</h6>
+                            </Link>
+                        ))}
+                        <Link to="/">
+                            <h6 className="logout" onClick={this.handleLogout}><i className="fas fa-sign-out-alt"></i>Logout</h6>
+                        </Link>
+                    </div>  
+                </div>
+            </div>
+        );
+    }
+    logoutButton = () => {
+        console.log("in logout button")
+        axios.get("/api/logout").then(()=>{
+            window.location.pathname = "/"
+        })
+    }
     render() {
         return (
             <div style={{overflow: "hidden"}}>
@@ -75,9 +105,9 @@ class Drawer extends React.Component {
                                 <h6><i className={text.icon}></i>{text.name}</h6>
                             </Link>
                         ))}
-                        <Link to="/logout">
-                            <h6 className="logout"><i className="fas fa-sign-out-alt"></i>Logout</h6>
-                        </Link>
+                        <div>
+                            <h6 className="logout"><i className="fas fa-sign-out-alt"></i><button className="loggingout"onClick={this.logoutButton}>Logout</button></h6>
+                        </div>
                     </div>  
                 </div>
             </div>

@@ -15,7 +15,6 @@ a:hover, a:focus {
 
 .navbar {
     padding: 0;
-    height: 100vh;
     display: block;
     z-index: 10000000;
     width: 100%;
@@ -142,4 +141,16 @@ a:hover, a:focus {
         justify-content: center;
         z-index: 100;
     } */
+}
+.loggingout {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    text-align: inherit;
 }
