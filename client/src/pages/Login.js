@@ -44,7 +44,7 @@ class Login extends React.Component {
     }
 
     handleInput = event => {
-        console.log(event.target.value);
+        // console.log(event.target.value);
         const {name, value} = event.target;
         this.setState({
             [name]: value
@@ -55,10 +55,10 @@ class Login extends React.Component {
     handleFormSubmit = event => {
         event.preventDefault();
         const {email, password} = this.state;
-        console.log(this.state);
+        // console.log(this.state);
         axios.post("/api/login", {email, password})
             .then(result => {
-                console.log(result.data)
+                // console.log(result.data)
                 // this.setState({ redirectTo: "/dashboard" })
                 window.location.pathname = "/dashboard"
             });
