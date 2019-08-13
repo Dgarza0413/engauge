@@ -1,11 +1,8 @@
 import React from "react";
 import Map from "../components/Map";
 import PageWrapper from "../components/PageWrapper";
-<<<<<<< HEAD
 import Card from "../components/Card";
-=======
 import API from "../utils/API";
->>>>>>> bc8b95105a18c1dc34ba14fea56f6153c004931f
 
 
 class MapBoard extends React.Component {

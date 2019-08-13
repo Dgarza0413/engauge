@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from "../GraphMarker";
 import mapstyle from "./mapstyle.json";
-import API from "../../utils/API"
+import API from "../../utils/API";
 
 class SimpleMap extends Component {
+
+    componentDidMount() {
+        console.log(this.props);
+    }
 
     state = {
         showInfoWindow: false,
@@ -52,7 +56,7 @@ class SimpleMap extends Component {
                             <p><strong>Today's Production</strong>: 50 BBLs</p>
                             <p><strong>Total Production</strong>: 50 BBLs</p>
                         </div>
-                    ) : console.log(this.state.showWindowInfo + ", " + this.state.index)}
+                    ) : false}
                 </Marker>
             );
         } else {
@@ -70,61 +74,7 @@ class SimpleMap extends Component {
                     defaultZoom={this.props.zoom}
                     options={{ styles: mapstyle }}
                 >
-<<<<<<< HEAD
-                    <Marker
-                        lat={30.266926}
-                        lng={-97.750519}
-                        mouseOver={this.handleMouseOver(0)}
-                        mouseOut={this.handleMouseExit}
-                        index="0"
-                    >
-                        {(this.state.showInfoWindow && this.state.index === 0) ? (
-                            <div>
-                                <p><strong>Well Name</strong>: Grassy Field</p>
-                                <p><strong>Well Number</strong>: 01</p>
-                                <p><strong>API Number</strong>: 42-111-1111</p>
-                                <p><strong>Today's Production</strong>: 50 BBLs</p>
-                                <p><strong>Total Production</strong>: 50 BBLs</p>
-                            </div>
-                        ) : false}
-                    </Marker>
-                    <Marker
-                        lat={30.306926}
-                        lng={-97.850519}
-                        mouseOver={this.handleMouseOver(1)}
-                        mouseOut={this.handleMouseExit}
-                        index="1"
-                    >
-                        {(this.state.showInfoWindow && this.state.index === 1) ? (
-                            <div>
-                                <p>Well Name:</p>
-                                <p>Well No.:</p>
-                                <p>API No.:</p>
-                                <p>Today's Production:</p>
-                                <p>Total Production:</p>
-                            </div>
-                        ) : false}
-                    </Marker>
-                    <Marker
-                        lat={30.2506926}
-                        lng={-97.790519}
-                        mouseOver={this.handleMouseOver(2)}
-                        mouseOut={this.handleMouseExit}
-                        index="2"
-                    >
-                        {(this.state.showInfoWindow && this.state.index === 2) ? (
-                            <div>
-                                <p>Well Name:</p>
-                                <p>Well No.:</p>
-                                <p>API No.:</p>
-                                <p>Today's Production:</p>
-                                <p>Total Production:</p>
-                            </div>
-                        ) : false}
-                    </Marker>
-=======
                     {this.renderMarkers()}
->>>>>>> bc8b95105a18c1dc34ba14fea56f6153c004931f
                 </GoogleMapReact>
             </div>
         );
