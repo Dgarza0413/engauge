@@ -24,6 +24,24 @@ const links = [
 
 class Drawer extends React.Component {
     // state = {
+    //     welcomeEmail: ""
+    
+    // }
+
+    // loadProfileInfo = () => {
+    //     axios.get('/api/user/me')
+    //       .then(response => {
+    //           console.log(response.data.username);
+    //         this.setState({welcomeEmail: response.data.username})
+    //       })
+    //       .catch(err => console.log(err))
+    //     }    
+
+    // componentDidMount() {
+    //     this.loadProfileInfo()
+      
+    // }
+    // state = {
     //     toggle: false,
     //     width: window.innerWidth,
     //     display: {
