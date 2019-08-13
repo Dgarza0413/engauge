@@ -64,7 +64,7 @@ function MyResponsiveLine(props) {
                 tickSize: 0,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: 'May 2019 Timeline',
+                legend: moment(Date.now()).format("MMMM YYYY") + ' Timeline',
                 legendOffset: 36,
                 legendPosition: 'middle'
             }}

@@ -68,7 +68,7 @@ class App extends React.Component {
                     { this.state.loggedIn ? <Drawer auth={this.auth}/> : false }   
                     <Switch>
                         { this.state.loggedIn ? <Route exact path="/" component={DashBoard} /> : <Route exact path="/" component={Login} /> }
-                        { this.state.loggedIn ? <Route component={this.defaultRoutes} /> : <Route exact path="/" component={NoMatch} /> }
+                        { this.state.loggedIn ? <Route component={this.defaultRoutes} /> : <Route component={NoMatch} /> }
                     </Switch>
                 </div>
             </Router >
