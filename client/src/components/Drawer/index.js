@@ -11,9 +11,9 @@ const links = [
         name: "Revenue",
         icon: "fas fa-credit-card",
     }, {
-        name: "Reports",
-        icon: "fas fa-file-signature",
-    }, {
+    //     name: "Reports",
+    //     icon: "fas fa-file-signature",
+    // }, {
         name: "WellTable",
         icon: "fas fa-fill",
     }, {
@@ -23,6 +23,7 @@ const links = [
 ]
 
 class Drawer extends React.Component {
+<<<<<<< HEAD
     state = {
         toggle: false,
         welcomeEmail: "",
@@ -47,28 +48,65 @@ class Drawer extends React.Component {
         this.setState({ toggle: false });
         this.handleToggle();
     }
+=======
+    // state = {
+    //     toggle: false,
+    //     width: window.innerWidth,
+    //     display: {
+    //         left: "drawer-container slide-left",
+    //         active: "menu nav-active",
+    //         hide: "links"
+    //     }
+    // }
 
-    handleToggle = () => {
-        if (this.state.toggle === false) {
-            this.setState({
-                toggle: true,
-                display: {
-                    left: "drawer-container slide-left",
-                    active: "menu nav-active",
-                    hide: "links"
-                }
-            });
-        } else {
-            this.setState({
-                toggle: false,
-                display: {
-                    left: "drawer-container",
-                    active: "menu",
-                    hide: "links hide"
-                }
-            });
-        }
-    }
+    // componentDidMount() {
+    //     this.setState({ toggle: true });
+    //     this.checkSize();
+    //     // this.handleToggle();
+    //     // console.log($(window).width());
+    // }
+>>>>>>> master
+
+    // handleToggle = () => {
+    //     if (this.state.toggle === false) {
+    //         this.setState({
+    //             toggle: true,
+    //             display: {
+    //                 left: "drawer-container slide-left",
+    //                 active: "menu nav-active",
+    //                 hide: "links"
+    //             }
+    //         });
+    //     } else {
+    //         this.setState({
+    //             toggle: false,
+    //             display: {
+    //                 left: "drawer-container",
+    //                 active: "menu",
+    //                 hide: "links hide"
+    //             }
+    //         });
+    //     }
+    // }
+
+    // checkWidth = () => {
+    //     this.setState({ width: window.innerWidth });
+    // }
+
+    // checkSize = () => {
+    //     if (this.state.width < 800) {
+    //         this.handleToggle();
+    //     } else {
+    //         this.setState({
+    //             toggle: true,
+    //             display: {
+    //                 left: "drawer-container slide-left",
+    //                 active: "menu nav-active",
+    //                 hide: "links"
+    //             }
+    //         });
+    //     }
+    // }
 
     displayOpen = () => {
         return (
@@ -109,15 +147,15 @@ class Drawer extends React.Component {
     }
     render() {
         return (
-            <div style={{overflow: "hidden"}}>
-                <div className={this.state.display.left}>
+            <div>
+                <div className="drawer-container">
                     <div className="navbar">
-                        <i class="fas fa-bars toggle" onClick={() => this.handleToggle()}></i>
+                        <i className="fas fa-bars toggle" onClick={() => this.handleToggle()}></i>
                         <h4>Engauge</h4>
                     </div>
                 </div>
-                <div className={this.state.display.active}>
-                    <div className={this.state.display.hide}>
+                <div className="menu">
+                    <div className="links">
                         {links.map((text, index) => (
                             <Link to={"/" + text.name.toLowerCase()} key={index}>
                                 <h6><i className={text.icon}></i>{text.name}</h6>

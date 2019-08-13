@@ -39,19 +39,24 @@ const Schema = mongoose.Schema;
 const passportLocalMongoose = require("passport-local-mongoose");
 
 const UserSchema = new Schema({
-  email: { 
-      type: String, 
-      unique: true, 
-      required: true 
+    email: { 
+        type: String, 
+        unique: true, 
+        required: true 
     },
-  password: { 
-      type: String
+    password: { 
+        type: String
     },
+<<<<<<< HEAD
   authType: String,
   username: String
 //   googleId: String
 
 
+=======
+    authType: String,
+    googleId: String
+>>>>>>> master
 });
 
 UserSchema.methods.checkPassword = function(password){

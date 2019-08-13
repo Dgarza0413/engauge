@@ -48,8 +48,6 @@ class WellTable extends React.Component {
                                 <th>Well Name</th>
                                 <th>Well Number</th>
                                 <th>API Number</th>
-                                <th>Flow</th>
-                                <th>Disposal</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -60,14 +58,14 @@ class WellTable extends React.Component {
                                     .startsWith(this.state.filter.toLowerCase());
                                 }).map(well => { 
                                     return (
-                                        <tr>
-                                            <Link to={"/welltable/" + well._id}>
-                                                <td>{well.wellName}</td>
-                                            </Link>
+                                        <tr key={well._id}>
+                                            <td>
+                                                <Link to={"/welltable/" + well._id}>
+                                                    {well.wellName}
+                                                </Link>
+                                            </td>
                                             <td>{well.wellNum}</td>
                                             <td>{well.apiNum}</td>
-                                            <td>{well.wellNum}</td>
-                                            <td>{well.wellNum}</td>
                                             <td><ToggleButton isOn={well.isOn} name={well.wellName} id={well._id}/></td>
                                         </tr>
                                     )
