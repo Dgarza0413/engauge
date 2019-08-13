@@ -20,6 +20,7 @@ const login = () => {
     return (
         <div>
             <Route exact path="/" component={Login} />
+    
         </div>
     );
 }
@@ -27,7 +28,6 @@ const login = () => {
 const defaultRoutes = () => {
     return (
         <div>
-            <Drawer />
             <Route exact path="/dashboard" component={DashBoard} />
             <Route exact path="/map" component={Map} />
             <Route exact path="/reports" component={WellReport} />
@@ -68,8 +68,9 @@ class App extends React.Component {
     return (
         <Router>
             <div>
+            {this.state.loggedIn ? <Drawer /> : "" }   
                 <Switch>
-                    <Route exact path="/" component={login} />
+                    {this.state.loggedIn ?  <Route exact path="/" component={DashBoard} /> : <Route exact path="/" component={login} />}
                     {this.state.loggedIn ?  <Route component={defaultRoutes} /> : <Route component={NoMatch}/> }
                 </Switch>
             </div>
