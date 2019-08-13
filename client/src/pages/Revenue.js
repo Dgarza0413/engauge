@@ -22,12 +22,11 @@ class Revenue extends React.Component {
         console.log("fetching data...");
         API.getOilPrices(obj)
             .then(res => {
-                console.log("Oil prices for the month");
-                console.log(res.data.dataset.data);
+                console.log("Oil prices for the month", res.data.dataset.data);
                 this.setState({
                     oilPrices: res.data.dataset.data
                 })
-                console.log("oil state: ", this.state.oilPrices)
+                // console.log("oil state: ", this.state.oilPrices)
             }).catch(err => {
                 console.log(err)
             })
@@ -38,18 +37,22 @@ class Revenue extends React.Component {
     console.log("fetching data...");
     API.getGasPrices(obj)
         .then(res => {
-            console.log("Gas prices for the month");
-            console.log(res.data.dataset.data);
+            console.log("Gas prices for the month", res.data.dataset.data);
             this.setState({
                 gasPrices: res.data.dataset.data
             })
-            console.log("gas state: ", this.state.gasPrices)
+            // console.log("gas state: ", this.state.gasPrices)
         })
         .catch(err => {
             console.log(err)
         })
     }
 
+    componentDidMount() {
+        // call APIs on page load
+        this.getOil();
+        this.getGas();
+    }
     
     render() {
         return (

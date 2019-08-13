@@ -161,7 +161,7 @@ class DashBoard extends React.Component {
                             <Card>
                                 <SectionTitle>Production</SectionTitle>
                                 <div style={styles.graph}>
-                                    {/* <GraphLine well={this.state.wellData || []} /> */}
+                                    <GraphLine well={this.state.wellData || []} />
                                     {/* <GraphLine /> */}
                                 </div>
                             </Card>
