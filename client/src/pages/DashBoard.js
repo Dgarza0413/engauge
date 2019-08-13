@@ -113,7 +113,8 @@ class DashBoard extends React.Component {
                         <Col lg="6">
                             <Card>
                                 {/* <div style={styles.graph}> */}
-                                    <GraphBar class="half-pie" />
+                                <SectionTitle>Total Production</SectionTitle>
+                                <GraphBar class="half-pie" />
                                 {/* </div> */}
                             </Card>
                         </Col>
