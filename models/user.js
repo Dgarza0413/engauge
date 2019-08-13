@@ -47,16 +47,11 @@ const UserSchema = new Schema({
     password: { 
         type: String
     },
-<<<<<<< HEAD
   authType: String,
   username: String
 //   googleId: String
 
 
-=======
-    authType: String,
-    googleId: String
->>>>>>> master
 });
 
 UserSchema.methods.checkPassword = function(password){

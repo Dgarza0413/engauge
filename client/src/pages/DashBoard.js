@@ -26,17 +26,27 @@ class DashBoard extends React.Component {
         prodGas: {},
         isOnTotal: {},
         isOffTotal: {},
-<<<<<<< HEAD
-=======
         totalOil: {},
         totalGas: {},
-        totalWater: {}
->>>>>>> master
+        totalWater: {},
+        welcomeEmail: ""
     };
     wellDataAdder = (wells) => {
         this.setState({ well: wells })
+
     }
+
+    loadProfileInfo = () => {
+        axios.get('/api/user/me')
+          .then(response => {
+              console.log(response.data.username);
+            this.setState({welcomeEmail: response.data.username})
+          })
+          .catch(err => console.log(err))
+        }  
+
     componentDidMount() {
+        this.loadProfileInfo()
         API.getAllProd()
             .then(res => {
                 const obj = res.data;
@@ -103,6 +113,13 @@ class DashBoard extends React.Component {
         return (
             <PageWrapper>
                 <Container>
+                    <Row>
+                    <SectionTitle>
+                    {this.state.welcomeEmail.length > 0
+                    ? "Welcome, " + this.state.welcomeEmail
+                    : ""}  </SectionTitle>
+                    </Row>
+                    
                     <Row>
                         <Col lg="12">
                             <Card>

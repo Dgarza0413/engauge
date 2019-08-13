@@ -23,32 +23,24 @@ const links = [
 ]
 
 class Drawer extends React.Component {
-<<<<<<< HEAD
-    state = {
-        toggle: false,
-        welcomeEmail: "",
-        display: {
-            left: "drawer-container slide-left",
-            active: "menu nav-active",
-            hide: "links hide"
-        }
-    }
+    // state = {
+    //     welcomeEmail: ""
+    
+    // }
 
-    loadProfileInfo = () => {
-        axios.get('/api/user/me')
-          .then(response => {
-              console.log(response.data.username);
-            this.setState({welcomeEmail: response.data.username})
-          })
-          .catch(err => console.log(err))
-        }    
+    // loadProfileInfo = () => {
+    //     axios.get('/api/user/me')
+    //       .then(response => {
+    //           console.log(response.data.username);
+    //         this.setState({welcomeEmail: response.data.username})
+    //       })
+    //       .catch(err => console.log(err))
+    //     }    
 
-    componentDidMount() {
-        this.loadProfileInfo()
-        this.setState({ toggle: false });
-        this.handleToggle();
-    }
-=======
+    // componentDidMount() {
+    //     this.loadProfileInfo()
+      
+    // }
     // state = {
     //     toggle: false,
     //     width: window.innerWidth,
@@ -65,7 +57,6 @@ class Drawer extends React.Component {
     //     // this.handleToggle();
     //     // console.log($(window).width());
     // }
->>>>>>> master
 
     // handleToggle = () => {
     //     if (this.state.toggle === false) {
@@ -115,9 +106,6 @@ class Drawer extends React.Component {
                     <i class="fas fa-bars toggle" onClick={() => this.handleToggle()}></i>
                     <div className="navbar">
                         <h4>Engauge</h4>
-                        <h1>{this.state.welcomeEmail.length > 0
-                    ? this.state.welcomeEmail
-                    : ""} </h1>
                     </div>
                 </div>
                 <div className="menu nav-active">
@@ -152,6 +140,9 @@ class Drawer extends React.Component {
                     <div className="navbar">
                         <i className="fas fa-bars toggle" onClick={() => this.handleToggle()}></i>
                         <h4>Engauge</h4>
+                        {/* <p>{this.state.welcomeEmail.length > 0
+                    ? this.state.welcomeEmail
+                    : ""} </p> */}
                     </div>
                 </div>
                 <div className="menu">
