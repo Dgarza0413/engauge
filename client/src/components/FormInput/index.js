@@ -574,18 +574,6 @@ class Production extends Component {
         redirect: false
     };
 
-    // we have to get the api that we wish to update
-    componentDidMount() {
-        // console.log(this.props.id);
-        API.getWellId(this.props.id)
-            .then(res => {
-                // console.log("this is the data " + res.data);
-                this.setState({ well: res.data._id })
-                console.log(res.data._id)
-            })
-            .catch(err => console.log(err))
-    }
-
     handleRedirect = () => {
         console.log(this.props.id);
         if (this.state.redirect === true) {
