@@ -47,7 +47,7 @@ function MyResponsiveLine(props) {
             data={dataProd}
             margin={{ top: 50, right: 60, bottom: 50, left: 60 }}
             xScale={{ type: 'point' }}
-            yScale={{ type: 'linear', stacked: true, min: '0', max: '1600' }}
+            yScale={{ type: 'linear', stacked: true, min: '0', max: 'auto' }}
             curve="linear"
             axisTop={null}
             axisRight={{
