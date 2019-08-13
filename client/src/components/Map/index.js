@@ -13,8 +13,10 @@ class SimpleMap extends Component {
     state = {
         showInfoWindow: false,
         index: "",
-        lat: this.props.wellLocation.latitude,
-        lng: this.props.wellLocation.longitude
+        // lat: this.props.wellLocation.latitude,
+        // lng: this.props.wellLocation.longitude
+        lat: this.props.center.lat,
+        lng: this.props.center.lng
     }
 
     static defaultProps = {

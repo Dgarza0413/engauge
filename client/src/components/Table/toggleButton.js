@@ -23,7 +23,7 @@ class ToggleButton extends React.Component {
                     className={"btn btn-sm btn-toggle " + (this.state.isOn ? "active" : "")}
                     data-toggle="button"
                     aria-pressed={this.state.isOn}
-                    autocomplete="off"
+                    autoComplete="off"
                     onClick={this.changeStatus}
                 >
                     <div className="handle" />
