@@ -9,6 +9,7 @@ import FlexContainer from "../components/FlexContainer";
 import { Container, Row, Col } from "react-bootstrap";
 import moment from "moment";
 import API from "../utils/API"
+import axios from "axios"
 
 const styles = {
     graph: {
@@ -27,12 +28,25 @@ class DashBoard extends React.Component {
         isOffTotal: {},
         totalOil: {},
         totalGas: {},
-        totalWater: {}
+        totalWater: {},
+        welcomeEmail: ""
     };
     wellDataAdder = (wells) => {
         this.setState({ well: wells })
+
     }
+
+    loadProfileInfo = () => {
+        axios.get('/api/user/me')
+            .then(response => {
+                console.log(response.data.username);
+                this.setState({ welcomeEmail: response.data.username })
+            })
+            .catch(err => console.log(err))
+    }
+
     componentDidMount() {
+        this.loadProfileInfo()
         API.getAllProd()
             .then(res => {
                 const obj = res.data;
@@ -100,16 +114,23 @@ class DashBoard extends React.Component {
             <PageWrapper>
                 <Container>
                     <Row>
-                        <Col lg="12">
+                        <SectionTitle>
+                            {this.state.welcomeEmail.length > 0
+                                ? "Welcome, " + this.state.welcomeEmail + "!"
+                                : ""}  </SectionTitle>
+                    </Row>
+
+                    <Row>
+                        {/* <Col lg="12">
                             <Card>
                                 <SectionTitle>Production</SectionTitle>
                                 <div style={styles.graph}>
                                     <GraphLine well={this.state.wellData || []} />
-                                    {/* <GraphLine /> */}
+                                    <GraphLine />
                                 </div>
                             </Card>
-                        </Col>
-                        < Col md="4" >
+                        </Col> */}
+                        {/* < Col md="4" >
                             <Card>
                                 <FlexContainer>
                                     <SectionTitle mb="5px">$1,034.00</SectionTitle>
@@ -135,7 +156,7 @@ class DashBoard extends React.Component {
                                 </FlexContainer>
                                 <h6 className="mb-0">Gas Production</h6>
                             </Card>
-                        </Col>
+                        </Col> */}
                         <Col lg="12">
                             <Card>
                                 <SectionTitle>Production</SectionTitle>

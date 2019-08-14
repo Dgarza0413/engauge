@@ -1,9 +1,8 @@
 import React from "react";
 import moment from "moment";
-import { ResponsiveLine } from '@nivo/line'
+import { ResponsiveLine } from '@nivo/line';
 
 function MyResponsiveLine(props) {
-    console.log(props)
     const oildata = props.well.map(d => (
         {
             "x": moment(d.date).format("MM-DD"),
@@ -22,7 +21,7 @@ function MyResponsiveLine(props) {
             "y": parseInt(d.water)
         }
     ))
-    console.log(oildata)
+    // console.log(oildata)
 
     const color = "hsl(157, 70%, 50%)";
     const dataProd = [{
@@ -40,8 +39,8 @@ function MyResponsiveLine(props) {
         "id": "Water",
         "color": color,
         "data": waterdata
-    }
-    ]
+    }]
+
     return (
         <ResponsiveLine
             data={dataProd}
@@ -64,7 +63,7 @@ function MyResponsiveLine(props) {
                 tickSize: 0,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: 'May 2019 Timeline',
+                legend: moment(Date.now()).format("MMMM YYYY") + ' Timeline',
                 legendOffset: 36,
                 legendPosition: 'middle'
             }}
@@ -93,33 +92,30 @@ function MyResponsiveLine(props) {
             // enableArea={true}
             enableCrosshair={false}
             useMesh={true}
-            legends={
-                [
+            legends={[{
+                anchor: 'top-right',
+                direction: 'row',
+                justify: false,
+                translateX: 75,
+                translateY: -40,
+                itemsSpacing: 0,
+                itemDirection: 'left-to-right',
+                itemWidth: 80,
+                itemHeight: 20,
+                itemOpacity: 0.75,
+                symbolSize: 12,
+                symbolShape: 'circle',
+                symbolBorderColor: 'rgba(0, 0, 0, .5)',
+                effects: [
                     {
-                        anchor: 'top-right',
-                        direction: 'row',
-                        justify: false,
-                        translateX: 75,
-                        translateY: -40,
-                        itemsSpacing: 0,
-                        itemDirection: 'left-to-right',
-                        itemWidth: 80,
-                        itemHeight: 20,
-                        itemOpacity: 0.75,
-                        symbolSize: 12,
-                        symbolShape: 'circle',
-                        symbolBorderColor: 'rgba(0, 0, 0, .5)',
-                        effects: [
-                            {
-                                on: 'hover',
-                                style: {
-                                    itemBackground: 'rgba(0, 0, 0, .03)',
-                                    itemOpacity: 1
-                                }
-                            }
-                        ]
+                        on: 'hover',
+                        style: {
+                            itemBackground: 'rgba(0, 0, 0, .03)',
+                            itemOpacity: 1
+                        }
                     }
-                ]}
+                ]
+            }]}
         />
     )
 }

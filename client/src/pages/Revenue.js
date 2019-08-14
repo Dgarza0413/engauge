@@ -4,6 +4,16 @@ import SectionTitle from "../components/SectionTitle";
 import API from "../utils/API";
 import moment from 'moment';
 import { getOrdinalColorScale } from "@nivo/colors";
+import GraphLine2 from "../components/GraphLineRev";
+import Card from "../components/Card";
+import { Col } from "react-bootstrap";
+
+
+const styles = {
+    graph: {
+        "height": "75vh"
+    }
+}
 
 class Revenue extends React.Component {
     constructor() {
@@ -12,51 +22,79 @@ class Revenue extends React.Component {
 
         this.state = {
             date: moment(date).format("YYYY-MM"),
-            oilPrices: {},
-            gasPrices: {}
+            oilPrices: [],
+            gasPrices: []
         }
     }
 
     getOil = () => {
-        const obj = {date: this.state.date};
+        const obj = { date: this.state.date };
         console.log("fetching data...");
         API.getOilPrices(obj)
             .then(res => {
-                console.log("Oil prices for the month");
-                console.log(res.data.dataset.data);
+                const newObj = {}
+                const data = res.data.dataset.data
+                for (let i = 0; i < data.length; i++) {
+                    if (!newObj[data[i][0]]) {
+                        newObj[data[i][0]] = {
+                            date: data[i][0],
+                            price: data[i][1]
+                        }
+                    }
+                }
                 this.setState({
-                    oilPrices: res.data.dataset.data
+                    oilPrices: Object.values(newObj)
                 })
-                console.log("oil state: ", this.state.oilPrices)
             }).catch(err => {
                 console.log(err)
             })
     }
 
     getGas = () => {
-    const obj = {date: this.state.date};
-    console.log("fetching data...");
-    API.getGasPrices(obj)
-        .then(res => {
-            console.log("Gas prices for the month");
-            console.log(res.data.dataset.data);
-            this.setState({
-                gasPrices: res.data.dataset.data
+        const obj = { date: this.state.date };
+        API.getGasPrices(obj)
+            .then(res => {
+                const newObj = {}
+                const data = res.data.dataset.data
+                for (let i = 0; i < data.length; i++) {
+                    if (!newObj[data[i][0]]) {
+                        newObj[data[i][0]] = {
+                            date: data[i][0],
+                            price: data[i][1]
+                        }
+                    }
+                }
+                this.setState({
+                    gasPrices: Object.values(newObj)
+                })
             })
-            console.log("gas state: ", this.state.gasPrices)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
-    
+    componentDidMount() {
+        // call APIs on page load
+        this.getOil();
+        this.getGas();
+    }
+
     render() {
         return (
             <PageWrapper>
                 <SectionTitle>Revenue Page</SectionTitle>
                 <button onClick={this.getOil}>Get Oil</button>
                 <button onClick={this.getGas}>Get Gas</button>
+                <Col lg="12">
+                    <Card >
+                        <div style={styles.graph}>
+                            <GraphLine2
+                                oilPrice={this.state.oilPrices}
+                                gasPrice={this.state.gasPrices}
+                            />
+                        </div>
+                    </Card>
+                </Col>
             </PageWrapper>
         );
     }

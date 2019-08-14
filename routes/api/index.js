@@ -47,7 +47,7 @@ router.post('/login', passport.authenticate("local"), (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-    console.log("logging out");
+    // console.log("logging out");
     req.logout();
     // res.redirect("/")
     res.sendStatus(200);
@@ -56,7 +56,8 @@ router.get('/logout', (req, res) => {
 router.get('/user/me', function (req, res) {
     if (req.user) {
         res.json({
-            email: req.user.email
+            email: req.user.email,
+            username: req.user.username
         })
     } else {
         res.sendStatus(401)
@@ -215,19 +216,19 @@ router.route("/welltable/:id/recomp")
 
 router.route("/well/:id")
     .put(wellController.update)
-    
+
 // stock api calls
-router.get("/getoilprices",(req, res, date) => {
+router.get("/getoilprices", (req, res, date) => {
     apikey = process.env.STOCKAPIKEY;
-    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_CL1.json?api_key=" + apikey + "&column_index=1&order=asc&start_date=" + date.date + "-01").then((response)=>{
+    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_CL1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
         res.json(response.data)
     })
 })
 
-router.get("/getgasprices",(req, res, date) => {
+router.get("/getgasprices", (req, res, date) => {
     apikey = process.env.STOCKAPIKEY;
     console.log("month: ", date.date);
-    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=" + apikey + "&column_index=1&order=asc&start_date=" + date.date + "-01").then((response)=>{
+    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
         res.json(response.data)
     })
 })
