@@ -116,20 +116,20 @@ class DashBoard extends React.Component {
                     <Row>
                     <SectionTitle>
                     {this.state.welcomeEmail.length > 0
-                    ? "Welcome, " + this.state.welcomeEmail
+                    ? "Welcome, " + this.state.welcomeEmail + "!"
                     : ""}  </SectionTitle>
                     </Row>
                     
                     <Row>
-                        <Col lg="12">
+                        {/* <Col lg="12">
                             <Card>
                                 <SectionTitle>Production</SectionTitle>
                                 <div style={styles.graph}>
                                     <GraphLine well={this.state.wellData || []} />
-                                    {/* <GraphLine /> */}
+                                    <GraphLine />
                                 </div>
                             </Card>
-                        </Col>
+                        </Col> */}
                         < Col md="4" >
                             <Card>
                                 <FlexContainer>
