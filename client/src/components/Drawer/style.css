@@ -7,30 +7,23 @@ a:hover, a:focus {
     text-decoration: none;
 }
 
-.navbar h4 {
-    width: 100%;
-    text-align: center;
-    margin: 20px 0;
-}
 
 .engauge-logo {
     width: 145px;
     margin: 20px auto;
 }
 
+.engauge-logo span {
+    font-family: 'Source Sans Pro', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
 .engauge-derrick {
     fill: #dcb567;
-    height: 2em
-}
-
-.engauge-text {
-    height: 1em;
-    margin-left: 0.5em;
-    margin-top: 0.25em;
-}
-
-.logo-text {
-    fill: #fff;
+    margin: -1em 0.4em 0 0;
+    height: 2em;
 }
 
 .navbar {
