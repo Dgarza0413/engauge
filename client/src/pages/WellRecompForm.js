@@ -9,8 +9,8 @@ import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
 
 class WellRecompForm extends React.Component {
-     // W-2
-     state = {
+    // W-2
+    state = {
         well: this.props.match.params.id,
         spudDate: "",
         fieldAndReservoir: "",
@@ -73,36 +73,36 @@ class WellRecompForm extends React.Component {
 
     handleInputChange = event => {
         const { name, value } = event.target;
-        if(name === "testDate" || name === "hoursTested" || name === "prodMethod" || name === "chokeSize"){
-            const testData = {...this.state.testData}
+        if (name === "testDate" || name === "hoursTested" || name === "prodMethod" || name === "chokeSize") {
+            const testData = { ...this.state.testData }
             testData[name] = value;
             this.setState({ testData })
         } else if (name === "distNumber" || name === "fieldNumber" || name === "fieldName") {
-            const fieldList = {...this.state.fieldList}
+            const fieldList = { ...this.state.fieldList }
             fieldList[name] = value;
             this.setState({ fieldList })
         } else if (name === "tvdTD" || name === "mdTD") {
-            const totalDepth = {...this.state.totalDepth}
+            const totalDepth = { ...this.state.totalDepth }
             totalDepth[name] = value;
             this.setState({ totalDepth })
         } else if (name === "tvdPBD" || name === "mdPBD") {
-            const plugBackDepth = {...this.state.plugBackDepth}
+            const plugBackDepth = { ...this.state.plugBackDepth }
             plugBackDepth[name] = value;
             this.setState({ plugBackDepth })
         } else if (name === "casingType" || name === "casingSize" || name === "holeSize" || name === "cementClass" || name === "cementAmt" || name === "slurryVol" || name === "topOfCement") {
-            const casingRecord = {...this.state.casingRecord}
+            const casingRecord = { ...this.state.casingRecord }
             casingRecord[name] = value;
             this.setState({ casingRecord })
         } else if (name === "size" || name === "depthSet" || name === "packerType" || name === "packerDepth") {
-            const tubingRecord = {...this.state.tubingRecord}
+            const tubingRecord = { ...this.state.tubingRecord }
             tubingRecord[name] = value;
             this.setState({ tubingRecord })
         } else if (name === "from" || name === "to") {
-            const prodInjDispInt = {...this.state.prodInjDispInt}
+            const prodInjDispInt = { ...this.state.prodInjDispInt }
             prodInjDispInt[name] = value;
             this.setState({ prodInjDispInt })
         } else if (name === "markers" || name === "depttvdDepthhSet" || name === "mdDepth" || name === "formationType" || name === "isIsolated") {
-            const formationRecord = {...this.state.formationRecord}
+            const formationRecord = { ...this.state.formationRecord }
             formationRecord[name] = value;
             this.setState({ formationRecord })
         } else {
@@ -112,7 +112,7 @@ class WellRecompForm extends React.Component {
         }
     };
 
-    
+
     handleFormSubmit = event => {
         event.preventDefault();
         const id = {
@@ -179,7 +179,7 @@ class WellRecompForm extends React.Component {
                     redirect: true
                 });
             }).catch(err => console.log(err));
-        };
+    };
 
     render() {
         return (

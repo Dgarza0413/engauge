@@ -38,9 +38,9 @@ app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
-    process.on('SIGINT', () => {
-      mongoose.connection.close().then(() => {
-        console.log("Mongoose disconnected");
-        process.exit(0);
-      })
-    })
+process.on('SIGINT', () => {
+  mongoose.connection.close().then(() => {
+    console.log("Mongoose disconnected");
+    process.exit(0);
+  })
+})
