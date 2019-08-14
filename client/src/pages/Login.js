@@ -35,16 +35,27 @@ const containerStyle = {
     padding: "0"
 }
 
+const errorStyle = {
+    justifyContent: "center",
+    alignItems: "center",
+    margin: "11px 0 12px",
+    borderRadius: 4,
+    padding: 7,
+    backgroundColor: "#c54e5e",
+    textAlign: "center"
+}
+
 class Login extends React.Component {
     state = {
         email: "",
         password: "",
         welcomeEmail: "",
-        redirectTo: null
+        redirectTo: null,
+        showError: false
     }
 
     handleInput = event => {
-        console.log(event.target.value);
+        // console.log(event.target.value);
         const {name, value} = event.target;
         this.setState({
             [name]: value
@@ -55,12 +66,14 @@ class Login extends React.Component {
     handleFormSubmit = event => {
         event.preventDefault();
         const {email, password} = this.state;
-        console.log(this.state);
+        // console.log(this.state);
         axios.post("/api/login", {email, password})
             .then(result => {
-                console.log(result.data)
+                // console.log(result.data)
                 // this.setState({ redirectTo: "/dashboard" })
                 window.location.pathname = "/dashboard"
+            }).catch(err => {
+                this.setState({showError: true});
             });
     }
 
@@ -111,6 +124,10 @@ class Login extends React.Component {
                             <h1 style={{ textAlign: "center"}}>Welcome to Engauge</h1>
                             <p style={{ textAlign: "center", fontSize: 20}}>Sign in to monitor your well and production status.</p>
                         <form onSubmit={this.handleFormSubmit}>
+                            {this.state.showError === true ?
+                            <div id="errormessage" style={errorStyle}>
+                                <p className="mb-0" style={{fontSize: 13, letterSpacing: 0.5, color: "white"}}>Invalid password or email.</p>
+                            </div> : console.log("this be an error")}
                             <EmailInput name="email" label="Email" placeholder="Enter Your Email" onChange={this.handleInput} value={this.state.email} />
                             <PasswordInput name="password" label="Password" placeholder="Enter Your Password" onChange={this.handleInput} value={this.state.password} />
                             <Button type="submit" value="Sign In" width="100%" />
