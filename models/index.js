@@ -1,9 +1,4 @@
 module.exports = {
-<<<<<<< HEAD
-  Users: require("./user"),
-  Well: require("./well"),
-  Production: require("./production")
-=======
     User: require("./user"),
     Well: require("./well"),
     Production: require("./production"),

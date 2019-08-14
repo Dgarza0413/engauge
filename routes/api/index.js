@@ -2,11 +2,8 @@ require("dotenv");
 const router = require("express").Router();
 const userController = require("../../controllers/userController");
 const wellController = require("../../controllers/wellController");
-<<<<<<< HEAD
-=======
 const prodController = require("../../controllers/prodController");
 const recompletionController = require("../../controllers/recompletionController");
->>>>>>> 5b3391c1710e909b0aa6a4f96cea7be0535eb430
 const passport = require('../../config/passport.js')
 const axios = require("axios");
 // const { google } = require("googleapis")

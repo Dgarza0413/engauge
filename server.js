@@ -33,27 +33,10 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/engauge";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Start the API server
+
 app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
-
-process.on('SIGINT', () => {
-  mongoose.connection.close().then(() => {
-    console.log("Mongoose disconnected");
-    process.exit(0);
-  })
-  app.listen(PORT, function () {
-    console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-  });
-
-  process.on('SIGINT', () => {
-    mongoose.connection.close().then(() => {
-      console.log("Mongoose disconnected");
-      process.exit(0);
-    })
-    app.listen(PORT, function () {
-      console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-    });
 
     process.on('SIGINT', () => {
       mongoose.connection.close().then(() => {
