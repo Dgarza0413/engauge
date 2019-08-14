@@ -21,81 +21,6 @@ class WellTable extends React.Component {
     });
   };
 
-<<<<<<< HEAD
-  render() {
-    return (
-      <div>
-        <InputGroup className="mb-3">
-          <Form.Group
-            as={InputGroup.Prepend}
-            variant="outline-secondary"
-            controlId="exampleForm.ControlSelect1"
-          >
-            <InputGroup.Text>Filter By</InputGroup.Text>
-            <FormControl
-              as="select"
-              name="dropDown"
-              onChange={this.handleChange}
-              value={this.state.dropDown}
-            >
-              <option value="wellName">Well Name</option>
-              <option value="apiNum">API Number</option>
-            </FormControl>
-          </Form.Group>
-          <FormControl
-            aria-describedby="basic-addon1"
-            name="filter"
-            onChange={this.handleChange}
-            value={this.state.filter}
-            placeholder="Search"
-          />
-        </InputGroup>
-        <Card padding="0" overflow="auto">
-          <Table>
-            <thead>
-              <tr>
-                <th>Well Name</th>
-                <th>Well Number</th>
-                <th>API Number</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.props.wells
-                .filter(well => {
-                  return well[this.state.dropDown]
-                    .toString()
-                    .startsWith(this.state.filter.toLowerCase());
-                })
-                .map(well => {
-                  return (
-                    <tr>
-                      <td>
-                        <Link to={"/welltable/" + well._id}>
-                          {well.wellName}
-                        </Link>
-                      </td>
-
-                      <td>{well.wellNum}</td>
-                      <td>{well.apiNum}</td>
-
-                      <td>
-                        <ToggleButton
-                          isOn={well.isOn}
-                          name={well.wellName}
-                          id={well._id}
-                        />
-                      </td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </Table>
-        </Card>
-      </div>
-    );
-  }
-=======
     render() {
         return (
             <div>
@@ -151,7 +76,6 @@ class WellTable extends React.Component {
             </div>
         );
     }
->>>>>>> master
 }
 
 export default WellTable;
