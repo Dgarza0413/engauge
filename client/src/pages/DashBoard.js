@@ -114,6 +114,9 @@ class DashBoard extends React.Component {
             <PageWrapper>
                 <Container>
                     <Row>
+<<<<<<< HEAD
+                        {/* < Col md="4" >
+=======
                     <SectionTitle>
                     {this.state.welcomeEmail.length > 0
                     ? "Welcome, " + this.state.welcomeEmail + "!"
@@ -131,6 +134,7 @@ class DashBoard extends React.Component {
                             </Card>
                         </Col> */}
                         < Col md="4" >
+>>>>>>> a5443b0568572169da6d804af3ff95767c42efdf
                             <Card>
                                 <FlexContainer>
                                     <SectionTitle mb="5px">$1,034.00</SectionTitle>
@@ -156,7 +160,7 @@ class DashBoard extends React.Component {
                                 </FlexContainer>
                                 <h6 className="mb-0">Gas Production</h6>
                             </Card>
-                        </Col>
+                        </Col> */}
                         <Col lg="12">
                             <Card>
                                 <SectionTitle>Production</SectionTitle>
