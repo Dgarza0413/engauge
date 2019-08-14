@@ -10,19 +10,21 @@ a:hover, a:focus {
 
 .engauge-logo {
     width: 145px;
-    margin: 20px auto;
+    margin: 22px auto 0px 30px;
+    display: flex;
+    align-items: center;
 }
 
 .engauge-logo span {
     font-family: 'Source Sans Pro', sans-serif;
     text-transform: uppercase;
     font-size: 1.5em;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .engauge-derrick {
     fill: #dcb567;
-    margin: -1em 0.4em 0 0;
+    margin: -0.3em 0.4em 0 0;
     height: 2em;
 }
 

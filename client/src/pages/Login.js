@@ -126,7 +126,7 @@ class Login extends React.Component {
                         <form onSubmit={this.handleFormSubmit}>
                             {this.state.showError === true ?
                             <div id="errormessage" style={errorStyle}>
-                                <p style={{fontSize: 13, letterSpacing: 0.5}}>Invalid password or email.</p>
+                                <p className="mb-0" style={{fontSize: 13, letterSpacing: 0.5, color: "white"}}>Invalid password or email.</p>
                             </div> : console.log("this be an error")}
                             <EmailInput name="email" label="Email" placeholder="Enter Your Email" onChange={this.handleInput} value={this.state.email} />
                             <PasswordInput name="password" label="Password" placeholder="Enter Your Password" onChange={this.handleInput} value={this.state.password} />
