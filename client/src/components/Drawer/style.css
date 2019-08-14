@@ -13,6 +13,26 @@ a:hover, a:focus {
     margin: 20px 0;
 }
 
+.engauge-logo {
+    width: 145px;
+    margin: 20px auto;
+}
+
+.engauge-logo .derrick {
+    fill: #dcb567;
+    height: 2em
+}
+
+.engauge-logo .enguage-text {
+    height: 1em;
+    margin-left: 0.5em;
+    margin-top: 0.25em;
+}
+
+.logo-text {
+    fill: #fff;
+}
+
 .navbar {
     padding: 0;
     /* height: 100vh; */
