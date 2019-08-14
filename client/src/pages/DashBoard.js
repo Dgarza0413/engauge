@@ -38,12 +38,12 @@ class DashBoard extends React.Component {
 
     loadProfileInfo = () => {
         axios.get('/api/user/me')
-          .then(response => {
-              console.log(response.data.username);
-            this.setState({welcomeEmail: response.data.username})
-          })
-          .catch(err => console.log(err))
-        }  
+            .then(response => {
+                console.log(response.data.username);
+                this.setState({ welcomeEmail: response.data.username })
+            })
+            .catch(err => console.log(err))
+    }
 
     componentDidMount() {
         this.loadProfileInfo()
@@ -114,15 +114,12 @@ class DashBoard extends React.Component {
             <PageWrapper>
                 <Container>
                     <Row>
-<<<<<<< HEAD
-                        {/* < Col md="4" >
-=======
-                    <SectionTitle>
-                    {this.state.welcomeEmail.length > 0
-                    ? "Welcome, " + this.state.welcomeEmail + "!"
-                    : ""}  </SectionTitle>
+                        <SectionTitle>
+                            {this.state.welcomeEmail.length > 0
+                                ? "Welcome, " + this.state.welcomeEmail + "!"
+                                : ""}  </SectionTitle>
                     </Row>
-                    
+
                     <Row>
                         {/* <Col lg="12">
                             <Card>
@@ -133,8 +130,7 @@ class DashBoard extends React.Component {
                                 </div>
                             </Card>
                         </Col> */}
-                        < Col md="4" >
->>>>>>> a5443b0568572169da6d804af3ff95767c42efdf
+                        {/* < Col md="4" >
                             <Card>
                                 <FlexContainer>
                                     <SectionTitle mb="5px">$1,034.00</SectionTitle>
