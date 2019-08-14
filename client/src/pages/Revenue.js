@@ -83,8 +83,6 @@ class Revenue extends React.Component {
         return (
             <PageWrapper>
                 <SectionTitle>Revenue Page</SectionTitle>
-                <button onClick={this.getOil}>Get Oil</button>
-                <button onClick={this.getGas}>Get Gas</button>
                 <Col lg="12">
                     <Card >
                         <div style={styles.graph}>
