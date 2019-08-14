@@ -100,7 +100,7 @@ class DashBoard extends React.Component {
             <PageWrapper>
                 <Container>
                     <Row>
-                        < Col md="4" >
+                        {/* < Col md="4" >
                             <Card>
                                 <FlexContainer>
                                     <SectionTitle mb="5px">$1,034.00</SectionTitle>
@@ -126,7 +126,7 @@ class DashBoard extends React.Component {
                                 </FlexContainer>
                                 <h6 className="mb-0">Gas Production</h6>
                             </Card>
-                        </Col>
+                        </Col> */}
                         <Col lg="12">
                             <Card>
                                 <SectionTitle>Production</SectionTitle>

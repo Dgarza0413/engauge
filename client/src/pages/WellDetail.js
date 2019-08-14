@@ -31,10 +31,16 @@ class WellDetail extends React.Component {
         console.log(this.props.match.params.id);
         API.getWellId(this.props.match.params.id)
             .then(res => {
+                const totalGas = res.data.productionId.map(prodData => prodData.gas).reduce(function (accumulator, prod) { return accumulator + prod })
+                const totalOil = res.data.productionId.map(prodData => prodData.oil).reduce(function (accumulator, prod) { return accumulator + prod })
+                const totalWater = res.data.productionId.map(prodData => prodData.water).reduce(function (accumulator, prod) { return accumulator + prod })
                 this.setState({
                     well: res.data,
                     tempLat: res.data.latLong.latitude,
-                    tempLng: res.data.latLong.longitude
+                    tempLng: res.data.latLong.longitude,
+                    totalOil: totalOil,
+                    totalGas: totalGas,
+                    totalWater: totalWater
                 })
                 console.log(res.data)
             })
@@ -71,9 +77,12 @@ class WellDetail extends React.Component {
                         </Col>
                         <Col lg="6">
                             <Card>
-                                <div style={{ height: "35vw" }}>
-                                    <GraphBar />
-                                </div>
+                                <GraphBar
+                                    class="half-pie"
+                                    oil={this.state.totalOil}
+                                    gas={this.state.totalGas}
+                                    water={this.state.totalWater}
+                                    key={this.state.well.id} />
                             </Card>
                         </Col>
                     </Row>

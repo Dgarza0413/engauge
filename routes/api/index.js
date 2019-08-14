@@ -212,19 +212,19 @@ router.route("/welltable/:id/recomp")
 
 router.route("/well/:id")
     .put(wellController.update)
-    
+
 // stock api calls
-router.get("/getoilprices",(req, res, date) => {
+router.get("/getoilprices", (req, res, date) => {
     apikey = process.env.STOCKAPIKEY;
-    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_CL1.json?api_key=" + apikey + "&column_index=1&order=asc&start_date=" + date.date + "-01").then((response)=>{
+    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_CL1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
         res.json(response.data)
     })
 })
 
-router.get("/getgasprices",(req, res, date) => {
+router.get("/getgasprices", (req, res, date) => {
     apikey = process.env.STOCKAPIKEY;
     console.log("month: ", date.date);
-    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=" + apikey + "&column_index=1&order=asc&start_date=" + date.date + "-01").then((response)=>{
+    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
         res.json(response.data)
     })
 })
