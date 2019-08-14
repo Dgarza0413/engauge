@@ -8,19 +8,16 @@ import { ResponsiveBar } from '@nivo/bar';
 function MyResponsiveBar(props) {
     const data = [
         {
-            "tankNum": "12345",
-            "oilDepthBBLs": 120,
-            'waterDepthBBLS': 120
+            "fluid": "Oil",
+            "fuildAmt": props.oil,
         },
         {
-            "tankNum": "14321",
-            "oilDepthBBLs": 300,
-            'waterDepthBBLS': 50
+            "fluid": "Gas",
+            "fuildAmt": props.gas,
         },
         {
-            "tankNum": "543",
-            "oilDepthBBLs": 200,
-            'waterDepthBBLS': 100
+            "fluid": "Water",
+            "fuildAmt": props.water,
         }
     ]
 
@@ -28,9 +25,9 @@ function MyResponsiveBar(props) {
         <div className={props.class}>
             <ResponsiveBar
                 data={data}
-                keys={["waterDepthBBLS", "oilDepthBBLs"]}
+                keys={["fuildAmt"]}
                 colors={["#69a8be", "#d5b577"]}
-                indexBy="tankNum"
+                indexBy="fluid"
                 margin={{ top: 50, right: 30, bottom: 100, left: 60 }}
                 padding={0.3}
                 // colors={{ scheme: 'nivo' }}

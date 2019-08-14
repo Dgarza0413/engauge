@@ -14,12 +14,12 @@ class WellTable extends React.Component {
     dropDown: "wellName"
   };
 
-  handleChange = e => {
-    const { name, value } = e.target;
-    this.setState({
-      [name]: value
-    });
-  };
+    handleChange = e => {
+        const { name, value }= e.target;
+        this.setState({
+            [name]: value,
+        });
+    };
 
     render() {
         return (

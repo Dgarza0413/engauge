@@ -1,56 +1,40 @@
 const mongoose = require("mongoose");
 const db = require("../models");
 
-// This file empties the Books collection and inserts the books below
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/engauge";
 mongoose.connect(MONGODB_URI);
-
-// const testUser = {
-//     email: "test@test.com",
-//     password: "testtest"
-// }
-// Remove all of our users and then try and make a new one
-// User.remove({}).then(() => {
-//   User.create(testUser).then(user => {
-//       console.log(user)
-//       return user.checkPassword(testUser.password)
-//   }).then(result => {
-//       console.log(result)
-//       mongoose.connection.close()
-//   })
-// })
 
 const userSeed = [
     {
         name: "david",
         email: "david@david.david",
         password: "david",
-        username: "david"
+        username: "David"
     },
     {
         name: "mark",
         email: "mark@david.david",
         password: "mark",
-        username: "mark"
+        username: "Mark"
     },
     {
         name: "christina",
         email: "christina@david.david",
         password: "christina",
-        username: "christina"
+        username: "Christina"
     },
     {
         name: "elain",
         email: "elain@david.david",
         password: "elain",
-        username: "elain"
+        username: "Elain"
     },
     {
         name: "brittany",
         email: "brittany@david.david",
         password: "brittany",
-        username: "brittany"
+        username: "Brittany"
     }
 ];
 
@@ -141,7 +125,7 @@ db.Well
     });
 
 function createUser(i, cb) {
-    console.log("adding " + userSeed[i].name)
+    // console.log("adding " + userSeed[i].name)
     db.User.create(userSeed[i])
         .then(() => {
             i++;
@@ -151,7 +135,7 @@ function createUser(i, cb) {
                 cb();
             }
         }).catch(err => {
-            console.error("ERROR: ", err);
+            // console.error("ERROR: ", err);
             process.exit(1);
         });
 }
