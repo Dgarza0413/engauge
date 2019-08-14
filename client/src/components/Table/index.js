@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import FormControl from 'react-bootstrap/FormControl';
-import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from "react-bootstrap/FormControl";
+import InputGroup from "react-bootstrap/InputGroup";
 import ToggleButton from "./toggleButton";
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
@@ -9,10 +9,10 @@ import Card from "../Card";
 import "./style.css";
 
 class WellTable extends React.Component {
-    state = {
-        filter: "",
-        dropDown: "wellName"
-    };
+  state = {
+    filter: "",
+    dropDown: "wellName"
+  };
 
     handleChange = e => {
         const { name, value }= e.target;
