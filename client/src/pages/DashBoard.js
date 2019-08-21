@@ -29,7 +29,9 @@ class DashBoard extends React.Component {
         totalOil: {},
         totalGas: {},
         totalWater: {},
-        welcomeEmail: ""
+        welcomeEmail: "",
+        currentProd: {},
+        currentRate: {}
     };
     wellDataAdder = (wells) => {
         this.setState({ well: wells })
@@ -82,17 +84,22 @@ class DashBoard extends React.Component {
                     newObj[key].water = totalWater
                 }
                 console.log(Object.values(newObj))
+                console.log(res.data[0])
 
                 const totalGas = res.data.map(prodData => prodData.gas).reduce(function (accumulator, prod) { return accumulator + prod })
                 const totalOil = res.data.map(prodData => prodData.oil).reduce(function (accumulator, prod) { return accumulator + prod })
                 const totalWater = res.data.map(prodData => prodData.water).reduce(function (accumulator, prod) { return accumulator + prod })
+                const currentRateOil = (res.data[res.data.length - 1].oil - res.data[res.data.length - 2].oil) / 100
+                const currentProd = res.data[res.data.length - 1]
 
                 const objValue = Object.values(newObj)
                 this.setState({
                     wellData: objValue,
                     totalGas: totalGas,
                     totalOil: totalOil,
-                    totalWater: totalWater
+                    totalWater: totalWater,
+                    currentProd: currentProd,
+                    currentRateOil: currentRateOil.toFixed(2)
                 })
                 console.log(this.state.wellData)
             })
@@ -117,52 +124,42 @@ class DashBoard extends React.Component {
                         <SectionTitle>
                             {this.state.welcomeEmail.length > 0
                                 ? "Welcome, " + this.state.welcomeEmail + "!"
-                                : ""}  </SectionTitle>
+                                : ""}
+                        </SectionTitle>
                     </Row>
-
                     <Row>
-                        {/* <Col lg="12">
-                            <Card>
-                                <SectionTitle>Production</SectionTitle>
-                                <div style={styles.graph}>
-                                    <GraphLine well={this.state.wellData || []} />
-                                    <GraphLine />
-                                </div>
-                            </Card>
-                        </Col> */}
-                        {/* < Col md="4" >
+                        < Col md="4" >
                             <Card>
                                 <FlexContainer>
-                                    <SectionTitle mb="5px">$1,034.00</SectionTitle>
-                                    <p style={{ marginBottom: "5px" }}><strong>+0.20%</strong></p>
+                                    <SectionTitle mb="5px">{this.state.currentProd.oil} BBLs</SectionTitle>
+                                    <p style={{ marginBottom: "5px" }}><strong>{this.state.currentRateOil}%</strong></p>
                                 </FlexContainer>
-                                <h6 className="mb-0">Monthly Revenue</h6>
+                                <h6 className="mb-0">Oil Production</h6>
                             </Card>
                         </Col >
                         <Col md="4">
                             <Card>
                                 <FlexContainer>
-                                    <SectionTitle mb="5px">$1,034.00</SectionTitle>
+                                    <SectionTitle mb="5px">{this.state.currentProd.oil} MCF</SectionTitle>
                                     <p style={{ marginBottom: "5px" }}><strong>+0.20%</strong></p>
                                 </FlexContainer>
-                                <h6 className="mb-0">Oil Production</h6>
+                                <h6 className="mb-0">Gas Production</h6>
                             </Card>
                         </Col>
                         <Col md="4">
                             <Card>
                                 <FlexContainer>
-                                    <SectionTitle mb="5px">$1,034.00</SectionTitle>
+                                    <SectionTitle mb="5px">{this.state.currentProd.water} BBLs</SectionTitle>
                                     <p style={{ marginBottom: "5px" }}><strong>+0.20%</strong></p>
                                 </FlexContainer>
-                                <h6 className="mb-0">Gas Production</h6>
+                                <h6 className="mb-0">Water Production</h6>
                             </Card>
-                        </Col> */}
+                        </Col>
                         <Col lg="12">
                             <Card>
                                 <SectionTitle>Production</SectionTitle>
                                 <div style={styles.graph}>
                                     <GraphLine well={this.state.wellData || []} />
-                                    {/* <GraphLine /> */}
                                 </div>
                             </Card>
                         </Col>
