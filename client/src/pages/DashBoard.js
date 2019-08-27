@@ -29,7 +29,8 @@ class DashBoard extends React.Component {
         totalOil: {},
         totalGas: {},
         totalWater: {},
-        welcomeEmail: ""
+        welcomeEmail: "",
+        currentProd: {}
     };
     wellDataAdder = (wells) => {
         this.setState({ well: wells })
@@ -92,9 +93,11 @@ class DashBoard extends React.Component {
                     wellData: objValue,
                     totalGas: totalGas,
                     totalOil: totalOil,
-                    totalWater: totalWater
+                    totalWater: totalWater,
+                    currentProd: objValue[objValue.length - 1],
                 })
-                console.log(this.state.wellData)
+                // console.log(this.state.wellData)
+                console.log(objValue[objValue.length - 1])
             })
             .catch(err => console.log(err))
 
@@ -121,42 +124,33 @@ class DashBoard extends React.Component {
                     </Row>
 
                     <Row>
-                        {/* <Col lg="12">
-                            <Card>
-                                <SectionTitle>Production</SectionTitle>
-                                <div style={styles.graph}>
-                                    <GraphLine well={this.state.wellData || []} />
-                                    <GraphLine />
-                                </div>
-                            </Card>
-                        </Col> */}
-                        {/* < Col md="4" >
+                        < Col md="4" >
                             <Card>
                                 <FlexContainer>
-                                    <SectionTitle mb="5px">$1,034.00</SectionTitle>
+                                    <SectionTitle mb="5px">{this.state.currentProd.oil} BBLs</SectionTitle>
                                     <p style={{ marginBottom: "5px" }}><strong>+0.20%</strong></p>
                                 </FlexContainer>
-                                <h6 className="mb-0">Monthly Revenue</h6>
+                                <h6 className="mb-0">Oil Production</h6>
                             </Card>
                         </Col >
                         <Col md="4">
                             <Card>
                                 <FlexContainer>
-                                    <SectionTitle mb="5px">$1,034.00</SectionTitle>
+                                    <SectionTitle mb="5px">{this.state.currentProd.gas} MCF</SectionTitle>
                                     <p style={{ marginBottom: "5px" }}><strong>+0.20%</strong></p>
                                 </FlexContainer>
-                                <h6 className="mb-0">Oil Production</h6>
+                                <h6 className="mb-0">Gas Production</h6>
                             </Card>
                         </Col>
                         <Col md="4">
                             <Card>
                                 <FlexContainer>
-                                    <SectionTitle mb="5px">$1,034.00</SectionTitle>
+                                    <SectionTitle mb="5px">{this.state.currentProd.water} BBLs</SectionTitle>
                                     <p style={{ marginBottom: "5px" }}><strong>+0.20%</strong></p>
                                 </FlexContainer>
-                                <h6 className="mb-0">Gas Production</h6>
+                                <h6 className="mb-0">Water Production</h6>
                             </Card>
-                        </Col> */}
+                        </Col>
                         <Col lg="12">
                             <Card>
                                 <SectionTitle>Production</SectionTitle>

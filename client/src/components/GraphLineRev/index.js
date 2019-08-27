@@ -6,16 +6,22 @@ function MyResponsiveLine(props) {
     console.log(props)
     const oilPrice = props.oilPrice.map(d => (
         {
-            "x": moment(d.date, 'YYYY-MM-DD').format("MM-DD"),
-            "y": parseInt(d.price)
+            "x": moment(d.date, 'MM/DD/YYYY').format("MM-DD"),
+            "y": parseInt(d.priceOil)
         }
     ))
     const gasPrice = props.gasPrice.map(d => (
         {
-            "x": moment(d.date, 'YYYY-MM-DD').format("MM-DD"),
-            "y": parseInt(d.price)
+            "x": moment(d.date, 'MM/DD/YYYY').format("MM-DD"),
+            "y": parseInt(d.priceGas)
         }
     ))
+    // const gasRev = props.gasRev.map(d => (
+    //     {
+    //         "x": moment(d.date, 'MM/DD/YYYY').format("MM-DD"),
+    //         "y": parseInt(d.priceGas)
+    //     }
+    // ))
     const color = "hsl(157, 70%, 50%)";
     const dataProd = [
         {

@@ -62,6 +62,7 @@ class WellDetail extends React.Component {
                                 </Link>
                             </FlexContainer>
                             <Card>
+                                <SectionTitle>Prod Summary</SectionTitle>
                                 <div style={{ height: "40vw" }}>
                                     <GraphLine well={this.state.well.productionId || []}
                                         key={this.state.well.id} />
@@ -72,11 +73,13 @@ class WellDetail extends React.Component {
                     <Row>
                         <Col lg="6">
                             <Card>
+                                <SectionTitle>Location</SectionTitle>
                                 <Map height="35vw" wellLocation={{ latitude: this.state.tempLat, longitude: this.state.tempLng }} />
                             </Card>
                         </Col>
                         <Col lg="6">
                             <Card>
+                                <SectionTitle>Prod Total</SectionTitle>
                                 <GraphBar
                                     class="half-pie"
                                     oil={this.state.totalOil}

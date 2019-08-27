@@ -1,11 +1,10 @@
 const db = require("../models");
 const mongoose = require("mongoose");
-const ObjectId = mongoose.Types.ObjectId;
 
 // Defining methods for the prodController
 module.exports = {
     findAll: function (req, res) {
-        db.Production
+        db.Report
             .find(req.query)
             .sort({ date: 1 })
             .then(dbModel => {
@@ -14,7 +13,7 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     findById: function (req, res) {
-        db.Production
+        db.Report
             .findById(req.params.id)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
@@ -24,11 +23,11 @@ module.exports = {
             if (err) {
                 console.log(err);
             } else {
-                db.Production.create(req.body, function (err, prod) {
+                db.Report.create(req.body, function (err, prod) {
                     if (err) {
                         console.log(err);
                     } else {
-                        well.productionId.push(prod);
+                        well.reportId.push(prod);
                         well.save();
                     }
                 });
@@ -37,13 +36,13 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     update: function (req, res) {
-        db.Production
+        db.Report
             .findOneAndUpdate({ _id: req.params.id }, req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     remove: function (req, res) {
-        db.Production
+        db.Report
             .findById({ _id: req.params.id })
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
