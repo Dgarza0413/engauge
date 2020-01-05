@@ -6,10 +6,12 @@ const mongoose = require("mongoose");
 // Notes:
 // Define basic data structure
 const reportSchema = new mongoose.Schema({
-    detail: String,
+    title: String,
+    type: String,
+    summary: String,
     supervisor: String,
-    date: Date,
-    cost: Number
+    cost: Number,
+    date: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model("Report", reportSchema);

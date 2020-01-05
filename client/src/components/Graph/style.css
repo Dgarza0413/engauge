@@ -13,4 +13,14 @@
     border-radius: 100%;
     user-select: none;
     transform: translate(-50%, -50%);
-  }
+}
+
+.half-pie {
+    height: 35vw;
+}
+
+@media screen and (max-width: 991px) {
+    .half-pie {
+        height: 250px;
+    }
+}

@@ -1,6 +1,8 @@
 import React from "react";
-import "./buttonStyle.css";
 import API from "../../utils/API.js";
+
+import "./style.css";
+
 
 class ToggleButton extends React.Component {
     state = {

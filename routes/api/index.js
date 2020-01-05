@@ -3,9 +3,9 @@ const router = require("express").Router();
 const userController = require("../../controllers/userController");
 const wellController = require("../../controllers/wellController");
 const prodController = require("../../controllers/prodController");
+const reportController = require("../../controllers/reportController");
 const recompletionController = require("../../controllers/recompletionController");
 const passport = require('../../config/passport.js')
-const axios = require("axios");
 // const { google } = require("googleapis")
 // const google = require("googleapis").google
 // const db = require("../../models")
@@ -174,25 +174,26 @@ router.route("/user/:id")
     .put(userController.update)
     .delete(userController.remove);
 
-// list all wells       // remove for production
-// /api/wells
-router.route("/wells")
-    .get(wellController.findAll);
-// /api/addWell
-router.route("/addWell")
-    .post(wellController.create);
+// GET - data - all wells
+router.route("/well-data").get(wellController.findAll);
+router.route("/prod-data").get(prodController.findAll);
+router.route("/report-data").get(reportController.findAll);
 
-router.route("/welltable/:id/prod")
-    .get(prodController.findById)
+// Get - data - individual wells
+router.route("/welltable/:id/prod").get(prodController.findById)
+router.route("/welltable/:id/recomp").get(recompletionController.findById)
 
-router.route("/prodAll")
-    .get(prodController.findAll);
+// POST - data - individual wells
+router.route("/create-well-data").post(wellController.create);
+router.route("/welltable/:id/prod/new").post(prodController.create);
+router.route("/welltable/:id/report/new").post(reportController.create);
+router.route("/welltable/:id/recomp/new").post(recompletionController.create);
 
-router.route("/welltable/:id/prod/new")
-    .post(prodController.create);
+// PUT - data - individual well/report
+router.route("/well/:id").put(wellController.update);
+router.route("/well/:id/report/update").put(reportController.update);
 
 // select specific well
-// /api/well/:id
 router.route("/well/:id")
     .get(wellController.findById)
     .put(wellController.update)
@@ -205,30 +206,21 @@ router.route("/well/:tankid")
     .put(wellController.update)
     .delete(wellController.remove);
 
-router.route("/welltable/:id/recomp/new")
-    .post(recompletionController.create);
-
-router.route("/welltable/:id/recomp")
-    .get(recompletionController.findById)
-
-router.route("/well/:id")
-    .put(wellController.update)
-
 // stock api calls
-router.get("/getoilprices", (req, res, date) => {
-    apikey = process.env.STOCKAPIKEY;
-    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_CL1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
-        res.json(response.data)
-    })
-})
+// router.get("/getoilprices", (req, res, date) => {
+//     apikey = process.env.STOCKAPIKEY;
+//     axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_CL1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
+//         res.json(response.data)
+//     })
+// })
 
-router.get("/getgasprices", (req, res, date) => {
-    apikey = process.env.STOCKAPIKEY;
-    console.log("month: ", date.date);
-    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
-        res.json(response.data)
-    })
-})
+// router.get("/getgasprices", (req, res, date) => {
+//     apikey = process.env.STOCKAPIKEY;
+//     console.log("month: ", date.date);
+//     axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
+//         res.json(response.data)
+//     })
+// })
 
 
 module.exports = router;

@@ -1,41 +1,72 @@
-import React from "react";
-import Map from "../components/Map";
+import React, { useEffect } from "react";
+import Map from "../components/Map/Map";
 import PageWrapper from "../components/PageWrapper";
 import Card from "../components/Card";
 import API from "../utils/API";
 
+const MapBoard = () => {
 
-class MapBoard extends React.Component {
-    state = {
-        well: {},
-        lat: {},
-        long: {},
+
+    useEffect(() => {
+        getAllWellData()
+    }, [])
+    const getAllWellData = async () => {
+        try {
+            const data = await API.getAllWellData()
+            console.log(data)
+            // .then(res => {
+            //     for (let i = 0; i < res.data.length; i++) {
+            //         this.setState({
+            //             lat: res.data[i].latLong.latitude,
+            //             long: res.data[i].latLong.longtitude
+            //         })
+            //     }
+            // })
+        } catch (error) {
+
+        }
+
     }
-
-    componentDidMount() {
-        API.getAllWells()
-            .then(res => {
-                for (let i = 0; i < res.data.length; i++) {
-                    console.log(res.data[i])
-                    console.log(res.data[i].latLong.latitude)
-                    console.log(res.data[i].latLong.longitude)
-                    this.setState({
-                        lat: res.data[i].latLong.latitude,
-                        long: res.data[i].latLong.longtitude
-                    })
-                }
-            })
-    }
-
-    render() {
-        return (
+    return (
+        <>
             <PageWrapper>
                 <Card>
                     <Map />
                 </Card>
             </PageWrapper>
-        )
-    }
+        </>
+    )
 }
+
+
+// class MapBoard extends React.Component {
+//     state = {
+//         well: [],
+//         lat: {},
+//         long: {},
+//     }
+
+//     componentDidMount() {
+//         API.getAllWellData()
+//             .then(res => {
+//                 for (let i = 0; i < res.data.length; i++) {
+//                     this.setState({
+//                         lat: res.data[i].latLong.latitude,
+//                         long: res.data[i].latLong.longtitude
+//                     })
+//                 }
+//             })
+//     }
+
+//     render() {
+//         return (
+//             <PageWrapper>
+//                 <Card>
+//                     <Map />
+//                 </Card>
+//             </PageWrapper>
+//         )
+//     }
+// }
 
 export default MapBoard

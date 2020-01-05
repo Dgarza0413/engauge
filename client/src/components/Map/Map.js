@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
-import Marker from "../GraphMarker";
+import Marker from "../Graph/MarkerGraph";
 import mapstyle from "./mapstyle.json";
-import API from "../../utils/API";
+// import API from "../../utils/API";
+
+
+// const SimpleMap = () => {
+//     return (
+//         <div style={{ height: this.props.height || "50vw", width: '100%' }}>
+//             <GoogleMapReact
+//                 bootstrapURLKeys={{ key: 'AIzaSyBbJqzjcKJqXYW9FEPfr7TPy21FND0iwLc' }}
+//                 defaultCenter={this.props.center}
+//                 defaultZoom={this.props.zoom}
+//                 options={{ styles: mapstyle }}
+//             >
+//                 {this.renderMarkers()}
+//             </GoogleMapReact>
+//         </div>
+//     )
+// }
+
+// export default SimpleMap
 
 class SimpleMap extends Component {
 
     componentDidMount() {
-        console.log(this.props);
+        // console.log(this.props);
     }
 
     state = {
         showInfoWindow: false,
         index: "",
-        // lat: this.props.wellLocation.latitude,
-        // lng: this.props.wellLocation.longitude
         lat: this.props.center.lat,
         lng: this.props.center.lng
     }
@@ -39,8 +55,7 @@ class SimpleMap extends Component {
     }
 
     renderMarkers = () => {
-        console.log("RENDER MARKERS");
-        console.log(this.props.well)
+
         if (this.props.wellLocation && this.props.wellLocation.latitude && this.props.wellLocation.longitude) {
             return (
                 <Marker

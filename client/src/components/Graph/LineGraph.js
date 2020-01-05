@@ -2,7 +2,8 @@ import React from "react";
 import moment from "moment";
 import { ResponsiveLine } from '@nivo/line';
 
-function MyResponsiveLine(props) {
+const MyResponsiveLine = (props) => {
+
     const oildata = props.well.map(d => (
         {
             "x": moment(d.date).format("MM-DD"),
@@ -16,12 +17,16 @@ function MyResponsiveLine(props) {
         }
     ))
     const waterdata = props.well.map(d => (
-        {
-            "x": moment(d.date).format("MM-DD"),
-            "y": parseInt(d.water)
-        }
+        (d.water === undefined) ?
+            {
+                "x": moment(d.date).format("MM-DD"),
+                "y": 0
+            } :
+            {
+                "x": moment(d.date).format("MM-DD"),
+                "y": parseInt(d.water)
+            }
     ))
-    // console.log(oildata)
 
     const color = "hsl(157, 70%, 50%)";
     const dataProd = [{
@@ -46,7 +51,7 @@ function MyResponsiveLine(props) {
             data={dataProd}
             margin={{ top: 50, right: 60, bottom: 50, left: 60 }}
             xScale={{ type: 'point' }}
-            yScale={{ type: 'linear', stacked: true, min: '0', max: 'auto' }}
+            yScale={{ type: 'linear', stacked: true, min: 'auto', max: 'auto' }}
             curve="linear"
             axisTop={null}
             axisRight={{

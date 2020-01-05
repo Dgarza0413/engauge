@@ -1,7 +1,6 @@
 const db = require("../models");
-const mongoose = require("mongoose");
 
-// Defining methods for the prodController
+// Defining methods for the reportController
 module.exports = {
     findAll: function (req, res) {
         db.Report
@@ -23,11 +22,12 @@ module.exports = {
             if (err) {
                 console.log(err);
             } else {
-                db.Report.create(req.body, function (err, prod) {
+                db.Report.create(req.body, function (err, report) {
                     if (err) {
                         console.log(err);
                     } else {
-                        well.reportId.push(prod);
+                        console.log(report)
+                        well.reportId.push(report);
                         well.save();
                     }
                 });

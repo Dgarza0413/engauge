@@ -1,7 +1,7 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
 import Card from "../Card";
-import Moment from "react-moment";
+import moment from "moment"
 
 // const calculateData = data => {
 //     // console.log("this is the well data: " + JSON.stringify(data));
@@ -26,7 +26,7 @@ import Moment from "react-moment";
 //     console.log("testing" + JSON.stringify(totalData));
 // }
 
-function WellTableProd(props) {
+const ProdTable = ({ well }) => {
     return (
         <div>
             {/* <Table striped bordered hover> */}
@@ -43,9 +43,10 @@ function WellTableProd(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {props.well.map(w => (
-                            <tr key={w.id}>
-                                <td><Moment format="MM/DD/YYYY">{w.date}</Moment></td>
+                        {well.map((w, i) => (
+                            // <tr key={w.id}>
+                            <tr key={i}>
+                                <td>{moment(w.date).format("MM/DD/YYYY")}</td>
                                 <td>{w.oil}</td>
                                 <td>{w.gas}</td>
                                 <td>{w.water}</td>
@@ -60,4 +61,4 @@ function WellTableProd(props) {
     );
 }
 
-export default WellTableProd;
+export default ProdTable;

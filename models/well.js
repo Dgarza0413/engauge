@@ -6,7 +6,7 @@ const wellSchema = new Schema({
     wellNum: { type: String }, // form w1.5
     wellType: { type: String },
     apiNum: { type: String }, // form w1 (top)
-    operatorName: { type: String }, // form w1.2
+    operatorName: { type: String, default: "" }, // form w1.2
     leaseName: { type: String }, // form w1.4
     county: { type: String }, // form w1.13
     fieldList: { // form w1.28-32
@@ -29,11 +29,11 @@ const wellSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Production"
     }],
-    report: [{
+    reportId: [{
         type: Schema.Types.ObjectId,
         ref: "Report"
     }],
-    recompletion:[{
+    recompletionId: [{
         type: Schema.Types.ObjectId,
         ref: "Recompletion"
     }]

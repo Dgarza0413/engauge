@@ -3,16 +3,34 @@ import PageWrapper from "../components/PageWrapper";
 import SectionTitle from "../components/SectionTitle";
 import API from "../utils/API";
 import moment from 'moment';
-import GraphLine2 from "../components/GraphLineRev";
-import Card from "../components/Card";
+// import GraphLine2 from "../components/Graph/LineRevGraph";
+// import Card from "../components/Card";
 import { Col } from "react-bootstrap";
 
 
-const styles = {
-    graph: {
-        "height": "75vh"
-    }
-}
+// const styles = {
+//     graph: {
+//         "height": "75vh"
+//     }
+// }
+
+// const oilPrices = async () => {
+//     const url = "http://www.quandl.com/api/v3/datasets/CHRIS/CME_CL1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01")
+// }
+// .get("/getoilprices", (req, res, date) => {
+//     apikey = process.env.STOCKAPIKEY;
+//     axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_CL1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
+//         res.json(response.data)
+//     })
+// })
+
+// .get("/getgasprices", (req, res, date) => {
+//     apikey = process.env.STOCKAPIKEY;
+//     console.log("month: ", date.date);
+//     axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
+//         res.json(response.data)
+//     })
+// })
 
 class Revenue extends React.Component {
     // constructor() {
@@ -75,12 +93,12 @@ class Revenue extends React.Component {
                     gasRev: Object.values(newObj3)
                 })
                 // const newObj3 = []
-                // this.state.wellData.forEach((itm, i) => {
-                //     newObj3.push(Object.assign({}, itm, this.state.gasPrices[i]));
-                // })
+                this.state.wellData.forEach((itm, i) => {
+                    newObj3.push(Object.assign({}, itm, this.state.gasPrices[i]));
+                })
                 // console.log(Object.values(newObj3))
-                console.log(this.state.gasPrices)
-                console.log(this.state.gasRev)
+                // console.log(this.state.gasPrices)
+                // console.log(this.state.gasRev)
                 // console.log(this.state.wellData)
             })
             .catch(err => {
@@ -92,7 +110,7 @@ class Revenue extends React.Component {
         // call APIs on page load
         this.getOil();
         this.getGas();
-        API.getAllProd()
+        API.getAllProdData()
             .then(res => {
                 const obj = res.data;
                 const newObj = [];
@@ -100,12 +118,12 @@ class Revenue extends React.Component {
                     const date = moment(obj[i].date).format("MM/DD/YYYY");
                     if (!newObj[date]) {
                         newObj[date] =
-                            {
-                                date: date,
-                                water: [],
-                                oil: [],
-                                gas: []
-                            }
+                        {
+                            date: date,
+                            water: [],
+                            oil: [],
+                            gas: []
+                        }
                         newObj[date].oil.push(obj[i].oil)
                         newObj[date].gas.push(obj[i].gas)
                         newObj[date].water.push(obj[i].water)
@@ -140,7 +158,7 @@ class Revenue extends React.Component {
             <PageWrapper>
                 <SectionTitle>Revenue Page</SectionTitle>
                 <Col lg="12">
-                    <Card >
+                    {/* <Card >
                         <div style={styles.graph}>
                             <GraphLine2
                                 oilPrice={this.state.oilPrices}
@@ -148,7 +166,7 @@ class Revenue extends React.Component {
                                 gasRev={this.state.gasRev}
                             />
                         </div>
-                    </Card>
+                    </Card> */}
                 </Col>
             </PageWrapper>
         );

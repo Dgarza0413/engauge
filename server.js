@@ -1,8 +1,10 @@
-require('dotenv').config()
-const express = require('express')
-const session = require('express-session')
-const mongoose = require('mongoose')
-const path = require('path')
+require('dotenv').config();
+const express = require('express');
+const graphqlHTTP = require('express-graphql');
+const { buildSchema } = require('graphql');
+const session = require('express-session');
+const mongoose = require('mongoose');
+const path = require('path');
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001
@@ -26,7 +28,11 @@ app.use(routes);
 
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/engauge";
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+});
 
 // Start the API server
 app.listen(PORT, function () {

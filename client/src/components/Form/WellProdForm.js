@@ -1,6 +1,6 @@
 import React from "react";
-import PageWrapper from "../components/PageWrapper";
-import API from "../utils/API";
+import PageWrapper from "../PageWrapper";
+import API from "../../utils/API";
 
 class WellProdForm extends React.Component {
     state = {

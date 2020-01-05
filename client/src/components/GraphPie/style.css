@@ -1,9 +1,0 @@
-.half-pie {
-    height: 35vw;
-}
-
-@media screen and (max-width: 991px) {
-    .half-pie {
-        height: 250px;
-    }
-}

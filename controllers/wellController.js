@@ -13,6 +13,7 @@ module.exports = {
         db.Well
             .findById(req.params.id)
             .populate("productionId")
+            .populate("reportId")
             //temp comment out bc breaking well details section
             // .populate("recompletion")
             .then(dbModel => res.json(dbModel))

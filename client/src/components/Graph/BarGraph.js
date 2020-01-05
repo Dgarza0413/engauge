@@ -1,37 +1,32 @@
 import React from "react";
 import { ResponsiveBar } from '@nivo/bar';
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
-function MyResponsiveBar(props) {
+
+const MyResponsiveBar = (props) => {
+
     const data = [
         {
-            "fluid": "Oil",
-            "fuildAmt": props.oil,
+            "id": "Oil",
+            "Oil": props.oil,
         },
         {
-            "fluid": "Gas",
-            "fuildAmt": props.gas,
+            "id": "Gas",
+            "Gas": props.gas,
         },
         {
-            "fluid": "Water",
-            "fuildAmt": props.water,
+            "id": "Water",
+            "Water": props.water,
         }
     ]
 
     return (
         <div className={props.class}>
             <ResponsiveBar
-                data={data}
-                keys={["fuildAmt"]}
-                colors={["#69a8be", "#d5b577"]}
-                indexBy="fluid"
+                data={data || []}
+                keys={['Oil', 'Gas', 'Water']}
+                indexBy="id"
                 margin={{ top: 50, right: 30, bottom: 100, left: 60 }}
                 padding={0.3}
-                // colors={{ scheme: 'nivo' }}
-                colors={["#69a8be", "#d5b577"]}
+                colors={["#6e6e6e", "#dcb567", "#69a8be"]}
                 defs={[
                     {
                         id: 'lines',
@@ -41,29 +36,6 @@ function MyResponsiveBar(props) {
                         size: 4,
                         padding: 1,
                         stagger: true
-                    },
-                    {
-                        id: 'lines',
-                        type: 'patternLines',
-                        background: 'inherit',
-                        color: '#eed312',
-                        rotation: -45,
-                        lineWidth: 6,
-                        spacing: 10
-                    }
-                ]}
-                fill={[
-                    {
-                        match: {
-                            id: 'oilDepthBBLs'
-                        },
-                        id: 'dots'
-                    },
-                    {
-                        match: {
-                            id: 'watchDepthBBLs'
-                        },
-                        id: 'lines'
                     }
                 ]}
                 borderColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
@@ -73,7 +45,7 @@ function MyResponsiveBar(props) {
                     tickSize: 0,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: 'tankNum',
+                    legend: 'Quantity',
                     legendPosition: 'middle',
                     legendOffset: 32
                 }}
