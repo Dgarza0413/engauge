@@ -1,8 +1,14 @@
 import React, { useEffect } from 'react';
 import moment from 'moment';
+import { Redirect } from 'react-router';
 import PageWrapper from "../PageWrapper/index";
 import Card from '../Card';
 import SectionTitle from '../SectionTitle';
+
+
+import { Grid, Paper, TextField, InputAdornment, Button } from "@material-ui/core";
+// import TextField from "../Input/TextField";
+import Modal from '../Modal/Modal';
 
 // utils
 import API from "../../utils/API";
@@ -10,9 +16,10 @@ import API from "../../utils/API";
 // hooks
 import useInputChange from '../../hooks/useInputChange';
 
-
 const ReportForm = (props) => {
     const [value, handleInputChange, handleBind] = useInputChange()
+
+    console.log(value)
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -47,97 +54,111 @@ const ReportForm = (props) => {
                 <SectionTitle>Report Form</SectionTitle>
                 <form onSubmit={handleFormSubmit}>
                     <Card>
-                        <div className="form-group">
-                            <label htmlFor="summary">Well name</label>
-                            <input
-                                value={value.wellName || ""}
-                                onChange={handleInputChange}
-                                name="wellName"
-                                type="text"
-                                className="form-control"
-                                placeholder="well Name"
-                                id="wellName"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="title">Report title:</label>
-                            <input
-                                value={value.title || ""}
-                                onChange={handleInputChange}
-                                name="title"
-                                type="text"
-                                className="form-control"
-                                placeholder="title"
-                                id="title"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="date">Type</label>
-                            <input
-                                value={value.type || ""}
-                                onChange={handleInputChange}
-                                name="type"
-                                type="text"
-                                className="form-control"
-                                placeholder="Field Work"
-                                id="type"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="summary">summary:</label>
-                            <input
-                                value={value.summary || ""}
-                                onChange={handleInputChange}
-                                name="summary"
-                                type="textArea"
-                                className="form-control"
-                                placeholder="summary"
-                                id="summary"
-                            />
-                        </div>
-                        <div className="form-group">
-                            {/* Add controls for the date handling */}
-                            <label htmlFor="supervisor">Supervisor</label>
-                            <input
-                                value={value.supervisor || ""}
-                                onChange={handleInputChange}
-                                name="supervisor"
-                                type="text"
-                                className="form-control"
-                                placeholder="Mr. John Doe"
-                                id="supervisor"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="cost">Cost</label>
-                            <input
-                                value={value.cost || ""}
-                                onChange={handleInputChange}
-                                name="cost"
-                                type="number"
-                                className="form-control"
-                                placeholder="$ 1000"
-                                id="cost"
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="date">Date</label>
-                            <input
-                                readOnly
-                                value={moment(value.date).format("YYYY-MM-DD")}
-                                // onChange={handleInputChange}
-                                name="date"
-                                type="date"
-                                className="form-control"
-                                placeholder="01/01/20"
-                                id="date"
-                            />
-                        </div>
-
-                        <button className="btn btn-primary" type="submit">
-                            Submit
-                        </button>
+                        <Grid container spacing={3}>
+                            <Grid item xs={4}>
+                                <TextField
+                                    value={moment(value.date).format("YYYY-MM-DD") || ""}
+                                    onChange={handleInputChange}
+                                    name="date"
+                                    type="date"
+                                    label="Date"
+                                    InputLabelProps={{ shrink: true }}
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <TextField
+                                    value={value.wellName || ""}
+                                    onChange={handleInputChange}
+                                    name="wellName"
+                                    label="well Name"
+                                    placeholder="Garza"
+                                    helperText="numbers can be included"
+                                    InputLabelProps={{ shrink: true }}
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={4} >
+                                <TextField
+                                    value={value.wellNum || ""}
+                                    onChange={handleInputChange}
+                                    name="wellNum"
+                                    label="well Number"
+                                    type="number"
+                                    placeholder="1"
+                                    helperText=""
+                                    InputLabelProps={{ shrink: true }}
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    value={value.title || ""}
+                                    onChange={handleInputChange}
+                                    name="title"
+                                    label="Report Title"
+                                    placeholder="Facilites clean up"
+                                    helperText=""
+                                    InputLabelProps={{ shrink: true }}
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    value={value.type || ""}
+                                    onChange={handleInputChange}
+                                    name="type"
+                                    label="Report Type"
+                                    placeholder="facilities"
+                                    helperText=""
+                                    InputLabelProps={{ shrink: true }}
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={12} >
+                                <TextField
+                                    value={value.summary || ""}
+                                    onChange={handleInputChange}
+                                    name="summary"
+                                    label="summary"
+                                    placeholder="...information"
+                                    helperText=""
+                                    InputLabelProps={{ shrink: true }}
+                                    multiline={true}
+                                    rows="6"
+                                    variant="filled"
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    value={value.supervisor || ""}
+                                    onChange={handleInputChange}
+                                    name="supervisor"
+                                    label="supervisor"
+                                    placeholder="Mr. John Doe"
+                                    InputLabelProps={{ shrink: true }}
+                                    helperText=""
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    value={value.cost || ""}
+                                    onChange={handleInputChange}
+                                    name="cost"
+                                    label="cost"
+                                    type="number"
+                                    placeholder="1000"
+                                    InputLabelProps={{ shrink: true }}
+                                    InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }}
+                                    fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={3}>
+                                <Modal handleFormSubmit={handleFormSubmit} />
+                            </Grid>
+                        </Grid>
                     </Card>
                 </form>
             </PageWrapper>

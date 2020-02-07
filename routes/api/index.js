@@ -190,18 +190,11 @@ router.route("/welltable/:id/report/new").post(reportController.create);
 router.route("/welltable/:id/recomp/new").post(recompletionController.create);
 
 // PUT - data - individual well/report
-router.route("/well/:id").put(wellController.update);
+router.route("/well/:id/update").put(wellController.update);
 router.route("/well/:id/report/update").put(reportController.update);
 
 // select specific well
 router.route("/well/:id")
-    .get(wellController.findById)
-    .put(wellController.update)
-    .delete(wellController.remove);
-
-// /api/well/:tankid
-// change to tankController
-router.route("/well/:tankid")
     .get(wellController.findById)
     .put(wellController.update)
     .delete(wellController.remove);

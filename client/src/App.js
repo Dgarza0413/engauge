@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // pages
@@ -14,7 +13,6 @@ import Facility from "./pages/Facility";
 import Revenue from "./pages/Revenue";
 // import Production from "./pages/Production";
 
-
 // components
 import WellRecompForm from "./components/Form/WellRecompForm";
 import NewWellForm from "./components/Form/NewWellForm";
@@ -23,9 +21,6 @@ import ReportForm from './components/Form/ReportForm';
 import ProdForm from './components/Form/ProdForm';
 import Drawer from "./components/Drawer";
 // import Drawer from './components/Drawer/Drawer';
-
-// import W2 from "./pages/W2";
-
 // import WellProdForm from "./pages/WellProdForm";
 // import NoMatch from "./pages/NoMatch";
 
@@ -61,14 +56,12 @@ class App extends React.Component {
     defaultRoutes = () => {
         return (
             <div>
-                {/* <Route exact path="/dashboard" component={DashBoard} /> */}
                 <Route exact path="/dashboard" component={DashBoard} />
                 <Route exact path="/map" component={Map} />
                 <Route exact path="/reports" component={Report} />
                 <Route exact path="/facilities" component={Facility} />
 
-                <Route exact path="/well/:id/update" component={NewWellForm} />
-
+                <Route exact path="/well/:id/update" component={WellForm} />
 
                 <Route exact path="/welltable" component={WellTable} />
                 <Route exact path="/welltable/:id" component={WellDetail} />
@@ -77,7 +70,7 @@ class App extends React.Component {
                 <Route exact path="/welltable/:id/report/update" component={ReportForm} />
                 <Route exact path="/welltable/:id/prod/new" component={ProdForm} />
 
-                <Route exact path="/new-well" component={NewWellForm} />
+                <Route exact path="/new-well" component={WellForm} />
                 <Route exact path="/logout" component={Login} />
                 <Route exact path="/revenue" component={Revenue} />
             </div>

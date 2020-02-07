@@ -1,21 +1,7 @@
 import React from "react";
-import moment from "moment";
 import { ResponsiveLine } from '@nivo/line'
 
 const MyResponsiveLine = (props) => {
-
-    const oilPrice = props.oilPrice.map(d => (
-        {
-            "x": moment(d.date, 'MM/DD/YYYY').format("MM-DD"),
-            "y": parseInt(d.priceOil)
-        }
-    ))
-    const gasPrice = props.gasPrice.map(d => (
-        {
-            "x": moment(d.date, 'MM/DD/YYYY').format("MM-DD"),
-            "y": parseInt(d.priceGas)
-        }
-    ))
 
     const color = "hsl(157, 70%, 50%)";
     const dataProd = [

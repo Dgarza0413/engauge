@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { Container, Row, Col } from 'react-bootstrap';
 
@@ -13,6 +13,8 @@ import SectionTitle from '../components/SectionTitle';
 import FlexContainer from '../components/FlexContainer';
 import SummarizedCard from '../components/Card/SummarizedCard';
 
+import { Typography, Slider } from '@material-ui/core';
+
 // utilities
 import API from '../utils/API';
 
@@ -25,8 +27,6 @@ const DashBoard = () => {
     const [reportData, setReportData] = useState([]);
     const [wellStatus, setWellStatus] = useState({});
     const [userVal, setUserVal] = useState("")
-
-    console.log(prodData[prodData.length - 1])
 
     const styles = {
         graph: {
@@ -173,10 +173,10 @@ const DashBoard = () => {
                     </SectionTitle>
                 </Row>
                 <Row>
-                    <Col md="4">
+                    {/* <Col md="4">
                         <Card>
                             <FlexContainer>
-                                {/* <SectionTitle mb="5px">{this.state.currentProd.oil} BBLs</SectionTitle> */}
+                                <SectionTitle mb="5px">{this.state.currentProd.oil} BBLs</SectionTitle>
                                 <p style={{ marginBottom: "5px" }}><strong>+0.20%</strong></p>
                             </FlexContainer>
                             <h6 className="mb-0">Oil Production</h6>
@@ -185,7 +185,7 @@ const DashBoard = () => {
                     <Col md="4">
                         <Card>
                             <FlexContainer>
-                                {/* <SectionTitle mb="5px">{this.state.currentProd.gas} MCF</SectionTitle> */}
+                                <SectionTitle mb="5px">{this.state.currentProd.gas} MCF</SectionTitle>
                                 <p style={{ marginBottom: '5px' }}>
                                     <strong>+0.20%</strong>
                                 </p>
@@ -196,20 +196,28 @@ const DashBoard = () => {
                     <Col md="4">
                         <Card>
                             <FlexContainer>
-                                {/* <SectionTitle mb="5px">{this.state.currentProd.water} BBLs</SectionTitle> */}
+                                <SectionTitle mb="5px">{this.state.currentProd.water} BBLs</SectionTitle>
                                 <p style={{ marginBottom: '5px' }}>
                                     <strong>+0.20%</strong>
                                 </p>
                             </FlexContainer>
                             <h6 className="mb-0">Water Production</h6>
                         </Card>
-                    </Col>
+                    </Col> */}
                     <Col lg="12">
                         <Card>
                             <SectionTitle>Production</SectionTitle>
                             <div style={styles.graph}>
                                 <GraphLine well={prodData || []} />
                             </div>
+                            <Slider
+                                // value={value}
+                                // onChange={handleChange}
+                                valueLabelDisplay="auto"
+                                aria-labelledby="range-slider"
+                            // getAriaValueText={valuetext}
+                            />
+                            <Typography id="range-slider" gutterBottom>Date range</Typography>
                         </Card>
                     </Col>
                     <Col lg="6">

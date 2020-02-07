@@ -3,7 +3,7 @@ import moment from 'moment';
 import SectionTitle from '../../components/SectionTitle';
 import Card from '../../components/Card';
 
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Button from '../Button';
 import './style.css';
 
@@ -12,11 +12,11 @@ const ReportCard = ({ title, summary, supervisor, date, cost, id }) => {
     return (
         <div>
             <Card>
-                <SectionTitle mb="5px">{title}</SectionTitle>
-                <div>{summary}</div>
-                <div>Supervisor: {supervisor}</div>
+                <SectionTitle mb="5px">{title || "no title"}</SectionTitle>
+                <div>{summary || "no summary"}</div>
+                <div>Supervisor: {supervisor || "no supervisor"}</div>
                 <div>Date: {moment(date).format("MM/DD/YYYY")}</div>
-                <div>{cost}</div>
+                <div>Cost: {cost || "no cost"}</div>
                 <Link to={{
                     pathname: "/welltable/" + id + "/report/update",
                     aboutProps: {
@@ -28,7 +28,7 @@ const ReportCard = ({ title, summary, supervisor, date, cost, id }) => {
                         id: id,
                     }
                 }}>
-                    <Button>Edit</Button>
+                    <button>Edit</button>
                 </Link>
             </Card>
         </div>

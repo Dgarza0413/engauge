@@ -11,11 +11,6 @@ const MyResponsivePie = (props) => {
             "label": "Wells Online",
             "value": parseInt(props.wellStatus.isOn),
             "color": "hsl(323, 70%, 50%)",
-            // "children": [
-            //     {
-            //         "name": "test"
-            //     }
-            // ]
         },
         {
             "id": "Inactive",
@@ -29,9 +24,6 @@ const MyResponsivePie = (props) => {
             <ResponsivePie
                 data={data}
                 margin={{ top: 0, right: 50, bottom: 80, left: 50 }}
-                // innerRadius={0.8}
-                // padAngle={0.7}
-                // colors={{ scheme: 'orange_red' }}
                 colors={["#84bfd3", "#acaeaf"]}
                 borderWidth={3}
                 borderColor="#ffffff"

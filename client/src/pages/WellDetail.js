@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from "react-redux";
+import { addWell } from '../redux/actions/actions';
+
+
 import { Container, Row, Col } from 'react-bootstrap';
 
 import API from '../utils/API';
@@ -14,11 +18,17 @@ import Card from '../components/Card';
 import SectionTitle from '../components/SectionTitle';
 import ButtonList from '../components/Lists/ButtonList';
 import WellInfoList from "../components/Lists/WellInfoList";
+import DailyProdList from '../components/Lists/DailyProdList';
+import TabBar from '../components/TabBar/TabBar';
 
 const WellDetail = (props) => {
   const [wellData, setWellData] = useState({});
+  const [input, setInput] = useState({})
 
-  console.log(wellData)
+  const handleAddWell = () => {
+    props.addWell(input)
+    setInput({ input: "" })
+  }
 
   const getWellIdData = async () => {
     try {
@@ -49,8 +59,8 @@ const WellDetail = (props) => {
         wellNum: res.wellNum,
         tempLat: res.latLong.latitude,
         tempLng: res.latLong.longitude,
-        totalOil: totalOil,
-        totalGas: totalGas,
+        totalOil: totalOil || 0,
+        totalGas: totalGas || 0,
         totalWater: totalWater || 0,
         productionId: res.productionId,
         reportId: res.reportId
@@ -71,10 +81,12 @@ const WellDetail = (props) => {
     <PageWrapper>
       <Container>
         <Row>
-
           <Col lg="12">
             <ButtonList id={props.match.params.id} />
+
             <WellInfoList wellData={wellData.res || []} />
+
+            {/* <DailyProdList /> */}
             <Card>
               <SectionTitle>Prod Summary</SectionTitle>
               <div style={{ height: '40vw' }}>
@@ -113,14 +125,20 @@ const WellDetail = (props) => {
             </Card>
           </Col>
         </Row>
-        <ProdTable
+        <TabBar
           well={wellData.productionId || []}
-          key={wellData._id}
-        />
-        <ReportTable
           reportData={wellData.reportId || []}
           key={wellData._id}
         />
+        {/* <ProdTable
+            well={wellData.productionId || []}
+            key={wellData._id}
+          />
+          <ReportTable
+            reportData={wellData.reportId || []}
+            key={wellData._id}
+          />
+        </TabBar> */}
       </Container>
     </PageWrapper>
   );

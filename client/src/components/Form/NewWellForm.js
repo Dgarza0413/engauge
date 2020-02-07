@@ -5,9 +5,7 @@ import PageWrapper from "../PageWrapper";
 import SectionTitle from "../SectionTitle";
 
 const NewWellForm = (props) => {
-    console.log(props)
     const pathName = props.match.path
-    console.log(pathName)
     return (
         <PageWrapper>
             {
