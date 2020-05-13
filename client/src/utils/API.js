@@ -27,6 +27,7 @@ export default {
     createWellData: (wellData) => { return axios.post("/api/create-well-data", wellData); },
 
     // API requests
+    getOil: () => { return axios.get('/api/oil') },
     getOilPrices: (month) => { return axios.get("/api/getoilprices", month) },
     getGasPrices: (month) => { return axios.get("/api/getgasprices", month) },
 

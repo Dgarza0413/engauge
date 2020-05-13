@@ -5,17 +5,20 @@ const recompletionSchema = new Schema({
     // begin form W-2
     spudDate: { type: Date }, // form w2.12a
     fieldAndReservoir: [{ type: String }], // can have multiple inputs. form w2.13
-    testData: { 
-        testDate: Date, 
-        hoursTested: Number, 
-        prodMethod: String, 
-        chokeSize: String }, // form w2.15-18
-    totalDepth: { 
-        tvdTD: Number, 
-        mdTD: Number,  }, // form w2.31
-    plugBackDepth: { 
-        tvdPBD: Number, 
-        mdPBD: Number,  }, // form w2.32
+    testData: {
+        testDate: Date,
+        hoursTested: Number,
+        prodMethod: String,
+        chokeSize: String
+    }, // form w2.15-18
+    totalDepth: {
+        tvdTD: Number,
+        mdTD: Number,
+    }, // form w2.31
+    plugBackDepth: {
+        tvdPBD: Number,
+        mdPBD: Number,
+    }, // form w2.32
     casingRecord: [{ // form w2.36
         casingType: String,
         casingSize: Number,
@@ -42,14 +45,16 @@ const recompletionSchema = new Schema({
         formationType: String,
         isIsolated: Boolean
     }],
-  // tanks: [{
-  //   size: Number, // barrels (bbls)
-  //   bblsPerInch: Number,
-  //   oilDepth: Number,
-  //   waterDepth: Number,
-  //   runTicket: String
-  // }],
-    date: { type: Date, default: Date.now }
+    // tanks: [{
+    //   size: Number, // barrels (bbls)
+    //   bblsPerInch: Number,
+    //   oilDepth: Number,
+    //   waterDepth: Number,
+    //   runTicket: String
+    // }],
+    date: {
+        type: Date, default: Date.now
+    }
 });
 
 module.exports = mongoose.model("Recompletion", recompletionSchema);

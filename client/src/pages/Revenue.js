@@ -4,7 +4,7 @@ import SectionTitle from "../components/SectionTitle";
 import API from "../utils/API";
 import moment from 'moment';
 // import GraphLine2 from "../components/Graph/LineRevGraph";
-// import Card from "../components/Card";
+import Card from "../components/Card";
 import { Col } from "react-bootstrap";
 
 
@@ -108,8 +108,12 @@ class Revenue extends React.Component {
 
     componentDidMount() {
         // call APIs on page load
-        this.getOil();
-        this.getGas();
+        // this.getOil();
+        API.getOil().then(res => {
+            console.log(res)
+        })
+        // this.getOil();
+        // this.getGas();
         API.getAllProdData()
             .then(res => {
                 const obj = res.data;
@@ -158,15 +162,15 @@ class Revenue extends React.Component {
             <PageWrapper>
                 <SectionTitle>Revenue Page</SectionTitle>
                 <Col lg="12">
-                    {/* <Card >
-                        <div style={styles.graph}>
+                    <Card >
+                        {/* <div style={styles.graph}>
                             <GraphLine2
                                 oilPrice={this.state.oilPrices}
                                 gasPrice={this.state.gasPrices}
                                 gasRev={this.state.gasRev}
                             />
-                        </div>
-                    </Card> */}
+                        </div> */}
+                    </Card>
                 </Col>
             </PageWrapper>
         );

@@ -6,6 +6,10 @@ const prodController = require("../../controllers/prodController");
 const reportController = require("../../controllers/reportController");
 const recompletionController = require("../../controllers/recompletionController");
 const passport = require('../../config/passport.js')
+const puppeteer = require('puppeteer');
+const axios = require('axios')
+
+const eiaKEY = '990b432b4775983b2a47b8ee7e5e2795'
 // const { google } = require("googleapis")
 // const google = require("googleapis").google
 // const db = require("../../models")
@@ -199,21 +203,49 @@ router.route("/well/:id")
     .put(wellController.update)
     .delete(wellController.remove);
 
-// stock api calls
-// router.get("/getoilprices", (req, res, date) => {
-//     apikey = process.env.STOCKAPIKEY;
-//     axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_CL1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
-//         res.json(response.data)
-//     })
-// })
+router.get('/oil', async (req, res) => {
+    //     const browser = await puppeteer.launch();
+    //     const page = await browser.newPage();
+    //     await page.goto('https://www.eia.gov/dnav/ng/ng_pri_sum_dcu_nus_m.htm');
+    //     await page.screenshot({ path: 'example.png' });
+    //     await browser.close();
+    // console.log('something')
+    try {
+        //menu
+        // const data = await axios.get(`http://api.eia.gov/category/?api_key=${eiaKEY}&category_id=371`)
+        //pet cat id
+        // const data = await axios.get(`http://api.eia.gov/category/?api_key=${eiaKEY}&category_id=714755`)714757
+        //petroleum prices
+        // const data = await axios.get(`http://api.eia.gov/category/?api_key=${eiaKEY}&category_id=714757`)
+        // prices by area
+        // const data = await axios.get(`http://api.eia.gov/category/?api_key=${eiaKEY}&category_id=293607`)
+        // texas prices oil
+        const data = await axios.get(`http://api.eia.gov/series/?api_key=${eiaKEY}&series_id=PET.F003048__3.M`)
+        // const data = await axios.get(`https://api.eia.gov/series/?api_key=990b432b4775983b2a47b8ee7e5e2795&series_id=PET.F003048__3.M`)
+        // console.log(data)
+        res.json(data.data)
+    } catch (error) {
+        console.error(error)
+    }
 
-// router.get("/getgasprices", (req, res, date) => {
-//     apikey = process.env.STOCKAPIKEY;
-//     console.log("month: ", date.date);
-//     axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
-//         res.json(response.data)
-//     })
-// })
+})
+
+// stock api calls
+router.get("/getoilprices", async (req, res, date) => {
+    apikey = process.env.STOCKAPIKEY;
+    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_CL1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
+        res.json(response.data)
+    })
+})
+
+router.get("/getgasprices", async (req, res, date) => {
+    apikey = process.env.STOCKAPIKEY;
+    console.log("month: ", date.date);
+    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
+        console.log(response.data)
+        res.json(response.data)
+    })
+})
 
 
 module.exports = router;
