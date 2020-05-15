@@ -19,6 +19,7 @@ import mapstyle from "./mapstyle.json";
 //         </div>
 //     )
 // }
+// recreate with functional component
 
 // export default SimpleMap
 
