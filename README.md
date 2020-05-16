@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+# Engauge
+=======
 # Engauge : An Oil Well Respository
 Engauge is a data repository where oil companies can store, organize and visualize their data in beautiful infographics and specialized tables. This app enables the creation of well tables, shows detailed information on each well and has a dashboard for quick access to summary statistics on oil, gas and water production, the location of well sites and draws financial data from an API to populate the price of oil production based on current data.
 
@@ -29,3 +32,4 @@ Engauge is a data repository where oil companies can store, organize and visuali
 * [MongoDB](https://www.npmjs.com/package/mongodb)
 * [Mongoose](https://www.npmjs.com/package/mongoose)
 * [Passport](https://www.npmjs.com/package/passport)
+>>>>>>> ddd360cfe8f3c117f0a5c4de63df74f3ebee13a1

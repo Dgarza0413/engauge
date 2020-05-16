@@ -3,9 +3,13 @@ const router = require("express").Router();
 const userController = require("../../controllers/userController");
 const wellController = require("../../controllers/wellController");
 const prodController = require("../../controllers/prodController");
+const reportController = require("../../controllers/reportController");
 const recompletionController = require("../../controllers/recompletionController");
 const passport = require('../../config/passport.js')
-const axios = require("axios");
+const puppeteer = require('puppeteer');
+const axios = require('axios')
+
+const eiaKEY = '990b432b4775983b2a47b8ee7e5e2795'
 // const { google } = require("googleapis")
 // const google = require("googleapis").google
 // const db = require("../../models")
@@ -174,58 +178,75 @@ router.route("/user/:id")
     .put(userController.update)
     .delete(userController.remove);
 
-// list all wells       // remove for production
-// /api/wells
-router.route("/wells")
-    .get(wellController.findAll);
-// /api/addWell
-router.route("/addWell")
-    .post(wellController.create);
+// GET - data - all wells
+router.route("/well-data").get(wellController.findAll);
+router.route("/prod-data").get(prodController.findAll);
+router.route("/report-data").get(reportController.findAll);
 
-router.route("/welltable/:id/prod")
-    .get(prodController.findById)
+// Get - data - individual wells
+router.route("/welltable/:id/prod").get(prodController.findById)
+router.route("/welltable/:id/recomp").get(recompletionController.findById)
 
-router.route("/prodAll")
-    .get(prodController.findAll);
+// POST - data - individual wells
+router.route("/create-well-data").post(wellController.create);
+router.route("/welltable/:id/prod/new").post(prodController.create);
+router.route("/welltable/:id/report/new").post(reportController.create);
+router.route("/welltable/:id/recomp/new").post(recompletionController.create);
 
-router.route("/welltable/:id/prod/new")
-    .post(prodController.create);
+// PUT - data - individual well/report
+router.route("/well/:id/update").put(wellController.update);
+router.route("/well/:id/report/update").put(reportController.update);
 
 // select specific well
-// /api/well/:id
 router.route("/well/:id")
     .get(wellController.findById)
     .put(wellController.update)
     .delete(wellController.remove);
 
-// /api/well/:tankid
-// change to tankController
-router.route("/well/:tankid")
-    .get(wellController.findById)
-    .put(wellController.update)
-    .delete(wellController.remove);
+router.get('/oil', async (req, res) => {
+    //     const browser = await puppeteer.launch();
+    //     const page = await browser.newPage();
+    //     await page.goto('https://www.eia.gov/dnav/ng/ng_pri_sum_dcu_nus_m.htm');
+    //     await page.screenshot({ path: 'example.png' });
+    //     await browser.close();
+    // console.log('something')
+    try {
+        //menu
+        // const data = await axios.get(`http://api.eia.gov/category/?api_key=${eiaKEY}&category_id=371`)
+        //pet cat id
+        // const data = await axios.get(`http://api.eia.gov/category/?api_key=${eiaKEY}&category_id=714755`)714757
+        //petroleum prices
+        // const data = await axios.get(`http://api.eia.gov/category/?api_key=${eiaKEY}&category_id=714757`)
+        // prices by area
+        // const data = await axios.get(`http://api.eia.gov/category/?api_key=${eiaKEY}&category_id=293607`)
+        // texas prices oil
+        const data = await axios.get(`http://api.eia.gov/series/?api_key=${eiaKEY}&series_id=PET.F003048__3.M`)
+        // const data = await axios.get(`https://api.eia.gov/series/?api_key=990b432b4775983b2a47b8ee7e5e2795&series_id=PET.F003048__3.M`)
+        // console.log(data)
+        res.json(data.data)
+    } catch (error) {
+        console.error(error)
+    }
 
-router.route("/welltable/:id/recomp/new")
-    .post(recompletionController.create);
-
-router.route("/welltable/:id/recomp")
-    .get(recompletionController.findById)
-
-router.route("/well/:id")
-    .put(wellController.update)
+})
 
 // stock api calls
-router.get("/getoilprices", (req, res, date) => {
+router.get("/getoilprices", async (req, res, date) => {
     apikey = process.env.STOCKAPIKEY;
     axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_CL1.json?api_key=" + apikey + "&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
         res.json(response.data)
     })
 })
 
-router.get("/getgasprices", (req, res, date) => {
+router.get("/getgasprices", async (req, res, date) => {
     apikey = process.env.STOCKAPIKEY;
     console.log("month: ", date.date);
+<<<<<<< HEAD
+    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
+        console.log(response.data)
+=======
     axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=" + apikey + "&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
+>>>>>>> ddd360cfe8f3c117f0a5c4de63df74f3ebee13a1
         res.json(response.data)
     })
 })

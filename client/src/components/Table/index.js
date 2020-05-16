@@ -1,8 +1,14 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
+<<<<<<< HEAD
+import FormControl from 'react-bootstrap/FormControl';
+import InputGroup from 'react-bootstrap/InputGroup';
+import ToggleButton from "../Button/ToggleButton";
+=======
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import ToggleButton from "./toggleButton";
+>>>>>>> ddd360cfe8f3c117f0a5c4de63df74f3ebee13a1
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import Card from "../Card";
@@ -15,7 +21,7 @@ class WellTable extends React.Component {
   };
 
     handleChange = e => {
-        const { name, value }= e.target;
+        const { name, value } = e.target;
         this.setState({
             [name]: value,
         });
@@ -25,21 +31,21 @@ class WellTable extends React.Component {
         return (
             <div>
                 <InputGroup className="mb-3">
-                <Form.Group
-                    as={InputGroup.Prepend}
-                    variant="outline-secondary"
-                    controlId="exampleForm.ControlSelect1"
-                >
-                    <InputGroup.Text>Filter By</InputGroup.Text>
-                    <FormControl as="select"  name="dropDown" onChange={this.handleChange} value={this.state.dropDown}>
-                        <option value="wellName">Well Name</option>
-                        <option value="apiNum">API Number</option>
-                    </FormControl>
-                </Form.Group>
-                <FormControl aria-describedby="basic-addon1" name="filter"
-                    onChange={this.handleChange}
-                    value={this.state.filter} 
-                    placeholder="Search"/>
+                    <Form.Group
+                        as={InputGroup.Prepend}
+                        variant="outline-secondary"
+                        controlId="exampleForm.ControlSelect1"
+                    >
+                        <InputGroup.Text>Filter By</InputGroup.Text>
+                        <FormControl as="select" name="dropDown" onChange={this.handleChange} value={this.state.dropDown}>
+                            <option value="wellName">Well Name</option>
+                            <option value="apiNum">API Number</option>
+                        </FormControl>
+                    </Form.Group>
+                    <FormControl aria-describedby="basic-addon1" name="filter"
+                        onChange={this.handleChange}
+                        value={this.state.filter}
+                        placeholder="Search" />
                 </InputGroup>
                 <Card padding="0" overflow="auto">
                     <Table>
@@ -55,18 +61,25 @@ class WellTable extends React.Component {
                             {this.props.wells
                                 .filter(well => {
                                     return well[this.state.dropDown].toString()
-                                    .startsWith(this.state.filter.toLowerCase());
-                                }).map(well => { 
+                                        .startsWith(this.state.filter.toLowerCase());
+                                }).map(well => {
                                     return (
                                         <tr key={well._id}>
+                                            {/* <tr key={i}> */}
                                             <td>
-                                                <Link to={"/welltable/" + well._id}>
+                                                <Link to={{
+                                                    pathname: "/welltable/" + well._id,
+                                                    aboutProps: {
+                                                        wellName: well.wellName,
+                                                        wellNumber: well.wellNum
+                                                    }
+                                                }}>
                                                     {well.wellName}
                                                 </Link>
                                             </td>
                                             <td>{well.wellNum}</td>
                                             <td>{well.apiNum}</td>
-                                            <td><ToggleButton isOn={well.isOn} name={well.wellName} id={well._id}/></td>
+                                            <td><ToggleButton isOn={well.isOn} name={well.wellName} id={well._id} /></td>
                                         </tr>
                                     )
                                 })}
