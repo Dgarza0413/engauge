@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import { Container, Row, Col } from 'react-bootstrap';
 
 // Components
 import Calendar from '../components/Graph/CalendarGraph';
@@ -12,8 +11,7 @@ import Card from '../components/Card';
 import SectionTitle from '../components/SectionTitle';
 import FlexContainer from '../components/FlexContainer';
 import SummarizedCard from '../components/Card/SummarizedCard';
-
-import { Typography, Slider } from '@material-ui/core';
+import { Container, Row, Col } from 'react-bootstrap';
 
 // utilities
 import API from '../utils/API';
@@ -210,14 +208,14 @@ const DashBoard = () => {
                             <div style={styles.graph}>
                                 <GraphLine well={prodData || []} />
                             </div>
-                            <Slider
+                            {/* <Slider
                                 // value={value}
                                 // onChange={handleChange}
-                                valueLabelDisplay="auto"
-                                aria-labelledby="range-slider"
+                                // valueLabelDisplay="auto"
+                                // aria-labelledby="range-slider"
                             // getAriaValueText={valuetext}
-                            />
-                            <Typography id="range-slider" gutterBottom>Date range</Typography>
+                            // /> */}
+                            {/* <Typography id="range-slider" gutterBottom>Date range</Typography> */}
                         </Card>
                     </Col>
                     <Col lg="6">

@@ -1,19 +1,22 @@
 import React from "react";
 import { ResponsiveLine } from '@nivo/line'
+import moment from 'moment'
 
-const MyResponsiveLine = (props) => {
+const MyResponsiveLine = ({ oil, gas }) => {
+    console.log(oil)
+    console.log(gas)
 
     const color = "hsl(157, 70%, 50%)";
     const dataProd = [
         {
             "id": "oilPrice",
             "color": color,
-            "data": oilPrice
+            "data": oil
         },
         {
             "id": "gasPrice",
             "color": color,
-            "data": gasPrice
+            "data": gas
         }
     ]
     return (
