@@ -23,3 +23,4 @@ const useInputChange = () => {
 }
 
 export default useInputChange;
+

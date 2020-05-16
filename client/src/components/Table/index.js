@@ -1,24 +1,18 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-<<<<<<< HEAD
 import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 import ToggleButton from "../Button/ToggleButton";
-=======
-import FormControl from "react-bootstrap/FormControl";
-import InputGroup from "react-bootstrap/InputGroup";
-import ToggleButton from "./toggleButton";
->>>>>>> ddd360cfe8f3c117f0a5c4de63df74f3ebee13a1
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import Card from "../Card";
 import "./style.css";
 
 class WellTable extends React.Component {
-  state = {
-    filter: "",
-    dropDown: "wellName"
-  };
+    state = {
+        filter: "",
+        dropDown: "wellName"
+    };
 
     handleChange = e => {
         const { name, value } = e.target;

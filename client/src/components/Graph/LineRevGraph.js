@@ -3,20 +3,31 @@ import { ResponsiveLine } from '@nivo/line'
 import moment from 'moment'
 
 const MyResponsiveLine = ({ oil, gas }) => {
-    console.log(oil)
-    console.log(gas)
-
     const color = "hsl(157, 70%, 50%)";
+
+    const oildata = oil.map(d => (
+        {
+            "x": moment(d.date).format("MM-DD"),
+            "y": parseInt(d.price)
+        }
+    ))
+    const gasdata = gas.map(d => (
+        {
+            "x": moment(d.date).format("MM-DD"),
+            "y": parseInt(d.price)
+        }
+    ))
+
     const dataProd = [
         {
             "id": "oilPrice",
             "color": color,
-            "data": oil
+            "data": oildata
         },
         {
             "id": "gasPrice",
             "color": color,
-            "data": gas
+            "data": gasdata
         }
     ]
     return (

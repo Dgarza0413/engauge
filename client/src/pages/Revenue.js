@@ -20,9 +20,6 @@ const Revenue = () => {
     const currentProd = useState([])
     const gasRev = useState([])
 
-    console.log(oilPrices)
-    console.log(gasPrices)
-
     const getOil = async () => {
         // const obj = { date: date };
         try {
@@ -113,11 +110,13 @@ const Revenue = () => {
         <PageWrapper>
             <SectionTitle>Revenue Page</SectionTitle>
             <Col lg="12">
-                <Card styles={styles.graph}>
-                    <Graph
-                        oil={oilPrices}
-                        gas={gasPrices}
-                    />
+                <Card>
+                    <div style={styles.graph}>
+                        <Graph
+                            oil={oilPrices}
+                            gas={gasPrices}
+                        />
+                    </div>
                 </Card>
             </Col>
         </PageWrapper>

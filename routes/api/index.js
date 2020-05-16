@@ -204,22 +204,7 @@ router.route("/well/:id")
     .delete(wellController.remove);
 
 router.get('/oil', async (req, res) => {
-    //     const browser = await puppeteer.launch();
-    //     const page = await browser.newPage();
-    //     await page.goto('https://www.eia.gov/dnav/ng/ng_pri_sum_dcu_nus_m.htm');
-    //     await page.screenshot({ path: 'example.png' });
-    //     await browser.close();
-    // console.log('something')
     try {
-        //menu
-        // const data = await axios.get(`http://api.eia.gov/category/?api_key=${eiaKEY}&category_id=371`)
-        //pet cat id
-        // const data = await axios.get(`http://api.eia.gov/category/?api_key=${eiaKEY}&category_id=714755`)714757
-        //petroleum prices
-        // const data = await axios.get(`http://api.eia.gov/category/?api_key=${eiaKEY}&category_id=714757`)
-        // prices by area
-        // const data = await axios.get(`http://api.eia.gov/category/?api_key=${eiaKEY}&category_id=293607`)
-        // texas prices oil
         const data = await axios.get(`http://api.eia.gov/series/?api_key=${eiaKEY}&series_id=PET.F003048__3.M`)
         // const data = await axios.get(`https://api.eia.gov/series/?api_key=990b432b4775983b2a47b8ee7e5e2795&series_id=PET.F003048__3.M`)
         // console.log(data)
@@ -241,12 +226,7 @@ router.get("/getoilprices", async (req, res, date) => {
 router.get("/getgasprices", async (req, res, date) => {
     apikey = process.env.STOCKAPIKEY;
     console.log("month: ", date.date);
-<<<<<<< HEAD
     axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=ekLznknawZDukejxmwxf&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
-        console.log(response.data)
-=======
-    axios.get("http://www.quandl.com/api/v3/datasets/CHRIS/CME_NG1.json?api_key=" + apikey + "&column_index=1&order=asc&start_date=" + date.date + "-01").then((response) => {
->>>>>>> ddd360cfe8f3c117f0a5c4de63df74f3ebee13a1
         res.json(response.data)
     })
 })
