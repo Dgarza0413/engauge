@@ -26,6 +26,8 @@ const DashBoard = () => {
     const [wellStatus, setWellStatus] = useState({});
     const [userVal, setUserVal] = useState("")
 
+    console.log(prodData)
+
     const styles = {
         graph: {
             height: '25vw',
@@ -46,17 +48,14 @@ const DashBoard = () => {
     const getAllWellData = async () => {
         try {
             const res = await API.getAllWellData()
-            const data = res.data
+            const data = await res.data
+            const isOff = await data.map(status => status.isOn).filter(v => v === false).length
+            const isOn = await data.map(status => status.isOn).filter(v => v === true).length
 
-            const isOff = data.map(status => status.isOn).filter(v => v === false).length
-            const isOn = data.map(status => status.isOn).filter(v => v === true).length
-
-            setWellStatus(
-                {
-                    isOff: isOff,
-                    isOn: isOn
-                }
-            )
+            setWellStatus({
+                isOff: isOff,
+                isOn: isOn
+            })
         } catch (error) {
             console.error(error)
         }
@@ -171,10 +170,10 @@ const DashBoard = () => {
                     </SectionTitle>
                 </Row>
                 <Row>
-                    {/* <Col md="4">
+                    <Col md="4">
                         <Card>
                             <FlexContainer>
-                                <SectionTitle mb="5px">{this.state.currentProd.oil} BBLs</SectionTitle>
+                                {/* <SectionTitle mb="5px">{this.state.currentProd.oil} BBLs</SectionTitle> */}
                                 <p style={{ marginBottom: "5px" }}><strong>+0.20%</strong></p>
                             </FlexContainer>
                             <h6 className="mb-0">Oil Production</h6>
@@ -183,7 +182,7 @@ const DashBoard = () => {
                     <Col md="4">
                         <Card>
                             <FlexContainer>
-                                <SectionTitle mb="5px">{this.state.currentProd.gas} MCF</SectionTitle>
+                                {/* <SectionTitle mb="5px">{this.state.currentProd.gas} MCF</SectionTitle> */}
                                 <p style={{ marginBottom: '5px' }}>
                                     <strong>+0.20%</strong>
                                 </p>
@@ -194,14 +193,14 @@ const DashBoard = () => {
                     <Col md="4">
                         <Card>
                             <FlexContainer>
-                                <SectionTitle mb="5px">{this.state.currentProd.water} BBLs</SectionTitle>
+                                {/* <SectionTitle mb="5px">{this.state.currentProd.water} BBLs</SectionTitle> */}
                                 <p style={{ marginBottom: '5px' }}>
                                     <strong>+0.20%</strong>
                                 </p>
                             </FlexContainer>
                             <h6 className="mb-0">Water Production</h6>
                         </Card>
-                    </Col> */}
+                    </Col>
                     <Col lg="12">
                         <Card>
                             <SectionTitle>Production</SectionTitle>

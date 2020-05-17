@@ -35,8 +35,6 @@ const WellDetail = (props) => {
       const getWell = await API.getWellId(props.match.params.id)
       const res = getWell.data
 
-      console.log(res)
-
       const totalGas = res.productionId
         .map(prodData => prodData.gas)
         .reduce(function (accumulator, prod) {
