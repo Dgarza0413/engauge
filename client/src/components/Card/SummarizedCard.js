@@ -4,7 +4,6 @@ import FlexContainer from '../../components/FlexContainer';
 import './style.css';
 
 const SummarizedCard = (name) => {
-  console.log(name)
   return (
     <>
       <FlexContainer>

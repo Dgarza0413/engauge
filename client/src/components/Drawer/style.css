@@ -54,8 +54,14 @@ a:hover, a:focus {
     background-color: #242527;
 }
 
-.right {
+.menu-secondary {
+    position: fixed;
+    height: 100vh;
+    z-index: 1000;
+    width: 70px;
+    background-color: #242527;
     right: 0;
+    top: 0;
 }
 
 .links {

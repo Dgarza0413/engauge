@@ -138,7 +138,6 @@ const DashBoard = () => {
                 return accumulator + prod;
             });
 
-
             setProdData(Object.values(newObj))
             setProdTotal({
                 oil: totalOil,

@@ -15,6 +15,8 @@ import ButtonList from '../components/Lists/ButtonList';
 import WellInfoList from "../components/Lists/WellInfoList";
 import DailyProdList from '../components/Lists/DailyProdList';
 import TabPanel from '../components/TabBar/TabBar';
+import Drawer from '../components/Drawer/Drawer';
+import SeconadaryWrapper from '../components/PageWrapper/SecondaryWrapper';
 
 const WellDetail = (props) => {
   const [wellData, setWellData] = useState({});
@@ -70,53 +72,56 @@ const WellDetail = (props) => {
 
   return (
     <PageWrapper>
-      <Container>
-        <Row>
-          <Col lg="12">
-            <ButtonList id={props.match.params.id} />
-            <WellInfoList wellData={wellData.res || []} />
-            {/* <DailyProdList /> */}
-            <Card>
-              <SectionTitle>Prod Summary</SectionTitle>
-              <div style={{ height: '40vw' }}>
-                <GraphLine
-                  well={wellData.productionId || []}
-                  key={wellData.id}
-                />
-              </div>
-            </Card>
-          </Col>
-          <Col lg="6">
-            <Card>
-              <SectionTitle>Location</SectionTitle>
-              {/* <Map
+      <SeconadaryWrapper>
+        <Drawer />
+        <Container>
+          <Row>
+            <Col lg="12">
+              <ButtonList id={props.match.params.id} />
+              <WellInfoList wellData={wellData.res || []} />
+              {/* <DailyProdList /> */}
+              <Card>
+                <SectionTitle>Prod Summary</SectionTitle>
+                <div style={{ height: '40vw' }}>
+                  <GraphLine
+                    well={wellData.productionId || []}
+                    key={wellData.id}
+                  />
+                </div>
+              </Card>
+            </Col>
+            <Col lg="6">
+              <Card>
+                <SectionTitle>Location</SectionTitle>
+                {/* <Map
                 height="35vw"
                 wellLocation={{
                   latitude: wellData.tempLat,
                   longitude: wellData.tempLng,
                 }}
               /> */}
-            </Card>
-          </Col>
-          <Col lg="6">
-            <Card>
-              <SectionTitle>Prod Total</SectionTitle>
-              <GraphBar
-                class="half-pie"
-                oil={wellData.totalOil}
-                gas={wellData.totalGas}
-                water={wellData.totalWater}
-                key={wellData.id}
-              />
-            </Card>
-          </Col>
-        </Row>
-        <TabPanel
-          well={wellData.productionId || []}
-          reportData={wellData.reportId || []}
-          key={wellData._id}
-        />
-      </Container>
+              </Card>
+            </Col>
+            <Col lg="6">
+              <Card>
+                <SectionTitle>Prod Total</SectionTitle>
+                <GraphBar
+                  class="half-pie"
+                  oil={wellData.totalOil}
+                  gas={wellData.totalGas}
+                  water={wellData.totalWater}
+                  key={wellData.id}
+                />
+              </Card>
+            </Col>
+          </Row>
+          <TabPanel
+            well={wellData.productionId || []}
+            reportData={wellData.reportId || []}
+            key={wellData._id}
+          />
+        </Container>
+      </SeconadaryWrapper>
     </PageWrapper >
   );
 };

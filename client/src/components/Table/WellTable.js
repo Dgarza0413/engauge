@@ -20,7 +20,7 @@ const WellTable = () => {
   const getWellData = async () => {
     try {
       const res = await API.getAllWellData()
-      setWells(res.data)
+      await setWells(res.data)
     } catch (error) {
       console.log(error);
     }
@@ -30,7 +30,7 @@ const WellTable = () => {
       <FlexContainer>
         <SectionTitle>Well Overview</SectionTitle>
         <Link to="/new-well">
-          <Button mb="15px">+ Add Well</Button>
+          <Button>+ Add Well</Button>
         </Link>
       </FlexContainer>
       <Table wells={wells} key={wells._id} />

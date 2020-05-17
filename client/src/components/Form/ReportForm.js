@@ -21,8 +21,6 @@ import useInputChange from '../../hooks/useInputChange';
 const ReportForm = (props) => {
     const [value, handleInputChange, handleBind] = useInputChange()
 
-    console.log(value)
-
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
@@ -125,7 +123,6 @@ const ReportForm = (props) => {
                                     label="cost"
                                     placeholder="1000"
                                 />
-
                             </Col>
                             <Col xs={3}>
                                 <Modal handleFormSubmit={handleFormSubmit} />

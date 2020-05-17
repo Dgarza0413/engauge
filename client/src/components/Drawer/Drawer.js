@@ -29,12 +29,12 @@ const links = [
 const SecondaryDrawer = () => {
     return (
         <div>
-            <div className="drawer-container slide-left">
+            {/* <div className="drawer-container slide-right">
                 <i class="fas fa-bars toggle"
                 //  onClick={() => this.handleToggle()}
                 ></i>
-            </div>
-            <div className="menu nav-active right secondary">
+            </div> */}
+            <div className="menu-secondary nav-active">
                 <div className="links">
                     {links.map((text, index) => (
                         <Link to={"/" + text.name.toLowerCase()} key={index}>
