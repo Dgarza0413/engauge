@@ -10,7 +10,6 @@ import PageWrapper from '../components/PageWrapper';
 import Card from '../components/Card';
 import SectionTitle from '../components/SectionTitle';
 import FlexContainer from '../components/FlexContainer';
-import SummarizedCard from '../components/Card/SummarizedCard';
 import { Container, Row, Col } from 'react-bootstrap';
 
 // utilities
@@ -31,6 +30,8 @@ const DashBoard = () => {
             height: '25vw',
         },
     };
+
+    console.log(currentProdData)
 
     const loadProfileInfo = async () => {
         try {
@@ -204,14 +205,6 @@ const DashBoard = () => {
                             <div style={styles.graph}>
                                 <GraphLine well={prodData || []} />
                             </div>
-                            {/* <Slider
-                                // value={value}
-                                // onChange={handleChange}
-                                // valueLabelDisplay="auto"
-                                // aria-labelledby="range-slider"
-                            // getAriaValueText={valuetext}
-                            // /> */}
-                            {/* <Typography id="range-slider" gutterBottom>Date range</Typography> */}
                         </Card>
                     </Col>
                     <Col lg="6">

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 // Components
 import Table from '.';
-import Button from '../Button';
+// import Button from '../Button';
 import PageWrapper from '../PageWrapper';
 import SectionTitle from '../SectionTitle';
 import FlexContainer from '../FlexContainer';
@@ -11,8 +12,6 @@ import API from '../../utils/API';
 
 const WellTable = () => {
   const [wells, setWells] = useState([]);
-
-  // useSelector()
 
   useEffect(() => {
     getWellData()

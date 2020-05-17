@@ -1,15 +1,16 @@
 import React from 'react';
 import SummarizedCard from '../Card/SummarizedCard';
+import Card from '../Card';
+import { Row } from 'react-bootstrap';
 
-import { Grid, Paper } from '@material-ui/core';
 
 const DailyProdList = () => {
     return (
-        <Grid>
-            <Paper>
+        <Row>
+            <Card>
                 <SummarizedCard />
-            </Paper>
-        </Grid>
+            </Card>
+        </Row>
     )
 }
 
