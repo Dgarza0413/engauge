@@ -1,10 +1,6 @@
 import React, { useEffect } from 'react';
 import moment from 'moment';
 
-//Redux
-import { connect } from "react-redux";
-import { addWell } from '../../redux/actions/actions';
-
 import { Form, Container, Row, Col } from "react-bootstrap";
 import { Grid, TextField, Typography } from '@material-ui/core';
 

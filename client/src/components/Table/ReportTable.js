@@ -6,21 +6,20 @@ import moment from 'moment';
 import "./style.css";
 
 const ReportTable = ({ reportData }) => {
-
     return (
-        <div>
-            <Card padding="0" overflow="auto">
-                <Table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>type</th>
-                            <th>report detail</th>
-                            <th>supervisor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {reportData.length > 0
+        <Card padding="0" overflow="auto">
+            <Table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>type</th>
+                        <th>report detail</th>
+                        <th>supervisor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        reportData.length > 0
                             ? reportData.map((e, i) => {
                                 return (
                                     <>
@@ -33,12 +32,13 @@ const ReportTable = ({ reportData }) => {
                                     </>
                                 )
                             })
-                            : <tr><td>{"No data found"}</td></tr>}
-
-                    </tbody>
-                </Table>
-            </Card>
-        </div>
+                            : <tr>
+                                <td>{"No data found"}</td>
+                            </tr>
+                    }
+                </tbody>
+            </Table>
+        </Card>
     )
 }
 

@@ -30,11 +30,12 @@ a:hover, a:focus {
 
 .navbar {
     padding: 0;
-    /* height: 100vh; */
     display: block;
-    /* z-index: 10000000; */
     width: 100%;
-    /* position: relative; */
+}
+
+.secondary {
+    width: 75px;
 }
 
 .drawer-container {
@@ -51,6 +52,10 @@ a:hover, a:focus {
     z-index: 1000;
     width: 225px;
     background-color: #242527;
+}
+
+.right {
+    right: 0;
 }
 
 .links {

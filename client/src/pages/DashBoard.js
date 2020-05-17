@@ -26,8 +26,6 @@ const DashBoard = () => {
     const [wellStatus, setWellStatus] = useState({});
     const [userVal, setUserVal] = useState("")
 
-    console.log(prodData)
-
     const styles = {
         graph: {
             height: '25vw',
@@ -36,10 +34,8 @@ const DashBoard = () => {
 
     const loadProfileInfo = async () => {
         try {
-
             const res = await API.getUserInfo()
-            setUserVal(res)
-
+            await setUserVal(res)
         } catch (error) {
             console.error(error)
         }
@@ -161,6 +157,7 @@ const DashBoard = () => {
     }, [])
     return (
         <PageWrapper>
+            <SectionTitle>Dashboard</SectionTitle>
             <Container>
                 <Row>
                     <SectionTitle>

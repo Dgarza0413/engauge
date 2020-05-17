@@ -1,38 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import API from "../../utils/API.js";
-
 import "./style.css";
 
+const ToggleButton = (props) => {
+    const [on, setOn] = useState(false);
+    const { id, isOn } = props
 
-class ToggleButton extends React.Component {
-    state = {
-        isOn: this.props.isOn
+    const changeStatus = async () => {
+        await API.updateWellStatus(id, !isOn)
+        await setOn({ isOn: !isOn })
     };
 
-    changeStatus = (event) => {
-        API.updateWellStatus(this.props.id, !this.state.isOn).then(res => {
-            this.setState({
-                isOn: !this.state.isOn
-            });
-        });
-    };
-
-    render() {
-        return (
-            <div>
-                <button
-                    type="button"
-                    className={"btn btn-sm btn-toggle " + (this.state.isOn ? "active" : "")}
-                    data-toggle="button"
-                    aria-pressed={this.state.isOn}
-                    autoComplete="off"
-                    onClick={this.changeStatus}
-                >
-                    <div className="handle" />
-                </button>
-            </div>
-        );
-    }
+    return (
+        <button
+            type="button"
+            className={"btn btn-sm btn-toggle " + (isOn ? "active" : "")}
+            data-toggle="button"
+            aria-pressed={isOn}
+            autoComplete="off"
+            onClick={changeStatus}
+        >
+            <div className="handle" />
+        </button>
+    )
 }
 
 export default ToggleButton;

@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { connect, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 // Components
 import Table from '.';
-import TableDense from './Table';
 import Button from '../Button';
 import PageWrapper from '../PageWrapper';
 import SectionTitle from '../SectionTitle';
 import FlexContainer from '../FlexContainer';
 import API from '../../utils/API';
-import DenseTable from './BasicTable';
 
 const WellTable = () => {
   const [wells, setWells] = useState([]);
