@@ -5,44 +5,34 @@ import "./style.css";
 
 const links = [
     {
-        name: "Dashboard",
-        icon: "fas fa-chart-line",
+        name: "+ Prod",
+        icon: "fas fa-folder-plus fa-3x",
+        pathname: "prod/new"
     }, {
-        name: "Revenue",
-        icon: "fas fa-credit-card",
+        name: "+ Report",
+        icon: "fas fa-credit-card fa-3x",
+        pathname: "report/new"
     }, {
-        name: "Reports",
-        icon: "fas fa-file-signature",
-    }, {
-        name: "Facilities",
-        icon: "fas fa-warehouse",
-    }, {
-        name: "WellTable",
-        icon: "fas fa-fill",
-    }, {
-        name: "Map",
-        icon: "fas fa-map-marked-alt",
-    },
+        name: "+ Recomp",
+        icon: "fas fa-file-signature fa-3x",
+        pathname: "recomp/new"
+    }
 ]
 
 
-const SecondaryDrawer = () => {
+const SecondaryDrawer = ({ id }) => {
     return (
-        <div>
-            {/* <div className="drawer-container slide-right">
-                <i class="fas fa-bars toggle"
-                //  onClick={() => this.handleToggle()}
-                ></i>
-            </div> */}
-            <div className="menu-secondary nav-active">
-                <div className="links">
-                    {links.map((text, index) => (
-                        <Link to={"/" + text.name.toLowerCase()} key={index}>
-                            <h6><i className={text.icon}></i>{text.name}</h6>
-                        </Link>
-                    ))}
+        <div className="menu-secondary text-center">
+            {links.map((text, index) => (
+                <div className="mb-4">
+                    <Link to={{ pathname: `/welltable/${id}/${text.pathname}` }} key={index}>
+                        <div className="on-hover">
+                            <i className={text.icon}></i>
+                            <h6>{text.name}</h6>
+                        </div>
+                    </Link>
                 </div>
-            </div>
+            ))}
         </div>
     )
 }

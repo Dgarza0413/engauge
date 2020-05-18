@@ -7,7 +7,6 @@ a:hover, a:focus {
     text-decoration: none;
 }
 
-
 .engauge-logo {
     width: 145px;
     margin: 22px auto 0px 30px;
@@ -55,6 +54,7 @@ a:hover, a:focus {
 }
 
 .menu-secondary {
+    padding-top: 10vh;
     position: fixed;
     height: 100vh;
     z-index: 1000;
@@ -71,6 +71,14 @@ a:hover, a:focus {
     z-index: 100;
     width: 0;
     position: static;
+    width: 100%;
+}
+
+.second-links {
+    display: block;
+    z-index: 100;
+    width: 0;
+    position: static;
 }
 
 /* .menu {
@@ -81,21 +89,26 @@ a:hover, a:focus {
     color: white;
 } */
 
-.links {
-    width: 100%;
-}
-
 .links h6 {
     color: #c7c7c7;
     padding: 10px 0 10px 30px;
     margin: 0;
 }
 
+.links h6:hover {
+    background-color: #1e1f21;
+    color: white;
+}
+
 .toggle {
     display: none;
 }
 
-.links h6:hover {
+.on-hover {
+    color: #c7c7c7;
+}
+
+.on-hover:hover {
     background-color: #1e1f21;
     color: white;
 }

@@ -11,7 +11,6 @@ import GraphBar from '../components/Graph/BarGraph';
 import PageWrapper from '../components/PageWrapper';
 import Card from '../components/Card';
 import SectionTitle from '../components/SectionTitle';
-import ButtonList from '../components/Lists/ButtonList';
 import WellInfoList from "../components/Lists/WellInfoList";
 import DailyProdList from '../components/Lists/DailyProdList';
 import TabPanel from '../components/TabBar/TabBar';
@@ -73,11 +72,12 @@ const WellDetail = (props) => {
   return (
     <PageWrapper>
       <SeconadaryWrapper>
-        <Drawer />
+        <Drawer id={props.match.params.id} />
+        <SectionTitle>Well Detail</SectionTitle>
         <Container>
           <Row>
             <Col lg="12">
-              <ButtonList id={props.match.params.id} />
+              {/* <ButtonList id={props.match.params.id} /> */}
               <WellInfoList wellData={wellData.res || []} />
               {/* <DailyProdList /> */}
               <Card>
