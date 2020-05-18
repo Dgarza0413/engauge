@@ -4,8 +4,6 @@
   "private": true,
   "proxy": "http://127.0.0.1:3001/",
   "dependencies": {
-    "@material-ui/core": "^4.3.1",
-    "@material-ui/icons": "^4.5.1",
     "@nivo/bar": "^0.59.2",
     "@nivo/calendar": "^0.59.1",
     "@nivo/line": "^0.59.3",

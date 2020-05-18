@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import moment from 'moment';
 
 import { Container, Row, Col } from "react-bootstrap";
-import { Grid } from "@material-ui/core";
 import { NumberInput, TextBoxInput } from "../Form";
 import Card from "../Card";
 import Button from "../Button";
@@ -19,7 +18,6 @@ import SectionTitle from '../SectionTitle';
 const ProdForm = (props) => {
     const [value, handleInputChange, handlebind] = useInputChange()
 
-    console.log(props)
 
     // const handleRedirect = () => {
     //     console.log(this.props.id);
