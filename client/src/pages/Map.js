@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Map from "../components/Map/Map";
+// import Map from "../components/Map/Map";
 import PageWrapper from "../components/PageWrapper";
 import Card from "../components/Card";
 import API from "../utils/API";
@@ -13,7 +13,6 @@ const MapBoard = () => {
     const getAllWellData = async () => {
         try {
             const data = await API.getAllWellData()
-            console.log(data)
                 .then(res => {
                     for (let i = 0; i < res.data.length; i++) {
                         this.setState({
@@ -31,7 +30,7 @@ const MapBoard = () => {
         <>
             <PageWrapper>
                 <Card>
-                    <Map />
+                    {/* <Map /> */}
                 </Card>
             </PageWrapper>
         </>

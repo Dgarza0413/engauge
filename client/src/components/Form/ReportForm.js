@@ -4,9 +4,11 @@ import { Redirect } from 'react-router';
 import PageWrapper from "../PageWrapper/index";
 import Card from '../Card';
 import SectionTitle from '../SectionTitle';
+import { StringInput, TextBoxInput, NumberInput } from '../Form';
 
 
-import { Grid, Paper, TextField, InputAdornment, Button } from "@material-ui/core";
+import { TextField, InputAdornment } from "@material-ui/core";
+import { Row, Col } from 'react-bootstrap';
 // import TextField from "../Input/TextField";
 import Modal from '../Modal/Modal';
 
@@ -18,8 +20,6 @@ import useInputChange from '../../hooks/useInputChange';
 
 const ReportForm = (props) => {
     const [value, handleInputChange, handleBind] = useInputChange()
-
-    console.log(value)
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -54,115 +54,84 @@ const ReportForm = (props) => {
                 <SectionTitle>Report Form</SectionTitle>
                 <form onSubmit={handleFormSubmit}>
                     <Card>
-                        <Grid container spacing={3}>
-                            <Grid item xs={4}>
-                                <TextField
+                        <Row>
+                            <Col xs={4}>
+                                <StringInput
                                     value={moment(value.date).format("YYYY-MM-DD") || ""}
                                     onChange={handleInputChange}
                                     name="date"
-                                    type="date"
-                                    label="Date"
-                                    InputLabelProps={{ shrink: true }}
-                                    fullWidth
+                                    label="date"
                                 />
-                            </Grid>
-                            <Grid item xs={4}>
-                                <TextField
+                            </Col>
+                            <Col xs={4}>
+                                <StringInput
                                     value={value.wellName || ""}
                                     onChange={handleInputChange}
                                     name="wellName"
                                     label="well Name"
                                     placeholder="Garza"
-                                    helperText="numbers can be included"
-                                    InputLabelProps={{ shrink: true }}
-                                    fullWidth
                                 />
-                            </Grid>
-                            <Grid item xs={4} >
-                                <TextField
+                            </Col>
+                            <Col xs={4}>
+                                <StringInput
                                     value={value.wellNum || ""}
                                     onChange={handleInputChange}
                                     name="wellNum"
                                     label="well Number"
-                                    type="number"
                                     placeholder="1"
-                                    helperText=""
-                                    InputLabelProps={{ shrink: true }}
-                                    fullWidth
                                 />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField
+                            </Col>
+                            <Col xs={4}>
+                                <StringInput
                                     value={value.title || ""}
                                     onChange={handleInputChange}
                                     name="title"
-                                    label="Report Title"
-                                    placeholder="Facilites clean up"
-                                    helperText=""
-                                    InputLabelProps={{ shrink: true }}
-                                    fullWidth
+                                    label="report Title"
+                                    placeholder="Facility clean up"
                                 />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField
+                            </Col>
+                            <Col xs={8}>
+                                <StringInput
                                     value={value.type || ""}
                                     onChange={handleInputChange}
                                     name="type"
-                                    label="Report Type"
-                                    placeholder="facilities"
-                                    helperText=""
-                                    InputLabelProps={{ shrink: true }}
-                                    fullWidth
+                                    label="report Type"
+                                    placeholder="clean up"
                                 />
-                            </Grid>
-                            <Grid item xs={12} >
-                                <TextField
-                                    value={value.summary || ""}
-                                    onChange={handleInputChange}
-                                    name="summary"
+                            </Col>
+                            <Col xs={12}>
+                                <TextBoxInput
                                     label="summary"
-                                    placeholder="...information"
-                                    helperText=""
-                                    InputLabelProps={{ shrink: true }}
-                                    multiline={true}
-                                    rows="6"
-                                    variant="filled"
-                                    fullWidth
+                                    onChange={handleInputChange}
+                                    value={value.summary || ""}
                                 />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField
+                            </Col>
+                            <Col xs={6}>
+                                <StringInput
                                     value={value.supervisor || ""}
                                     onChange={handleInputChange}
                                     name="supervisor"
                                     label="supervisor"
-                                    placeholder="Mr. John Doe"
-                                    InputLabelProps={{ shrink: true }}
-                                    helperText=""
-                                    fullWidth
+                                    placeholder="mr. john doe"
                                 />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField
+                            </Col>
+                            <Col xs={6}>
+                                <StringInput
                                     value={value.cost || ""}
                                     onChange={handleInputChange}
                                     name="cost"
                                     label="cost"
-                                    type="number"
                                     placeholder="1000"
-                                    InputLabelProps={{ shrink: true }}
-                                    InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }}
-                                    fullWidth
                                 />
-                            </Grid>
-                            <Grid item xs={3}>
+                            </Col>
+                            <Col xs={3}>
                                 <Modal handleFormSubmit={handleFormSubmit} />
-                            </Grid>
-                        </Grid>
+                            </Col>
+                        </Row>
                     </Card>
                 </form>
             </PageWrapper>
-        </div>
+        </div >
     )
 }
 

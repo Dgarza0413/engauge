@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from "react-redux";
-import { addWell } from '../redux/actions/actions';
-
 
 import { Container, Row, Col } from 'react-bootstrap';
 
@@ -12,14 +9,13 @@ import Map from '../components/Map/Map';
 import GraphLine from '../components/Graph/LineGraph';
 import GraphBar from '../components/Graph/BarGraph';
 import PageWrapper from '../components/PageWrapper';
-import ProdTable from '../components/Table/ProdTable';
-import ReportTable from '../components/Table/ReportTable';
 import Card from '../components/Card';
 import SectionTitle from '../components/SectionTitle';
-import ButtonList from '../components/Lists/ButtonList';
 import WellInfoList from "../components/Lists/WellInfoList";
 import DailyProdList from '../components/Lists/DailyProdList';
-import TabBar from '../components/TabBar/TabBar';
+import TabPanel from '../components/TabBar/TabBar';
+import Drawer from '../components/Drawer/Drawer';
+import SeconadaryWrapper from '../components/PageWrapper/SecondaryWrapper';
 
 const WellDetail = (props) => {
   const [wellData, setWellData] = useState({});
@@ -65,9 +61,7 @@ const WellDetail = (props) => {
       });
 
     } catch (error) {
-
       console.error(error)
-
     }
   }
 
@@ -77,68 +71,58 @@ const WellDetail = (props) => {
 
   return (
     <PageWrapper>
-      <Container>
-        <Row>
-          <Col lg="12">
-            <ButtonList id={props.match.params.id} />
-
-            <WellInfoList wellData={wellData.res || []} />
-
-            {/* <DailyProdList /> */}
-            <Card>
-              <SectionTitle>Prod Summary</SectionTitle>
-              <div style={{ height: '40vw' }}>
-                <GraphLine
-                  well={wellData.productionId || []}
-                  key={wellData.id}
-                />
-              </div>
-            </Card>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col lg="6">
-            <Card>
-              <SectionTitle>Location</SectionTitle>
-              {/* <Map
+      <SeconadaryWrapper>
+        <Drawer id={props.match.params.id} />
+        <SectionTitle>Well Detail</SectionTitle>
+        <Container>
+          <Row>
+            <Col lg="12">
+              {/* <ButtonList id={props.match.params.id} /> */}
+              <WellInfoList wellData={wellData.res || []} />
+              {/* <DailyProdList /> */}
+              <Card>
+                <SectionTitle>Prod Summary</SectionTitle>
+                <div style={{ height: '40vw' }}>
+                  <GraphLine
+                    well={wellData.productionId || []}
+                    key={wellData.id}
+                  />
+                </div>
+              </Card>
+            </Col>
+            <Col lg="6">
+              <Card>
+                <SectionTitle>Location</SectionTitle>
+                {/* <Map
                 height="35vw"
                 wellLocation={{
                   latitude: wellData.tempLat,
                   longitude: wellData.tempLng,
                 }}
               /> */}
-            </Card>
-          </Col>
-          <Col lg="6">
-            <Card>
-              <SectionTitle>Prod Total</SectionTitle>
-              <GraphBar
-                class="half-pie"
-                oil={wellData.totalOil}
-                gas={wellData.totalGas}
-                water={wellData.totalWater}
-                key={wellData.id}
-              />
-            </Card>
-          </Col>
-        </Row>
-        <TabBar
-          well={wellData.productionId || []}
-          reportData={wellData.reportId || []}
-          key={wellData._id}
-        />
-        {/* <ProdTable
+              </Card>
+            </Col>
+            <Col lg="6">
+              <Card>
+                <SectionTitle>Prod Total</SectionTitle>
+                <GraphBar
+                  class="half-pie"
+                  oil={wellData.totalOil}
+                  gas={wellData.totalGas}
+                  water={wellData.totalWater}
+                  key={wellData.id}
+                />
+              </Card>
+            </Col>
+          </Row>
+          <TabPanel
             well={wellData.productionId || []}
-            key={wellData._id}
-          />
-          <ReportTable
             reportData={wellData.reportId || []}
             key={wellData._id}
           />
-        </TabBar> */}
-      </Container>
-    </PageWrapper>
+        </Container>
+      </SeconadaryWrapper>
+    </PageWrapper >
   );
 };
 

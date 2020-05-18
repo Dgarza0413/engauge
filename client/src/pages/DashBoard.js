@@ -10,7 +10,6 @@ import PageWrapper from '../components/PageWrapper';
 import Card from '../components/Card';
 import SectionTitle from '../components/SectionTitle';
 import FlexContainer from '../components/FlexContainer';
-import SummarizedCard from '../components/Card/SummarizedCard';
 import { Container, Row, Col } from 'react-bootstrap';
 
 // utilities
@@ -26,20 +25,18 @@ const DashBoard = () => {
     const [wellStatus, setWellStatus] = useState({});
     const [userVal, setUserVal] = useState("")
 
-    console.log(prodData)
-
     const styles = {
         graph: {
             height: '25vw',
         },
     };
 
+    console.log(currentProdData)
+
     const loadProfileInfo = async () => {
         try {
-
             const res = await API.getUserInfo()
-            setUserVal(res)
-
+            await setUserVal(res)
         } catch (error) {
             console.error(error)
         }
@@ -141,7 +138,6 @@ const DashBoard = () => {
                 return accumulator + prod;
             });
 
-
             setProdData(Object.values(newObj))
             setProdTotal({
                 oil: totalOil,
@@ -161,6 +157,7 @@ const DashBoard = () => {
     }, [])
     return (
         <PageWrapper>
+            <SectionTitle>Dashboard</SectionTitle>
             <Container>
                 <Row>
                     <SectionTitle>
@@ -207,14 +204,6 @@ const DashBoard = () => {
                             <div style={styles.graph}>
                                 <GraphLine well={prodData || []} />
                             </div>
-                            {/* <Slider
-                                // value={value}
-                                // onChange={handleChange}
-                                // valueLabelDisplay="auto"
-                                // aria-labelledby="range-slider"
-                            // getAriaValueText={valuetext}
-                            // /> */}
-                            {/* <Typography id="range-slider" gutterBottom>Date range</Typography> */}
                         </Card>
                     </Col>
                     <Col lg="6">
