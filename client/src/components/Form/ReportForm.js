@@ -7,10 +7,8 @@ import SectionTitle from '../SectionTitle';
 import { StringInput, TextBoxInput, NumberInput } from '../Form';
 
 
-import { TextField, InputAdornment } from "@material-ui/core";
 import { Row, Col } from 'react-bootstrap';
 // import TextField from "../Input/TextField";
-import Modal from '../Modal/Modal';
 
 // utils
 import API from "../../utils/API";
@@ -49,89 +47,84 @@ const ReportForm = (props) => {
     }, [])
 
     return (
-        <div>
-            <PageWrapper>
-                <SectionTitle>Report Form</SectionTitle>
-                <form onSubmit={handleFormSubmit}>
-                    <Card>
-                        <Row>
-                            <Col xs={4}>
-                                <StringInput
-                                    value={moment(value.date).format("YYYY-MM-DD") || ""}
-                                    onChange={handleInputChange}
-                                    name="date"
-                                    label="date"
-                                />
-                            </Col>
-                            <Col xs={4}>
-                                <StringInput
-                                    value={value.wellName || ""}
-                                    onChange={handleInputChange}
-                                    name="wellName"
-                                    label="well Name"
-                                    placeholder="Garza"
-                                />
-                            </Col>
-                            <Col xs={4}>
-                                <StringInput
-                                    value={value.wellNum || ""}
-                                    onChange={handleInputChange}
-                                    name="wellNum"
-                                    label="well Number"
-                                    placeholder="1"
-                                />
-                            </Col>
-                            <Col xs={4}>
-                                <StringInput
-                                    value={value.title || ""}
-                                    onChange={handleInputChange}
-                                    name="title"
-                                    label="report Title"
-                                    placeholder="Facility clean up"
-                                />
-                            </Col>
-                            <Col xs={8}>
-                                <StringInput
-                                    value={value.type || ""}
-                                    onChange={handleInputChange}
-                                    name="type"
-                                    label="report Type"
-                                    placeholder="clean up"
-                                />
-                            </Col>
-                            <Col xs={12}>
-                                <TextBoxInput
-                                    label="summary"
-                                    onChange={handleInputChange}
-                                    value={value.summary || ""}
-                                />
-                            </Col>
-                            <Col xs={6}>
-                                <StringInput
-                                    value={value.supervisor || ""}
-                                    onChange={handleInputChange}
-                                    name="supervisor"
-                                    label="supervisor"
-                                    placeholder="mr. john doe"
-                                />
-                            </Col>
-                            <Col xs={6}>
-                                <StringInput
-                                    value={value.cost || ""}
-                                    onChange={handleInputChange}
-                                    name="cost"
-                                    label="cost"
-                                    placeholder="1000"
-                                />
-                            </Col>
-                            <Col xs={3}>
-                                <Modal handleFormSubmit={handleFormSubmit} />
-                            </Col>
-                        </Row>
-                    </Card>
-                </form>
-            </PageWrapper>
-        </div >
+        <PageWrapper>
+            <SectionTitle>Report Form</SectionTitle>
+            <form onSubmit={handleFormSubmit}>
+                <Card>
+                    <Row>
+                        <Col xs={4}>
+                            <StringInput
+                                value={moment(value.date).format("YYYY-MM-DD") || ""}
+                                onChange={handleInputChange}
+                                name="date"
+                                label="date"
+                            />
+                        </Col>
+                        <Col xs={4}>
+                            <StringInput
+                                value={value.wellName || ""}
+                                onChange={handleInputChange}
+                                name="wellName"
+                                label="well Name"
+                                placeholder="Garza"
+                            />
+                        </Col>
+                        <Col xs={4}>
+                            <StringInput
+                                value={value.wellNum || ""}
+                                onChange={handleInputChange}
+                                name="wellNum"
+                                label="well Number"
+                                placeholder="1"
+                            />
+                        </Col>
+                        <Col xs={4}>
+                            <StringInput
+                                value={value.title || ""}
+                                onChange={handleInputChange}
+                                name="title"
+                                label="report Title"
+                                placeholder="Facility clean up"
+                            />
+                        </Col>
+                        <Col xs={8}>
+                            <StringInput
+                                value={value.type || ""}
+                                onChange={handleInputChange}
+                                name="type"
+                                label="report Type"
+                                placeholder="clean up"
+                            />
+                        </Col>
+                        <Col xs={12}>
+                            <TextBoxInput
+                                label="summary"
+                                onChange={handleInputChange}
+                                value={value.summary || ""}
+                            />
+                        </Col>
+                        <Col xs={6}>
+                            <StringInput
+                                value={value.supervisor || ""}
+                                onChange={handleInputChange}
+                                name="supervisor"
+                                label="supervisor"
+                                placeholder="mr. john doe"
+                            />
+                        </Col>
+                        <Col xs={6}>
+                            <StringInput
+                                value={value.cost || ""}
+                                onChange={handleInputChange}
+                                name="cost"
+                                label="cost"
+                                placeholder="1000"
+                            />
+                        </Col>
+                    </Row>
+                </Card>
+            </form>
+        </PageWrapper>
     )
 }
 

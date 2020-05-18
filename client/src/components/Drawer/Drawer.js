@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter, Link } from "react-router-dom";
-import axios from 'axios';
 import "./style.css";
 
 const links = [

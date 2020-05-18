@@ -44,7 +44,6 @@ const ProdTable = ({ well }) => {
                     </thead>
                     <tbody>
                         {well.map((w, i) => (
-                            // <tr key={w.id}>
                             <tr key={i}>
                                 <td>{moment(w.date).format("MM/DD/YYYY")}</td>
                                 <td>{w.oil}</td>
