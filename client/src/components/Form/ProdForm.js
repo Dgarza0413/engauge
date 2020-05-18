@@ -18,7 +18,6 @@ import SectionTitle from '../SectionTitle';
 const ProdForm = (props) => {
     const [value, handleInputChange, handlebind] = useInputChange()
 
-
     // const handleRedirect = () => {
     //     console.log(this.props.id);
     //     if (this.state.redirect === true) {
@@ -37,7 +36,6 @@ const ProdForm = (props) => {
             console.error(error)
         }
     };
-
 
     return (
         <div>

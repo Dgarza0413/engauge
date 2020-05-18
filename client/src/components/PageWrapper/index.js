@@ -1,9 +1,15 @@
 import React from "react";
-import "./style.css";
+
+const style = {
+    wrapper: {
+        marginLeft: '225px',
+        padding: '4%'
+    }
+}
 
 function PageWrapper(props) {
     return (
-        <div className="page-wrapper">
+        <div style={style.wrapper}>
             {props.children}
         </div>
     );

@@ -45,6 +45,7 @@ const DashBoard = () => {
     const getAllWellData = async () => {
         try {
             const res = await API.getAllWellData()
+            console.log(res)
             const data = await res.data
             const isOff = await data.map(status => status.isOn).filter(v => v === false).length
             const isOn = await data.map(status => status.isOn).filter(v => v === true).length

@@ -28,35 +28,32 @@ import moment from "moment"
 
 const ProdTable = ({ well }) => {
     return (
-        <div>
-            {/* <Table striped bordered hover> */}
-            <Card padding="0" overflow="auto">
-                <Table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Oil</th>
-                            <th>Gas</th>
-                            <th>Water</th>
-                            <th>Casing PSI</th>
-                            <th>Tubing PSI</th>
+        <Card padding="0" overflow="auto">
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Oil</th>
+                        <th>Gas</th>
+                        <th>Water</th>
+                        <th>Casing PSI</th>
+                        <th>Tubing PSI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {well.map((w, i) => (
+                        <tr key={i}>
+                            <td>{moment(w.date).format("MM/DD/YYYY")}</td>
+                            <td>{w.oil}</td>
+                            <td>{w.gas}</td>
+                            <td>{w.water}</td>
+                            <td>{w.casingPSI}</td>
+                            <td>{w.tubingPSI}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {well.map((w, i) => (
-                            <tr key={i}>
-                                <td>{moment(w.date).format("MM/DD/YYYY")}</td>
-                                <td>{w.oil}</td>
-                                <td>{w.gas}</td>
-                                <td>{w.water}</td>
-                                <td>{w.casingPSI}</td>
-                                <td>{w.tubingPSI}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </Table>
-            </Card>
-        </div >
+                    ))}
+                </tbody>
+            </Table>
+        </Card>
     );
 }
 

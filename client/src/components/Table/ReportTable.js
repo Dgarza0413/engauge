@@ -6,9 +6,10 @@ import moment from 'moment';
 import "./style.css";
 
 const ReportTable = ({ reportData }) => {
+    console.log(reportData)
     return (
         <Card padding="0" overflow="auto">
-            <Table>
+            <Table striped bordered hover>
                 <thead>
                     <tr>
                         <th>Date</th>
