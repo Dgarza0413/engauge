@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import DashBoard from "./pages/DashBoard";
 import DashBoard from "./pages/DashBoard";
 import Report from "./pages/Report";
-import WellTable from "./components/Table/WellTable";
+import WellTable from "./pages/WellTable";
 import WellDetail from "./pages/WellDetail";
 import Map from "./pages/Map";
 import Login from "./pages/Login";

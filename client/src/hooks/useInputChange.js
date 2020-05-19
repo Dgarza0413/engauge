@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 const useInputChange = () => {
-
     const [value, setValue] = useState({})
 
     const handleInputChange = (event) => {
@@ -13,12 +12,9 @@ const useInputChange = () => {
             }
         })
     }
-
     const handleBind = (event) => {
         setValue(event)
     }
-
-
     return [value, handleInputChange, handleBind]
 }
 

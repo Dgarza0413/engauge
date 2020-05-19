@@ -1,9 +1,14 @@
 import React from "react";
-import "./style.css";
+
+const style = {
+    seconadaryWrapper: {
+        marginRight: '75px'
+    }
+}
 
 function SeconadaryWrapper(props) {
     return (
-        <div className="page-wrapper-secondary">
+        <div style={style.seconadaryWrapper}>
             {props.children}
         </div>
     );

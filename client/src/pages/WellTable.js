@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
 // Components
-import Table from '.';
+import Table from '../components/Table';
 // import Button from '../Button';
-import PageWrapper from '../PageWrapper';
-import SectionTitle from '../SectionTitle';
-import FlexContainer from '../FlexContainer';
-import API from '../../utils/API';
+import PageWrapper from '../components/PageWrapper';
+import SectionTitle from '../components/SectionTitle';
+import FlexContainer from '../components/FlexContainer';
+import API from '../utils/API';
 
 const WellTable = () => {
   const [wells, setWells] = useState([]);

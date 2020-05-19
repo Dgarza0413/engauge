@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import moment from 'moment';
 
 import { Container, Row, Col } from "react-bootstrap";
-import { Grid } from "@material-ui/core";
-import { NumberInput, TextBoxInput } from "../Form";
+import { NumberInput, TextBoxInput, StringInput } from "../Form";
 import Card from "../Card";
 import Button from "../Button";
 import API from "../../utils/API";
@@ -18,8 +17,6 @@ import SectionTitle from '../SectionTitle';
 
 const ProdForm = (props) => {
     const [value, handleInputChange, handlebind] = useInputChange()
-
-    console.log(props)
 
     // const handleRedirect = () => {
     //     console.log(this.props.id);
@@ -40,7 +37,6 @@ const ProdForm = (props) => {
         }
     };
 
-
     return (
         <div>
             <PageWrapper>
@@ -50,17 +46,12 @@ const ProdForm = (props) => {
                         <Container>
                             <Row>
                                 <Col md="4">
-                                    <label htmlFor="Date">Date</label>
-                                    <input
-                                        readOnly
+                                    <StringInput
                                         label="Date"
                                         value={moment().format("MM/DD/YYYY")}
                                         onChange={handleInputChange}
                                         name="date"
-                                        type="date"
-                                        className="form-control"
-                                        placeholder="01/01/2020"
-                                        id="date"
+                                        placeholder={moment().format("MM/DD/YYYY")}
                                     />
                                 </Col>
                             </Row>
@@ -129,16 +120,18 @@ const ProdForm = (props) => {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col>
+                                <Col xs={12}>
                                     <TextBoxInput
                                         label="Comments"
                                         placeholder="Enter Comments Here..."
                                     />
                                 </Col>
+                                <Col xs={4}>
+                                    <Button type="submit" />
+                                </Col>
                             </Row>
                         </Container>
                     </Card>
-                    <Button type="submit" />
                 </form>
             </PageWrapper>
         </div>

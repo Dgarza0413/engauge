@@ -19,13 +19,14 @@ const MyResponsiveLine = ({ oil, gas }) => {
             "x": moment(d.date).format("MM-DD"),
             "y": parseInt(d.price)
         }
-    ))
+    ));
+
     const gasdata = gas.map(d => (
         {
             "x": moment(d.date).format("MM-DD"),
             "y": parseInt(d.price)
         }
-    ))
+    ));
 
     const dataProd = [
         {
@@ -44,10 +45,9 @@ const MyResponsiveLine = ({ oil, gas }) => {
             data={dataProd}
             margin={{ top: 50, right: 60, bottom: 50, left: 60 }}
             xScale={{ type: 'point' }}
-
             yScale={{
                 type: 'linear',
-                stacked: true,
+                stacked: false,
                 min: '0',
                 max: 'auto',
             }}
