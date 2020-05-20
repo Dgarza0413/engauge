@@ -29,3 +29,4 @@ Engauge is a data repository where oil companies can store, organize and visuali
 * [MongoDB](https://www.npmjs.com/package/mongodb)
 * [Mongoose](https://www.npmjs.com/package/mongoose)
 * [Passport](https://www.npmjs.com/package/passport)
+* [Apollo/graphql]
