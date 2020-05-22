@@ -161,7 +161,6 @@ class WellTable extends React.Component {
                                     return well[this.state.dropDown].toString().startsWith(this.state.filter.toLowerCase());
                                 }).map(well => {
                                     return (
-
                                         <tr key={well._id}>
                                             <td>
                                                 <Link

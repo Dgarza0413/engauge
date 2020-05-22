@@ -1,7 +1,7 @@
 import React from "react";
 import { ResponsiveCalendar } from '@nivo/calendar'
 
-const MyResponsiveCalendar = ({ data }) => {
+const Calendar = ({ data }) => {
 
     return (
         <ResponsiveCalendar
@@ -32,4 +32,4 @@ const MyResponsiveCalendar = ({ data }) => {
     )
 }
 
-export default MyResponsiveCalendar;
+export default Calendar;

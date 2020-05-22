@@ -14,10 +14,10 @@ type Well {
     trueVerticalDepth: Int,
     wellBoreProfile: String,
     isOn: Boolean,
-    date: Date,
-    production: [Production],
-    report: [Report],
-    recompletion: [Recompletion]
+    date: String,
+    # production: [Production],
+    # report: [Report],
+    # recompletion: [Recompletion]
 }
 
 type Production {
@@ -28,7 +28,7 @@ type Production {
     casingPSI: Int,
     tubingPSI: Int,
     choke: Int,
-    date: Date!
+    # date: Date!
 }
 
 type Report {
@@ -38,10 +38,10 @@ type Report {
     summary: String,
     supervisor: String,
     cost: Float,
-    date: Date!
+    # date: Date!
 }
 
 type Query {
-    well: Well,
+    getWells: Well,
     production: Production
 }

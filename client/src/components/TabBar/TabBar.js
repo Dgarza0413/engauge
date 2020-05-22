@@ -27,6 +27,16 @@ const TabPanel = ({ well, reportData }) => {
                     key={well._id}
                 />
             </Tab>
+            <Tab
+                eventKey="recomp"
+                title="Recompletion">
+                Recomplete
+            </Tab>
+            <Tab
+                eventKey="Revenue"
+                title="Revenue">
+                Revenue
+            </Tab>
         </Tabs>
     );
 }

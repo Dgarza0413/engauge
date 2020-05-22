@@ -6,7 +6,6 @@ import moment from 'moment';
 import "./style.css";
 
 const ReportTable = ({ reportData }) => {
-    console.log(reportData)
     return (
         <Card padding="0" overflow="auto">
             <Table striped bordered hover>
@@ -26,16 +25,14 @@ const ReportTable = ({ reportData }) => {
                                     <>
                                         <tr key={i}>
                                             <td>{moment(e.date).format("MM/DD/YYYY")}</td>
-                                            <td></td>
+                                            <td>{e.type}</td>
                                             <td className="">{e.summary}</td>
                                             <td>{e.supervisor}</td>
                                         </tr>
                                     </>
                                 )
                             })
-                            : <tr>
-                                <td>{"No data found"}</td>
-                            </tr>
+                            : <tr> {"No data found"}</tr>
                     }
                 </tbody>
             </Table>

@@ -629,17 +629,6 @@ apollo-server-types@^0.4.1-alpha.0:
     apollo-server-caching "^0.5.1"
     apollo-server-env "^2.4.4-alpha.0"
 
-apollo-server@^2.13.1:
-  version "2.13.1"
-  resolved "https://registry.yarnpkg.com/apollo-server/-/apollo-server-2.13.1.tgz#c045022bf1e423c56d8d0d7e1bbc1f5c24bebda3"
-  integrity sha512-poacCvLkOb+Zh0vQBaupPldEIfjL0mHCYZLPMpwpsCQtypIpM0pOUccUSrR/9Ts4MA6joD/lBUM4CkB2H1Z9Vw==
-  dependencies:
-    apollo-server-core "^2.13.1"
-    apollo-server-express "^2.13.1"
-    express "^4.0.0"
-    graphql-subscriptions "^1.0.0"
-    graphql-tools "^4.0.0"
-
 apollo-tracing@^0.10.1-alpha.0:
   version "0.10.1-alpha.0"
   resolved "https://registry.yarnpkg.com/apollo-tracing/-/apollo-tracing-0.10.1-alpha.0.tgz#c59443a7c39d84eed1fa3ad3b9be12d115c02f8a"
@@ -1721,7 +1710,7 @@ express-session@^1.16.2:
     safe-buffer "5.2.0"
     uid-safe "~2.1.5"
 
-express@^4.0.0, express@^4.16.3, express@^4.17.1:
+express@^4.16.3, express@^4.17.1:
   version "4.17.1"
   resolved "https://registry.yarnpkg.com/express/-/express-4.17.1.tgz#4491fc38605cf51f8629d39c2b5d026f98a4c134"
   integrity sha512-mHJ9O79RqluphRrcw2X/GTh3k9tVv8YcoyY4Kkh4WDMUYKRZUq0h1o0w2rrrxBqM7VoeUVqgb27xlEMXTnYt4g==
