@@ -12,12 +12,20 @@ import SectionTitle from '../components/SectionTitle';
 import FlexContainer from '../components/FlexContainer';
 import DailyProdList from '../components/Lists/DailyProdList';
 import { Container, Row, Col, DropdownButton, Dropdown } from 'react-bootstrap';
+import Slider, { Range } from 'rc-slider';
+// import Range from 'rc-slider/lib/Range';
+import Tooltip from 'rc-tooltip';
+
+
+import 'rc-slider/assets/index.css';
+import 'rc-tooltip/assets/bootstrap.css';
+
 
 // utilities
 import API from '../utils/API';
 
 
-const DashBoard = () => {
+const DashBoard = (props) => {
     const [wellData, setWellData] = useState([]);
     const [prodData, setProdData] = useState([]);
     const [prodTotal, setProdTotal] = useState([]);
@@ -147,6 +155,11 @@ const DashBoard = () => {
         }
     }
 
+    const createSliderWithTooltip = Slider.createSliderWithTooltip;
+    const Range = createSliderWithTooltip(Slider.Range);
+    const Handle = Slider.Handle;
+    const { value, dragging, index, ...restProps } = props;
+
     useEffect(() => {
         // loadProfileInfo(),
         getAllProdData()
@@ -166,42 +179,24 @@ const DashBoard = () => {
                 </Row>
                 <Row>
                     <DailyProdList data={prodData[prodData.length - 1]} />
-                    {/* <Col md="4">
-                        <Card>
-                            <FlexContainer>
-                                <SectionTitle mb="5px"> BBLs</SectionTitle>
-                                <p style={{ marginBottom: "5px" }}><strong>+0.20%</strong></p>
-                            </FlexContainer>
-                            <h6 className="mb-0">Oil Production</h6>
-                        </Card>
-                    </Col>
-                    <Col md="4">
-                        <Card>
-                            <FlexContainer>
-                                <SectionTitle mb="5px">{this.state.currentProd.gas} MCF</SectionTitle>
-                                <p style={{ marginBottom: '5px' }}>
-                                    <strong>+0.20%</strong>
-                                </p>
-                            </FlexContainer>
-                            <h6 className="mb-0">Gas Production</h6>
-                        </Card>
-                    </Col>
-                    <Col md="4">
-                        <Card>
-                            <FlexContainer>
-                                <SectionTitle mb="5px">{this.state.currentProd.water} BBLs</SectionTitle>
-                                <p style={{ marginBottom: '5px' }}>
-                                    <strong>+0.20%</strong>
-                                </p>
-                            </FlexContainer>
-                            <h6 className="mb-0">Water Production</h6>
-                        </Card>
-            </Col> */}
                     <Col lg="12">
                         <Card>
                             <SectionTitle>Production</SectionTitle>
                             <div style={styles.graph}>
                                 <GraphLine well={prodData || []} />
+                                {/* <Tooltip
+                                    prefixCls="rc-slider-tooltip"
+                                    overlay={value}
+                                    visible={dragging}
+                                    placement="top"
+                                    key={index}
+                                > */}
+                                <Range
+                                    min={0}
+                                    max={100}
+                                    // value={[0, 50]}
+                                    tipFormatter={value => `${value}%`} />
+                                {/* </Tooltip> */}
                             </div>
                         </Card>
                     </Col>
