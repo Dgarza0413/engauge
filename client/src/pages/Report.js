@@ -11,8 +11,6 @@ const report = () => {
     const [reportData, setReportData] = useState([])
     const [summaryReport, setSummaryReport] = useState([])
     const [summaryCostReport, setSummaryCostReport] = useState([])
-    console.log(summaryReport)
-    console.log(summaryCostReport)
 
     const getAllReportData = async () => {
         try {

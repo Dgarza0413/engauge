@@ -9,12 +9,13 @@ import GraphBar from '../components/Graph/BarGraph';
 import PageWrapper from '../components/PageWrapper';
 import Card from '../components/Card';
 import SectionTitle from '../components/SectionTitle';
-import FlexContainer from '../components/FlexContainer';
 import DailyProdList from '../components/Lists/DailyProdList';
 import { Container, Row, Col, DropdownButton, Dropdown } from 'react-bootstrap';
 import Slider, { Range } from 'rc-slider';
 // import Range from 'rc-slider/lib/Range';
 import Tooltip from 'rc-tooltip';
+
+import useCombineValue from '../hooks/useCombineValue';
 
 
 import 'rc-slider/assets/index.css';
@@ -66,32 +67,9 @@ const DashBoard = (props) => {
 
     const getAllReportData = async () => {
         try {
-            const res = await API.getAllReportData()
-            const data = res.data
-            const newObj = [];
+            const { data } = await API.getAllReportData()
+            useCombineValue(data, setReportData)
 
-            for (var i = 0; i < data.length; i++) {
-                const day = moment(data[i].date).format('YYYY-MM-DD');
-                if (!newObj[day]) {
-                    newObj[day] = {
-                        day: day,
-                        value: []
-                    }
-                    newObj[day].value.push(1)
-                } else {
-                    newObj[day].value.push(1)
-                }
-            }
-
-            for (let key in newObj) {
-                let value = newObj[key].value
-                let day = newObj[key].day
-                let totalValue = value.reduce((acc, cur) => acc + cur);
-                newObj[key].day = day;
-                newObj[key].value = totalValue;
-            }
-
-            setReportData(Object.values(newObj))
         } catch (error) {
             console.error(error)
         }
@@ -228,6 +206,7 @@ const DashBoard = (props) => {
                             <SectionTitle>Report Summary</SectionTitle>
                             <div style={styles.graph}>
                                 <Calendar data={reportData || []} />
+                                {/* <Calendar data={data || []} /> */}
                             </div>
                         </Card>
                     </Col>
