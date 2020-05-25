@@ -1,4 +1,6 @@
 require('dotenv').config();
+const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const mongoose = require('mongoose');
@@ -7,6 +9,11 @@ const app = express();
 const PORT = process.env.PORT || 3001
 const passport = require('./config/passport.js')
 const compression = require("compression")
+
+// const { ApolloServer } = require('apollo-server-express');
+// const filePath = path.join(__dirname, 'typeDefs.gql');
+// const typeDefs = fs.readFileSync(filePath, 'utf-8');
+// const resolvers = require('./resolvers');
 
 
 // Define middleware here
@@ -25,6 +32,11 @@ app.use(passport.session());
 // Add routes, both API and view
 app.use(routes);
 
+// const server = new ApolloServer({ typeDefs, resolvers })
+// server.applyMiddleware({ app });
+// console.log(server)
+
+
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/engauge";
 mongoose.connect(MONGODB_URI, {
@@ -35,8 +47,9 @@ mongoose.connect(MONGODB_URI, {
 
 // Start the API server
 app.listen(PORT, function () {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+  console.log(`🌎  ==> API Server now listening on ${PORT}`);
 });
+
 
 process.on('SIGINT', () => {
   mongoose.connection.close().then(() => {

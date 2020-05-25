@@ -1,7 +1,7 @@
 import React from "react";
 import { ResponsiveBar } from '@nivo/bar';
 
-const MyResponsiveBar = (props) => {
+const Bar = (props) => {
 
     const data = [
         {
@@ -92,4 +92,4 @@ const MyResponsiveBar = (props) => {
     )
 }
 
-export default MyResponsiveBar;
+export default Bar;

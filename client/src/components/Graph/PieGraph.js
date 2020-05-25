@@ -3,6 +3,8 @@ import { ResponsivePie } from '@nivo/pie';
 import "./style.css";
 
 const MyResponsivePie = (props) => {
+    console.log(props)
+
     const data = [
         {
             "id": "Active",
@@ -17,6 +19,7 @@ const MyResponsivePie = (props) => {
             "color": "hsl(6, 70%, 50%)"
         }
     ]
+
     return (
         <div className={props.class}>
             <ResponsivePie
@@ -60,7 +63,6 @@ const MyResponsivePie = (props) => {
                         ]
                     }
                 ]}
-
             />
         </div>
     )

@@ -10,17 +10,25 @@ import PageWrapper from '../components/PageWrapper';
 import Card from '../components/Card';
 import SectionTitle from '../components/SectionTitle';
 import FlexContainer from '../components/FlexContainer';
-import { Container, Row, Col } from 'react-bootstrap';
+import DailyProdList from '../components/Lists/DailyProdList';
+import { Container, Row, Col, DropdownButton, Dropdown } from 'react-bootstrap';
+import Slider, { Range } from 'rc-slider';
+// import Range from 'rc-slider/lib/Range';
+import Tooltip from 'rc-tooltip';
+
+
+import 'rc-slider/assets/index.css';
+import 'rc-tooltip/assets/bootstrap.css';
+
 
 // utilities
 import API from '../utils/API';
 
 
-const DashBoard = () => {
+const DashBoard = (props) => {
     const [wellData, setWellData] = useState([]);
     const [prodData, setProdData] = useState([]);
     const [prodTotal, setProdTotal] = useState([]);
-    const [currentProdData, setCurrentProdData] = useState([]);
     const [reportData, setReportData] = useState([]);
     const [wellStatus, setWellStatus] = useState({});
     const [userVal, setUserVal] = useState("")
@@ -30,8 +38,6 @@ const DashBoard = () => {
             height: '25vw',
         },
     };
-
-    console.log(currentProdData)
 
     const loadProfileInfo = async () => {
         try {
@@ -45,7 +51,6 @@ const DashBoard = () => {
     const getAllWellData = async () => {
         try {
             const res = await API.getAllWellData()
-            console.log(res)
             const data = await res.data
             const isOff = await data.map(status => status.isOn).filter(v => v === false).length
             const isOn = await data.map(status => status.isOn).filter(v => v === true).length
@@ -150,6 +155,11 @@ const DashBoard = () => {
         }
     }
 
+    const createSliderWithTooltip = Slider.createSliderWithTooltip;
+    const Range = createSliderWithTooltip(Slider.Range);
+    const Handle = Slider.Handle;
+    const { value, dragging, index, ...restProps } = props;
+
     useEffect(() => {
         // loadProfileInfo(),
         getAllProdData()
@@ -168,42 +178,25 @@ const DashBoard = () => {
                     </SectionTitle>
                 </Row>
                 <Row>
-                    <Col md="4">
-                        <Card>
-                            <FlexContainer>
-                                {/* <SectionTitle mb="5px">{this.state.currentProd.oil} BBLs</SectionTitle> */}
-                                <p style={{ marginBottom: "5px" }}><strong>+0.20%</strong></p>
-                            </FlexContainer>
-                            <h6 className="mb-0">Oil Production</h6>
-                        </Card>
-                    </Col>
-                    <Col md="4">
-                        <Card>
-                            <FlexContainer>
-                                {/* <SectionTitle mb="5px">{this.state.currentProd.gas} MCF</SectionTitle> */}
-                                <p style={{ marginBottom: '5px' }}>
-                                    <strong>+0.20%</strong>
-                                </p>
-                            </FlexContainer>
-                            <h6 className="mb-0">Gas Production</h6>
-                        </Card>
-                    </Col>
-                    <Col md="4">
-                        <Card>
-                            <FlexContainer>
-                                {/* <SectionTitle mb="5px">{this.state.currentProd.water} BBLs</SectionTitle> */}
-                                <p style={{ marginBottom: '5px' }}>
-                                    <strong>+0.20%</strong>
-                                </p>
-                            </FlexContainer>
-                            <h6 className="mb-0">Water Production</h6>
-                        </Card>
-                    </Col>
+                    <DailyProdList data={prodData[prodData.length - 1]} />
                     <Col lg="12">
                         <Card>
                             <SectionTitle>Production</SectionTitle>
                             <div style={styles.graph}>
                                 <GraphLine well={prodData || []} />
+                                {/* <Tooltip
+                                    prefixCls="rc-slider-tooltip"
+                                    overlay={value}
+                                    visible={dragging}
+                                    placement="top"
+                                    key={index}
+                                > */}
+                                <Range
+                                    min={0}
+                                    max={100}
+                                    // value={[0, 50]}
+                                    tipFormatter={value => `${value}%`} />
+                                {/* </Tooltip> */}
                             </div>
                         </Card>
                     </Col>
