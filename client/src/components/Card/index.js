@@ -1,4 +1,6 @@
 import React from "react";
+import SectionTitle from '../../components/SectionTitle';
+import FlexContainer from '../../components/FlexContainer';
 import "./style.css";
 
 const style = {

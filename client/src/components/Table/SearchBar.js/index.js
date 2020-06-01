@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 
 import useInputChange from '../../../hooks/useInputChange';
 
-const SearchBar = () => {
+const SearchBar = ({ setFilter, setDropDown }) => {
     const [value, handleInputChange] = useInputChange();
+
+    useEffect(() => {
+        setFilter(value.filter)
+    }, [value.filter])
+
+    useEffect(() => {
+        setDropDown(value.dropDown)
+    }, [value.dropDown])
 
     return (
         <InputGroup className="mb-3">

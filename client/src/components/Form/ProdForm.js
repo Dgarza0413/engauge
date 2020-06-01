@@ -3,6 +3,7 @@ import moment from 'moment';
 
 import { Container, Row, Col } from "react-bootstrap";
 import { NumberInput, TextBoxInput, StringInput } from "../Form";
+import { Redirect } from 'react-router-dom';
 import Card from "../Card";
 import Button from "../Button";
 import API from "../../utils/API";
@@ -32,6 +33,7 @@ const ProdForm = (props) => {
 
         try {
             await API.postWellProd(id, value)
+            return <Redirect to="/dashboard" />;
         } catch (error) {
             console.error(error)
         }

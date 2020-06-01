@@ -3,8 +3,6 @@ import { ResponsivePie } from '@nivo/pie';
 import "./style.css";
 
 const MyResponsivePie = (props) => {
-    console.log(props)
-
     const data = [
         {
             "id": "Active",

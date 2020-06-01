@@ -1,9 +1,10 @@
 import React from "react";
 import moment from "moment";
+import Slider, { Range } from 'rc-slider';
+
 import { ResponsiveLine } from '@nivo/line';
 
 const MyResponsiveLine = (props) => {
-
     const oildata = props.well.map(d => (
         {
             "x": moment(d.date).format("MM-DD"),

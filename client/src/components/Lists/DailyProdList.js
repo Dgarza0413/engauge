@@ -1,22 +1,19 @@
 import React from 'react';
 import SummarizedCard from '../Card/SummarizedCard';
-import Card from '../Card';
-import { Col } from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
 
 
 const DailyProdList = ({ data }) => {
     return (
         <>
             {
-                Object.entries(data || '').map(e => {
+                Object.entries(data || '').map((e, i) => {
                     return (
                         <>
                             {(e[0] === "date")
                                 ? ""
                                 : <Col md='4'>
-                                    <Card>
-                                        <SummarizedCard data={e} />
-                                    </Card>
+                                    <SummarizedCard key={i} data={e} />
                                 </Col>
                             }
                         </>
