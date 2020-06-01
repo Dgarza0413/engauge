@@ -3,33 +3,10 @@ import Table from "react-bootstrap/Table";
 import Card from "../Card";
 import moment from "moment"
 
-// const calculateData = data => {
-//     // console.log("this is the well data: " + JSON.stringify(data));
-//     const totalData = data.reduce((acc, currentValue) => {
-//         // return acc + currentValue.gas;
-//         // console.log("this is current value" + JSON.stringify(acc));
-//         let oil = acc + currentValue.oil;
-//         let gas = acc + currentValue.gas;
-//         let water = acc + currentValue.water;
-//         let casingPSI = acc + currentValue.casingPSI;
-//         let tubingPSI = acc + currentValue.tubingPSI;
-//         return oil;
-//         // return [{
-//         //     oil: oil, 
-//         //     gas: gas,
-//         //     water: water,
-//         //     casingPSI: casingPSI,
-//         //     tubingPSI: tubingPSI
-//         // }];
-//     }, []);
-//     // return totalData;
-//     console.log("testing" + JSON.stringify(totalData));
-// }
-
 const ProdTable = ({ well }) => {
     return (
         <Card padding="0" overflow="auto">
-            <Table striped bordered hover>
+            <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
                         <th>Date</th>

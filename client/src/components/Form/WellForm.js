@@ -4,12 +4,7 @@ import SectionTitle from '../SectionTitle';
 
 import { Form, Container, Row, Col } from "react-bootstrap";
 
-import {
-    StringInput,
-    NumberInput,
-    Select,
-    BoxInput,
-} from "../Form";
+import { StringInput, NumberInput, Select, BoxInput } from "../Form";
 import Card from "../Card";
 import Button from "../Button";
 import API from "../../utils/API";

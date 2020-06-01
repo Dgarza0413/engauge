@@ -53,35 +53,35 @@ const report = () => {
 
     const combineCost = async () => {
         try {
-            const newObj2 = [];
+            const newObj = [];
             const res = await API.getAllReportData()
 
             for (var i = 0; i < res.data.length; i++) {
                 const name = res.data[i].type
-                if (!newObj2[name]) {
-                    newObj2[name] = {
+                if (!newObj[name]) {
+                    newObj[name] = {
                         id: res.data[i].type || 'no Id',
                         label: res.data[i].type || 'no Id',
                         value: [],
                         color: 'hsl(323, 70%, 50%)'
                     }
                 } else {
-                    newObj2[name].value.push(res.data[i].cost)
+                    newObj[name].value.push(res.data[i].cost || 0)
+
                 }
             }
 
-            for (let key in newObj2) {
-                let total = newObj2[key].value
-                let totalSum = total.reduce((acc, cur) => acc + cur)
-                newObj2[key].value = totalSum
+            for (let key in newObj) {
+                let total = newObj[key].value
+                let totalSum = total.reduce((acc, cur) => acc + cur, 0)
+                newObj[key].value = totalSum
+                console.log(totalSum)
             }
-            console.log(newObj2)
-            setSummaryCostReport(Object.values(newObj2))
+            setSummaryCostReport(Object.values(newObj))
         } catch (error) {
             console.error(error)
         }
     }
-
 
     useEffect(() => {
         getAllReportData()
@@ -91,10 +91,9 @@ const report = () => {
 
     return (
         <PageWrapper>
-            <SectionTitle title="Report Page" />
             <SectionTitle>Report Page</SectionTitle>
             <Row>
-                <Col xs={7}>
+                <Col xs={6}>
                     <Card>
                         <div style={{ height: '300px' }}>
                             <SectionTitle>Report Type</SectionTitle>
@@ -102,12 +101,11 @@ const report = () => {
                         </div>
                     </Card>
                 </Col>
-                <Col xs={5}>
+                <Col xs={6}>
                     <Card>
                         <div style={{ height: '300px' }}>
                             <SectionTitle>Report Cost</SectionTitle>
-                            {/* <Pie reportData={summaryCostReport || []} /> */}
-                            {/* <CalendarGraph data={reportData || []} /> */}
+                            <Pie reportData={summaryCostReport || []} />
                         </div>
                     </Card>
                 </Col>

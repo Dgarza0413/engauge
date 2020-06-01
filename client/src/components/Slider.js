@@ -8,7 +8,7 @@ const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 const Handle = Slider.Handle;
 
-const Handle = (props) => {
+const HandleSilder = (props) => {
     const { value, dragging, index, ...restProps } = props;
     return (
         <Tooltip
@@ -24,4 +24,9 @@ const Handle = (props) => {
 };
 
 
-export default Handle
+export default HandleSilder
+
+{/* <Range
+min={prodData[prodData.length - 1]}
+max={prodData[prodData.length - (prodData.length - 1)]}
+tipFormatter={value => `${value}%`} /> */}

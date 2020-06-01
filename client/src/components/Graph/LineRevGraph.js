@@ -5,15 +5,6 @@ import moment from 'moment'
 const MyResponsiveLine = ({ oil, gas }) => {
     const color = "hsl(157, 70%, 50%)";
 
-    // yScale={{
-    //     type: 'log',
-    //     base: 10,
-    //     stacked: true,
-    //     min: 'auto',
-    //     max: 'auto',
-    //     reverse: true
-    // }}   
-
     const oildata = oil.map(d => (
         {
             "x": moment(d.date).format("MM-DD"),
