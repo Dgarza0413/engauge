@@ -20,11 +20,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "bootstrap": "^4.3.1",
     "concurrently": "^4.1.0",
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "apollo-datasource-mongodb": "^0.2.6",
     "apollo-server-express": "^2.13.1",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",

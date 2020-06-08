@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const productionSchema = new Schema({
+    siteId: {
+        type: String,
+        default: ''
+    },
     oil: {
         type: Number,
         default: 0

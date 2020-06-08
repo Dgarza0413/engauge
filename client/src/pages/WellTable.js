@@ -13,6 +13,8 @@ import API from '../utils/API';
 const WellTable = () => {
   const [wells, setWells] = useState([]);
 
+  console.log(wells)
+
   useEffect(() => {
     getWellData()
   }, []);

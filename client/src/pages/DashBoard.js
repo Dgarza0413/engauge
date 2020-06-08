@@ -10,6 +10,7 @@ import PageWrapper from '../components/PageWrapper';
 import Card from '../components/Card';
 import SectionTitle from '../components/SectionTitle';
 import DailyProdList from '../components/Lists/DailyProdList';
+import MapBox from '../components/Map';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -138,7 +139,6 @@ const DashBoard = (props) => {
         const max = await moment.utc(prodData[prodData.length - 1].date)
         const min = await moment.utc(prodData[prodData.length - (prodData.length - 1)].date)
         const increment = await max.add(24, 'hours').valueOf()
-        console.log(increment)
         const filterDates = await prodData.filter(e => {
             return e.date >= min && e.date <= max
         })
@@ -174,7 +174,7 @@ const DashBoard = (props) => {
                                 <GraphLine well={prodData || []} />
                                 <Range
                                     defaultValue={[filteredValues.min, filteredValues.max]}
-                                    // step={max.add(24, 'hours').valueOf()}
+                                    // step={86400000}
                                     min={filteredValues.min}
                                     max={filteredValues.max}
                                     onChange={filterRange}
@@ -203,8 +203,6 @@ const DashBoard = (props) => {
                             />
                         </Card>
                     </Col>
-                </Row>
-                <Row>
                     <Col lg="12">
                         <Card>
                             <SectionTitle>Report Summary</SectionTitle>

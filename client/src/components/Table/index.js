@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Card from "../Card";
 import SearchBar from './SearchBar.js';
 import "./style.css";
+import SiteRow from "./Row/Site";
 
 const WellTable = (props) => {
     const [filter, setFilter] = useState();

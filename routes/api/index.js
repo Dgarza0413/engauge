@@ -5,9 +5,11 @@ const wellController = require("../../controllers/wellController");
 const prodController = require("../../controllers/prodController");
 const reportController = require("../../controllers/reportController");
 const recompletionController = require("../../controllers/recompletionController");
+const controller = require('../../controllers');
 const passport = require('../../config/passport.js')
-const puppeteer = require('puppeteer');
 const axios = require('axios')
+
+console.log(controller.prod)
 
 const eiaKEY = '990b432b4775983b2a47b8ee7e5e2795'
 // const { google } = require("googleapis")
@@ -206,8 +208,6 @@ router.route("/well/:id")
 router.get('/oil', async (req, res) => {
     try {
         const data = await axios.get(`http://api.eia.gov/series/?api_key=${eiaKEY}&series_id=PET.F003048__3.M`)
-        // const data = await axios.get(`https://api.eia.gov/series/?api_key=990b432b4775983b2a47b8ee7e5e2795&series_id=PET.F003048__3.M`)
-        // console.log(data)
         res.json(data.data)
     } catch (error) {
         console.error(error)
