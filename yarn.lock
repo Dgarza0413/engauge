@@ -4393,9 +4393,9 @@ symbol-observable@^1.0.4:
   integrity sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==
 
 systeminformation@^4.23.3:
-  version "4.26.3"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-4.26.3.tgz#6b2e349af820bbfdd979263e63eb2d408d280a8d"
-  integrity sha512-ewTNx1YOLvq9qDHyVxTjTajJlRtC8tiUn+Bn33ORZOsuzCn5n5zDiE+M2xiuKhXXaqEh+cOTAM3HeegUNb998A==
+  version "4.27.11"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-4.27.11.tgz#6dbe96e48091444f80dab6c05ee1901286826b60"
+  integrity sha512-U7bigXbOnsB8k1vNHS0Y13RCsRz5/UohiUmND+3mMUL6vfzrpbe/h4ZqewowB+B+tJNnmGFDj08Z8xGfYo45dQ==
 
 tar-fs@^2.0.0:
   version "2.1.0"
