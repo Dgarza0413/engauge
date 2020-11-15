@@ -1,6 +1,11 @@
 import React from 'react'
 
-import { FILTERED_PRODUCTION_TABLE } from '../../utils/FilteredValues';
+import {
+    FILTERED_PRODUCTION_TABLE,
+    FILTERED_WELL_TABLE,
+    INCLUDED_WELL_TABLE,
+    FILTERED_MONGODB_VALUES
+} from '../../utils/FilteredValues';
 
 const Header = (props) => {
     return (
@@ -10,7 +15,7 @@ const Header = (props) => {
                     Object
                         .keys(props.data[0] || [])
                         .map(e => {
-                            if (FILTERED_PRODUCTION_TABLE.includes(e)) {
+                            if ([...FILTERED_PRODUCTION_TABLE, ...FILTERED_WELL_TABLE].includes(e)) {
                                 return
                             } else {
                                 return (

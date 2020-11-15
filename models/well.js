@@ -5,7 +5,11 @@ const wellSchema = new Schema({
     wellName: { type: String },
     wellNum: { type: String }, // form w1.5
     wellType: { type: String },
-    apiNum: { type: String }, // form w1 (top)
+    apiNum: {
+        type: String,
+        unique: true,
+        require: 'must be unique',
+    }, // form w1 (top)
     operator: { type: String, default: "" }, // form w1.2
     leaseName: { type: String }, // form w1.4
     county: { type: String }, // form w1.13
@@ -23,8 +27,8 @@ const wellSchema = new Schema({
     wellBoreProfile: { type: String }, // form w1.7
     surfaceLocation: { type: String }, // will get data from a set of radio buttons form w1.14
     // end form W-1
-    // isOn: { type: Boolean, default: false },
-    isOn: [{
+    isOn: { type: Boolean, default: false },
+    downTime: [{
         type: Schema.Types.ObjectId,
         ref: 'Downtime'
     }],

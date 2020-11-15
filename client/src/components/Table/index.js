@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import ToggleButton from "../Button/ToggleButton";
 import Table from "react-bootstrap/Table";
-import { Link } from "react-router-dom";
 import Card from "../Card";
 import SearchBar from './SearchBar.js';
+import PaginationBar from '../Pagination';
 
 import Body from './Body';
 import Header from './Header';
 
 import "./style.css";
-import SiteRow from "./Row/Site";
 
 const WellTable = (props) => {
     const [filter, setFilter] = useState();
@@ -17,27 +15,22 @@ const WellTable = (props) => {
     const { wells, data } = props;
 
     return (
-        <Card padding="0" overflow="auto">
-            < Table striped bordered hover responsive size="sm" >
-                <Header data={data} />
-                <Body data={data} />
-            </Table >
-        </Card>
+        <>
+            <SearchBar
+                setFilter={setFilter}
+                setDropDown={setDropDown}
+            />
+            <PaginationBar />
+            <Card padding="0" overflow="auto">
+                < Table striped bordered hover responsive size="sm" >
+                    <Header data={data || []} />
+                    <Body data={data || []} />
+                </Table >
+            </Card>
+        </>
         // <>
-        //          <SearchBar
-        //                 setFilter={setFilter}
-        //                 setDropDown={setDropDown}
-        //             /> 
         // <Card padding="0" overflow="auto">
         //                 <Table striped bordered hover size="sm">
-        //                     <thead>
-        //                         <tr>
-        //                             <th>Well Name</th>
-        //                             <th>Well Number</th>
-        //                             <th>API Number</th>
-        //                             <th>Status</th>
-        //                         </tr>
-        //                     </thead>
         //                     <tbody>
         //                         {wells
         //                             .filter(well => {

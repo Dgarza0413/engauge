@@ -21,7 +21,6 @@ const W2Form = () => {
         } catch (error) {
             console.error(error)
         }
-
     }
 
     return (

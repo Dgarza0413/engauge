@@ -27,9 +27,12 @@ const WellDetail = (props) => {
     setInput({ input: "" })
   }
 
+  console.log(props)
+
   const getWellIdData = async () => {
     try {
       const getWell = await API.getWellId(props.match.params.id)
+      console.log(getWell)
       const res = getWell.data
 
       const totalGas = res.productionId
@@ -112,7 +115,7 @@ const WellDetail = (props) => {
           </Row>
           <Card padding="0px">
             <TabPanel
-              well={wellData.productionId || []}
+              prodData={wellData.productionId || []}
               reportData={wellData.reportId || []}
               key={wellData._id}
             />

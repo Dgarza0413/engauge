@@ -199,7 +199,7 @@ router.route("/well/:id/report/update").put(reportController.update);
 
 // select specific well
 router.route("/well/:id")
-    .get(wellController.findById)
+    .get(wellController.findByQuery)
     .put(wellController.update)
     .delete(wellController.remove);
 

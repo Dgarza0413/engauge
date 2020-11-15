@@ -1,25 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 
 // Components
 import Table from '../components/Table';
-// import Button from '../Button';
+import Button from '../components/Button';
 import PageWrapper from '../components/PageWrapper';
 import SectionTitle from '../components/SectionTitle';
 import FlexContainer from '../components/FlexContainer';
 import API from '../utils/API';
 
 const WellTable = () => {
-  const [wells, setWells] = useState([]);
-
-  console.log(wells)
-
+  const [data, setData] = useState([]);
 
   const getWellData = async () => {
     try {
       const res = await API.getAllWellData()
-      await setWells(res.data)
+      await setData(res.data)
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +33,7 @@ const WellTable = () => {
           <Button>+ Add Well</Button>
         </Link>
       </FlexContainer>
-      <Table wells={wells} key={wells._id} />
+      <Table data={data} key={data._id} />
     </PageWrapper>
   );
 };

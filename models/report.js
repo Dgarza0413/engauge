@@ -12,7 +12,7 @@ const reportSchema = new mongoose.Schema({
     reportId: {
         type: String,
         default: () => shortid.generate(),
-        required: true
+        unique: true
     },
     title: {
         type: String,
@@ -32,7 +32,7 @@ const reportSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-        default: Date.now()
+        default: new Date
     },
     summary: {
         type: String,

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import PageWrapper from "../components/PageWrapper";
-import ReportTable from "../components/Table/ReportTable";
 import Card from '../components/Card';
 import SectionTitle from '../components/SectionTitle';
 import API from '../utils/API';
 import { Col, Row } from "react-bootstrap";
 import Pie from "../components/Graph/PieGraphCopy";
+
+import Table from '../components/Table';
 
 const report = () => {
     const [reportData, setReportData] = useState([])
@@ -109,7 +110,7 @@ const report = () => {
                     </Card>
                 </Col>
                 <Col xs={12}>
-                    <ReportTable reportData={reportData || []} />
+                    <Table data={reportData || []} />
                 </Col>
             </Row>
         </PageWrapper>

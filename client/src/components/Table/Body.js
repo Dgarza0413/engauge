@@ -1,5 +1,4 @@
 import React from 'react'
-import propTypes from 'prop-types'
 
 import BodyRow from './Row/BodyRow';
 
@@ -13,10 +12,6 @@ const Body = props => {
             }
         </tbody>
     )
-}
-
-Body.propTypes = {
-
 }
 
 export default Body

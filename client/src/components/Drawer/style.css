@@ -54,7 +54,7 @@ a:hover, a:focus {
 }
 
 .menu-secondary {
-    padding-top: 10vh;
+    padding-top: 8vh;
     position: fixed;
     height: 100vh;
     z-index: 1000;
