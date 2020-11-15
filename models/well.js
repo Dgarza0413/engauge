@@ -23,8 +23,14 @@ const wellSchema = new Schema({
     wellBoreProfile: { type: String }, // form w1.7
     surfaceLocation: { type: String }, // will get data from a set of radio buttons form w1.14
     // end form W-1
-    isOn: { type: Boolean, default: false },
-    date: { type: Date, default: Date.now },
+    // isOn: { type: Boolean, default: false },
+    isOn: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Downtime'
+    }],
+    date: {
+        type: Date, default: new Date
+    },
     productionId: [{
         type: Schema.Types.ObjectId,
         ref: "Production"

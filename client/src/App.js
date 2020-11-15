@@ -86,14 +86,22 @@ class App extends React.Component {
                     </Switch>
 
                     {/* for sign in authentication */}
-                    {/* {this.state.loggedIn ? <Drawer auth={this.auth} /> : false}
+                    {/* {
+                        this.state.loggedIn
+                            ? <Drawer auth={this.auth} />
+                            : false
+                    }
                     <Switch>
-                        {this.state.loggedIn
-                            ? <Route exact path="/" component={DashBoard} />
-                            : <Route exact path="/" component={Login} />}
-                        {this.state.loggedIn
-                            ? <Route component={this.defaultRoutes} />
-                            : <Route component={NoMatch} />}
+                        {
+                            this.state.loggedIn
+                                ? <Route exact path="/" component={DashBoard} />
+                                : <Route exact path="/" component={Login} />
+                        }
+                        {
+                            this.state.loggedIn
+                                ? <Route component={this.defaultRoutes} />
+                                : <Route component={NoMatch} />
+                        }
                     </Switch> */}
                 </div>
             </Router >

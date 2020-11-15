@@ -9,8 +9,6 @@ const controller = require('../../controllers');
 const passport = require('../../config/passport.js')
 const axios = require('axios')
 
-console.log(controller.prod)
-
 const eiaKEY = '990b432b4775983b2a47b8ee7e5e2795'
 // const { google } = require("googleapis")
 // const google = require("googleapis").google

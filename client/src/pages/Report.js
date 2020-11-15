@@ -67,7 +67,6 @@ const report = () => {
                     }
                 } else {
                     newObj[name].value.push(res.data[i].cost || 0)
-
                 }
             }
 

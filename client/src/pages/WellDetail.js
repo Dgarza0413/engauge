@@ -5,7 +5,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import API from '../utils/API';
 
 // components
-import Map from '../components/Map/Map';
 import GraphLine from '../components/Graph/LineGraph';
 import GraphBar from '../components/Graph/BarGraph';
 import PageWrapper from '../components/PageWrapper';
@@ -16,6 +15,8 @@ import DailyProdList from '../components/Lists/DailyProdList';
 import TabPanel from '../components/TabBar/TabBar';
 import Drawer from '../components/Drawer/Drawer';
 import SeconadaryWrapper from '../components/PageWrapper/SecondaryWrapper';
+
+import MapBox from '../components/Map';
 
 const WellDetail = (props) => {
   const [wellData, setWellData] = useState({});
@@ -93,13 +94,7 @@ const WellDetail = (props) => {
             <Col lg="6">
               <Card>
                 <SectionTitle>Location</SectionTitle>
-                {/* <Map
-                height="35vw"
-                wellLocation={{
-                  latitude: wellData.tempLat,
-                  longitude: wellData.tempLng,
-                }}
-              /> */}
+                <MapBox height="35vw" />
               </Card>
             </Col>
             <Col lg="6">
@@ -115,11 +110,13 @@ const WellDetail = (props) => {
               </Card>
             </Col>
           </Row>
-          <TabPanel
-            well={wellData.productionId || []}
-            reportData={wellData.reportId || []}
-            key={wellData._id}
-          />
+          <Card padding="0px">
+            <TabPanel
+              well={wellData.productionId || []}
+              reportData={wellData.reportId || []}
+              key={wellData._id}
+            />
+          </Card>
         </Container>
       </SeconadaryWrapper>
     </PageWrapper >

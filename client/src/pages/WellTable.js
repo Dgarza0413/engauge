@@ -15,9 +15,6 @@ const WellTable = () => {
 
   console.log(wells)
 
-  useEffect(() => {
-    getWellData()
-  }, []);
 
   const getWellData = async () => {
     try {
@@ -27,6 +24,11 @@ const WellTable = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    getWellData()
+  }, []);
+
   return (
     <PageWrapper>
       <FlexContainer>

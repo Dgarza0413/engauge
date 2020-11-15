@@ -4,10 +4,10 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 const styles = {
     width: "100%",
-    height: "calc(100vh - 80px)",
+    // height: "calc(100vh - 80px)",
 };
 
-const MapBox = () => {
+const MapBox = (props) => {
     const [map, setMap] = useState(null);
     const mapContainer = useRef(null);
 
@@ -30,7 +30,7 @@ const MapBox = () => {
         if (!map) initializeMap({ setMap, mapContainer });
     }, [map]);
 
-    return <div ref={el => (mapContainer.current = el)} style={styles} />;
+    return <div ref={el => (mapContainer.current = el)} style={{ ...styles, height: props.height }} />;
 };
 
 export default MapBox;

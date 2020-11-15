@@ -164,21 +164,12 @@ const DashBoard = (props) => {
             <SectionTitle>Dashboard</SectionTitle>
             <Container>
                 <Row>
-                    <DailyProdList
-                        data={prodData[prodData.length - 1]}
-                    />
+                    <DailyProdList data={prodData[prodData.length - 1]} />
                     <Col lg="12">
                         <Card>
                             <SectionTitle>Production</SectionTitle>
                             <div style={styles.graph}>
                                 <GraphLine well={prodData || []} />
-                                <Range
-                                    defaultValue={[filteredValues.min, filteredValues.max]}
-                                    // step={86400000}
-                                    min={filteredValues.min}
-                                    max={filteredValues.max}
-                                    onChange={filterRange}
-                                />
                             </div>
                         </Card>
                     </Col>

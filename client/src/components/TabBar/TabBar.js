@@ -1,6 +1,7 @@
 import React from 'react';
-import ProdTable from '../Table/ProdTable';
 import ReportTable from '../Table/ReportTable';
+
+import Table from '../Table';
 import { Tabs, Tab } from 'react-bootstrap';
 
 const TabPanel = ({ well, reportData }) => {
@@ -14,18 +15,17 @@ const TabPanel = ({ well, reportData }) => {
             <Tab
                 eventKey="home"
                 title="Production">
-                <ProdTable
-                    well={well || []}
-                    key={well._id} />
+                <Table data={well} />
             </Tab>
             <Tab
                 eventKey="profile"
                 title="Reports"
             >
-                <ReportTable
+                <Table data={reportData} />
+                {/* <ReportTable
                     reportData={reportData || []}
                     key={well._id}
-                />
+                /> */}
             </Tab>
             <Tab
                 eventKey="recomp"
