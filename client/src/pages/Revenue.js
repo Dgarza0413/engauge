@@ -16,9 +16,9 @@ const styles = {
 const Revenue = () => {
     const [oilPrices, setOilPrices] = useState([])
     const [gasPrices, setGasPrices] = useState([])
-    const wellData = useState([])
-    const currentProd = useState([])
-    const gasRev = useState([])
+    // const wellData = useState([])
+    // const currentProd = useState([])
+    // const gasRev = useState([])
 
     const getOil = async () => {
         // const obj = { date: date };

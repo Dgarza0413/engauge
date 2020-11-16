@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import moment from 'moment';
 
 import { Container, Row, Col } from "react-bootstrap";
@@ -26,13 +26,14 @@ const ProdForm = (props) => {
     //     }
     // }
 
-    const handleFormSubmit = async (event) => {
+    const handleFormSubmit = async (e) => {
         event.preventDefault();
 
         const id = props.match.params.id
 
         try {
             await API.postWellProd(id, value)
+            // await handleRedirect()
             return <Redirect to="/dashboard" />;
         } catch (error) {
             console.error(error)

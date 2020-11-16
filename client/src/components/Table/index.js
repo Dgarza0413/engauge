@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Table from "react-bootstrap/Table";
 import Card from "../Card";
-import SearchBar from './SearchBar.js';
+// import SearchBar from './SearchBar.js';
 import PaginationBar from '../Pagination';
 
 import Body from './Body';
@@ -10,19 +10,21 @@ import Header from './Header';
 import "./style.css";
 
 const WellTable = (props) => {
-    const [filter, setFilter] = useState();
-    const [dropDown, setDropDown] = useState('dropDown')
-    const { wells, data } = props;
+    // const [filter, setFilter] = useState();
+    // const [dropDown, setDropDown] = useState('dropDown')
+    const { data } = props;
+
+
 
     return (
         <>
-            <SearchBar
+            {/* <SearchBar
                 setFilter={setFilter}
                 setDropDown={setDropDown}
-            />
+            /> */}
             <PaginationBar />
             <Card padding="0" overflow="auto">
-                < Table striped bordered hover responsive size="sm" >
+                <Table striped bordered hover responsive size="sm" >
                     <Header data={data || []} />
                     <Body data={data || []} />
                 </Table >

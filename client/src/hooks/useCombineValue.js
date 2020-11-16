@@ -40,7 +40,7 @@ const useCombineValue = (data, setReportData) => {
     // console.log(newObj)
 
     const value = setReportData(Object.values(newObj))
-    console.log(value)
+    // console.log(value)
     return [value]
 }
 

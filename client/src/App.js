@@ -15,12 +15,13 @@ import Revenue from "./pages/Revenue";
 
 // components
 import WellRecompForm from "./components/Form/WellRecompForm";
-import NewWellForm from "./components/Form/NewWellForm";
+import Recompletion from './components/Form/Recompletion';
+// import NewWellForm from "./components/Form/NewWellForm";
 import WellForm from "./components/Form/WellForm";
 import ReportForm from './components/Form/ReportForm';
 import ProdForm from './components/Form/ProdForm';
 import Drawer from "./components/Drawer";
-import SecondaryDrawer from "./components/Drawer/Drawer";
+// import SecondaryDrawer from "./components/Drawer/Drawer";
 // import Drawer from './components/Drawer/Drawer';
 // import WellProdForm from "./pages/WellProdForm";
 // import NoMatch from "./pages/NoMatch";
@@ -56,22 +57,22 @@ class App extends React.Component {
 
     defaultRoutes = () => {
         return (
-            <div>
+            <>
                 <Route exact path="/dashboard" component={DashBoard} />
                 <Route exact path="/map" component={Map} />
                 <Route exact path="/reports" component={Report} />
                 <Route exact path="/facilities" component={Facility} />
+                <Route exact path="/well" component={WellTable} />
+                <Route exact path="/well/new" component={WellForm} />
+                <Route exact path="/well/:id" component={WellDetail} />
                 <Route exact path="/well/:id/update" component={WellForm} />
-                <Route exact path="/welltable" component={WellTable} />
-                <Route exact path="/welltable/:id" component={WellDetail} />
-                <Route exact path="/welltable/:id/recomp/new" component={WellRecompForm} />
-                <Route exaxt path="/welltable/:id/report/new" component={ReportForm} />
-                <Route exact path="/welltable/:id/report/update" component={ReportForm} />
-                <Route exact path="/welltable/:id/prod/new" component={ProdForm} />
-                <Route exact path="/new-well" component={WellForm} />
+                <Route exact path="/well/:id/recomp/new" component={Recompletion} />
+                <Route exaxt path="/well/:id/report/new" component={ReportForm} />
+                <Route exact path="/well/:id/report/update" component={ReportForm} />
+                <Route exact path="/well/:id/prod/new" component={ProdForm} />
                 <Route exact path="/logout" component={Login} />
                 <Route exact path="/revenue" component={Revenue} />
-            </div>
+            </>
         );
     }
     render() {

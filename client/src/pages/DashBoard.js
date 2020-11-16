@@ -10,31 +10,32 @@ import PageWrapper from '../components/PageWrapper';
 import Card from '../components/Card';
 import SectionTitle from '../components/SectionTitle';
 import DailyProdList from '../components/Lists/DailyProdList';
-import MapBox from '../components/Map';
+// import MapBox from '../components/Map';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
-import Slider from 'rc-slider';
+// import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 // hooks
 import useCombineValue from '../hooks/useCombineValue';
+import useFetch from '../hooks/useFetch';
 
 // utilities
 import API from '../utils/API';
+import URL from '../utils/URL';
 
 
 const DashBoard = (props) => {
-    const [wellData, setWellData] = useState([]);
     const [prodData, setProdData] = useState([]);
     const [prodTotal, setProdTotal] = useState([]);
     const [reportData, setReportData] = useState([]);
     const [wellStatus, setWellStatus] = useState({});
-    const [userVal, setUserVal] = useState("")
-    const [filteredValues, setFilteredValues] = useState([]);
-
-    console.log(filteredValues)
+    // const [wellData, setWellData] = useState([]);
+    // const [userVal, setUserVal] = useState("")
+    // const [filteredValues, setFilteredValues] = useState([]);
+    const [handleURI] = useFetch();
 
     const styles = {
         graph: {
@@ -42,14 +43,16 @@ const DashBoard = (props) => {
         },
     };
 
-    const loadProfileInfo = async () => {
-        try {
-            const res = await API.getUserInfo()
-            await setUserVal(res)
-        } catch (error) {
-            console.error(error)
-        }
-    }
+    console.log(URL.allWell_URI())
+
+    // const loadProfileInfo = async () => {
+    //     try {
+    //         const res = await API.getUserInfo()
+    //         await setUserVal(res)
+    //     } catch (error) {
+    //         console.error(error)
+    //     }
+    // }
 
     const getAllWellData = async () => {
         try {
@@ -135,19 +138,19 @@ const DashBoard = (props) => {
         }
     }
 
-    const filterRange = async () => {
-        const max = await moment.utc(prodData[prodData.length - 1].date)
-        const min = await moment.utc(prodData[prodData.length - (prodData.length - 1)].date)
-        const increment = await max.add(24, 'hours').valueOf()
-        const filterDates = await prodData.filter(e => {
-            return e.date >= min && e.date <= max
-        })
-        console.log(filterDates)
-        await setFilteredValues({
-            min: min.valueOf(),
-            max: max.valueOf()
-        })
-    }
+    // const filterRange = async () => {
+    //     const max = await moment.utc(prodData[prodData.length - 1].date)
+    //     const min = await moment.utc(prodData[prodData.length - (prodData.length - 1)].date)
+    //     const increment = await max.add(24, 'hours').valueOf()
+    //     const filterDates = await prodData.filter(e => {
+    //         return e.date >= min && e.date <= max
+    //     })
+    //     console.log(filterDates)
+    //     await setFilteredValues({
+    //         min: min.valueOf(),
+    //         max: max.valueOf()
+    //     })
+    // }
 
     useEffect(() => {
         // loadProfileInfo(),
@@ -156,8 +159,8 @@ const DashBoard = (props) => {
         getAllReportData()
     }, [])
 
-    const createSliderWithTooltip = Slider.createSliderWithTooltip;
-    const Range = createSliderWithTooltip(Slider.Range);
+    // const createSliderWithTooltip = Slider.createSliderWithTooltip;
+    // const Range = createSliderWithTooltip(Slider.Range);
 
     return (
         <PageWrapper>

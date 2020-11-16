@@ -1,4 +1,8 @@
 import React from 'react'
+import PageWrapper from "../components/PageWrapper";
+import SectionTitle from "../components/SectionTitle";
+import { W2Form } from "../components/FormInput";
+
 
 const submit = (props) => {
     const pathComponent = (key) => {
@@ -11,9 +15,10 @@ const submit = (props) => {
     }
 
     return (
-        <div>
+        <PageWrapper>
+            <SectionTitle></SectionTitle>
             {pathComponent('w2')}
-        </div>
+        </PageWrapper>
     )
 }
 

@@ -11,7 +11,7 @@ import PageWrapper from '../components/PageWrapper';
 import Card from '../components/Card';
 import SectionTitle from '../components/SectionTitle';
 import WellInfoList from "../components/Lists/WellInfoList";
-import DailyProdList from '../components/Lists/DailyProdList';
+// import DailyProdList from '../components/Lists/DailyProdList';
 import TabPanel from '../components/TabBar/TabBar';
 import Drawer from '../components/Drawer/Drawer';
 import SeconadaryWrapper from '../components/PageWrapper/SecondaryWrapper';
@@ -22,12 +22,12 @@ const WellDetail = (props) => {
   const [wellData, setWellData] = useState({});
   const [input, setInput] = useState({})
 
-  const handleAddWell = () => {
-    props.addWell(input)
-    setInput({ input: "" })
-  }
-
   console.log(props)
+
+  // const handleAddWell = () => {
+  //   props.addWell(input)
+  //   setInput({ input: "" })
+  // }
 
   const getWellIdData = async () => {
     try {

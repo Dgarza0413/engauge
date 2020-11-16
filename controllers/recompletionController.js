@@ -16,7 +16,8 @@ module.exports = {
 			.catch(err => res.status(422).json(err));
 	},
 	create: function (req, res) {
-		db.Well.findById(req.params.id, function (err, well) {
+		// db.Well.findById(req.params.id, function (err, well) {
+		db.Well.findOne({ apiNum: req.params.id }, function (err, well) {
 			if (err) {
 				console.log(err);
 			} else {

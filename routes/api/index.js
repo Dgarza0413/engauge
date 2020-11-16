@@ -181,7 +181,8 @@ router.route("/user/:id")
 // GET - data - all wells
 router.route("/well-data").get(wellController.findAll);
 router.route("/prod-data").get(prodController.findAll);
-router.route("/report-data").get(reportController.findAll);
+router.route("/report").get(reportController.findAll);
+router.route("/recompletion").get(recompletionController.findAll);
 
 // Get - data - individual wells
 router.route("/welltable/:id/prod").get(prodController.findById)

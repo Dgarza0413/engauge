@@ -12,6 +12,7 @@ export function StringInput(props) {
                 name={props.name}
                 value={props.value}
                 onChange={props.onChange}
+                onClick={props.onClick}
                 placeholder={props.placeholder}
             />
         </Form.Group>

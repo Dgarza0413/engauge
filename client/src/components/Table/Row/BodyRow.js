@@ -3,19 +3,12 @@ import { Link } from 'react-router-dom';
 import { FILTERED_PRODUCTION_TABLE, FILTERED_WELL_TABLE } from '../../../utils/FilteredValues';
 import ToggleButton from "../../Button/ToggleButton";
 
-
 const BodyRow = (props) => {
-    // console.log(props)
-    const handleRowClick = (e) => {
-        console.log(e)
-    }
-
     return (
-        <tr onClick={handleRowClick}>
+        <tr>
             {Object
                 .entries(props.data)
                 .map(e => {
-                    console.log(e)
                     if ([...FILTERED_PRODUCTION_TABLE, ...FILTERED_WELL_TABLE].includes(e[0])) {
                         return
                     } else if (e[0] === 'isOn') {
@@ -30,7 +23,7 @@ const BodyRow = (props) => {
                         )
                     } else if (e[0] === 'apiNum') {
                         return (
-                            <Link to={`/welltable/${e[1]}`}>
+                            <Link to={`/well/${e[1]}`}>
                                 <td>
                                     {e[1]}
                                 </td>
@@ -41,9 +34,6 @@ const BodyRow = (props) => {
                         const date = created.getDate();
                         const month = created.getMonth();
                         const year = created.getFullYear();
-                        const hour = created.getHours();
-                        const minutes = created.getMinutes();
-
                         const dateString = `${month}/${date}/${year}`
                         return (
                             <td>

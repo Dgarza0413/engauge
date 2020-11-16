@@ -8,22 +8,20 @@ import './style.css';
 
 const SummarizedCard = ({ data, key }) => {
   return (
-    <>
-      <Card>
-        <FlexContainer>
-          <SectionTitle mb="5px">
-            {
-              (data[0] === "gas")
-                ? `${data[1]} MCF`
-                : `${data[1]} BBLS`
-            }
-          </SectionTitle>
-          <p style={{ marginBottom: '5px' }}>
-          </p>
-        </FlexContainer>
-        <h6 className="mb-0">{data[0]} Production</h6>
-      </Card>
-    </>
+    <Card key={data[0]}>
+      <FlexContainer>
+        <SectionTitle mb="5px">
+          {
+            (data[0] === "gas")
+              ? `${data[1]} MCF`
+              : `${data[1]} BBLS`
+          }
+        </SectionTitle>
+        <p style={{ marginBottom: '5px' }}>
+        </p>
+      </FlexContainer>
+      <h6 className="mb-0">{data[0]} Production</h6>
+    </Card>
   );
 };
 

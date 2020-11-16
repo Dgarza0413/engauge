@@ -29,7 +29,7 @@ const WellTable = () => {
     <PageWrapper>
       <FlexContainer>
         <SectionTitle>Well Overview</SectionTitle>
-        <Link to="/new-well">
+        <Link to="/well/new">
           <Button>+ Add Well</Button>
         </Link>
       </FlexContainer>
