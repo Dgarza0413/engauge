@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // pages
@@ -25,6 +25,26 @@ import Drawer from "./components/Drawer";
 // import Drawer from './components/Drawer/Drawer';
 // import WellProdForm from "./pages/WellProdForm";
 // import NoMatch from "./pages/NoMatch";
+
+// const App = () => {
+// const [loggedIn, setLoggedIn] = useState(false)
+// const [data, setData] = useState()
+
+// const auth = () => {
+//     setLoggedIn(false)
+// }
+
+// useEffect(() => {
+//     axios.get("api/user/me").then((res) => {
+//        setLoggedIn(true)
+//     }).catch(() => {
+//         setLoggedIn(false)
+//     })
+//     axios.get("api/well-data").then(res => {
+//        setData(res.data)
+//     })
+// }, [])
+// }
 
 class App extends React.Component {
     state = {
@@ -70,8 +90,8 @@ class App extends React.Component {
                 <Route exaxt path="/well/:id/report/new" component={ReportForm} />
                 <Route exact path="/well/:id/report/update" component={ReportForm} />
                 <Route exact path="/well/:id/prod/new" component={ProdForm} />
-                <Route exact path="/logout" component={Login} />
                 <Route exact path="/revenue" component={Revenue} />
+                <Route exact path="/logout" component={Login} />
             </>
         );
     }

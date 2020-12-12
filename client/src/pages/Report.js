@@ -6,78 +6,39 @@ import API from '../utils/API';
 import { Col, Row } from "react-bootstrap";
 import Pie from "../components/Graph/PieGraphCopy";
 
+import { combineCost, groupReport } from '../utils/computations';
+
 import Table from '../components/Table';
 
-const report = () => {
+const report = (props) => {
     const [reportData, setReportData] = useState([])
     const [summaryReport, setSummaryReport] = useState([])
     const [summaryCostReport, setSummaryCostReport] = useState([])
 
     const getAllReportData = async () => {
         try {
-            const res = await API.getAllReportData()
-            setReportData(res.data)
+            const { data } = await API.getAllReportData()
+            setReportData(data)
         } catch (error) {
             console.error(error)
         }
     }
 
-    const combineData = async () => {
+    const handleGroupData = async () => {
         try {
-            const newObj = [];
-            const res = await API.getAllReportData()
-
-            for (var i = 0; i < res.data.length; i++) {
-                const name = res.data[i].type
-                if (!newObj[name]) {
-                    newObj[name] = {
-                        id: res.data[i].type || 'no Id',
-                        label: res.data[i].type || 'no Id',
-                        value: [1],
-                        color: 'hsl(323, 70%, 50%)'
-                    }
-                } else {
-                    newObj[name].value.push(1)
-                }
-            }
-
-            for (let key in newObj) {
-                let total = newObj[key].value
-                let totalSum = total.reduce((acc, cur) => acc + cur)
-                newObj[key].value = totalSum
-            }
-            setSummaryReport(Object.values(newObj))
+            const { data } = await API.getAllReportData()
+            const res = await groupReport(data)
+            await setSummaryReport(Object.values(res))
         } catch (error) {
             console.error(error)
         }
     }
 
-    const combineCost = async () => {
+    const handleCombineCost = async () => {
         try {
-            const newObj = [];
-            const res = await API.getAllReportData()
-
-            for (var i = 0; i < res.data.length; i++) {
-                const name = res.data[i].type
-                if (!newObj[name]) {
-                    newObj[name] = {
-                        id: res.data[i].type || 'no Id',
-                        label: res.data[i].type || 'no Id',
-                        value: [],
-                        color: 'hsl(323, 70%, 50%)'
-                    }
-                } else {
-                    newObj[name].value.push(res.data[i].cost || 0)
-                }
-            }
-
-            for (let key in newObj) {
-                let total = newObj[key].value
-                let totalSum = total.reduce((acc, cur) => acc + cur, 0)
-                newObj[key].value = totalSum
-                console.log(totalSum)
-            }
-            setSummaryCostReport(Object.values(newObj))
+            const { data } = await API.getAllReportData()
+            const res = await combineCost(data)
+            await setSummaryCostReport(Object.values(res))
         } catch (error) {
             console.error(error)
         }
@@ -85,8 +46,8 @@ const report = () => {
 
     useEffect(() => {
         getAllReportData()
-        combineData()
-        combineCost()
+        handleGroupData()
+        handleCombineCost()
     }, [])
 
     return (
@@ -110,7 +71,7 @@ const report = () => {
                     </Card>
                 </Col>
                 <Col xs={12}>
-                    <Table data={reportData || []} />
+                    <Table {...props} data={reportData || []} />
                 </Col>
             </Row>
         </PageWrapper>

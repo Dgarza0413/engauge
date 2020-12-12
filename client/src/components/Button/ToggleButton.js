@@ -7,6 +7,7 @@ const ToggleButton = (props) => {
     const { id, isOn } = props
 
     const changeStatus = async () => {
+        console.log('button clicked')
         await API.updateWellStatus(id, !isOn)
         await setOn({ isOn: !isOn })
     };

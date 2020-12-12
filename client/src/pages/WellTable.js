@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 // Components
@@ -7,22 +7,17 @@ import Button from '../components/Button';
 import PageWrapper from '../components/PageWrapper';
 import SectionTitle from '../components/SectionTitle';
 import FlexContainer from '../components/FlexContainer';
+
+import useFetch from '../hooks/useFetch';
+
 import API from '../utils/API';
+import URI from '../utils/URI';
 
 const WellTable = () => {
-  const [data, setData] = useState([]);
-
-  const getWellData = async () => {
-    try {
-      const res = await API.getAllWellData()
-      await setData(res.data)
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [value, handleFetchGET] = useFetch();
 
   useEffect(() => {
-    getWellData()
+    handleFetchGET(URI.allWell_URI())
   }, []);
 
   return (
@@ -33,7 +28,7 @@ const WellTable = () => {
           <Button>+ Add Well</Button>
         </Link>
       </FlexContainer>
-      <Table data={data} key={data._id} />
+      <Table data={value} key={value._id} />
     </PageWrapper>
   );
 };

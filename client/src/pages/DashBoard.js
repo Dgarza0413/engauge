@@ -24,7 +24,8 @@ import useFetch from '../hooks/useFetch';
 
 // utilities
 import API from '../utils/API';
-import URL from '../utils/URL';
+import URI from '../utils/URI';
+import { combineProduction, combineReport } from '../utils/computations';
 
 
 const DashBoard = (props) => {
@@ -35,15 +36,14 @@ const DashBoard = (props) => {
     // const [wellData, setWellData] = useState([]);
     // const [userVal, setUserVal] = useState("")
     // const [filteredValues, setFilteredValues] = useState([]);
-    const [handleURI] = useFetch();
+    const [value, handleFetchGET, handleManyFetchGET] = useFetch();
+    // const [valueCombine, handleCombineProd] = useCombineValue();
 
     const styles = {
         graph: {
             height: '25vw',
         },
     };
-
-    console.log(URL.allWell_URI())
 
     // const loadProfileInfo = async () => {
     //     try {
@@ -53,6 +53,20 @@ const DashBoard = (props) => {
     //         console.error(error)
     //     }
     // }
+
+    const getAllReportData = async () => {
+        try {
+            const { data } = await API.getAllReportData()
+            const reportRes = await combineReport(data)
+
+            console.log(reportRes)
+
+            await setReportData(Object.values(reportRes))
+
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     const getAllWellData = async () => {
         try {
@@ -68,99 +82,29 @@ const DashBoard = (props) => {
         }
     }
 
-    const getAllReportData = async () => {
-        try {
-            const { data } = await API.getAllReportData()
-            await useCombineValue(data, setReportData)
-        } catch (error) {
-            console.error(error)
-        }
-    }
-
     const getAllProdData = async () => {
         try {
-            const newObj = [];
             const { data } = await API.getAllProdData()
-            for (let i = 0; i < data.length; i++) {
-                const date = moment(data[i].date).format('MM/DD/YYYY');
-                if (!newObj[date]) {
-                    newObj[date] = {
-                        date: date,
-                        water: [],
-                        oil: [],
-                        gas: [],
-                    };
-                    newObj[date].oil.push(data[i].oil);
-                    newObj[date].gas.push(data[i].gas);
-                    newObj[date].water.push(data[i].water);
-                } else {
-                    newObj[date].oil.push(data[i].oil);
-                    newObj[date].gas.push(data[i].gas);
-                    newObj[date].water.push(data[i].water);
-                }
-            }
-            for (let key in newObj) {
-                let gas = newObj[key].gas;
-                let oil = newObj[key].oil;
-                let water = newObj[key].water;
-                let totalGas = gas.reduce((acc, cur) => acc + cur);
-                let totalOil = oil.reduce((acc, cur) => acc + cur);
-                let totalWater = water.reduce((acc, cur) => acc + cur);
-                newObj[key].gas = totalGas;
-                newObj[key].oil = totalOil;
-                newObj[key].water = totalWater;
-            }
+            const res = await combineProduction(data)
 
-            const totalGas = data
-                .map(prodData => prodData.gas)
-                .reduce(function (accumulator, prod) {
-                    return accumulator + prod;
-                });
-            const totalOil = data
-                .map(prodData => prodData.oil)
-                .reduce(function (accumulator, prod) {
-                    return accumulator + prod;
-                });
-            const totalWater = data
-                .map(prodData => prodData.water)
-                .reduce(function (accumulator, prod) {
-                    return accumulator + prod;
-                });
-
-            await setProdData(Object.values(newObj))
+            await setProdData(Object.values(res.newObj))
             await setProdTotal({
-                oil: totalOil,
-                gas: totalGas,
-                water: totalWater
+                oil: res.totalOil,
+                gas: res.totalGas,
+                water: res.totalWater
             })
         } catch (error) {
             console.error(error)
         }
     }
 
-    // const filterRange = async () => {
-    //     const max = await moment.utc(prodData[prodData.length - 1].date)
-    //     const min = await moment.utc(prodData[prodData.length - (prodData.length - 1)].date)
-    //     const increment = await max.add(24, 'hours').valueOf()
-    //     const filterDates = await prodData.filter(e => {
-    //         return e.date >= min && e.date <= max
-    //     })
-    //     console.log(filterDates)
-    //     await setFilteredValues({
-    //         min: min.valueOf(),
-    //         max: max.valueOf()
-    //     })
-    // }
-
     useEffect(() => {
+        handleFetchGET('/api/report')
+        getAllReportData()
         // loadProfileInfo(),
         getAllProdData()
         getAllWellData()
-        getAllReportData()
     }, [])
-
-    // const createSliderWithTooltip = Slider.createSliderWithTooltip;
-    // const Range = createSliderWithTooltip(Slider.Range);
 
     return (
         <PageWrapper>

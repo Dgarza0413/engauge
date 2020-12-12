@@ -1,5 +1,5 @@
 export default {
-    allWell_URI: () => "/api/well",
+    allWell_URI: () => "/api/well-data",
     allReport_URI: () => "/api/report",
     allProduction_URI: () => "/api/production",
     allRecompletion_URI: () => "/api/recompletion",

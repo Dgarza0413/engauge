@@ -19,13 +19,18 @@ const Header = (props) => {
                                 return
                             } else {
                                 return (
-                                    <th>
+                                    <th key={e}>
                                         {e}
                                     </th>
                                 )
                             }
                         })
                 }
+                {props.data[0] && props.data[0].reportId
+                    ? null
+                    : <th>Online</th>
+                }
+
             </tr>
         </thead>
     )

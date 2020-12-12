@@ -22,7 +22,7 @@ const WellTable = (props) => {
                 setFilter={setFilter}
                 setDropDown={setDropDown}
             /> */}
-            <PaginationBar />
+            {/* <PaginationBar /> */}
             <Card padding="0" overflow="auto">
                 <Table striped bordered hover responsive size="sm" >
                     <Header data={data || []} />

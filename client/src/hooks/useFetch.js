@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
 const useFetch = () => {
-    const [getData, setGetData] = useState([])
+    const [value, setValue] = useState([]);
+    const [postValue, setPostValue] = useState({});
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(true);
-
 
     const options = (method, data) => ({
         method: method,
@@ -19,11 +19,24 @@ const useFetch = () => {
         referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
     })
 
-    const handleFetchGET = async (url, method, options) => {
+    const handleManyFetchGET = (url) => {
+        Promise.all(url)
+            .then(function (responses) {
+                return Promise.all(responses.map(function (response) {
+                    return response.json();
+                }));
+            }).then(function (data) {
+                console.log(data)
+            }).catch(function (error) {
+                console.log(error)
+            })
+    }
+
+    const handleFetchGET = async (url) => {
         try {
             const res = await fetch(url);
-            const fetchData = await res.json()
-            await setGetData(fetchData);
+            const data = await res.json()
+            await setValue(data);
         } catch (error) {
             setError(error)
         } finally {
@@ -41,7 +54,7 @@ const useFetch = () => {
         }
     }
 
-    return [error, getData, handleFetchGET, handleFetchPOST]
+    return [value, handleFetchGET, handleManyFetchGET]
 }
 
 export default useFetch

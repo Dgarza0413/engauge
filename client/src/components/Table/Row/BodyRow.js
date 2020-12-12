@@ -4,6 +4,8 @@ import { FILTERED_PRODUCTION_TABLE, FILTERED_WELL_TABLE } from '../../../utils/F
 import ToggleButton from "../../Button/ToggleButton";
 
 const BodyRow = (props) => {
+    const { data } = props
+
     return (
         <tr>
             {Object
@@ -13,21 +15,17 @@ const BodyRow = (props) => {
                         return
                     } else if (e[0] === 'isOn') {
                         return (
-                            <td>
-                                <ToggleButton
-                                    isOn={e[0]}
-                                // name={well.wellName}
-                                // id={well._id}
-                                />
+                            <td key={e[1]}>
+                                {e[1]}
                             </td>
                         )
                     } else if (e[0] === 'apiNum') {
                         return (
-                            <Link to={`/well/${e[1]}`}>
-                                <td>
+                            <td key={e[1]}>
+                                <Link to={`/well/${e[1]}`}>
                                     {e[1]}
-                                </td>
-                            </Link>
+                                </Link>
+                            </td>
                         )
                     } else if (e[0] === 'date') {
                         const created = new Date(e[1]);
@@ -36,8 +34,8 @@ const BodyRow = (props) => {
                         const year = created.getFullYear();
                         const dateString = `${month}/${date}/${year}`
                         return (
-                            <td>
-                                {dateString}
+                            <td key={e[1]} >
+                                { dateString}
                             </td>
                         )
                     } else {
@@ -48,7 +46,17 @@ const BodyRow = (props) => {
                         )
                     }
                 })}
-        </tr>
+            {data.reportId
+                ? null
+                : <td>
+                    <ToggleButton
+                        isOn={data.isOn}
+                        name={data.wellName}
+                        id={data._id}
+                    />
+                </td>
+            }
+        </tr >
     )
 }
 

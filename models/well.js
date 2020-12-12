@@ -33,7 +33,8 @@ const wellSchema = new Schema({
         ref: 'Downtime'
     }],
     date: {
-        type: Date, default: new Date
+        type: Date,
+        default: new Date
     },
     productionId: [{
         type: Schema.Types.ObjectId,
@@ -50,6 +51,17 @@ const wellSchema = new Schema({
 });
 
 module.exports = mongoose.model("Well", wellSchema);
+
+
+// wellSchema.virtual('productionId', {
+//     ref: 'Production',
+//     localField: 'authorId',
+//     foreignField: '_id',
+//     justOne: true
+// }).get(function () {
+//     return
+// })
+
 
 // Well Collection
 // API Number
