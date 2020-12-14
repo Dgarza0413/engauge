@@ -1,24 +1,31 @@
 import React from 'react'
-import PageWrapper from "../components/PageWrapper";
-import SectionTitle from "../components/SectionTitle";
-import { W2Form } from "../components/FormInput";
+
+import WellForm from '../components/Form/WellForm';
+
 
 
 const submit = (props) => {
+    const { operation, schema, id } = props.match.params
+
     const pathComponent = (key) => {
         switch (key) {
             case 'w2':
-                return console.log('w2')
+                return console.log('w2');
+            case 'production':
+                return console.log('production');
+            case 'report':
+                return console.log('report');
+            case 'well':
+                return <WellForm {...props} operation={operation} />
             default:
                 break;
         }
     }
 
     return (
-        <PageWrapper>
-            <SectionTitle></SectionTitle>
-            {pathComponent('w2')}
-        </PageWrapper>
+        <>
+            {pathComponent(schema)}
+        </>
     )
 }
 

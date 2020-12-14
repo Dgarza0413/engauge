@@ -25,6 +25,7 @@ const Revenue = () => {
         try {
             const res = await API.getOilPrices()
             const data = await res.data.dataset.data
+            console.log(data)
             const oilPrices = await data.map(e => {
                 let obj = {}
                 obj = {
@@ -43,7 +44,9 @@ const Revenue = () => {
         // const obj = { date: date };
         try {
             const res = await API.getGasPrices()
+            console.log(res)
             const data = await res.data.dataset.data
+            console.log(data)
             const gasPrices = await data.map(e => {
                 let obj = {}
                 obj = {

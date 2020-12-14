@@ -4,7 +4,7 @@ import { FILTERED_PRODUCTION_TABLE, FILTERED_WELL_TABLE } from '../../../utils/F
 import ToggleButton from "../../Button/ToggleButton";
 
 const BodyRow = (props) => {
-    const { data } = props
+    const { data, type } = props
 
     return (
         <tr>
@@ -14,11 +14,7 @@ const BodyRow = (props) => {
                     if ([...FILTERED_PRODUCTION_TABLE, ...FILTERED_WELL_TABLE].includes(e[0])) {
                         return
                     } else if (e[0] === 'isOn') {
-                        return (
-                            <td key={e[1]}>
-                                {e[1]}
-                            </td>
-                        )
+                        return
                     } else if (e[0] === 'apiNum') {
                         return (
                             <td key={e[1]}>
@@ -46,7 +42,7 @@ const BodyRow = (props) => {
                         )
                     }
                 })}
-            {data.reportId
+            {type === 'report' || type === 'production'
                 ? null
                 : <td>
                     <ToggleButton

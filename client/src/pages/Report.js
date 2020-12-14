@@ -5,20 +5,24 @@ import SectionTitle from '../components/SectionTitle';
 import API from '../utils/API';
 import { Col, Row } from "react-bootstrap";
 import Pie from "../components/Graph/PieGraphCopy";
+import Calendar from '../components/Graph/CalendarGraph';
 
-import { combineCost, groupReport } from '../utils/computations';
+import { combineCost, combineReport, groupReport } from '../utils/computations';
 
 import Table from '../components/Table';
 
 const report = (props) => {
     const [reportData, setReportData] = useState([])
     const [summaryReport, setSummaryReport] = useState([])
+    const [calendarReport, setCalendarReport] = useState([])
     const [summaryCostReport, setSummaryCostReport] = useState([])
 
     const getAllReportData = async () => {
         try {
             const { data } = await API.getAllReportData()
-            setReportData(data)
+            const reportRes = await combineReport(data)
+            await setCalendarReport(Object.values(reportRes))
+            await setReportData(data)
         } catch (error) {
             console.error(error)
         }
@@ -43,6 +47,12 @@ const report = (props) => {
             console.error(error)
         }
     }
+
+    const styles = {
+        graph: {
+            height: '25vw',
+        },
+    };
 
     useEffect(() => {
         getAllReportData()
@@ -71,7 +81,15 @@ const report = (props) => {
                     </Card>
                 </Col>
                 <Col xs={12}>
-                    <Table {...props} data={reportData || []} />
+                    <Card>
+                        <SectionTitle>Report Summary</SectionTitle>
+                        <div style={styles.graph}>
+                            <Calendar data={calendarReport || []} />
+                        </div>
+                    </Card>
+                </Col>
+                <Col xs={12}>
+                    <Table {...props} type="report" data={reportData || []} />
                 </Col>
             </Row>
         </PageWrapper>

@@ -14,13 +14,13 @@ const TabPanel = ({ prodData, reportData }) => {
             <Tab
                 eventKey="home"
                 title="Production">
-                <Table data={prodData} />
+                <Table type={"production"} data={prodData} />
             </Tab>
             <Tab
                 eventKey="profile"
                 title="Reports"
             >
-                <Table data={reportData} />
+                <Table type={"report"} data={reportData} />
             </Tab>
             <Tab
                 eventKey="recomp"

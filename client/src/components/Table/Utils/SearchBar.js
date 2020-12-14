@@ -8,6 +8,13 @@ import useInputChange from '../../../hooks/useInputChange';
 const SearchBar = ({ setFilter, setDropDown }) => {
     const [value, handleInputChange] = useInputChange();
 
+    // .filter(well => {
+    //                                 // return well[this.state.dropDown].toString().startsWith(this.state.filter.toLowerCase());
+    //                                 return filter
+    //                                     ? well.wellName.startsWith(filter)
+    //                                     : well
+    //                             })
+
     useEffect(() => {
         setFilter(value.filter)
     }, [value.filter])

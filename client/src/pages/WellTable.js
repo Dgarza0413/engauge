@@ -10,7 +10,6 @@ import FlexContainer from '../components/FlexContainer';
 
 import useFetch from '../hooks/useFetch';
 
-import API from '../utils/API';
 import URI from '../utils/URI';
 
 const WellTable = () => {
@@ -24,7 +23,8 @@ const WellTable = () => {
     <PageWrapper>
       <FlexContainer>
         <SectionTitle>Well Overview</SectionTitle>
-        <Link to="/well/new">
+        {/* <Link to="/well/new"> */}
+        <Link to="/submit/well/add">
           <Button>+ Add Well</Button>
         </Link>
       </FlexContainer>

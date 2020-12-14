@@ -7,7 +7,7 @@ const Body = props => {
         <tbody>
             {
                 props.data.map(e => {
-                    return <BodyRow data={e} />
+                    return <BodyRow {...props} data={e} />
                 })
             }
         </tbody>

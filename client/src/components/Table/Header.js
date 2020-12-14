@@ -15,7 +15,10 @@ const Header = (props) => {
                     Object
                         .keys(props.data[0] || [])
                         .map(e => {
+                            console.log(e)
                             if ([...FILTERED_PRODUCTION_TABLE, ...FILTERED_WELL_TABLE].includes(e)) {
+                                return
+                            } else if (e === 'isOn') {
                                 return
                             } else {
                                 return (
@@ -26,7 +29,7 @@ const Header = (props) => {
                             }
                         })
                 }
-                {props.data[0] && props.data[0].reportId
+                {props.type === "report" || props.type === "production"
                     ? null
                     : <th>Online</th>
                 }

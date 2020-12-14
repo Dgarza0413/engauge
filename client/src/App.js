@@ -11,6 +11,7 @@ import Map from "./pages/Map";
 import Login from "./pages/Login";
 import Facility from "./pages/Facility";
 import Revenue from "./pages/Revenue";
+import Submit from './pages/submit';
 // import Production from "./pages/Production";
 
 // components
@@ -83,13 +84,13 @@ class App extends React.Component {
                 <Route exact path="/reports" component={Report} />
                 <Route exact path="/facilities" component={Facility} />
                 <Route exact path="/well" component={WellTable} />
-                <Route exact path="/well/new" component={WellForm} />
                 <Route exact path="/well/:id" component={WellDetail} />
                 <Route exact path="/well/:id/update" component={WellForm} />
                 <Route exact path="/well/:id/recomp/new" component={Recompletion} />
                 <Route exaxt path="/well/:id/report/new" component={ReportForm} />
                 <Route exact path="/well/:id/report/update" component={ReportForm} />
                 <Route exact path="/well/:id/prod/new" component={ProdForm} />
+                <Route exact path={["/submit/:schema/:operation", "/submit/:schema/:operation/:id"]} component={Submit} />
                 <Route exact path="/revenue" component={Revenue} />
                 <Route exact path="/logout" component={Login} />
             </>
@@ -98,16 +99,16 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <div>
-                    {/* <SecondaryDrawer /> */}
-                    <Drawer auth={this.auth} />
-                    <Switch>
-                        <Route exact path="/" component={DashBoard} />
-                        <Route component={this.defaultRoutes} />
-                    </Switch>
+                {/* <div> */}
+                {/* <SecondaryDrawer /> */}
+                <Drawer auth={this.auth} />
+                <Switch>
+                    <Route exact path="/" component={DashBoard} />
+                    <Route component={this.defaultRoutes} />
+                </Switch>
 
-                    {/* for sign in authentication */}
-                    {/* {
+                {/* for sign in authentication */}
+                {/* {
                         this.state.loggedIn
                             ? <Drawer auth={this.auth} />
                             : false
@@ -124,7 +125,7 @@ class App extends React.Component {
                                 : <Route component={NoMatch} />
                         }
                     </Switch> */}
-                </div>
+                {/* </div> */}
             </Router >
         );
     }

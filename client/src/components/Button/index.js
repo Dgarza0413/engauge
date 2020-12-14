@@ -1,6 +1,6 @@
 import React from "react";
 
-const style = {
+export const style = {
     button: {
         border: '0',
         backgroundColor: '#d5b577',
@@ -13,7 +13,7 @@ const style = {
 }
 
 
-const checkType = (type, content, mb, value, width) => {
+const checkType = (type, content, mb, value, width, { ...props }) => {
     if (type === "submit") {
         return <input
             type={type}
@@ -24,13 +24,14 @@ const checkType = (type, content, mb, value, width) => {
         // style={{ marginBottom: mb || "40px", width: width || "" }} />
     } else {
         return (
-            <div
+            <button
+                {...props}
                 // className="button"
                 style={style.button}
             // style={{ marginBottom: mb || "40px" }}
             >
                 {content}
-            </div>
+            </button>
         );
     }
 }

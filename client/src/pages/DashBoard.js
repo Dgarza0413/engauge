@@ -58,11 +58,7 @@ const DashBoard = (props) => {
         try {
             const { data } = await API.getAllReportData()
             const reportRes = await combineReport(data)
-
-            console.log(reportRes)
-
             await setReportData(Object.values(reportRes))
-
         } catch (error) {
             console.error(error)
         }
@@ -86,7 +82,6 @@ const DashBoard = (props) => {
         try {
             const { data } = await API.getAllProdData()
             const res = await combineProduction(data)
-
             await setProdData(Object.values(res.newObj))
             await setProdTotal({
                 oil: res.totalOil,

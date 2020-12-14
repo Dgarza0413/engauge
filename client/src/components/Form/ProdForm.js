@@ -5,7 +5,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import { NumberInput, TextBoxInput, StringInput } from "../Form";
 import { Redirect } from 'react-router-dom';
 import Card from "../Card";
-import Button from "../Button";
+// import Button from "../Button";
+import Button from "react-bootstrap/Button";
 import API from "../../utils/API";
 
 // hooks
@@ -25,6 +26,17 @@ const ProdForm = (props) => {
     //         return <Redirect to={`/welltable/${this.props.id}`} />
     //     }
     // }
+    const styles = {
+        button: {
+            border: '0',
+            backgroundColor: '#d5b577',
+            color: 'white',
+            fontWeight: '600',
+            padding: '5px 15px',
+            borderRadius: '3px',
+            outline: 'none',
+        }
+    }
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -126,10 +138,21 @@ const ProdForm = (props) => {
                                     <TextBoxInput
                                         label="Comments"
                                         placeholder="Enter Comments Here..."
+                                        name="comments"
                                     />
                                 </Col>
                                 <Col xs={4}>
-                                    <Button type="submit" />
+                                    <Button
+                                        style={styles.button}
+                                        onClick={() => props.history.goBack()}
+                                        className="mr-2"
+                                    >
+                                        go back</Button>
+                                    <Button
+                                        style={styles.button}
+                                        type="submit"
+                                    >
+                                        Submit</Button>
                                 </Col>
                             </Row>
                         </Container>
