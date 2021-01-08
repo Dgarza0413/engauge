@@ -172,16 +172,7 @@ router.get('/user/me', function (req, res) {
 //     })
 // })
 
-// /api/user/:id
-router.route("/user/:id")
-    .get(userController.findById)
-    .put(userController.update)
-    .delete(userController.remove);
 
-// GET - data - reports
-router.route('/report/:id')
-    .get(reportController.findOne)
-    .put(reportController.updateOne)
 
 // GET - data - all wells
 router.route("/well-data").get(wellController.findAll);
@@ -193,6 +184,12 @@ router.route("/recompletion").get(recompletionController.findAll);
 router.route("/welltable/:id/prod").get(prodController.findById)
 router.route("/welltable/:id/recomp").get(recompletionController.findById)
 
+// GET - data - reports
+router.route('/report/:id')
+    .get(reportController.findOne)
+    .put(reportController.updateOne)
+
+
 // POST - data - individual wells
 router.route("/create-well-data").post(wellController.create);
 router.route("/welltable/:id/prod/new").post(prodController.create);
@@ -203,6 +200,11 @@ router.route("/welltable/:id/recomp/new").post(recompletionController.create);
 router.route("/well/:id/update").put(wellController.update);
 router.route("/well/:id/report/update").put(reportController.update);
 
+// /api/user/:id
+router.route("/user/:id")
+    .get(userController.findById)
+    .put(userController.update)
+    .delete(userController.remove);
 // select specific well
 router.route("/well/:id")
     .get(wellController.findByQuery)
