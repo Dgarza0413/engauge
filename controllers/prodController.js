@@ -6,13 +6,7 @@ module.exports = {
         db.Production
             .find(req.query)
             .sort({ date: 1 })
-<<<<<<< HEAD
-            .then(dbModel => {
-                res.json(dbModel)
-            })
-=======
             .then(dbModel => res.json(dbModel))
->>>>>>> 842c7e8a6948f1e7a987a25e8757b47ad7a5626c
             .catch(err => res.status(422).json(err));
     },
     findById: function (req, res) {
