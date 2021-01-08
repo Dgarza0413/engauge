@@ -1,86 +1,36 @@
-import React, { Component } from 'react';
-import GoogleMapReact from 'google-map-react';
-import Marker from "../GraphMarker";
-import mapstyle from "./mapstyle.json";
-import API from "../../utils/API";
+import React, { useEffect, useRef, useState } from "react";
+import mapboxgl from "mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 
-class SimpleMap extends Component {
+const styles = {
+    width: "100%",
+    // height: "calc(100vh - 80px)",
+};
 
-    componentDidMount() {
-        console.log(this.props);
-    }
+const MapBox = (props) => {
+    const [map, setMap] = useState(null);
+    const mapContainer = useRef(null);
 
-    state = {
-        showInfoWindow: false,
-        index: "",
-        // lat: this.props.wellLocation.latitude,
-        // lng: this.props.wellLocation.longitude
-        lat: this.props.center.lat,
-        lng: this.props.center.lng
-    }
+    useEffect(() => {
+        mapboxgl.accessToken = "pk.eyJ1IjoiZGdhcnphMDQxMyIsImEiOiJjazg2dXNrMTMwam1qM2dsamgzazZ5cnM2In0.8WjcGhm-8DGMrZUD1z9A0A";
+        const initializeMap = ({ setMap, mapContainer }) => {
+            const map = new mapboxgl.Map({
+                container: mapContainer.current,
+                style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
+                center: [0, 0],
+                zoom: 5
+            });
 
-    static defaultProps = {
-        center: {
-            lat: 30.266926,
-            lng: -97.750519
-        },
-        zoom: 11
-    };
+            map.on("load", () => {
+                setMap(map);
+                map.resize();
+            });
+        };
 
-    handleMouseOver = (index) => {
-        return () => {
-            this.setState({ showInfoWindow: true, index: index });
-        }
-    }
+        if (!map) initializeMap({ setMap, mapContainer });
+    }, [map]);
 
-    handleMouseExit = (event) => {
-        // event.preventDefault();
-        this.setState({ showInfoWindow: false });
-    }
+    return <div ref={el => (mapContainer.current = el)} style={{ ...styles, height: props.height }} />;
+};
 
-    renderMarkers = () => {
-        console.log("RENDER MARKERS");
-        console.log(this.props.well)
-        if (this.props.wellLocation && this.props.wellLocation.latitude && this.props.wellLocation.longitude) {
-            return (
-                <Marker
-                    lat={this.props.wellLocation.latitude}
-                    lng={this.props.wellLocation.longitude}
-                    mouseOver={this.handleMouseOver(0)}
-                    mouseOut={this.handleMouseExit}
-                    index="0"
-                >
-                    {(this.state.showInfoWindow && this.state.index === 0) ? (
-                        <div>
-                            <p><strong>Well Name</strong>: Grassy Field</p>
-                            <p><strong>Well Number</strong>: 01</p>
-                            <p><strong>API Number</strong>: 42-111-1111</p>
-                            <p><strong>Today's Production</strong>: 50 BBLs</p>
-                            <p><strong>Total Production</strong>: 50 BBLs</p>
-                        </div>
-                    ) : false}
-                </Marker>
-            );
-        } else {
-            return ""
-        }
-    }
-
-    render() {
-        return (
-            // Important! Always set the container height explicitly
-            <div style={{ height: this.props.height || "50vw", width: '100%' }}>
-                <GoogleMapReact
-                    bootstrapURLKeys={{ key: 'AIzaSyBbJqzjcKJqXYW9FEPfr7TPy21FND0iwLc' }}
-                    defaultCenter={this.props.center}
-                    defaultZoom={this.props.zoom}
-                    options={{ styles: mapstyle }}
-                >
-                    {this.renderMarkers()}
-                </GoogleMapReact>
-            </div>
-        );
-    }
-}
-
-export default SimpleMap;
+export default MapBox;

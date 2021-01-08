@@ -1,65 +1,72 @@
 import axios from "axios";
 
 export default {
-    // get all well info
-    getAllWells: function () {
-        return axios.get("/api/wells");
+    // GET - User data -validation
+    // getUserInfo: () => { return axios.get('/api/user/me') },
+
+    // GET - All - welldata types
+    getAllWellData: () => {
+        return axios.get("/api/well-data");
     },
-    // get specific well info
-    getWell: function (id) {
-        return axios.get("/api/well" + id);
+    getAllProdData: () => {
+        return axios.get("/api/prod-data");
     },
-    // insert well info
-    addWell: function (wellData) {
-        return axios.post("/api/addWell", wellData);
+    getAllReportData: () => {
+        return axios.get("/api/report");
     },
-    // recompletion form (w-2)
-    postWellRecomp: function (id, wellData) {
-        return axios.post("/api/welltable/" + id.id + "/recomp/new", wellData);
+    getWellAllRecompletionData: () => {
+        return axios.get("/api/recompletion");
     },
-    // recompletion form (w-2)
-    getWellRecomp: function (id, wellData) {
+
+    // GET - Individual - welldata types
+    getWellId: (id) => {
+        return axios.get("/api/well/" + id);
+    },
+    getWellProd: (id, wellData) => {
+        return axios.get("/api/welltable/" + id.id + "/prod", wellData);
+    },
+    getWellRecomp: (id, wellData) => {
         return axios.get("/api/welltable/" + id.id + "/recomp", wellData)
     },
-    postWellProd: function (id, wellData) {
-        console.log(id.id)
-        return axios.post("/api/welltable/" + id.id + "/prod/new", wellData)
+    getWellReport: (id, wellData) => {
+        return axios.get("/api/welltable/" + id.id + "/report", wellData)
     },
-    getAllProd: function (wellData) {
-        return axios.get("/api/prodAll", wellData)
+
+    // POST Individual welldata types
+    postWellProd: (id, wellData) => {
+        return axios.post("/api/welltable/" + id + "/prod/new", wellData);
     },
-    getWellProd: function (id, wellData) {
-        console.log(id.id)
-        return axios.get("/api/welltable/" + id.id + "/prod", wellData)
+    postWellReport: (id, wellData) => {
+        return axios.post("/api/welltable/" + id + "/report/new", wellData)
     },
-    // get well data
-    getWellId: function (wellId) {
-        return axios.get("/api/well/" + wellId)
-        // add data to the well
+    postWellRecomp: (id, data) => {
+        return axios.post("/api/welltable/" + id.id + "/recomp/new", data);
     },
-    addToWell: function (id) {
-        return axios.post("/api/well/" + id)
+
+    // Query Individual welldata
+    createWellData: (wellData) => {
+        return axios.post("/api/create-well-data", wellData);
     },
-    getOilPrices: function (month) {
+
+    // API requests
+    getOil: () => {
+        return axios.get('/api/oil')
+    },
+    getOilPrices: (month) => {
         return axios.get("/api/getoilprices", month)
     },
-    getGasPrices: function (month) {
+    getGasPrices: (month) => {
         return axios.get("/api/getgasprices", month)
     },
-    updateWellStatus: function (id, val) {
+
+    // Update requests
+    updateWellData: (id, val) => {
+        return axios.put("/api/well/" + id + "/update", val)
+    },
+    updateWellReportData: (id, val) => {
+        return axios.put("/api/well/" + id + "/report/update", val)
+    },
+    updateWellStatus: (id, val) => {
         return axios.put("/api/well/" + id, { isOn: val })
     }
 };
-
-// QUANDL API
-// Parameters (docs: https://docs.quandl.com/docs/parameters-2)
-// [limit=] (limit results)
-// [start_date=yyyy-mm-dd]
-// [send_date=yyyy-mm-dd]
-// [collapse=daily, weekly, monthly, quarterly, annual]
-// Crude Oil [limit=1 (limit to one result)] [collaps=daily (collapse data to daily average)]
-//
-// Natural Gas
-
-// date
-// open

@@ -17,3 +17,10 @@ tbody tr:nth-child(odd) {
 tbody tr:last-child {
     border-radius: 0px 0px 5px 5px;
 }
+
+.cell-overflow {
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

@@ -1,25 +1,57 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import NoMatch from "./pages/NoMatch";
+
+// pages
+// import DashBoard from "./pages/DashBoard";
 import DashBoard from "./pages/DashBoard";
+import Report from "./pages/Report";
 import WellTable from "./pages/WellTable";
-import WellReport from "./pages/WellReport";
 import WellDetail from "./pages/WellDetail";
-import NewWellForm from "./pages/NewWellForm";
-import ProductionForm from "./pages/ProductionForm";
-import W2 from "./pages/W2";
 import Map from "./pages/Map";
 import Login from "./pages/Login";
-import Drawer from "./components/Drawer";
-import WellProdForm from "./pages/WellProdForm";
-import WellRecompForm from "./pages/WellRecompForm";
+import Facility from "./pages/Facility";
 import Revenue from "./pages/Revenue";
-import NoMatch from "./pages/NoMatch";
-import axios from "axios";
+import Submit from './pages/submit';
+// import Production from "./pages/Production";
+
+// components
+import WellRecompForm from "./components/Form/WellRecompForm";
+import Recompletion from './components/Form/Recompletion';
+// import NewWellForm from "./components/Form/NewWellForm";
+import WellForm from "./components/Form/WellForm";
+import ReportForm from './components/Form/ReportForm';
+import ProdForm from './components/Form/ProdForm';
+import Drawer from "./components/Drawer";
+// import SecondaryDrawer from "./components/Drawer/Drawer";
+// import Drawer from './components/Drawer/Drawer';
+// import WellProdForm from "./pages/WellProdForm";
+// import NoMatch from "./pages/NoMatch";
+
+// const App = () => {
+// const [loggedIn, setLoggedIn] = useState(false)
+// const [data, setData] = useState()
+
+// const auth = () => {
+//     setLoggedIn(false)
+// }
+
+// useEffect(() => {
+//     axios.get("api/user/me").then((res) => {
+//        setLoggedIn(true)
+//     }).catch(() => {
+//         setLoggedIn(false)
+//     })
+//     axios.get("api/well-data").then(res => {
+//        setData(res.data)
+//     })
+// }, [])
+// }
 
 class App extends React.Component {
     state = {
-        loggedIn: false
+        // loggedIn: true
+        loggedIn: false,
+        wellData: []
     }
     styles = {
         layout: {
@@ -27,50 +59,73 @@ class App extends React.Component {
         }
     }
 
-    componentDidMount() {
-        axios.get("api/user/me").then((res)=>{
-            console.log(res);
-            this.setState({loggedIn:true})
-        }).catch(()=>{
-            this.setState({loggedIn:false})
-        })
+    // componentDidMount() {
+    //     axios.get("api/user/me").then((res) => {
+    //         // console.log(res);
+    //         this.setState({ loggedIn: true })
+    //     }).catch(() => {
+    //         this.setState({ loggedIn: false })
+    //     })
+    //     axios.get("api/well-data").then(res => {
+    //         this.setState({ wellData: res.data })
+    //         // console.log(this.state.wellData)
+    //     })
+    // }
+
+    auth = () => {
+        this.setState({ loggedIn: false })
     }
 
-    auth = () =>{
-        this.setState({loggedIn:false})
-    }
-    
     defaultRoutes = () => {
         return (
-            <div>
+            <>
                 <Route exact path="/dashboard" component={DashBoard} />
                 <Route exact path="/map" component={Map} />
-                <Route exact path="/reports" component={WellReport} />
-                <Route exact path="/welltable" component={WellTable} />
-                <Route exact path="/welltable/:id" component={WellDetail} />
-                <Route exact path="/welltable/:id/recomp/new" component={WellRecompForm} />
-                <Route exact path="/welltable/:id/prod/new" component={ProductionForm} />
-                <Route exact path="/new-well" component={NewWellForm} />
-                <Route exact path="/logout" component={Login} />
-                {/* <Route exact path="/welltable/:id/prod/new" component={WellProdForm} /> */}
-                {/* <Route exact path="/w2" component={W2} /> */}
-                {/* <Route exact path="/production-form" component={ProductionForm} /> */}
-                {/* <Route exact path="/formtest" component={FormTest} /> */}
-                {/* <Route component={NoMatch} /> */}
+                <Route exact path="/reports" component={Report} />
+                <Route exact path="/facilities" component={Facility} />
+                <Route exact path="/well" component={WellTable} />
+                <Route exact path="/well/:id" component={WellDetail} />
+                <Route exact path="/well/:id/update" component={WellForm} />
+                <Route exact path="/well/:id/recomp/new" component={Recompletion} />
+                <Route exaxt path="/well/:id/report/new" component={ReportForm} />
+                <Route exact path="/well/:id/report/update" component={ReportForm} />
+                <Route exact path="/well/:id/prod/new" component={ProdForm} />
+                <Route exact path={["/submit/:schema/:operation", "/submit/:schema/:operation/:id"]} component={Submit} />
                 <Route exact path="/revenue" component={Revenue} />
-            </div>
+                <Route exact path="/logout" component={Login} />
+            </>
         );
-    }    
+    }
     render() {
         return (
             <Router>
-                <div>
-                    { this.state.loggedIn ? <Drawer auth={this.auth}/> : false }   
+                {/* <div> */}
+                {/* <SecondaryDrawer /> */}
+                <Drawer auth={this.auth} />
+                <Switch>
+                    <Route exact path="/" component={DashBoard} />
+                    <Route component={this.defaultRoutes} />
+                </Switch>
+
+                {/* for sign in authentication */}
+                {/* {
+                        this.state.loggedIn
+                            ? <Drawer auth={this.auth} />
+                            : false
+                    }
                     <Switch>
-                        { this.state.loggedIn ? <Route exact path="/" component={DashBoard} /> : <Route exact path="/" component={Login} /> }
-                        { this.state.loggedIn ? <Route component={this.defaultRoutes} /> : <Route component={NoMatch} /> }
-                    </Switch>
-                </div>
+                        {
+                            this.state.loggedIn
+                                ? <Route exact path="/" component={DashBoard} />
+                                : <Route exact path="/" component={Login} />
+                        }
+                        {
+                            this.state.loggedIn
+                                ? <Route component={this.defaultRoutes} />
+                                : <Route component={NoMatch} />
+                        }
+                    </Switch> */}
+                {/* </div> */}
             </Router >
         );
     }

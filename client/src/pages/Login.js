@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import { Redirect } from "react-router-dom";
-import { EmailInput, PasswordInput } from "../components/Form";   
+import { EmailInput, PasswordInput } from "../components/Form";
 import Button from "../components/Button";
 import Background from "../images/login-background.jpg";
 
@@ -56,24 +56,24 @@ class Login extends React.Component {
 
     handleInput = event => {
         // console.log(event.target.value);
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         this.setState({
             [name]: value
         });
     }
 
-  
+
     handleFormSubmit = event => {
         event.preventDefault();
-        const {email, password} = this.state;
+        const { email, password } = this.state;
         // console.log(this.state);
-        axios.post("/api/login", {email, password})
+        axios.post("/api/login", { email, password })
             .then(result => {
                 // console.log(result.data)
                 // this.setState({ redirectTo: "/dashboard" })
                 window.location.pathname = "/dashboard"
             }).catch(err => {
-                this.setState({showError: true});
+                this.setState({ showError: true });
             });
     }
 
@@ -89,10 +89,10 @@ class Login extends React.Component {
     loadProfileInfo = () => {
         axios.get('/api/user/me')
             .then(response => {
-                this.setState({welcomeEmail: response.data.email})
+                this.setState({ welcomeEmail: response.data.email })
             }).catch(err => {
                 axios.get("/api/google/url").then(response => {
-                    this.setState({googleSigninUrl: response.data.url})
+                    this.setState({ googleSigninUrl: response.data.url })
                 });
             });
     }
@@ -121,16 +121,43 @@ class Login extends React.Component {
                 <div className="left-panel image-panel" style={leftPanel}></div>
                 <div style={rightPanel}>
                     <div style={contentStyle}>
-                            <h1 style={{ textAlign: "center"}}>Welcome to Engauge</h1>
-                            <p style={{ textAlign: "center", fontSize: 20}}>Sign in to monitor your well and production status.</p>
+                        <h1 style={{
+                            textAlign: "center"
+                        }}>Welcome to Engauge</h1>
+                        <p style={{
+                            textAlign: "center",
+                            fontSize: 20
+                        }}>Sign in to monitor your well and production status.</p>
                         <form onSubmit={this.handleFormSubmit}>
                             {this.state.showError === true ?
-                            <div id="errormessage" style={errorStyle}>
-                                <p className="mb-0" style={{fontSize: 13, letterSpacing: 0.5, color: "white"}}>Invalid password or email.</p>
-                            </div> : console.log("this be an error")}
-                            <EmailInput name="email" label="Email" placeholder="Enter Your Email" onChange={this.handleInput} value={this.state.email} />
-                            <PasswordInput name="password" label="Password" placeholder="Enter Your Password" onChange={this.handleInput} value={this.state.password} />
-                            <Button type="submit" value="Sign In" width="100%" />
+                                <div id="errormessage" style={errorStyle}>
+                                    <p
+                                        className="mb-0"
+                                        style={{
+                                            fontSize: 13,
+                                            letterSpacing: 0.5,
+                                            color: "white"
+                                        }}>Invalid password or email.</p>
+                                </div> : console.log("this be an error")}
+                            <EmailInput
+                                name="email"
+                                label="Email"
+                                placeholder="Enter Your Email"
+                                onChange={this.handleInput}
+                                value={this.state.email}
+                            />
+                            <PasswordInput
+                                name="password"
+                                label="Password"
+                                placeholder="Enter Your Password"
+                                onChange={this.handleInput}
+                                value={this.state.password}
+                            />
+                            <Button
+                                type="submit"
+                                value="Sign In"
+                                width="100%"
+                            />
                         </form>
                         {this.handleRedirect()}
                     </div>

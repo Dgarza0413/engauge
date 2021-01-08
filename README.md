@@ -1,49 +1,32 @@
-# React Router
+# Engauge : An Oil Well Respository
+Engauge is a data repository where oil companies can store, organize and visualize their data in beautiful infographics and specialized tables. This app enables the creation of well tables, shows detailed information on each well and has a dashboard for quick access to summary statistics on oil, gas and water production, the location of well sites and draws financial data from an API to populate the price of oil production based on current data.
 
-In this activity we will add React Router to the Books application in order to render a book details page as well as a no match 404 page.
+## Collaborators
+* [Elain Tran](https://github.com/elaintran)
+* [Brittany McNulty](https://github.com/bmm019)
+* [Christina Truong](https://github.com/christinaqtruong)
+* [David Garza](https://github.com/dgarza0413)
+* [Mark Baker](https://github.com/i-k0n)
 
-## Instructions
+## Objectives
+- [X] Must have real life application and utility
+- [X] Must use React.js
+- [X] Must be backed by a MySQL or MongoDB Database with Sequelize or Mongoose ORM
+- [X] Must be deployed using Heroku (with Data)
+- [X] Must have both GET and POST routes
+- [X] Must have a polished frontend / UI 
+- [X] Must utilize at least two libraries, packages or technologies 
+- [X] Must allow for or involve the authentication of users 
+- [X] Must have folder structure that meets MVC Paradigm
+- [X] Must meet good quality coding standards (indentation, scoping, naming)
+- [X] Must not expose sensitive API key information on the server
 
-* Open the [Unsolved](Unsolved) folder and install dependencies by running `npm install` at the project root.
+## Demo
+[View Demo Here](https://serene-meadow-56536.herokuapp.com/)
 
-* Start the app by running `npm start` from the project root.
-
-* Once the app starts open your browser to [localhost:3000](http://localhost:3000).
-
-* Open [App.js](Unsolved/client/src/App.js).
-
-### Part 1
-
-* Set up React Router inside of the `client/src/App.js` file.
-
-  * The `/` and `/books` routes should both render the `Books` component page.
-
-### Part 2
-
-* Notice that inside of the `pages` folder we have a `NoMatch` component. This is the component for our 404 page.
-
-* Add a route for the new `NoMatch` component. This should only render if no other routes are matched. e.g. `/sjdfhjsdhfjsa` or `/notarealroute/lalala` should both render the `NoMatch` component page. 
-
-  * You will need to use the `Switch` component from the React Router Dom library to accomplish this. An example can be found [here](https://reacttraining.com/react-router/web/example/no-match).
-
-### Part 3
-
-* Notice that in the `pages` folder we have a `Detail` component. This component displays additional information about a book.
-
-* Add a route for the the new `Detail` component. This should render when the `/books/:id` path is matched. e.g. if a book's `_id` is `59a39cf2549cf482c814333f`, then `/books/59a39cf2549cf482c814333f` should render its book `Detail` page.
-
-* Inside of the `Detail` component, add code so that when the component mounts, we retrieve the book for the rendered route and save it to `this.state.book`. e.g. when the route is `/books/59a39cf2549cf482c814333f`, an AJAX request should be made to get the book with an `_id` of `59a39cf2549cf482c814333f`. If completed successfully, you should see the book's synopsis on this page.
-
-  * You may need to look into [URL params with React Router](https://reacttraining.com/react-router/web/example/url-params) to accomplish this.
-
-  * To access props in a class component you must use `this.props` instead of `props`.
-
-### Hints
-
-* Parts 1 - 2 will only require you modify the `client/src/App.js` file.
-
-* The React Router DOM library should already be installed.
-
-* The React Router documentation is your friend!
-
-* Ask the instructor or a TA if you're having difficulty understanding any of the activity requirements.
+## Technologies Used
+* [Moment](https://www.npmjs.com/package/moment)
+* [MongoDB](https://www.npmjs.com/package/mongodb)
+* [Mongoose](https://www.npmjs.com/package/mongoose)
+* [Passport](https://www.npmjs.com/package/passport)
+* [Apollo/graphql]

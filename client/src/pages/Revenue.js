@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PageWrapper from "../components/PageWrapper";
 import SectionTitle from "../components/SectionTitle";
 import API from "../utils/API";
 import moment from 'moment';
-import { getOrdinalColorScale } from "@nivo/colors";
-import GraphLine2 from "../components/GraphLineRev";
+import Graph from "../components/Graph/LineRevGraph";
 import Card from "../components/Card";
 import { Col } from "react-bootstrap";
-
 
 const styles = {
     graph: {
@@ -15,70 +13,56 @@ const styles = {
     }
 }
 
-class Revenue extends React.Component {
-    constructor() {
-        super();
-        var date = new Date();
+const Revenue = () => {
+    const [oilPrices, setOilPrices] = useState([])
+    const [gasPrices, setGasPrices] = useState([])
+    // const wellData = useState([])
+    // const currentProd = useState([])
+    // const gasRev = useState([])
 
-        this.state = {
-            date: moment(date).format("YYYY-MM"),
-            oilPrices: [],
-            gasPrices: []
+    const getOil = async () => {
+        // const obj = { date: date };
+        try {
+            const res = await API.getOilPrices()
+            const data = await res.data.dataset.data
+            console.log(data)
+            const oilPrices = await data.map(e => {
+                let obj = {}
+                obj = {
+                    date: moment(e[0], "YYYY-MM-DD").format("MM/DD/YYYY"),
+                    price: e[1]
+                }
+                return obj
+            })
+            setOilPrices(oilPrices)
+        } catch (error) {
+            console.error(error)
         }
     }
 
-    getOil = () => {
-        const obj = { date: this.state.date };
-        console.log("fetching data...");
-        API.getOilPrices(obj)
-            .then(res => {
-                const newObj = {}
-                const data = res.data.dataset.data
-                for (let i = 0; i < data.length; i++) {
-                    if (!newObj[data[i][0]]) {
-                        newObj[data[i][0]] = {
-                            date: data[i][0],
-                            price: data[i][1]
-                        }
-                    }
+    const getGas = async () => {
+        // const obj = { date: date };
+        try {
+            const res = await API.getGasPrices()
+            console.log(res)
+            const data = await res.data.dataset.data
+            console.log(data)
+            const gasPrices = await data.map(e => {
+                let obj = {}
+                obj = {
+                    date: moment(e[0], "YYYY-MM-DD").format("MM/DD/YYYY"),
+                    price: e[1]
                 }
-                this.setState({
-                    oilPrices: Object.values(newObj)
-                })
-            }).catch(err => {
-                console.log(err)
+                return obj
             })
+            setGasPrices(gasPrices)
+        } catch (error) {
+            console.error(error)
+        }
     }
 
-    getGas = () => {
-        const obj = { date: this.state.date };
-        API.getGasPrices(obj)
-            .then(res => {
-                const newObj = {}
-                const data = res.data.dataset.data
-                for (let i = 0; i < data.length; i++) {
-                    if (!newObj[data[i][0]]) {
-                        newObj[data[i][0]] = {
-                            date: data[i][0],
-                            price: data[i][1]
-                        }
-                    }
-                }
-                this.setState({
-                    gasPrices: Object.values(newObj)
-                })
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
 
-    componentDidMount() {
-        // call APIs on page load
-        this.getOil();
-        this.getGas();
-    }
-
+<<<<<<< HEAD
     render() {
         return (
             <PageWrapper>
@@ -96,6 +80,28 @@ class Revenue extends React.Component {
             </PageWrapper>
         );
     }
+=======
+    useEffect(() => {
+        getOil()
+        getGas()
+    }, [])
+
+    return (
+        <PageWrapper>
+            <SectionTitle>Revenue Page</SectionTitle>
+            <Col lg="12">
+                <Card>
+                    <div style={styles.graph}>
+                        <Graph
+                            oil={oilPrices}
+                            gas={gasPrices}
+                        />
+                    </div>
+                </Card>
+            </Col>
+        </PageWrapper>
+    );
+>>>>>>> 842c7e8a6948f1e7a987a25e8757b47ad7a5626c
 }
 
 export default Revenue;

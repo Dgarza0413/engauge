@@ -13,7 +13,18 @@ module.exports = {
         db.Well
             .findById(req.params.id)
             .populate("productionId")
+            .populate("reportId")
             //temp comment out bc breaking well details section
+            // .populate("recompletion")
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    findByQuery: function (req, res) {
+        console.log(req.params)
+        db.Well
+            .findOne({ apiNum: req.params.id })
+            .populate("productionId")
+            .populate("reportId")
             // .populate("recompletion")
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));

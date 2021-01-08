@@ -1,97 +1,129 @@
-import React from "react";
-import Map from "../components/Map";
-import GraphLine from "../components/GraphLine";
-import GraphBar from "../components/GraphBar";
-import PageWrapper from "../components/PageWrapper";
-import { Link } from "react-router-dom";
-import Button from "../components/Button";
-import FlexContainer from "../components/FlexContainer";
-import API from "../utils/API";
-import WellTableProd from "../components/TableProd";
-import Card from "../components/Card";
-import { Container, Row, Col } from "react-bootstrap";
-import SectionTitle from "../components/SectionTitle";
+import React, { useState, useEffect } from 'react';
 
+import { Container, Row, Col } from 'react-bootstrap';
 
+import API from '../utils/API';
 
-const styles = {
-    graph: {
-        "height": "100vh"
+// components
+import GraphLine from '../components/Graph/LineGraph';
+import GraphBar from '../components/Graph/BarGraph';
+import PageWrapper from '../components/PageWrapper';
+import Card from '../components/Card';
+import SectionTitle from '../components/SectionTitle';
+import WellInfoList from "../components/Lists/WellInfoList";
+// import DailyProdList from '../components/Lists/DailyProdList';
+import TabPanel from '../components/TabBar/TabBar';
+import Drawer from '../components/Drawer/Drawer';
+import SeconadaryWrapper from '../components/PageWrapper/SecondaryWrapper';
+
+import MapBox from '../components/Map';
+
+const WellDetail = (props) => {
+  const [wellData, setWellData] = useState({});
+  const [input, setInput] = useState({})
+
+  console.log(props)
+
+  // const handleAddWell = () => {
+  //   props.addWell(input)
+  //   setInput({ input: "" })
+  // }
+
+  const getWellIdData = async () => {
+    try {
+      const getWell = await API.getWellId(props.match.params.id)
+      console.log(getWell)
+      const res = getWell.data
+
+      const totalGas = res.productionId
+        .map(prodData => prodData.gas)
+        .reduce(function (accumulator, prod) {
+          return accumulator + prod;
+        });
+      const totalOil = res.productionId
+        .map(prodData => prodData.oil)
+        .reduce(function (accumulator, prod) {
+          return accumulator + prod;
+        });
+      const totalWater = res.productionId
+        .map(prodData => prodData.water)
+        .reduce(function (accumulator, prod) {
+          return accumulator + prod;
+        });
+
+      setWellData({
+        res: res,
+        wellName: res.wellName,
+        wellNum: res.wellNum,
+        tempLat: res.latLong.latitude,
+        tempLng: res.latLong.longitude,
+        totalOil: totalOil || 0,
+        totalGas: totalGas || 0,
+        totalWater: totalWater || 0,
+        productionId: res.productionId,
+        reportId: res.reportId
+      });
+
+    } catch (error) {
+      console.error(error)
     }
-}
+  }
 
-class WellDetail extends React.Component {
-    state = {
-        well: {},
-        tempLat: null, // 30.266926,
-        tempLng: null //-97.750519
-    };
+  useEffect(() => {
+    getWellIdData()
+  }, []);
 
-    componentDidMount() {
-        console.log(this.props.match.params.id);
-        API.getWellId(this.props.match.params.id)
-            .then(res => {
-                const totalGas = res.data.productionId.map(prodData => prodData.gas).reduce(function (accumulator, prod) { return accumulator + prod })
-                const totalOil = res.data.productionId.map(prodData => prodData.oil).reduce(function (accumulator, prod) { return accumulator + prod })
-                const totalWater = res.data.productionId.map(prodData => prodData.water).reduce(function (accumulator, prod) { return accumulator + prod })
-                this.setState({
-                    well: res.data,
-                    tempLat: res.data.latLong.latitude,
-                    tempLng: res.data.latLong.longitude,
-                    totalOil: totalOil,
-                    totalGas: totalGas,
-                    totalWater: totalWater
-                })
-                console.log(res.data)
-            })
-            .catch(err => console.log(err))
-    }
-    render() {
-        return (
-            <PageWrapper>
-                <Container>
-                    <Row>
-                        <Col lg="12">
-                            <FlexContainer>
-                                <SectionTitle>Well Summary</SectionTitle>
-                                <Link to={"/welltable/" + this.props.match.params.id + "/prod/new"}>
-                                    <Button mb="15px">+ Production</Button>
-                                </Link>
-                                <Link to={"/welltable/" + this.props.match.params.id + "/recomp/new"} style={{ marginLeft: "1em" }}>
-                                    <Button mb="15px">+ Recompletion</Button>
-                                </Link>
-                            </FlexContainer>
-                            <Card>
-                                <div style={{ height: "40vw" }}>
-                                    <GraphLine well={this.state.well.productionId || []}
-                                        key={this.state.well.id} />
-                                </div>
-                            </Card>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col lg="6">
-                            <Card>
-                                <Map height="35vw" wellLocation={{ latitude: this.state.tempLat, longitude: this.state.tempLng }} />
-                            </Card>
-                        </Col>
-                        <Col lg="6">
-                            <Card>
-                                <GraphBar
-                                    class="half-pie"
-                                    oil={this.state.totalOil}
-                                    gas={this.state.totalGas}
-                                    water={this.state.totalWater}
-                                    key={this.state.well.id} />
-                            </Card>
-                        </Col>
-                    </Row>
-                    <WellTableProd well={this.state.well.productionId || []}
-                        key={this.state.well._id} />
-                </Container>
-            </PageWrapper >
-        )
-    }
-}
+  return (
+    <PageWrapper>
+      <SeconadaryWrapper>
+        <Drawer id={props.match.params.id} />
+        <SectionTitle>Well Detail</SectionTitle>
+        <Container>
+          <Row>
+            <Col lg="12">
+              {/* <ButtonList id={props.match.params.id} /> */}
+              <WellInfoList wellData={wellData.res || []} />
+              {/* <DailyProdList /> */}
+              <Card>
+                <SectionTitle>Prod Summary</SectionTitle>
+                <div style={{ height: '40vw' }}>
+                  <GraphLine
+                    well={wellData.productionId || []}
+                    key={wellData.id}
+                  />
+                </div>
+              </Card>
+            </Col>
+            <Col lg="6">
+              <Card>
+                <SectionTitle>Location</SectionTitle>
+                <MapBox height="35vw" />
+              </Card>
+            </Col>
+            <Col lg="6">
+              <Card>
+                <SectionTitle>Prod Total</SectionTitle>
+                <GraphBar
+                  class="half-pie"
+                  oil={wellData.totalOil}
+                  gas={wellData.totalGas}
+                  water={wellData.totalWater}
+                  key={wellData.id}
+                />
+              </Card>
+            </Col>
+          </Row>
+          <Card padding="0px">
+            <TabPanel
+              prodData={wellData.productionId || []}
+              reportData={wellData.reportId || []}
+              key={wellData._id}
+            />
+          </Card>
+        </Container>
+      </SeconadaryWrapper>
+    </PageWrapper >
+  );
+};
 
 export default WellDetail;
