@@ -62,25 +62,6 @@ const Revenue = () => {
     }
 
 
-<<<<<<< HEAD
-    render() {
-        return (
-            <PageWrapper>
-                <SectionTitle>Revenue Page</SectionTitle>
-                <Col lg="12">
-                    <Card >
-                        <div style={styles.graph}>
-                            <GraphLine2
-                                oilPrice={this.state.oilPrices}
-                                gasPrice={this.state.gasPrices}
-                            />
-                        </div>
-                    </Card>
-                </Col>
-            </PageWrapper>
-        );
-    }
-=======
     useEffect(() => {
         getOil()
         getGas()
@@ -101,7 +82,6 @@ const Revenue = () => {
             </Col>
         </PageWrapper>
     );
->>>>>>> 842c7e8a6948f1e7a987a25e8757b47ad7a5626c
 }
 
 export default Revenue;
