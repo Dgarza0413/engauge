@@ -71,6 +71,8 @@ class WellRecompForm extends React.Component {
         }
     }
 
+
+
     handleInputChange = event => {
         const { name, value } = event.target;
         if (name === "testDate" || name === "hoursTested" || name === "prodMethod" || name === "chokeSize") {
@@ -182,6 +184,17 @@ class WellRecompForm extends React.Component {
     };
 
     render() {
+        const styles = {
+            button: {
+                border: '0',
+                backgroundColor: '#d5b577',
+                color: 'white',
+                fontWeight: '600',
+                padding: '5px 15px',
+                borderRadius: '3px',
+                outline: 'none',
+            }
+        }
         return (
             <PageWrapper>
                 <SectionTitle>Recompletion Form</SectionTitle>
@@ -358,6 +371,12 @@ class WellRecompForm extends React.Component {
                         </Container>
                     </Card>
                     {this.handleRedirect()}
+                    <Button
+                        style={styles.button}
+                        onClick={() => this.props.history.goBack()}
+                        className="mr-2"
+                    >
+                        go back</Button>
                     <Button type="submit" />
                 </form>
             </PageWrapper>

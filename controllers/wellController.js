@@ -1,6 +1,5 @@
 const db = require("../models");
 
-// Defining methods for the wellController
 module.exports = {
     findAll: function (req, res) {
         db.Well
@@ -14,13 +13,11 @@ module.exports = {
             .findById(req.params.id)
             .populate("productionId")
             .populate("reportId")
-            //temp comment out bc breaking well details section
             // .populate("recompletion")
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     findByQuery: function (req, res) {
-        console.log(req.params)
         db.Well
             .findOne({ apiNum: req.params.id })
             .populate("productionId")
@@ -37,7 +34,7 @@ module.exports = {
     },
     update: function (req, res) {
         db.Well
-            .findOneAndUpdate({ _id: req.params.id }, req.body)
+            .findOneAndUpdate({ apiNum: req.params.id }, req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -49,6 +46,3 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     }
 };
-
-// add well info
-// add tank info

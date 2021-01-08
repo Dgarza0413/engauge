@@ -12,7 +12,7 @@ const DailyProdList = ({ data }) => {
                         <>
                             {(e[0] === "date")
                                 ? ""
-                                : <Col md='4'>
+                                : <Col md={4}>
                                     <SummarizedCard key={i} data={e} />
                                 </Col>
                             }

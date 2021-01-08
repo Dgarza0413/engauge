@@ -3,7 +3,6 @@ import { ResponsivePie } from '@nivo/pie';
 import "./style.css";
 
 const Pie = ({ reportData }) => {
-    console.log(reportData)
 
     const data = [
         {

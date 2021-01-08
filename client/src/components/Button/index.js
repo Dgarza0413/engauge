@@ -16,6 +16,7 @@ export const style = {
 const checkType = (type, content, mb, value, width, { ...props }) => {
     if (type === "submit") {
         return <input
+            {...props}
             type={type}
             value={value}
             // className="button"

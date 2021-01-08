@@ -9,11 +9,10 @@ import SectionTitle from '../components/SectionTitle';
 import FlexContainer from '../components/FlexContainer';
 
 import useFetch from '../hooks/useFetch';
-
 import URI from '../utils/URI';
 
 const WellTable = () => {
-  const [value, handleFetchGET] = useFetch();
+  const [fetchValue, handleFetchGET] = useFetch();
 
   useEffect(() => {
     handleFetchGET(URI.allWell_URI())
@@ -23,12 +22,11 @@ const WellTable = () => {
     <PageWrapper>
       <FlexContainer>
         <SectionTitle>Well Overview</SectionTitle>
-        {/* <Link to="/well/new"> */}
         <Link to="/submit/well/add">
           <Button>+ Add Well</Button>
         </Link>
       </FlexContainer>
-      <Table data={value} key={value._id} />
+      <Table data={fetchValue} key={fetchValue._id} />
     </PageWrapper>
   );
 };

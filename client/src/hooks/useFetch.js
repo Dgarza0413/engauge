@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 const useFetch = () => {
     const [value, setValue] = useState([]);
+    const [fetchValue, setFetchValue] = useState([]);
     const [postValue, setPostValue] = useState({});
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(true);
@@ -36,7 +37,7 @@ const useFetch = () => {
         try {
             const res = await fetch(url);
             const data = await res.json()
-            await setValue(data);
+            await setFetchValue(data);
         } catch (error) {
             setError(error)
         } finally {
@@ -54,7 +55,7 @@ const useFetch = () => {
         }
     }
 
-    return [value, handleFetchGET, handleManyFetchGET]
+    return [fetchValue, handleFetchGET, handleManyFetchGET]
 }
 
 export default useFetch

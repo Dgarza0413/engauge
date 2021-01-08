@@ -5,7 +5,11 @@ const shortid = require('shortid');
 //==========
 
 const reportSchema = new mongoose.Schema({
-    wellId: {
+    date: {
+        type: Date,
+        default: new Date
+    },
+    api: {
         type: String,
         required: true
     },
@@ -30,10 +34,7 @@ const reportSchema = new mongoose.Schema({
         type: Number,
         default: ""
     },
-    date: {
-        type: Date,
-        default: new Date
-    },
+
     summary: {
         type: String,
         default: ""

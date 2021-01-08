@@ -16,6 +16,7 @@ export const FILTERED_WELL_TABLE = [
     'wellBoreProfile',
     'surfaceLocation',
     'trueVerticalDepth',
+    'coordinates'
     // 'wellType'
 ]
 export const INCLUDED_WELL_TABLE = ['apiNum', 'wellName', 'wellNum', 'isOn']

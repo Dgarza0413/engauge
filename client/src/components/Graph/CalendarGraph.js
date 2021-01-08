@@ -3,17 +3,22 @@ import FlexContainer from '../FlexContainer';
 // import Button from '../Button';
 import Button from 'react-bootstrap/Button';
 import { ResponsiveCalendar } from '@nivo/calendar'
+import { style } from '../Button';
 
 const Calendar = ({ data }) => {
-    const [year, setYear] = useState(2018)
+    const currentDate = new Date;
+    const currentYear = currentDate.getFullYear()
+    const [year, setYear] = useState(currentYear)
     return (
         <>
-            <Button onClick={() => setYear(year - 1)}>
-                Previous Year
+            <div className="position-absolute" style={{ top: '25px', right: '25px' }}>
+                <Button className="mr-2" style={style.button} onClick={() => setYear(year - 1)}>
+                    Previous Year
             </Button>
-            <Button onClick={() => setYear(year + 1)}>
-                Next Year
+                <Button style={style.button} onClick={() => setYear(year + 1)}>
+                    Next Year
             </Button>
+            </div>
             <ResponsiveCalendar
                 data={data}
                 from={`${year}-01-01`}

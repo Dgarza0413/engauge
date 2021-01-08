@@ -5,12 +5,14 @@ import { Container, Row, Col } from "react-bootstrap";
 import { NumberInput, TextBoxInput, StringInput } from "../Form";
 import { Redirect } from 'react-router-dom';
 import Card from "../Card";
-// import Button from "../Button";
 import Button from "react-bootstrap/Button";
 import API from "../../utils/API";
 
+import { style } from '../Button';
+
 // hooks
 import useInputChange from "../../hooks/useInputChange";
+import useFetch from '../../hooks/useFetch';
 
 // styles
 import "./style.css";
@@ -18,43 +20,36 @@ import PageWrapper from '../PageWrapper';
 import SectionTitle from '../SectionTitle';
 
 const ProdForm = (props) => {
-    const [value, handleInputChange, handlebind] = useInputChange()
-
-    // const handleRedirect = () => {
-    //     console.log(this.props.id);
-    //     if (this.state.redirect === true) {
-    //         return <Redirect to={`/welltable/${this.props.id}`} />
-    //     }
-    // }
-    const styles = {
-        button: {
-            border: '0',
-            backgroundColor: '#d5b577',
-            color: 'white',
-            fontWeight: '600',
-            padding: '5px 15px',
-            borderRadius: '3px',
-            outline: 'none',
-        }
-    }
+    const [value, handleInputChange, handleBind] = useInputChange()
+    const [fetchValue, handleGetFetch] = useFetch();
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
         const id = props.match.params.id
-
         try {
             await API.postWellProd(id, value)
-            return <Redirect to="/dashboard" />;
+            await <Redirect to="/dashboard" />;
         } catch (error) {
             console.error(error)
         }
     };
 
+    const formType = (pathName) => {
+        switch (pathName) {
+            case "add":
+                return <SectionTitle>New Production</SectionTitle>
+            case "update":
+                return <SectionTitle>Update Production</SectionTitle>
+            default:
+                break
+        }
+    }
+
     return (
         <div>
             <PageWrapper>
-                <SectionTitle> Production Form</SectionTitle>
+                {formType(props.operation)}
                 <form onSubmit={handleFormSubmit}>
                     <Card>
                         <Container>
@@ -143,13 +138,13 @@ const ProdForm = (props) => {
                                 </Col>
                                 <Col xs={4}>
                                     <Button
-                                        style={styles.button}
+                                        style={style.button}
                                         onClick={() => props.history.goBack()}
                                         className="mr-2"
                                     >
                                         go back</Button>
                                     <Button
-                                        style={styles.button}
+                                        style={style.button}
                                         type="submit"
                                     >
                                         Submit</Button>

@@ -178,6 +178,11 @@ router.route("/user/:id")
     .put(userController.update)
     .delete(userController.remove);
 
+// GET - data - reports
+router.route('/report/:id')
+    .get(reportController.findOne)
+    .put(reportController.updateOne)
+
 // GET - data - all wells
 router.route("/well-data").get(wellController.findAll);
 router.route("/prod-data").get(prodController.findAll);
