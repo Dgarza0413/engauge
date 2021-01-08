@@ -23,8 +23,8 @@ const SecondaryDrawer = ({ id }) => {
     return (
         <div className="menu-secondary text-center">
             {links.map((text, index) => (
-                <div className="mb-4">
-                    <Link to={{ pathname: `/welltable/${id}/${text.pathname}` }} key={index}>
+                <div className="mb-3">
+                    <Link to={{ pathname: `/well/${id}/${text.pathname}` }} key={index}>
                         <div className="on-hover">
                             <i className={text.icon}></i>
                             <h6>{text.name}</h6>

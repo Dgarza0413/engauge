@@ -4,7 +4,7 @@ import { Redirect } from 'react-router';
 import PageWrapper from "../PageWrapper/index";
 import Card from '../Card';
 import SectionTitle from '../SectionTitle';
-import { StringInput, TextBoxInput, NumberInput } from '../Form';
+import { StringInput, TextBoxInput, NumberInput } from '.';
 
 
 import { Row, Col } from 'react-bootstrap';

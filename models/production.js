@@ -1,7 +1,21 @@
 const mongoose = require("mongoose");
+const shortid = require('shortid')
 const Schema = mongoose.Schema;
 
 const productionSchema = new Schema({
+    productionId: {
+        type: String,
+        default: () => shortid.generate(),
+        unique: true
+    },
+    siteId: {
+        type: String,
+        default: ''
+    },
+    comment: {
+        type: String,
+        default: ''
+    },
     oil: {
         type: Number,
         default: 0

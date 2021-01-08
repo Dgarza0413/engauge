@@ -12,7 +12,10 @@ export default {
         return axios.get("/api/prod-data");
     },
     getAllReportData: () => {
-        return axios.get("/api/report-data");
+        return axios.get("/api/report");
+    },
+    getWellAllRecompletionData: () => {
+        return axios.get("/api/recompletion");
     },
 
     // GET - Individual - welldata types
@@ -36,8 +39,8 @@ export default {
     postWellReport: (id, wellData) => {
         return axios.post("/api/welltable/" + id + "/report/new", wellData)
     },
-    postWellRecomp: (id, wellData) => {
-        return axios.post("/api/welltable/" + id.id + "/recomp/new", wellData);
+    postWellRecomp: (id, data) => {
+        return axios.post("/api/welltable/" + id.id + "/recomp/new", data);
     },
 
     // Query Individual welldata

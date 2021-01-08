@@ -1,39 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 
 // Components
 import Table from '../components/Table';
-// import Button from '../Button';
+import Button from '../components/Button';
 import PageWrapper from '../components/PageWrapper';
 import SectionTitle from '../components/SectionTitle';
 import FlexContainer from '../components/FlexContainer';
-import API from '../utils/API';
+
+import useFetch from '../hooks/useFetch';
+
+import URI from '../utils/URI';
 
 const WellTable = () => {
-  const [wells, setWells] = useState([]);
+  const [value, handleFetchGET] = useFetch();
 
   useEffect(() => {
-    getWellData()
+    handleFetchGET(URI.allWell_URI())
   }, []);
 
-  const getWellData = async () => {
-    try {
-      const res = await API.getAllWellData()
-      await setWells(res.data)
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <PageWrapper>
       <FlexContainer>
         <SectionTitle>Well Overview</SectionTitle>
-        <Link to="/new-well">
+        {/* <Link to="/well/new"> */}
+        <Link to="/submit/well/add">
           <Button>+ Add Well</Button>
         </Link>
       </FlexContainer>
-      <Table wells={wells} key={wells._id} />
+      <Table data={value} key={value._id} />
     </PageWrapper>
   );
 };

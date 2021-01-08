@@ -5,8 +5,8 @@ const wellController = require("../../controllers/wellController");
 const prodController = require("../../controllers/prodController");
 const reportController = require("../../controllers/reportController");
 const recompletionController = require("../../controllers/recompletionController");
+const controller = require('../../controllers');
 const passport = require('../../config/passport.js')
-const puppeteer = require('puppeteer');
 const axios = require('axios')
 
 const eiaKEY = '990b432b4775983b2a47b8ee7e5e2795'
@@ -181,7 +181,8 @@ router.route("/user/:id")
 // GET - data - all wells
 router.route("/well-data").get(wellController.findAll);
 router.route("/prod-data").get(prodController.findAll);
-router.route("/report-data").get(reportController.findAll);
+router.route("/report").get(reportController.findAll);
+router.route("/recompletion").get(recompletionController.findAll);
 
 // Get - data - individual wells
 router.route("/welltable/:id/prod").get(prodController.findById)
@@ -199,15 +200,13 @@ router.route("/well/:id/report/update").put(reportController.update);
 
 // select specific well
 router.route("/well/:id")
-    .get(wellController.findById)
+    .get(wellController.findByQuery)
     .put(wellController.update)
     .delete(wellController.remove);
 
 router.get('/oil', async (req, res) => {
     try {
         const data = await axios.get(`http://api.eia.gov/series/?api_key=${eiaKEY}&series_id=PET.F003048__3.M`)
-        // const data = await axios.get(`https://api.eia.gov/series/?api_key=990b432b4775983b2a47b8ee7e5e2795&series_id=PET.F003048__3.M`)
-        // console.log(data)
         res.json(data.data)
     } catch (error) {
         console.error(error)

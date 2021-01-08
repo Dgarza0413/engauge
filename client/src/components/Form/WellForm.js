@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import moment from 'moment';
 import SectionTitle from '../SectionTitle';
 
 import { Form, Container, Row, Col } from "react-bootstrap";
@@ -10,14 +9,14 @@ import Button from "../Button";
 import API from "../../utils/API";
 import PageWrapper from "../PageWrapper";
 
-// import { Redirect } from 'react-router-dom';
-
 import useInputChange from "../../hooks/useInputChange";
 
 import "./style.css";
 
 const WellForm = (props) => {
     const [value, handleInputChange, handlebind] = useInputChange()
+
+    const pathName = props.match.path;
 
     // const handleValidation = () => {
     //     let wellName = this.state.wellName;
@@ -36,44 +35,15 @@ const WellForm = (props) => {
     //     return true
     // }
 
-    // const handleInputChange = event => {
-    //     const { name, value } = event.target;
-    //     if (name === "latitude" || name === "longitude") {
-    //         const latLong = { ...this.state.latLong }
-    //         latLong[name] = value;
-    //         this.setState({ latLong })
-    //     } else if (name === "distNumber" || name === "fieldNumber" || name === "fieldName") {
-    //         const fieldList = { ...this.state.fieldList }
-    //         fieldList[name] = value;
-    //         this.setState({ fieldList })
-    //     } else {
-    //         this.setState({
-    //             [name]: value
-    //         });
-    //     }
-    // };
-
-    // const handleRedirect = () => {
-    //     if (redirect === true) {
-    //         return <Redirect to="/welltable" />
-    //     }
-    // }
-
-    // const handleFormSubmit = (event) => {
-    //     event.preventDefault();
-
-    // }
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-        const pathName = props.match.path;
+        // const pathName = props.match.path;
         const id = props.match.params.id;
 
         if (pathName === "/well/:id/update") {
             try {
-                console.log("well form update")
-                const post = await API.updateWellData(id, value)
-                console.log(post)
+                await API.updateWellData(id, value)
             } catch (error) {
                 console.error(error)
             }
@@ -81,19 +51,27 @@ const WellForm = (props) => {
             // consider changing
         } else {
             try {
-                const post = await API.createWellData(value)
-                console.log(post)
+                await API.createWellData(value)
             } catch (error) {
                 console.error(error)
             }
         }
     }
 
+    const formType = (pathName) => {
+        switch (pathName) {
+            case "add":
+                return <SectionTitle>New Well</SectionTitle>
+            case "update":
+                return <SectionTitle>Update Well</SectionTitle>
+            default:
+                break
+        }
+    }
+
     useEffect(() => {
         if (props.location.aboutProps) {
             handlebind(props.location.aboutProps)
-        } else if (props.match.path === "/new-well") {
-            return
         }
     }, [])
 
@@ -104,7 +82,7 @@ const WellForm = (props) => {
 
     return (
         <PageWrapper>
-            <SectionTitle>Update Form</SectionTitle>
+            {formType(props.operation)}
             <form onSubmit={handleFormSubmit}>
                 <Card>
                     <Container>
@@ -123,7 +101,7 @@ const WellForm = (props) => {
                                     name="wellNum"
                                     value={value.wellNum || ""}
                                     onChange={handleInputChange}
-                                    placeholder="02" />
+                                    placeholder="number" />
                             </Col>
                             <Col lg="4">
                                 <Select

@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import API from "../../utils/API.js";
 import "./style.css";
 
 const ToggleButton = (props) => {
-    const [on, setOn] = useState(false);
     const { id, isOn } = props
 
     const changeStatus = async () => {
-        await API.updateWellStatus(id, !isOn)
-        await setOn({ isOn: !isOn })
+        try {
+            await API.updateWellStatus(id, !isOn)
+        } catch (err) {
+            console.error(err)
+        }
     };
 
     return (

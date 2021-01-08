@@ -1,30 +1,36 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { Form, Container, Row, Col } from "react-bootstrap";
-import { StringInput, NumberInput, Select, BoxInput, TextBoxInput } from ".";
+import { StringInput, NumberInput, Select } from ".";
+import PageWrapper from "../PageWrapper";
 import Card from "../Card";
 import Button from "../Button";
+import SectionTitle from "../SectionTitle";
+// import { Redirect } from 'react-router-dom';
+import API from "../../utils/API";
 
 import useInputChange from '../../hooks/useInputChange';
 
-const W2Form = () => {
-
-    const [value, handleInputChange] = useInputChange()
+const Recompletion = (props) => {
+    const [value, handleInputChange] = useInputChange();
+    const id = props.match.params.id;
 
     console.log(value)
 
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
+    const handleFormSubmit = async (e) => {
+        e.preventDefault()
+        API.postWellRecomp(id, value)
+            .then(response => console.log(response))
+            .catch(err => console.error(err))
+    }
 
-        try {
-            console.log(event.target.name)
-            console.log(event.target.value)
-        } catch (error) {
-            console.error(error)
-        }
+    const handleClick = async (e) => {
+        console.log(e)
+        console.log('handle click')
     }
 
     return (
-        <div>
+        <PageWrapper>
+            <SectionTitle>Recompletion Form</SectionTitle>
             <form onSubmit={handleFormSubmit}>
                 <Card>
                     <Container>
@@ -33,17 +39,20 @@ const W2Form = () => {
                                 <StringInput
                                     label="Spud Date"
                                     name="spudDate"
-                                    // value={this.state.spudDate}
+                                    // value={value.spudDate}
                                     onChange={handleInputChange}
-                                    placeholder="01-01-2019" />
+                                    onClick={handleClick}
+                                    placeholder="01-01-2019"
+                                />
                             </Col>
                             <Col md="8">
                                 <StringInput
                                     label="Field & Reservior"
                                     name="fieldAndReservoir"
-                                    // value={this.state.fieldAndReservoir}
+                                    // value={value.fieldAndReservoir}
                                     onChange={handleInputChange}
-                                    placeholder="Enter Field & Reservoir" />
+                                    placeholder="Enter Field & Reservoir"
+                                />
                             </Col>
                         </Row>
                         <Row>
@@ -51,25 +60,26 @@ const W2Form = () => {
                                 <StringInput
                                     label="Date of Test"
                                     name="testDate"
-                                    // value={this.state.testData.testDate}
+                                    // value={value.testData.testDate}
                                     onChange={handleInputChange}
-                                    placeholder="01-01-2019" />
+                                    placeholder="01-01-2019"
+                                />
                             </Col>
-                            <Col lg="3">
+                            <Col lg="2">
                                 <NumberInput
                                     label="Hours Tested"
                                     name="hoursTested"
-                                    // value={this.state.testData.hoursTested}
+                                    // value={value.testData.hoursTested}
                                     onChange={handleInputChange}
-                                    placeholder="02" />
+                                    placeholder="02"
+                                />
                             </Col>
                             <Col lg="4">
                                 <Select
                                     label="Production Method"
                                     name="prodMethod"
-                                    // value={this.state.testData.prodMethod}
-                                    onChange={handleInputChange}
-                                >
+                                    // value={value.testData.prodMethod}
+                                    onChange={handleInputChange} >
                                     <option>Flowing</option>
                                     <option>Gas Lift</option>
                                     <option>Pumpjack</option>
@@ -77,13 +87,14 @@ const W2Form = () => {
                                     <option>ESP</option>
                                 </Select>
                             </Col>
-                            <Col lg="2">
+                            <Col lg="3">
                                 <NumberInput
                                     label="Choke Size"
                                     name="chokeSize"
-                                    // value={this.state.testData.chokeSize}
+                                    // value={value.testData.chokeSize}
                                     onChange={handleInputChange}
-                                    placeholder="9.0" />
+                                    placeholder="9.0"
+                                />
                             </Col>
                         </Row>
                     </Container>
@@ -98,19 +109,21 @@ const W2Form = () => {
                                         <NumberInput
                                             label="TVD"
                                             name="tvdTD"
-                                            // value={this.state.totalDepth.tvdTD}
+                                            // value={value.totalDepth.tvdTD}
                                             onChange={handleInputChange}
                                             placeholder="1000"
-                                            unit="ft." />
+                                            unit="ft."
+                                        />
                                     </Col>
                                     <Col lg="6">
                                         <NumberInput
                                             label="MD"
                                             name="mdTD"
-                                            // value={this.state.totalDepth.mdTD}
+                                            // value={value.totalDepth.mdTD}
                                             onChange={handleInputChange}
                                             placeholder="1000"
-                                            unit="ft." />
+                                            unit="ft."
+                                        />
                                     </Col>
                                 </Row>
                             </Col>
@@ -121,7 +134,7 @@ const W2Form = () => {
                                         <NumberInput
                                             label="TVD"
                                             name="tvdPBD"
-                                            // value={this.state.plugBackDepth.tvdPBD}
+                                            // value={value.plugBackDepth.tvdPBD}
                                             onChange={handleInputChange}
                                             placeholder="1000"
                                             unit="ft."
@@ -131,7 +144,7 @@ const W2Form = () => {
                                         <NumberInput
                                             label="MD"
                                             name="mdPBD"
-                                            // value={this.state.plugBackDepth.mdPBD}
+                                            // value={value.plugBackDepth.mdPBD}
                                             onChange={handleInputChange}
                                             placeholder="1000"
                                             unit="ft."
@@ -150,7 +163,7 @@ const W2Form = () => {
                                 <Select
                                     label="Casing Type"
                                     name="casingType"
-                                    // value={this.state.casingRecord.casingType}
+                                    // value={value.casingRecord.casingType}
                                     onChange={handleInputChange}
                                 >
                                     <option>Surface</option>
@@ -162,7 +175,7 @@ const W2Form = () => {
                                 <NumberInput
                                     label="Casing Size"
                                     name="casingSize"
-                                    // value={this.state.casingRecord.casingSize}
+                                    // value={value.casingRecord.casingSize}
                                     onChange={handleInputChange}
                                     placeholder="02"
                                     unit="in."
@@ -172,7 +185,7 @@ const W2Form = () => {
                                 <NumberInput
                                     label="Hole Size"
                                     name="holeSize"
-                                    // value={this.state.casingRecord.holeSize}
+                                    // value={value.casingRecord.holeSize}
                                     onChange={handleInputChange}
                                     placeholder="07"
                                     unit="in."
@@ -184,15 +197,16 @@ const W2Form = () => {
                                 <StringInput
                                     label="Cement Class"
                                     name="cementClass"
-                                    // value={this.state.casingRecord.cementClass}
+                                    // value={value.casingRecord.cementClass}
                                     onChange={handleInputChange}
-                                    placeholder="Class A" />
+                                    placeholder="Class A"
+                                />
                             </Col>
                             <Col lg="3">
                                 <NumberInput
                                     label="Cement Amount"
                                     name="cementAmt"
-                                    // value={this.state.casingRecord.cementAmt}
+                                    // value={value.casingRecord.cementAmt}
                                     onChange={handleInputChange}
                                     placeholder="02"
                                     unit="sacks"
@@ -202,7 +216,7 @@ const W2Form = () => {
                                 <NumberInput
                                     label="Slurry Volume"
                                     name="slurryVol"
-                                    // value={this.state.casingRecord.slurryVol}
+                                    // value={value.casingRecord.slurryVol}
                                     onChange={handleInputChange}
                                     placeholder="02"
                                     unit="cu. ft."
@@ -213,7 +227,7 @@ const W2Form = () => {
                                 <StringInput
                                     label="Top of Cement"
                                     name="topOfCement"
-                                    // value={this.state.casingRecord.topOfCement}
+                                    // value={value.casingRecord.topOfCement}
                                     onChange={handleInputChange}
                                     placeholder="Surface"
                                 />
@@ -229,7 +243,7 @@ const W2Form = () => {
                                 <NumberInput
                                     label="Size"
                                     name="size"
-                                    // value={this.state.tubingRecord.size}
+                                    // value={value.tubingRecord.size}
                                     onChange={handleInputChange}
                                     placeholder="02"
                                     unit="in."
@@ -239,7 +253,7 @@ const W2Form = () => {
                                 <NumberInput
                                     label="Depth Set"
                                     name="depthSet"
-                                    // value={this.state.tubingRecord.depthSet}
+                                    // value={value.tubingRecord.depthSet}
                                     onChange={handleInputChange}
                                     placeholder="07"
                                     unit="in."
@@ -249,7 +263,7 @@ const W2Form = () => {
                                 <Select
                                     label="Packer Type"
                                     name="packerType"
-                                    // value={this.state.tubingRecord.packerType}
+                                    // value={value.tubingRecord.packerType}
                                     onChange={handleInputChange}
                                 >
                                     <option>Hydraulic Set</option>
@@ -263,7 +277,7 @@ const W2Form = () => {
                                 <NumberInput
                                     label="Packer Depth"
                                     name="packerDepth"
-                                    // value={this.state.tubingRecord.packerDepth}
+                                    // value={value.tubingRecord.packerDepth}
                                     onChange={handleInputChange}
                                     placeholder="07"
                                     unit="ft."
@@ -280,7 +294,7 @@ const W2Form = () => {
                                 <StringInput
                                     label="From"
                                     name="from"
-                                    // value={this.state.prodInjDispInt.from}
+                                    // value={value.prodInjDispInt.from}
                                     onChange={handleInputChange}
                                     placeholder="Enter Where From"
                                 />
@@ -289,7 +303,7 @@ const W2Form = () => {
                                 <StringInput
                                     label="To"
                                     name="to"
-                                    // value={this.state.prodInjDispInt.to}
+                                    // value={value.prodInjDispInt.to}
                                     onChange={handleInputChange}
                                     placeholder="Enter Where To"
                                 />
@@ -305,7 +319,7 @@ const W2Form = () => {
                                 <Select
                                     label="Principal Geological Markers & Formation Tops"
                                     name="markers"
-                                    // value={this.state.formationRecord.markers}
+                                    // value={value.state.formationRecord.markers}
                                     onChange={handleInputChange}
                                 >
                                     <option>Hydraulic Set</option>
@@ -319,7 +333,7 @@ const W2Form = () => {
                                 <NumberInput
                                     label="TVD"
                                     name="tvdDepth"
-                                    // value={this.state.formationRecord.tvdDepth}
+                                    // value={value.formationRecord.tvdDepth}
                                     onChange={handleInputChange}
                                     placeholder="02"
                                     unit="ft."
@@ -329,7 +343,7 @@ const W2Form = () => {
                                 <NumberInput
                                     label="MD"
                                     name="mdDepth"
-                                    // value={this.state.formationRecord.mdDepth}
+                                    // value={value.formationRecord.mdDepth}
                                     onChange={handleInputChange}
                                     placeholder="07"
                                     unit="ft."
@@ -341,9 +355,8 @@ const W2Form = () => {
                                 <Select
                                     label="Formation Type"
                                     name="formationType"
-                                    // value={this.state.formationRecord.formationType}
-                                    onChange={handleInputChange}
-                                >
+                                    // value={value.formationRecord.formationType}
+                                    onChange={handleInputChange} >
                                     <option>Zone With Corrosive Formation Fluids</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -355,7 +368,7 @@ const W2Form = () => {
                                 <Select
                                     label="Isolated"
                                     name="isIsolated"
-                                    // value={this.state.formationRecord.isIsolated}
+                                    // value={value.formationRecord.isIsolated}
                                     onChange={handleInputChange}
                                 >
                                     <option>Yes</option>
@@ -365,10 +378,11 @@ const W2Form = () => {
                         </Row>
                     </Container>
                 </Card>
+                {/* {handleRedirect()} */}
                 <Button type="submit" />
             </form>
-        </div>
+        </PageWrapper>
     )
 }
 
-export default W2Form;
+export default Recompletion

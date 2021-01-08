@@ -10,30 +10,34 @@ import PageWrapper from '../components/PageWrapper';
 import Card from '../components/Card';
 import SectionTitle from '../components/SectionTitle';
 import DailyProdList from '../components/Lists/DailyProdList';
+// import MapBox from '../components/Map';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
-import Slider from 'rc-slider';
+// import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 // hooks
 import useCombineValue from '../hooks/useCombineValue';
+import useFetch from '../hooks/useFetch';
 
 // utilities
 import API from '../utils/API';
+import URI from '../utils/URI';
+import { combineProduction, combineReport } from '../utils/computations';
 
 
 const DashBoard = (props) => {
-    const [wellData, setWellData] = useState([]);
     const [prodData, setProdData] = useState([]);
     const [prodTotal, setProdTotal] = useState([]);
     const [reportData, setReportData] = useState([]);
     const [wellStatus, setWellStatus] = useState({});
-    const [userVal, setUserVal] = useState("")
-    const [filteredValues, setFilteredValues] = useState([]);
-
-    console.log(filteredValues)
+    // const [wellData, setWellData] = useState([]);
+    // const [userVal, setUserVal] = useState("")
+    // const [filteredValues, setFilteredValues] = useState([]);
+    const [value, handleFetchGET, handleManyFetchGET] = useFetch();
+    // const [valueCombine, handleCombineProd] = useCombineValue();
 
     const styles = {
         graph: {
@@ -41,10 +45,20 @@ const DashBoard = (props) => {
         },
     };
 
-    const loadProfileInfo = async () => {
+    // const loadProfileInfo = async () => {
+    //     try {
+    //         const res = await API.getUserInfo()
+    //         await setUserVal(res)
+    //     } catch (error) {
+    //         console.error(error)
+    //     }
+    // }
+
+    const getAllReportData = async () => {
         try {
-            const res = await API.getUserInfo()
-            await setUserVal(res)
+            const { data } = await API.getAllReportData()
+            const reportRes = await combineReport(data)
+            await setReportData(Object.values(reportRes))
         } catch (error) {
             console.error(error)
         }
@@ -64,121 +78,40 @@ const DashBoard = (props) => {
         }
     }
 
-    const getAllReportData = async () => {
-        try {
-            const { data } = await API.getAllReportData()
-            await useCombineValue(data, setReportData)
-        } catch (error) {
-            console.error(error)
-        }
-    }
-
     const getAllProdData = async () => {
         try {
-            const newObj = [];
             const { data } = await API.getAllProdData()
-            for (let i = 0; i < data.length; i++) {
-                const date = moment(data[i].date).format('MM/DD/YYYY');
-                if (!newObj[date]) {
-                    newObj[date] = {
-                        date: date,
-                        water: [],
-                        oil: [],
-                        gas: [],
-                    };
-                    newObj[date].oil.push(data[i].oil);
-                    newObj[date].gas.push(data[i].gas);
-                    newObj[date].water.push(data[i].water);
-                } else {
-                    newObj[date].oil.push(data[i].oil);
-                    newObj[date].gas.push(data[i].gas);
-                    newObj[date].water.push(data[i].water);
-                }
-            }
-            for (let key in newObj) {
-                let gas = newObj[key].gas;
-                let oil = newObj[key].oil;
-                let water = newObj[key].water;
-                let totalGas = gas.reduce((acc, cur) => acc + cur);
-                let totalOil = oil.reduce((acc, cur) => acc + cur);
-                let totalWater = water.reduce((acc, cur) => acc + cur);
-                newObj[key].gas = totalGas;
-                newObj[key].oil = totalOil;
-                newObj[key].water = totalWater;
-            }
-
-            const totalGas = data
-                .map(prodData => prodData.gas)
-                .reduce(function (accumulator, prod) {
-                    return accumulator + prod;
-                });
-            const totalOil = data
-                .map(prodData => prodData.oil)
-                .reduce(function (accumulator, prod) {
-                    return accumulator + prod;
-                });
-            const totalWater = data
-                .map(prodData => prodData.water)
-                .reduce(function (accumulator, prod) {
-                    return accumulator + prod;
-                });
-
-            await setProdData(Object.values(newObj))
+            const res = await combineProduction(data)
+            await setProdData(Object.values(res.newObj))
             await setProdTotal({
-                oil: totalOil,
-                gas: totalGas,
-                water: totalWater
+                oil: res.totalOil,
+                gas: res.totalGas,
+                water: res.totalWater
             })
         } catch (error) {
             console.error(error)
         }
     }
 
-    const filterRange = async () => {
-        const max = await moment.utc(prodData[prodData.length - 1].date)
-        const min = await moment.utc(prodData[prodData.length - (prodData.length - 1)].date)
-        const increment = await max.add(24, 'hours').valueOf()
-        console.log(increment)
-        const filterDates = await prodData.filter(e => {
-            return e.date >= min && e.date <= max
-        })
-        console.log(filterDates)
-        await setFilteredValues({
-            min: min.valueOf(),
-            max: max.valueOf()
-        })
-    }
-
     useEffect(() => {
+        handleFetchGET('/api/report')
+        getAllReportData()
         // loadProfileInfo(),
         getAllProdData()
         getAllWellData()
-        getAllReportData()
     }, [])
-
-    const createSliderWithTooltip = Slider.createSliderWithTooltip;
-    const Range = createSliderWithTooltip(Slider.Range);
 
     return (
         <PageWrapper>
             <SectionTitle>Dashboard</SectionTitle>
             <Container>
                 <Row>
-                    <DailyProdList
-                        data={prodData[prodData.length - 1]}
-                    />
+                    <DailyProdList data={prodData[prodData.length - 1]} />
                     <Col lg="12">
                         <Card>
                             <SectionTitle>Production</SectionTitle>
                             <div style={styles.graph}>
                                 <GraphLine well={prodData || []} />
-                                <Range
-                                    defaultValue={[filteredValues.min, filteredValues.max]}
-                                    // step={max.add(24, 'hours').valueOf()}
-                                    min={filteredValues.min}
-                                    max={filteredValues.max}
-                                    onChange={filterRange}
-                                />
                             </div>
                         </Card>
                     </Col>
@@ -203,8 +136,6 @@ const DashBoard = (props) => {
                             />
                         </Card>
                     </Col>
-                </Row>
-                <Row>
                     <Col lg="12">
                         <Card>
                             <SectionTitle>Report Summary</SectionTitle>

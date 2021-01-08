@@ -53,7 +53,8 @@ const recompletionSchema = new Schema({
     //   runTicket: String
     // }],
     date: {
-        type: Date, default: Date.now
+        type: Date,
+        default: () => new Date
     }
 });
 

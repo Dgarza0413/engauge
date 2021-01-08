@@ -1,9 +1,9 @@
 import React from 'react';
-import ProdTable from '../Table/ProdTable';
-import ReportTable from '../Table/ReportTable';
-import { Tabs, Tab } from 'react-bootstrap';
 
-const TabPanel = ({ well, reportData }) => {
+import { Tabs, Tab } from 'react-bootstrap';
+import Table from '../Table';
+
+const TabPanel = ({ prodData, reportData }) => {
 
     return (
         <Tabs
@@ -14,18 +14,13 @@ const TabPanel = ({ well, reportData }) => {
             <Tab
                 eventKey="home"
                 title="Production">
-                <ProdTable
-                    well={well || []}
-                    key={well._id} />
+                <Table type={"production"} data={prodData} />
             </Tab>
             <Tab
                 eventKey="profile"
                 title="Reports"
             >
-                <ReportTable
-                    reportData={reportData || []}
-                    key={well._id}
-                />
+                <Table type={"report"} data={reportData} />
             </Tab>
             <Tab
                 eventKey="recomp"

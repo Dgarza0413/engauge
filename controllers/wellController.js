@@ -19,6 +19,16 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    findByQuery: function (req, res) {
+        console.log(req.params)
+        db.Well
+            .findOne({ apiNum: req.params.id })
+            .populate("productionId")
+            .populate("reportId")
+            // .populate("recompletion")
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
     create: function (req, res) {
         db.Well
             .create(req.body)

@@ -18,15 +18,15 @@ const MyResponsiveLine = (props) => {
         }
     ))
     const waterdata = props.well.map(d => (
-        (d.water === undefined) ?
-            {
-                "x": moment(d.date).format("MM-DD"),
-                "y": 0
-            } :
-            {
-                "x": moment(d.date).format("MM-DD"),
-                "y": parseInt(d.water)
-            }
+        // (d.water === undefined) ?
+        // {
+        //     "x": moment(d.date).format("MM-DD"),
+        //     "y": 0
+        // } :
+        {
+            "x": moment(d.date).format("MM-DD"),
+            "y": parseInt(d.water)
+        }
     ))
 
     const color = "hsl(157, 70%, 50%)";
@@ -52,8 +52,8 @@ const MyResponsiveLine = (props) => {
             data={dataProd}
             margin={{ top: 50, right: 60, bottom: 50, left: 60 }}
             xScale={{ type: 'point' }}
-            yScale={{ type: 'linear', stacked: true, min: 'auto', max: 'auto' }}
-            curve="linear"
+            yScale={{ type: 'linear', stacked: false, min: '1', max: 'auto' }}
+            // curve="linear"
             axisTop={null}
             axisRight={{
                 orient: 'left',

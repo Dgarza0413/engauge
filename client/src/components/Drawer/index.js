@@ -154,11 +154,22 @@ class Drawer extends React.Component {
                 </div>
                 <div className="menu">
                     <div className="links">
-                        {links.map((text, index) => (
-                            <Link to={"/" + text.name.toLowerCase()} key={index}>
-                                <h6><i className={text.icon}></i>{text.name}</h6>
-                            </Link>
-                        ))}
+                        {links.map((text, index) => {
+                            if (text.name === 'WellTable') {
+                                return (
+                                    <Link to={"/well"} key={index}>
+                                        <h6><i className={text.icon}></i>{text.name}</h6>
+                                    </Link>
+                                )
+                            } else {
+                                return (
+                                    <Link to={"/" + text.name.toLowerCase()} key={index}>
+                                        <h6><i className={text.icon}></i>{text.name}</h6>
+                                    </Link>
+                                )
+                            }
+                        })
+                        }
                         <div>
                             <h6 className="logout">
                                 <i className="fas fa-sign-out-alt"></i>
