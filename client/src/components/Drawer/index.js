@@ -139,7 +139,6 @@ class Drawer extends React.Component {
                 <div className="drawer-container">
                     <div className="navbar">
                         <i className="fas fa-bars toggle" onClick={() => this.handleToggle()}></i>
-
                         <div className="engauge-logo">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"

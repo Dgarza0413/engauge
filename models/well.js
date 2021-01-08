@@ -18,9 +18,9 @@ const wellSchema = new Schema({
         fieldNumber: String,
         fieldName: String
     },
-    latLong: {
-        latitude: Number,
-        longitude: Number
+    coordinates: {
+        latitude: String,
+        longitude: String
     }, // form w1 (bottom)
     completionDepth: { type: String }, // formerly part of fieldList
     trueVerticalDepth: { type: String }, // form w1.10

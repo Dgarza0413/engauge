@@ -83,15 +83,13 @@ class App extends React.Component {
                 <Route exact path="/map" component={Map} />
                 <Route exact path="/reports" component={Report} />
                 <Route exact path="/facilities" component={Facility} />
+                <Route exact path="/revenue" component={Revenue} />
                 <Route exact path="/well" component={WellTable} />
                 <Route exact path="/well/:id" component={WellDetail} />
-                <Route exact path="/well/:id/update" component={WellForm} />
-                <Route exact path="/well/:id/recomp/new" component={Recompletion} />
-                <Route exaxt path="/well/:id/report/new" component={ReportForm} />
-                <Route exact path="/well/:id/report/update" component={ReportForm} />
-                <Route exact path="/well/:id/prod/new" component={ProdForm} />
-                <Route exact path={["/submit/:schema/:operation", "/submit/:schema/:operation/:id"]} component={Submit} />
-                <Route exact path="/revenue" component={Revenue} />
+                <Route exact path={[
+                    "/submit/:schema/:operation",
+                    "/submit/:schema/:operation/:id",
+                    "/submit/:schema/:operation/:id/:unique"]} component={Submit} />
                 <Route exact path="/logout" component={Login} />
             </>
         );

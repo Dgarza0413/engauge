@@ -18,6 +18,8 @@ export default {
         return axios.get("/api/recompletion");
     },
 
+    // "/api/band/:name
+
     // GET - Individual - welldata types
     getWellId: (id) => {
         return axios.get("/api/well/" + id);
@@ -30,6 +32,17 @@ export default {
     },
     getWellReport: (id, wellData) => {
         return axios.get("/api/welltable/" + id.id + "/report", wellData)
+    },
+
+    //GET - Individual report
+    getSingleReport: (id) => {
+        return axios.get(`/api/report/${id}`)
+    },
+    // "Q8_Picd23"
+    updateSingleReport: (id, data) => {
+        console.log(data)
+        console.log(id)
+        return axios.put(`/api/report/${id}`, data)
     },
 
     // POST Individual welldata types

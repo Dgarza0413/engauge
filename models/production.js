@@ -8,13 +8,13 @@ const productionSchema = new Schema({
         default: () => shortid.generate(),
         unique: true
     },
-    siteId: {
+    apiNum: {
         type: String,
-        default: ''
+        // default: ''
     },
     comment: {
         type: String,
-        default: ''
+        // default: ''
     },
     oil: {
         type: Number,
@@ -41,8 +41,8 @@ const productionSchema = new Schema({
         default: 0
     },
     date: {
-        type: Date,
-        default: Date.now
+        type: String,
+        default: new Date
     }
 });
 

@@ -15,7 +15,6 @@ const Header = (props) => {
                     Object
                         .keys(props.data[0] || [])
                         .map(e => {
-                            console.log(e)
                             if ([...FILTERED_PRODUCTION_TABLE, ...FILTERED_WELL_TABLE].includes(e)) {
                                 return
                             } else if (e === 'isOn') {

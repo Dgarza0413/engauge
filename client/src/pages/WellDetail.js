@@ -5,35 +5,30 @@ import { Container, Row, Col } from 'react-bootstrap';
 import API from '../utils/API';
 
 // components
-import GraphLine from '../components/Graph/LineGraph';
+import GraphLine from '../components/Graph/Line';
 import GraphBar from '../components/Graph/BarGraph';
 import PageWrapper from '../components/PageWrapper';
 import Card from '../components/Card';
 import SectionTitle from '../components/SectionTitle';
-import WellInfoList from "../components/Lists/WellInfoList";
-// import DailyProdList from '../components/Lists/DailyProdList';
 import TabPanel from '../components/TabBar/TabBar';
 import Drawer from '../components/Drawer/Drawer';
 import SeconadaryWrapper from '../components/PageWrapper/SecondaryWrapper';
 
 import MapBox from '../components/Map';
+import WellForm from '../components/Form/WellForm';
 
 const WellDetail = (props) => {
   const [wellData, setWellData] = useState({});
-  const [input, setInput] = useState({})
+  const [formData, setFormData] = useState({});
 
-  console.log(props)
-
-  // const handleAddWell = () => {
-  //   props.addWell(input)
-  //   setInput({ input: "" })
-  // }
+  console.log(formData)
 
   const getWellIdData = async () => {
     try {
       const getWell = await API.getWellId(props.match.params.id)
-      console.log(getWell)
-      const res = getWell.data
+      const res = await getWell.data
+
+      setFormData({ ...res })
 
       const totalGas = res.productionId
         .map(prodData => prodData.gas)
@@ -55,8 +50,8 @@ const WellDetail = (props) => {
         res: res,
         wellName: res.wellName,
         wellNum: res.wellNum,
-        tempLat: res.latLong.latitude,
-        tempLng: res.latLong.longitude,
+        tempLat: res.coordinates.latitude,
+        tempLng: res.coordinates.longitude,
         totalOil: totalOil || 0,
         totalGas: totalGas || 0,
         totalWater: totalWater || 0,
@@ -81,11 +76,8 @@ const WellDetail = (props) => {
         <Container>
           <Row>
             <Col lg="12">
-              {/* <ButtonList id={props.match.params.id} /> */}
-              <WellInfoList wellData={wellData.res || []} />
-              {/* <DailyProdList /> */}
+              {formData && <WellForm {...props} data={formData} api={formData.apiNum} readOnly={true} />}
               <Card>
-                <SectionTitle>Prod Summary</SectionTitle>
                 <div style={{ height: '40vw' }}>
                   <GraphLine
                     well={wellData.productionId || []}

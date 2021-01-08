@@ -19,6 +19,12 @@
     height: 35vw;
 }
 
+.graph-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+
 @media screen and (max-width: 991px) {
     .half-pie {
         height: 250px;

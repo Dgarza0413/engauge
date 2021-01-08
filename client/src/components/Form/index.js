@@ -8,6 +8,7 @@ export function StringInput(props) {
         <Form.Group>
             <Form.Label>{props.label}</Form.Label>
             <Form.Control
+                {...props}
                 type="text"
                 name={props.name}
                 value={props.value}
@@ -25,6 +26,7 @@ export function NumberInput(props) {
             <Form.Label>{props.label}</Form.Label>
             <InputGroup className="mb-3">
                 <FormControl
+                    {...props}
                     type="text"
                     name={props.name}
                     value={props.value}
@@ -48,6 +50,7 @@ export function Select(props) {
         <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>{props.label}</Form.Label>
             <Form.Control
+                {...props}
                 as="select"
                 name={props.name}
                 value={props.value}
@@ -74,6 +77,7 @@ export function TextBoxInput(props) {
         <Form.Group>
             <Form.Label>{props.label}</Form.Label>
             <Form.Control
+                {...props}
                 as="textarea"
                 rows="5"
                 placeholder={props.placeholder}
@@ -87,6 +91,7 @@ export function EmailInput(props) {
         <Form.Group>
             <Form.Label>{props.label}</Form.Label>
             <Form.Control
+                {...props}
                 type="email"
                 name={props.name}
                 value={props.value}
@@ -103,6 +108,7 @@ export function PasswordInput(props) {
         <Form.Group>
             <Form.Label>{props.label}</Form.Label>
             <Form.Control
+                {...props}
                 type="password"
                 name={props.name}
                 value={props.value}

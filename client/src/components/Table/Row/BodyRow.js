@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom';
 import { FILTERED_PRODUCTION_TABLE, FILTERED_WELL_TABLE } from '../../../utils/FilteredValues';
 import ToggleButton from "../../Button/ToggleButton";
 
+import UpdateButton from '../Utils/UpdateButton';
+
 const BodyRow = (props) => {
     const { data, type } = props
+
+    console.log(props)
 
     return (
         <tr>
@@ -23,10 +27,17 @@ const BodyRow = (props) => {
                                 </Link>
                             </td>
                         )
+                    } else if (e[0] === 'summary') {
+                        return (
+                            <td className="d-inline-block text-truncate" style={{ maxWidth: '300px' }}>
+                                {e[1]}
+                                <span>Read More</span>
+                            </td>
+                        )
                     } else if (e[0] === 'date') {
                         const created = new Date(e[1]);
                         const date = created.getDate();
-                        const month = created.getMonth();
+                        const month = created.getMonth() + 1;
                         const year = created.getFullYear();
                         const dateString = `${month}/${date}/${year}`
                         return (
@@ -52,6 +63,9 @@ const BodyRow = (props) => {
                     />
                 </td>
             }
+            <td>
+                {type === 'report' ? <UpdateButton reportId={data.reportId} schema={type} api={data.api} /> : ""}
+            </td>
         </tr >
     )
 }

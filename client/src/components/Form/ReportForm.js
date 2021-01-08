@@ -1,81 +1,108 @@
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import moment from 'moment';
-import { Redirect } from 'react-router';
 import PageWrapper from "../PageWrapper/index";
 import Card from '../Card';
 import SectionTitle from '../SectionTitle';
-import { StringInput, TextBoxInput, NumberInput } from '.';
+import Button from "react-bootstrap/Button";
+
+import { StringInput, TextBoxInput } from '.';
 
 
 import { Row, Col } from 'react-bootstrap';
-// import TextField from "../Input/TextField";
+import { style } from '../Button'
 
 // utils
 import API from "../../utils/API";
 
 // hooks
 import useInputChange from '../../hooks/useInputChange';
+import useFetch from '../../hooks/useFetch';
 
 const ReportForm = (props) => {
     const [value, handleInputChange, handleBind] = useInputChange()
+    const [fetchValue, handleGetFetch] = useFetch();
+    const history = useHistory();
+
+    const { operation, id, unique } = props.match.params;
+    const { apiNum } = fetchValue;
+    const { api, cost, date, summary, supervisor, title, type } = value;
+
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-        const pathName = props.match.path;
-        const id = props.match.params.id;
-
-        if (pathName === "/welltable/:id/report/update") {
+        if (operation === 'update') {
             try {
-                await API.updateWellReportData(id, value)
+                await API.updateSingleReport(value._id, value)
+                await history.push(`/well/${id}`)
+            } catch (error) {
+                console.error(error)
+            }
+        } else if (operation === 'add') {
+            try {
+                await API.postWellReport(id, { api: apiNum, ...value })
+                await history.push(`/well/${id}`)
             } catch (error) {
                 console.error(error)
             }
         } else {
-            try {
-                await API.postWellReport(id, value)
-            } catch (error) {
-                console.error(error)
-            }
+            console.log('neither conditions have been met')
+        }
+    }
+
+    const formType = (pathName) => {
+        switch (pathName) {
+            case "add":
+                return <SectionTitle>New Report</SectionTitle>
+            case "update":
+                return <SectionTitle>Update Report</SectionTitle>
+            default:
+                break
         }
     }
 
     useEffect(() => {
+        if (id && operation !== 'update') {
+            console.log('well id fetched')
+            handleGetFetch(`/api/well/${id}`)
+        }
+        if (operation === "update") {
+            handleGetFetch(`/api/report/${unique}`)
+        }
         if (props.location.aboutProps) {
             handleBind(props.location.aboutProps)
         }
     }, [])
 
+    useEffect(() => {
+        if (operation === "update") {
+            handleBind(fetchValue)
+        }
+    }, [fetchValue])
+
     return (
         <PageWrapper>
-            <SectionTitle>Report Form</SectionTitle>
+            {formType(props.operation)}
             <form onSubmit={handleFormSubmit}>
                 <Card>
                     <Row>
-                        <Col xs={4}>
+                        <Col sm={6}>
                             <StringInput
-                                value={moment(value.date).format("YYYY-MM-DD") || ""}
+                                readOnly
+                                value={operation === "add" ? new Date : operation === "update" ? value && value.date : ""}
                                 onChange={handleInputChange}
                                 name="date"
                                 label="date"
                             />
                         </Col>
-                        <Col xs={4}>
+                        <Col sm={6}>
                             <StringInput
-                                value={value.wellName || ""}
+                                readOnly
+                                value={apiNum || api}
                                 onChange={handleInputChange}
-                                name="wellName"
-                                label="well Name"
-                                placeholder="Garza"
-                            />
-                        </Col>
-                        <Col xs={4}>
-                            <StringInput
-                                value={value.wellNum || ""}
-                                onChange={handleInputChange}
-                                name="wellNum"
-                                label="well Number"
-                                placeholder="1"
+                                name="api"
+                                label="api"
                             />
                         </Col>
                         <Col xs={4}>
@@ -83,8 +110,7 @@ const ReportForm = (props) => {
                                 value={value.title || ""}
                                 onChange={handleInputChange}
                                 name="title"
-                                label="report Title"
-                                placeholder="Facility clean up"
+                                label="Title"
                             />
                         </Col>
                         <Col xs={8}>
@@ -92,15 +118,7 @@ const ReportForm = (props) => {
                                 value={value.type || ""}
                                 onChange={handleInputChange}
                                 name="type"
-                                label="report Type"
-                                placeholder="clean up"
-                            />
-                        </Col>
-                        <Col xs={12}>
-                            <TextBoxInput
-                                label="summary"
-                                onChange={handleInputChange}
-                                value={value.summary || ""}
+                                label="Type"
                             />
                         </Col>
                         <Col xs={6}>
@@ -109,7 +127,6 @@ const ReportForm = (props) => {
                                 onChange={handleInputChange}
                                 name="supervisor"
                                 label="supervisor"
-                                placeholder="mr. john doe"
                             />
                         </Col>
                         <Col xs={6}>
@@ -118,13 +135,33 @@ const ReportForm = (props) => {
                                 onChange={handleInputChange}
                                 name="cost"
                                 label="cost"
-                                placeholder="1000"
                             />
+                        </Col>
+                        <Col xs={12}>
+                            <TextBoxInput
+                                value={value.summary || ""}
+                                onChange={handleInputChange}
+                                name="summary"
+                                label="summary"
+                            />
+                        </Col>
+                        <Col xs={4}>
+                            <Button
+                                style={style.button}
+                                onClick={() => props.history.goBack()}
+                                className="mr-2"
+                            >
+                                go back</Button>
+                            <Button
+                                style={style.button}
+                                type="submit"
+                            >
+                                Submit</Button>
                         </Col>
                     </Row>
                 </Card>
             </form>
-        </PageWrapper>
+        </PageWrapper >
     )
 }
 

@@ -129,3 +129,17 @@ export const groupReport = (data) => {
     }
     return newObj
 }
+
+
+export const totalProductionPerDay = (data, tanksize) => {
+    const newArr = []
+
+    for (let i = 0; i < data.length; i++) {
+        if (data[i + 1] === undefined) {
+            newArr.push({ ...data[i], tankLevel: data[data.length - 1].start * tanksize })
+        } else {
+            newArr.push({ ...data[i], tankLevel: data[i].start * tanksize })
+        }
+    }
+    return newArr
+}

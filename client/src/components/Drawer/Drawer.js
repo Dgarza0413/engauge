@@ -1,20 +1,20 @@
 import React from 'react';
-import { withRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 const links = [
     {
         name: "+ Prod",
-        icon: "fas fa-folder-plus fa-3x",
-        pathname: "prod/new"
+        icon: "fas fa-folder-plus fa-1x",
+        pathname: "production/add"
     }, {
         name: "+ Report",
-        icon: "fas fa-credit-card fa-3x",
-        pathname: "report/new"
+        icon: "fas fa-credit-card fa-1x",
+        pathname: "report/add"
     }, {
         name: "+ Recomp",
-        icon: "fas fa-file-signature fa-3x",
-        pathname: "recomp/new"
+        icon: "fas fa-file-signature fa-1x",
+        pathname: "recompletion/add"
     }
 ]
 
@@ -24,10 +24,10 @@ const SecondaryDrawer = ({ id }) => {
         <div className="menu-secondary text-center">
             {links.map((text, index) => (
                 <div className="mb-3">
-                    <Link to={{ pathname: `/well/${id}/${text.pathname}` }} key={index}>
+                    <Link to={`/submit/${text.pathname}/${id}`} key={index}>
                         <div className="on-hover">
                             <i className={text.icon}></i>
-                            <h6>{text.name}</h6>
+                            <p>{text.name}</p>
                         </div>
                     </Link>
                 </div>

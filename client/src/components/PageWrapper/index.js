@@ -8,8 +8,9 @@ const style = {
 }
 
 function PageWrapper(props) {
+    const { viewMode } = props
     return (
-        <div style={style.wrapper}>
+        <div style={viewMode ? null : style.wrapper}>
             {props.children}
         </div>
     );

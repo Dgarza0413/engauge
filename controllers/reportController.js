@@ -11,6 +11,12 @@ module.exports = {
             })
             .catch(err => res.status(422).json(err));
     },
+    findOne: (req, res) => {
+        db.Report
+            .findOne({ reportId: req.params.id })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
     findById: function (req, res) {
         db.Report
             .findById(req.params.id)
@@ -18,7 +24,7 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     create: function (req, res) {
-        db.Well.findById(req.params.id, function (err, well) {
+        db.Well.findOne({ apiNum: req.params.id }, function (err, well) {
             if (err) {
                 console.log(err);
             } else {
@@ -38,6 +44,13 @@ module.exports = {
     update: function (req, res) {
         db.Report
             .findOneAndUpdate({ _id: req.params.id }, req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    updateOne: (req, res) => {
+        console.log(req.body)
+        db.Report
+            .findByIdAndUpdate(req.params.id, req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },

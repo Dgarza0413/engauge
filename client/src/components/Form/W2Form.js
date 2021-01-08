@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Form, Container, Row, Col } from "react-bootstrap";
 import { StringInput, NumberInput, Select, BoxInput, TextBoxInput } from ".";
 import Card from "../Card";
@@ -8,9 +8,7 @@ import useInputChange from '../../hooks/useInputChange';
 
 const W2Form = () => {
 
-    const [value, handleInputChange] = useInputChange()
-
-    console.log(value)
+    const [value, handleInputChange, handleBind] = useInputChange()
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -22,6 +20,10 @@ const W2Form = () => {
             console.error(error)
         }
     }
+
+    useEffect(() => {
+        handleBind()
+    }, [])
 
     return (
         <div>

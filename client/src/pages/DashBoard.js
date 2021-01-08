@@ -3,7 +3,7 @@ import moment from 'moment';
 
 // Components
 import Calendar from '../components/Graph/CalendarGraph';
-import GraphLine from '../components/Graph/LineGraph';
+import GraphLine from '../components/Graph/Line';
 import GraphPie from '../components/Graph/PieGraph';
 import GraphBar from '../components/Graph/BarGraph';
 import PageWrapper from '../components/PageWrapper';
@@ -19,7 +19,6 @@ import Col from 'react-bootstrap/Col'
 import 'rc-slider/assets/index.css';
 
 // hooks
-import useCombineValue from '../hooks/useCombineValue';
 import useFetch from '../hooks/useFetch';
 
 // utilities
@@ -41,7 +40,7 @@ const DashBoard = (props) => {
 
     const styles = {
         graph: {
-            height: '25vw',
+            height: '30vw',
         },
     };
 
@@ -106,10 +105,10 @@ const DashBoard = (props) => {
             <SectionTitle>Dashboard</SectionTitle>
             <Container>
                 <Row>
-                    <DailyProdList data={prodData[prodData.length - 1]} />
+                    {/* <DailyProdList data={prodData[prodData.length - 1]} /> */}
                     <Col lg="12">
                         <Card>
-                            <SectionTitle>Production</SectionTitle>
+                            {/* <SectionTitle>Production</SectionTitle> */}
                             <div style={styles.graph}>
                                 <GraphLine well={prodData || []} />
                             </div>

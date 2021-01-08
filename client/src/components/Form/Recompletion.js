@@ -5,14 +5,15 @@ import PageWrapper from "../PageWrapper";
 import Card from "../Card";
 import Button from "../Button";
 import SectionTitle from "../SectionTitle";
-// import { Redirect } from 'react-router-dom';
 import API from "../../utils/API";
 
 import useInputChange from '../../hooks/useInputChange';
 
 const Recompletion = (props) => {
-    const [value, handleInputChange] = useInputChange();
-    const id = props.match.params.id;
+    const [value, handleInputChange, handleBind] = useInputChange();
+    const { id, operation, schema } = props.match.params;
+
+    console.log(props)
 
     console.log(value)
 
@@ -23,14 +24,20 @@ const Recompletion = (props) => {
             .catch(err => console.error(err))
     }
 
-    const handleClick = async (e) => {
-        console.log(e)
-        console.log('handle click')
+    const formType = (pathName) => {
+        switch (pathName) {
+            case "add":
+                return <SectionTitle>New Recompletion</SectionTitle>
+            case "update":
+                return <SectionTitle>Update Recompletion</SectionTitle>
+            default:
+                break
+        }
     }
 
     return (
         <PageWrapper>
-            <SectionTitle>Recompletion Form</SectionTitle>
+            {formType(props.operation)}
             <form onSubmit={handleFormSubmit}>
                 <Card>
                     <Container>
@@ -41,7 +48,6 @@ const Recompletion = (props) => {
                                     name="spudDate"
                                     // value={value.spudDate}
                                     onChange={handleInputChange}
-                                    onClick={handleClick}
                                     placeholder="01-01-2019"
                                 />
                             </Col>
@@ -59,7 +65,7 @@ const Recompletion = (props) => {
                             <Col lg="3">
                                 <StringInput
                                     label="Date of Test"
-                                    name="testDate"
+                                    name="testData.testDate"
                                     // value={value.testData.testDate}
                                     onChange={handleInputChange}
                                     placeholder="01-01-2019"
@@ -68,7 +74,7 @@ const Recompletion = (props) => {
                             <Col lg="2">
                                 <NumberInput
                                     label="Hours Tested"
-                                    name="hoursTested"
+                                    name="testData.hoursTested"
                                     // value={value.testData.hoursTested}
                                     onChange={handleInputChange}
                                     placeholder="02"
@@ -77,7 +83,7 @@ const Recompletion = (props) => {
                             <Col lg="4">
                                 <Select
                                     label="Production Method"
-                                    name="prodMethod"
+                                    name="testData.prodMethod"
                                     // value={value.testData.prodMethod}
                                     onChange={handleInputChange} >
                                     <option>Flowing</option>
@@ -90,7 +96,7 @@ const Recompletion = (props) => {
                             <Col lg="3">
                                 <NumberInput
                                     label="Choke Size"
-                                    name="chokeSize"
+                                    name="testData.chokeSize"
                                     // value={value.testData.chokeSize}
                                     onChange={handleInputChange}
                                     placeholder="9.0"
@@ -108,7 +114,7 @@ const Recompletion = (props) => {
                                     <Col lg="6">
                                         <NumberInput
                                             label="TVD"
-                                            name="tvdTD"
+                                            name="totalDepth.tvdTD"
                                             // value={value.totalDepth.tvdTD}
                                             onChange={handleInputChange}
                                             placeholder="1000"
@@ -118,7 +124,7 @@ const Recompletion = (props) => {
                                     <Col lg="6">
                                         <NumberInput
                                             label="MD"
-                                            name="mdTD"
+                                            name="totalDepth.mdTD"
                                             // value={value.totalDepth.mdTD}
                                             onChange={handleInputChange}
                                             placeholder="1000"
@@ -133,7 +139,7 @@ const Recompletion = (props) => {
                                     <Col lg="6">
                                         <NumberInput
                                             label="TVD"
-                                            name="tvdPBD"
+                                            name="plugBackDepth.tvdPBD"
                                             // value={value.plugBackDepth.tvdPBD}
                                             onChange={handleInputChange}
                                             placeholder="1000"
@@ -143,7 +149,7 @@ const Recompletion = (props) => {
                                     <Col lg="6">
                                         <NumberInput
                                             label="MD"
-                                            name="mdPBD"
+                                            name="plugBackDepth.mdPBD"
                                             // value={value.plugBackDepth.mdPBD}
                                             onChange={handleInputChange}
                                             placeholder="1000"
@@ -162,7 +168,7 @@ const Recompletion = (props) => {
                             <Col lg="6">
                                 <Select
                                     label="Casing Type"
-                                    name="casingType"
+                                    name="casingRecord.casingType"
                                     // value={value.casingRecord.casingType}
                                     onChange={handleInputChange}
                                 >
@@ -174,7 +180,7 @@ const Recompletion = (props) => {
                             <Col lg="3">
                                 <NumberInput
                                     label="Casing Size"
-                                    name="casingSize"
+                                    name="casingRecord.casingSize"
                                     // value={value.casingRecord.casingSize}
                                     onChange={handleInputChange}
                                     placeholder="02"
@@ -184,7 +190,7 @@ const Recompletion = (props) => {
                             <Col lg="3">
                                 <NumberInput
                                     label="Hole Size"
-                                    name="holeSize"
+                                    name="casingRecord.holeSize"
                                     // value={value.casingRecord.holeSize}
                                     onChange={handleInputChange}
                                     placeholder="07"
@@ -196,7 +202,7 @@ const Recompletion = (props) => {
                             <Col lg="3">
                                 <StringInput
                                     label="Cement Class"
-                                    name="cementClass"
+                                    name="casingRecord.cementClass"
                                     // value={value.casingRecord.cementClass}
                                     onChange={handleInputChange}
                                     placeholder="Class A"
@@ -205,7 +211,7 @@ const Recompletion = (props) => {
                             <Col lg="3">
                                 <NumberInput
                                     label="Cement Amount"
-                                    name="cementAmt"
+                                    name="casingRecord.cementAmt"
                                     // value={value.casingRecord.cementAmt}
                                     onChange={handleInputChange}
                                     placeholder="02"
@@ -215,7 +221,7 @@ const Recompletion = (props) => {
                             <Col lg="3">
                                 <NumberInput
                                     label="Slurry Volume"
-                                    name="slurryVol"
+                                    name="casingRecord.slurryVol"
                                     // value={value.casingRecord.slurryVol}
                                     onChange={handleInputChange}
                                     placeholder="02"
@@ -226,7 +232,7 @@ const Recompletion = (props) => {
                             <Col lg="3">
                                 <StringInput
                                     label="Top of Cement"
-                                    name="topOfCement"
+                                    name="casingRecord.topOfCement"
                                     // value={value.casingRecord.topOfCement}
                                     onChange={handleInputChange}
                                     placeholder="Surface"
@@ -242,7 +248,7 @@ const Recompletion = (props) => {
                             <Col lg="3">
                                 <NumberInput
                                     label="Size"
-                                    name="size"
+                                    name="tubingRecord.size"
                                     // value={value.tubingRecord.size}
                                     onChange={handleInputChange}
                                     placeholder="02"
@@ -252,7 +258,7 @@ const Recompletion = (props) => {
                             <Col lg="3">
                                 <NumberInput
                                     label="Depth Set"
-                                    name="depthSet"
+                                    name="tubingRecord.depthSet"
                                     // value={value.tubingRecord.depthSet}
                                     onChange={handleInputChange}
                                     placeholder="07"
@@ -262,7 +268,7 @@ const Recompletion = (props) => {
                             <Col lg="3">
                                 <Select
                                     label="Packer Type"
-                                    name="packerType"
+                                    name="tubingRecord.packerType"
                                     // value={value.tubingRecord.packerType}
                                     onChange={handleInputChange}
                                 >
@@ -276,7 +282,7 @@ const Recompletion = (props) => {
                             <Col lg="3">
                                 <NumberInput
                                     label="Packer Depth"
-                                    name="packerDepth"
+                                    name="tubingRecord.packerDepth"
                                     // value={value.tubingRecord.packerDepth}
                                     onChange={handleInputChange}
                                     placeholder="07"
@@ -293,7 +299,7 @@ const Recompletion = (props) => {
                             <Col md="6">
                                 <StringInput
                                     label="From"
-                                    name="from"
+                                    name="prodInjDispInt.from"
                                     // value={value.prodInjDispInt.from}
                                     onChange={handleInputChange}
                                     placeholder="Enter Where From"
@@ -302,7 +308,7 @@ const Recompletion = (props) => {
                             <Col md="6">
                                 <StringInput
                                     label="To"
-                                    name="to"
+                                    name="prodInjDispInt.to"
                                     // value={value.prodInjDispInt.to}
                                     onChange={handleInputChange}
                                     placeholder="Enter Where To"
@@ -318,7 +324,7 @@ const Recompletion = (props) => {
                             <Col lg="6">
                                 <Select
                                     label="Principal Geological Markers & Formation Tops"
-                                    name="markers"
+                                    name="formationRecord.markers"
                                     // value={value.state.formationRecord.markers}
                                     onChange={handleInputChange}
                                 >
@@ -332,7 +338,7 @@ const Recompletion = (props) => {
                             <Col lg="3">
                                 <NumberInput
                                     label="TVD"
-                                    name="tvdDepth"
+                                    name="formationRecord.tvdDepth"
                                     // value={value.formationRecord.tvdDepth}
                                     onChange={handleInputChange}
                                     placeholder="02"
@@ -342,7 +348,7 @@ const Recompletion = (props) => {
                             <Col lg="3">
                                 <NumberInput
                                     label="MD"
-                                    name="mdDepth"
+                                    name="formationRecord.mdDepth"
                                     // value={value.formationRecord.mdDepth}
                                     onChange={handleInputChange}
                                     placeholder="07"
@@ -354,7 +360,7 @@ const Recompletion = (props) => {
                             <Col md="8">
                                 <Select
                                     label="Formation Type"
-                                    name="formationType"
+                                    name="formationRecord.formationType"
                                     // value={value.formationRecord.formationType}
                                     onChange={handleInputChange} >
                                     <option>Zone With Corrosive Formation Fluids</option>
@@ -367,7 +373,7 @@ const Recompletion = (props) => {
                             <Col md="4">
                                 <Select
                                     label="Isolated"
-                                    name="isIsolated"
+                                    name="formationRecord.isIsolated"
                                     // value={value.formationRecord.isIsolated}
                                     onChange={handleInputChange}
                                 >
